@@ -1,105 +1,115 @@
+// import 'package:connector_openapi/api_client.dart';
+// ignore_for_file: omit_local_variable_types, prefer_const_constructors
+import 'package:collection/collection.dart';
+import 'package:core_openapi/api_client.dart';
 import 'package:flutter/material.dart';
+import 'package:gsheets/pie/pie%20chart/home_appbar.dart';
 
-void main() {
-  runApp(const MyApp());
-  print('first commit');
+import 'pie/pie chart/dataMap.dart';
+
+void main() async {
+  CircularProgressIndicator(
+    color: Colors.black54,
+    strokeWidth: 10,
+  );
+  // await create();
+  ApiClient api = ApiClient(basePath: 'http://localhost:1000');
+  // InitialFilter launch = InitialFilter(api: api);
+  // launch.run();
+  // AssetWebsite launch9 = AssetWebsite(api: ApiClient(basePath: 'http://localhost:1000'));
+  // launch9.run();
+  // List<String> websiteUrls = [];
+  // print('urls --> ${websiteUrls.length}');
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp(
+  //   options: FirebaseOptions(
+  //     appId: '1:464412392062:android:106c4a1f6af7dc9e3d362f',
+  //     projectId: 'flutter-pie-chart',
+  //     apiKey: 'AIzaSyBiFbNACrq-7ZgBVAkRCYQrFj5_89Osi4Y',
+  //     messagingSenderId: '464412392062',
+  //   ),
+  // );
+  await batch_file_();
+  await c_();
+  await cPP_();
+  await coffee_();
+  await cSharp_();
+  await cSS_();
+  await dartCount();
+  await erlang_();
+  await go_();
+  await haskell_();
+  await html_();
+  await image_();
+  await java_();
+  await json_();
+  await javascript_();
+  await lua_();
+  await markdown_();
+  await matlab_();
+  await objective_c_();
+  await perl_();
+  await php_();
+  await powerShell_();
+  await python_();
+  await r_();
+  await ruby_();
+  await rust_();
+  await scala_();
+  await shell_();
+  await sql_();
+  await swift_();
+  await tex_();
+  await text_();
+  await toml_();
+  await typeScript_();
+  await yaml_();
+  await empty_();
+
+  dataMap.removeWhere((key, value) => value == 0);
+
+  if (dataMap.length > 1) {
+    dataMap.removeWhere((key, value) => value == 0.01);
+  }
+
+  if (dataMap.isNotEmpty) {
+    double total = dataMap.values.sum;
+    print('Total Snippets: $total');
+  }
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  // final Future<FirebaseApp> _firebaseApp = Firebase.initializeApp();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Pie Chart Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+      darkTheme: ThemeData(
+        primarySwatch: Colors.blueGrey,
+        brightness: Brightness.dark,
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      // home: FutureBuilder(
+      //   future: _firebaseApp,
+      //   builder: (context, snapshot) {
+      //     if (snapshot.hasError) {
+      //       return Text('you have an error! ${snapshot.error.toString()}');
+      //     } else if (snapshot.hasData) {
+      //       return HomePageAppBar();
+      //     } else {
+      //       return Center(
+      //         child: CircularProgressIndicator(),
+      //       );
+      //     }
+      //   },
+      // ),
+      home: HomePageAppBar(),
     );
   }
 }
