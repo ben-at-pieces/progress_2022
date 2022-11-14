@@ -12,9 +12,6 @@ import 'package:core_openapi/api_client.dart';
 import 'package:flutter/material.dart';
 
 import '../languages/batch_file.dart';
-import '../meta_data/related_links/related_links.dart';
-import '../meta_data/snippet_names/drop_down_snip_names.dart';
-import '../meta_data/tags/tags.dart';
 import 'boot.dart';
 import 'homepage.dart';
 
@@ -62,15 +59,15 @@ class HomePageState extends State<HomePageAppBar> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white30,
-        leading: DropdownSnippets(),
+        // leading: DropdownSnippets(),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             /// todo snippets button
             // DropdownSnippets(),
-            GlobalTags(),
-            DropdownRelatedLink(),
+            // GlobalTags(),
+            // DropdownRelatedLink(),
           ],
         ),
       ),
