@@ -3,9 +3,8 @@
 import 'package:collection/collection.dart';
 import 'package:core_openapi/api_client.dart';
 import 'package:flutter/material.dart';
-import 'package:gsheets/pie/pie%20chart/home_appbar.dart';
-
-import 'pie/pie chart/dataMap.dart';
+import 'package:gsheets/tabs/TabAppBar.dart';
+import 'package:gsheets/tabs/pie%20chart%20home/dataMap.dart';
 
 void main() async {
   CircularProgressIndicator(
@@ -16,21 +15,7 @@ void main() async {
   /// changes
   // await create();
   ApiClient api = ApiClient(basePath: 'http://localhost:1000');
-  // InitialFilter launch = InitialFilter(api: api);
-  // launch.run();
-  // AssetWebsite launch9 = AssetWebsite(api: ApiClient(basePath: 'http://localhost:1000'));
-  // launch9.run();
-  // List<String> websiteUrls = [];
-  // print('urls --> ${websiteUrls.length}');
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp(
-  //   options: FirebaseOptions(
-  //     appId: '1:464412392062:android:106c4a1f6af7dc9e3d362f',
-  //     projectId: 'flutter-pie-chart',
-  //     apiKey: 'AIzaSyBiFbNACrq-7ZgBVAkRCYQrFj5_89Osi4Y',
-  //     messagingSenderId: '464412392062',
-  //   ),
-  // );
+
   await batch_file_();
   await c_();
   await cPP_();
@@ -83,8 +68,6 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  // final Future<FirebaseApp> _firebaseApp = Firebase.initializeApp();
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -97,20 +80,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
         brightness: Brightness.dark,
       ),
-      // home: FutureBuilder(
-      //   future: _firebaseApp,
-      //   builder: (context, snapshot) {
-      //     if (snapshot.hasError) {
-      //       return Text('you have an error! ${snapshot.error.toString()}');
-      //     } else if (snapshot.hasData) {
-      //       return HomePageAppBar();
-      //     } else {
-      //       return Center(
-      //         child: CircularProgressIndicator(),
-      //       );
-      //     }
-      //   },
-      // ),
       home: HomePageAppBar(),
     );
   }
