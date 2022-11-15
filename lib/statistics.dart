@@ -1,10 +1,8 @@
 import 'package:core_openapi/api.dart';
-import 'package:gsheets/pie/pie%20chart/boot.dart';
 import 'package:string_stats/string_stats.dart';
 
-import 'api.dart';
+import 'bar chart/api.dart';
 
-Future<List> assetsSnapshotFuture = Boot().getAssets();
 Future<Statistics> getStats() async {
   Assets assets = await PiecesApi.assetsApi.assetsSnapshot();
   int snippetsSaved = 0;
@@ -62,21 +60,23 @@ Future<Statistics> getStats() async {
   print("Lines Saved");
   print(totalLinesSaved);
   Statistics statistics = Statistics(
-      classifications: classifications,
-      snippetsSaved: snippetsSaved,
-      shareableLinks: shareableLinks,
-      updatedSnippets: updatedSnippets,
-      totalLinesSaved: totalLinesSaved);
+    classifications: classifications,
+    snippetsSaved: snippetsSaved.toDouble(),
+    shareableLinks: shareableLinks.toDouble(),
+    updatedSnippets: updatedSnippets.toDouble(),
+    totalLinesSaved: totalLinesSaved.toDouble(),
+  );
+
   return statistics;
 }
 
 class Statistics {
   final Map<String, double> classifications;
-  final int snippetsSaved;
-  final int shareableLinks;
-  final int updatedSnippets;
+  final double snippetsSaved;
+  final double shareableLinks;
+  final double updatedSnippets;
+  final double totalLinesSaved;
 
-  final int totalLinesSaved;
   Statistics({
     required this.classifications,
     required this.snippetsSaved,
