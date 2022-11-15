@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:gsheets/pie/pie%20chart/home_appbar.dart';
 
 import 'pie/pie chart/dataMap.dart';
+import 'statistics.dart';
 
 void main() async {
   CircularProgressIndicator(
@@ -74,9 +75,10 @@ void main() async {
 
   if (dataMap.isNotEmpty) {
     double total = dataMap.values.sum;
-    print('Total Snippets: $total');
+    // print('Total Snippets: $total');
   }
 
+  Statistics stats = await getStats();
   runApp(MyApp());
 }
 
