@@ -1,28 +1,28 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'dart:math' as math;
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-class BarChartSample7 extends StatefulWidget {
-  const BarChartSample7({super.key});
-
+class BarGraph extends StatefulWidget {
   static const shadowColor = Color(0xFFCCCCCC);
   static const dataList = [
     /// TODO
 
-    _BarData(Color(0xff545454), 18, 0),
-    _BarData(Color(0xff691ec7), 17, 0),
-    _BarData(Color(0xff408d7d), 10, 0),
-    _BarData(Color(0xffefbd52), 2.5, 0),
-    _BarData(Color(0xFF295ab5), 2, 0),
+    _BarData(Color(0xff545454), 10, 0),
+    _BarData(Color(0xff691ec7), 8, 0),
+    _BarData(Color(0xff408d7d), 6, 0),
+    _BarData(Color(0xffefbd52), 4, 0),
+    _BarData(Color(0xFF295ab5), 3, 0),
     _BarData(Color(0xFFea0107), 2, 0),
   ];
 
   @override
-  State<BarChartSample7> createState() => _BarChartSample7State();
+  State<BarGraph> createState() => _BarChartState();
 }
 
-class _BarChartSample7State extends State<BarChartSample7> {
+class _BarChartState extends State<BarGraph> {
   BarChartGroupData generateBarGroup(
     int x,
     Color color,
@@ -35,11 +35,11 @@ class _BarChartSample7State extends State<BarChartSample7> {
         BarChartRodData(
           toY: value,
           color: color,
-          width: 6,
+          width: 30,
         ),
         BarChartRodData(
           toY: shadowValue,
-          color: BarChartSample7.shadowColor,
+          color: BarGraph.shadowColor,
           width: 6,
         ),
       ],
@@ -67,7 +67,7 @@ class _BarChartSample7State extends State<BarChartSample7> {
                   alignment: BarChartAlignment.spaceBetween,
                   borderData: FlBorderData(
                     show: true,
-                    border: const Border.symmetric(
+                    border: Border.symmetric(
                       horizontal: BorderSide(
                         color: Color(0xFFececec),
                       ),
@@ -83,7 +83,7 @@ class _BarChartSample7State extends State<BarChartSample7> {
                         getTitlesWidget: (value, meta) {
                           return Text(
                             value.toInt().toString(),
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Color(0xFF606060),
                             ),
                             textAlign: TextAlign.left,
@@ -100,7 +100,7 @@ class _BarChartSample7State extends State<BarChartSample7> {
                           return SideTitleWidget(
                             axisSide: meta.axisSide,
                             child: _IconWidget(
-                              color: BarChartSample7.dataList[index].color,
+                              color: BarGraph.dataList[index].color,
                               isSelected: touchedGroupIndex == index,
                             ),
                           );
@@ -114,11 +114,11 @@ class _BarChartSample7State extends State<BarChartSample7> {
                     show: true,
                     drawVerticalLine: false,
                     getDrawingHorizontalLine: (value) => FlLine(
-                      color: const Color(0xFFececec),
+                      color: Color(0xFFececec),
                       strokeWidth: 1,
                     ),
                   ),
-                  barGroups: BarChartSample7.dataList.asMap().entries.map((e) {
+                  barGroups: BarGraph.dataList.asMap().entries.map((e) {
                     final index = e.key;
                     final data = e.value;
                     return generateBarGroup(
@@ -147,7 +147,7 @@ class _BarChartSample7State extends State<BarChartSample7> {
                             fontWeight: FontWeight.bold,
                             color: rod.color,
                             fontSize: 18,
-                            shadows: const [
+                            shadows: [
                               Shadow(
                                 color: Colors.black26,
                                 blurRadius: 12,
@@ -181,6 +181,7 @@ class _BarChartSample7State extends State<BarChartSample7> {
   }
 }
 
+/// constructor for Bar Graph data
 class _BarData {
   const _BarData(this.color, this.value, this.shadowValue);
 
@@ -210,9 +211,9 @@ class _IconWidgetState extends AnimatedWidgetBaseState<_IconWidget> {
     final scale = 1 + _rotationTween!.evaluate(animation) * 0.5;
     return Transform(
       transform: Matrix4.rotationZ(rotation).scaled(scale, scale),
-      origin: const Offset(14, 14),
+      origin: Offset(14, 14),
       child: Icon(
-        widget.isSelected ? Icons.snippet_folder_outlined : Icons.accessibility_new,
+        widget.isSelected ? Icons.accessibility_new_sharp : Icons.accessibility_new,
         color: widget.color,
         semanticLabel: 'shared',
         size: 28,

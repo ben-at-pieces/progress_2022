@@ -15,7 +15,7 @@ import 'package:runtime_client/particle.dart';
 import '../pie/languages/batch_file.dart';
 import '../pie/meta_data/boot.dart';
 import 'Saved.dart';
-import 'bar chart shared/samples/bar_chart_sample7.dart';
+import 'bar chart shared/bar chart shared/bar_chart_sample7.dart';
 import 'pie chart home/home_page_pie.dart';
 
 enum LegendShape { circle, rectangle }
@@ -90,7 +90,7 @@ class HomePageState extends State<HomePageAppBar> {
             children: [
               HomePagePie(),
               SavedPie(),
-              BarChartSample7(),
+              BarGraph(),
               // Icon(Icons.grade),
             ],
           ), // TabBarView
