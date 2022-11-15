@@ -31,6 +31,7 @@ dependencies:
       path: sdk/http/dart/core
   #      url: git@bitbucket.org:pi3c3s/isomorphic_openapi.git
   #      path: ./core/dart/
+  string_stats: ^0.1.0
   runtime_client:
     git:
       url: git@github.com:open-runtime/runtime_client.git
