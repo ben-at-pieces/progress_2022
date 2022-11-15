@@ -88,9 +88,10 @@ class HomePageState extends State<HomePageAppBar> {
           ), // AppBar
           body: TabBarView(
             children: [
+              BarGraph(),
               HomePagePie(),
               SavedPie(),
-              BarGraph(),
+
               // Icon(Icons.grade),
             ],
           ), // TabBarView

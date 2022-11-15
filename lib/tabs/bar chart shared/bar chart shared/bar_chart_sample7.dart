@@ -30,9 +30,11 @@ class _BarChartState extends State<BarGraph> {
     double shadowValue,
   ) {
     return BarChartGroupData(
+      groupVertically: true,
       x: x,
       barRods: [
         BarChartRodData(
+          borderSide: BorderSide(style: BorderStyle.solid),
           toY: value,
           color: color,
           width: 30,
@@ -55,7 +57,7 @@ class _BarChartState extends State<BarGraph> {
       color: Colors.white,
       elevation: 4,
       child: Padding(
-        padding: const EdgeInsets.all(4),
+        padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,7 +68,7 @@ class _BarChartState extends State<BarGraph> {
                 BarChartData(
                   alignment: BarChartAlignment.spaceBetween,
                   borderData: FlBorderData(
-                    show: true,
+                    // show: true,
                     border: Border.symmetric(
                       horizontal: BorderSide(
                         color: Color(0xFFececec),
