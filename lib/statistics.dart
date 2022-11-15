@@ -16,7 +16,11 @@ Future<Statistics> getStats() async {
   Map<String, double> classifications = {};
   for (Asset asset in assets.iterable) {
     String? classification = asset.original.reference?.classification.specific.value;
-    String? raw = asset.original.reference?.fragment?.string?.raw;
+    String? raw;
+
+    if (asset.original.reference?.classification.generic == ClassificationGenericEnum.CODE) {
+      raw = asset.original.reference?.fragment?.string?.raw;
+    }
     if (raw != null) {
       totalLinesSaved = totalLinesSaved + lineCount(raw);
     }
