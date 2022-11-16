@@ -1,17 +1,17 @@
 import 'package:core_openapi/api.dart';
 import 'package:string_stats/string_stats.dart';
 
-import 'api.dart';
+import '../bar chart/api.dart';
 
 Future<Statistics> getStats() async {
   Assets assets = await PiecesApi.assetsApi.assetsSnapshot();
-  int snippetsSaved = 0;
-  int shareableLinks = 0;
-  int updatedSnippets = 0;
-  int currentMonth = DateTime.now().month;
-  int totalLinesSaved = 0;
-  Map<String, int> tagMap = {};
-  Map<String, int> personMap = {};
+  double snippetsSaved = 0;
+  double shareableLinks = 0;
+  double updatedSnippets = 0;
+  double currentMonth = DateTime.now().month.toDouble();
+  double totalLinesSaved = 0;
+  Map<String, double> tagMap = {};
+  Map<String, double> personMap = {};
   List<String> relatedLinks = [];
 
   Map<String, double> classifications = {};
@@ -78,12 +78,16 @@ Future<Statistics> getStats() async {
   }
 
   List<String> tags =
-      (Map.fromEntries(tagMap.entries.toList()..sort((e1, e2) => e2.value.compareTo(e1.value)))).keys.toList();
+      (Map.fromEntries(tagMap.entries.toList()..sort((e1, e2) => e2.value.compareTo(e1.value))))
+          .keys
+          .toList();
   if (tags.length > 5) {
     tags = tags.take(5).toList();
   }
   List<String> persons =
-      (Map.fromEntries(personMap.entries.toList()..sort((e1, e2) => e2.value.compareTo(e1.value)))).keys.toList();
+      (Map.fromEntries(personMap.entries.toList()..sort((e1, e2) => e2.value.compareTo(e1.value))))
+          .keys
+          .toList();
 
   Statistics statistics = Statistics(
     classifications: classifications,
@@ -100,10 +104,10 @@ Future<Statistics> getStats() async {
 
 class Statistics {
   final Map<String, double> classifications;
-  final int snippetsSaved;
-  final int shareableLinks;
-  final int updatedSnippets;
-  final int totalLinesSaved;
+  final double snippetsSaved;
+  final double shareableLinks;
+  final double updatedSnippets;
+  final double totalLinesSaved;
   final List<String> tags;
   final List<String> persons;
   final List<String> relatedLinks;
