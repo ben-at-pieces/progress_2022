@@ -32,6 +32,8 @@ ApiClient api = ApiClient(basePath: 'http://localhost:1000');
 class HomePagePie extends StatelessWidget {
   const HomePagePie({Key? key}) : super(key: key);
 
+  get touchedIndex => -1;
+
   @override
   Widget build(BuildContext context) {
     return Column(

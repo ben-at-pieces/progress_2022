@@ -14,6 +14,7 @@ import 'package:runtime_client/particle.dart';
 
 import 'bar chart/bar_chart.dart';
 import 'chart data/boot.dart';
+import 'chart data/interaction.dart';
 import 'homepage.dart';
 
 enum LegendShape { circle, rectangle }
@@ -43,7 +44,7 @@ class HomePageState extends State<HomePageAppBar> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
           appBar: AppBar(
             title: TabBar(
@@ -67,10 +68,10 @@ class HomePageState extends State<HomePageAppBar> {
 
                 /// TODO implement 3rd tab ======================================================
 
-                // Text('Shared',
-                //     style: ParticleFont.micro(context,
-                //         customization:
-                //             TextStyle(color: Colors.black, fontWeight: FontWeight.bold))),
+                Text('Shared',
+                    style: ParticleFont.micro(context,
+                        customization:
+                            TextStyle(color: Colors.black, fontWeight: FontWeight.bold))),
                 // Text('Modified',
                 //     style: ParticleFont.micro(context,
                 //         customization:
@@ -81,10 +82,13 @@ class HomePageState extends State<HomePageAppBar> {
           ), // AppBar
           body: TabBarView(
             children: [
+              /// sample pie chart
+              PieChartSample1(),
+
               /// Vertical bar graph ==========================================================
               BarGraph(),
 
-              /// Circular Pe Chart ==========================================================
+              /// Circular Pie Chart ==========================================================
               HomePagePie(),
 
               ///TODO work in another widget
