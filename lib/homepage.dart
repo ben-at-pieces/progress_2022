@@ -11,12 +11,12 @@ import 'package:core_openapi/api/user_api.dart';
 import 'package:core_openapi/api/users_api.dart';
 import 'package:core_openapi/api_client.dart';
 import 'package:flutter/material.dart';
+import 'package:gsheets/pie%20chart/pie%20chart/dataMap.dart';
+import 'package:gsheets/statistics_singleton.dart';
 import 'package:gsheets/tabs/pie%20chart%20home/colors.dart';
-import 'package:gsheets/tabs/pie%20chart%20home/dataMap.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 import 'boot.dart';
-import 'pie/languages/batch_file.dart';
 
 enum LegendShape { circle, rectangle }
 
@@ -29,7 +29,6 @@ UserApi userApi = UserApi(ApiClient(basePath: host));
 List assetsSnapshot = [];
 late Future<List> assetsSnapshotFuture = Boot().getAssets();
 ApiClient api = ApiClient(basePath: 'http://localhost:1000');
-BatchFileSnips launch = BatchFileSnips(api: api);
 
 class HomePagePie extends StatelessWidget {
   const HomePagePie({Key? key}) : super(key: key);
@@ -62,13 +61,15 @@ class HomePagePie extends StatelessWidget {
           centerTextStyle:
               TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold),
           key: ValueKey(key),
-          dataMap: dataMap,
+          dataMap: StatisticsSingleton().statistics!.classifications,
           animationDuration: const Duration(milliseconds: 800),
           chartLegendSpacing: 30,
           chartRadius: math.min(MediaQuery.of(context).size.width / 2.5, 120),
           colorList: colorList,
           chartType: ChartType.ring,
-          centerText: true ? '$length TOTAL' : null,
+          centerText: true
+              ? '${StatisticsSingleton().statistics?.classifications.values.length} TOTAL'
+              : null,
           legendOptions: const LegendOptions(
             showLegendsInRow: false,
             legendPosition: LegendPosition.left,

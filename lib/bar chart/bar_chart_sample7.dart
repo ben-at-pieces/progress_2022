@@ -5,41 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../statistics_singleton.dart';
 
-// Future<void> getStuff() async {
-//   Statistics stats = await getStats();
-//   stats.shareableLinks;
-// }
-
 class BarGraph extends StatefulWidget {
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   stats.then((value) {
-  //     stats = value;
-  //     setState(() {});
-  //   });
-  // }
-
-  // Future<Statistics> data = BarMap().getStats();
-  //
-  // BarGraph() {
-  //   data.then((value) => {
-  //         print(value),
-  //       });
-  // }
-
-  // static List dataList = [
-  //   // /// TODO
-  //   // /// color & value (double)
-  //   _BarData(StatisticsSingleton().statistics!.snippetsSaved, 'Saved Snippets'),
-  //   _BarData(StatisticsSingleton().statistics!.shareableLinks, 'Shared Snippets'),
-  //
-  //   // _BarData(Color(0xff691ec7), 8, 'shared'),
-  //   // _BarData(Color(0xff408d7d), 6, 'modified'),
-  //   // _BarData(Color(0xffefbd52), 4, 'updated'),
-  // ];
-
   @override
   State<BarGraph> createState() => _BarChartState();
 }
@@ -56,9 +22,10 @@ class _BarChartState extends State<BarGraph> {
         padding: EdgeInsets.all(20),
         child: BarChart(
           BarChartData(
+            // maxY: 50,
             alignment: BarChartAlignment.spaceAround,
             borderData: FlBorderData(
-              show: false,
+              show: true,
               // border: Border.symmetric(
               //   horizontal: BorderSide(
               //     color: Colors.transparent,
@@ -84,7 +51,7 @@ class _BarChartState extends State<BarGraph> {
                 ),
               ),
               bottomTitles: AxisTitles(
-                axisNameWidget: Text('Data'),
+                // axisNameWidget: Text('Data'),
                 sideTitles: SideTitles(
                   showTitles: true,
                   reservedSize: 36,
@@ -93,16 +60,16 @@ class _BarChartState extends State<BarGraph> {
 
                     switch (value.toString()) {
                       case '0':
-                        text = 'Snippets Saved';
+                        text = 'Saved';
                         break;
                       case '1':
-                        text = 'Shared Snippets';
+                        text = 'Shared';
                         break;
+                      // case '2':
+                      //   text = 'Total Lines';
+                      //   break;
                       case '2':
-                        text = 'Total Lines';
-                        break;
-                      case '3':
-                        text = 'Total Updates';
+                        text = 'Updates';
                         break;
                     }
 
@@ -125,46 +92,56 @@ class _BarChartState extends State<BarGraph> {
               ),
             ),
             barGroups: [
+              /// Total Saved Snippets in your repo ================================================================
               BarChartGroupData(
                 x: 0,
                 barRods: [
                   BarChartRodData(
+                    borderRadius: BorderRadius.zero,
                     toY: StatisticsSingleton().statistics?.snippetsSaved ?? 0,
-                    width: 30,
-                    color: Colors.red,
+                    width: 40,
+                    color: Colors.black54,
                   ),
                 ],
               ),
-              BarChartGroupData(
-                x: 1,
-                barRods: [
-                  BarChartRodData(
-                    toY: StatisticsSingleton().statistics?.shareableLinks ?? 0,
-                    width: 30,
-                    color: Colors.blue,
-                  ),
-                ],
-              ),
+
+              /// Total Updated Snippets in your repo ================================================================
               BarChartGroupData(
                 x: 2,
                 barRods: [
                   BarChartRodData(
-                    toY: StatisticsSingleton().statistics?.totalLinesSaved ?? 0,
-                    width: 30,
-                    color: Colors.green,
+                    borderRadius: BorderRadius.zero,
+                    toY: StatisticsSingleton().statistics?.updatedSnippets ?? 0,
+                    width: 45,
+                    color: Colors.deepPurple,
                   ),
                 ],
               ),
+
+              /// Total user shares ================================================================
               BarChartGroupData(
-                x: 3,
+                x: 1,
                 barRods: [
                   BarChartRodData(
-                    toY: StatisticsSingleton().statistics?.updatedSnippets ?? 0,
+                    borderRadius: BorderRadius.zero,
+                    toY: StatisticsSingleton().statistics?.shareableLinks ?? 0,
                     width: 30,
-                    color: Colors.yellow,
+                    color: Colors.grey,
                   ),
                 ],
               ),
+
+              /// This is our line count for all of the snippets (is an outlier for thi)
+              // BarChartGroupData(
+              //   x: 2,
+              //   barRods: [
+              //     BarChartRodData(
+              //       toY: StatisticsSingleton().statistics?.totalLinesSaved ?? 0,
+              //       width: 30,
+              //       color: Colors.green,
+              //     ),
+              //   ],
+              // ),
             ],
             barTouchData: BarTouchData(
               enabled: true,
@@ -217,63 +194,3 @@ class _BarData {
   final String language;
   final double value;
 }
-
-// class _IconWidget extends ImplicitlyAnimatedWidget {
-//   _IconWidget({
-//     required this.color,
-//     required this.isSelected,
-//   }) : super(duration: Duration(milliseconds: 300));
-//   final Color color;
-//   final bool isSelected;
-//
-//   @override
-//   ImplicitlyAnimatedWidgetState<ImplicitlyAnimatedWidget> createState() => _IconWidgetState();
-// }
-
-// class _IconWidgetState extends AnimatedWidgetBaseState<_IconWidget> {
-//   Tween<double>? _rotationTween;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final rotation = math.pi * 4 * _rotationTween!.evaluate(animation);
-//     final scale = 1 + _rotationTween!.evaluate(animation) * 0.5;
-//     return Transform(
-//       transform: Matrix4.rotationZ(rotation).scaled(scale, scale),
-//       origin: Offset(14, 14),
-//       child: Icon(
-//         widget.isSelected ? Icons.accessibility_new_sharp : Icons.accessibility_new,
-//         color: widget.color,
-//         semanticLabel: 'shared',
-//         size: 28,
-//       ),
-//     );
-//   }
-//
-//   @override
-//   void forEachTween(TweenVisitor<dynamic> visitor) {
-//     _rotationTween = visitor(
-//       _rotationTween,
-//       widget.isSelected ? 1.0 : 0.0,
-//       (dynamic value) => Tween<double>(
-//         begin: value as double,
-//         end: widget.isSelected ? 1.0 : 0.0,
-//       ),
-//     ) as Tween<double>?;
-//   }
-// }
-//
-// class Statistics {
-//   final Map<String, double> classifications;
-//   final double snippetsSaved;
-//   final double shareableLinks;
-//   final double updatedSnippets;
-//
-//   final double totalLinesSaved;
-//   Statistics({
-//     required this.classifications,
-//     required this.snippetsSaved,
-//     required this.shareableLinks,
-//     required this.updatedSnippets,
-//     required this.totalLinesSaved,
-//   });
-// }

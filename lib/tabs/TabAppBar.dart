@@ -14,7 +14,6 @@ import 'package:runtime_client/particle.dart';
 
 import '../bar chart/bar_chart_sample7.dart';
 import '../boot.dart';
-import '../pie/languages/batch_file.dart';
 
 enum LegendShape { circle, rectangle }
 
@@ -27,7 +26,6 @@ UserApi userApi = UserApi(ApiClient(basePath: host));
 List assetsSnapshot = [];
 late Future<List> assetsSnapshotFuture = Boot().getAssets();
 ApiClient api = ApiClient(basePath: 'http://localhost:1000');
-BatchFileSnips launch = BatchFileSnips(api: api);
 // Coffee__Snips launch3 = Coffee__Snips(api: api);
 // void main() async {
 //   // double bats = await launch.run();
