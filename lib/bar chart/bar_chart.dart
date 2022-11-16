@@ -98,17 +98,17 @@ class _BarChartState extends State<BarGraph> {
             ),
             barGroups: [
               /// Total Saved Snippets in your repo ================================================================
-              // BarChartGroupData(
-              //   x: 0,
-              //   barRods: [
-              //     BarChartRodData(
-              //       borderRadius: BorderRadius.zero,
-              //       toY: StatisticsSingleton().statistics?.snippetsSaved ?? 0,
-              //       width: 40,
-              //       color: Colors.black54,
-              //     ),
-              //   ],
-              // ),
+              BarChartGroupData(
+                x: 0,
+                barRods: [
+                  BarChartRodData(
+                    borderRadius: BorderRadius.zero,
+                    toY: StatisticsSingleton().statistics?.snippetsSaved ?? 0,
+                    width: 40,
+                    color: Colors.black54,
+                  ),
+                ],
+              ),
 
               /// Total Updated Snippets in your repo ================================================================
               BarChartGroupData(
