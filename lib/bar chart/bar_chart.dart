@@ -36,9 +36,12 @@ class _BarChartState extends State<BarGraph> {
             titlesData: FlTitlesData(
               show: true,
               leftTitles: AxisTitles(
-                drawBehindEverything: true,
+                drawBehindEverything: false,
+
+                /// TODO this is where we will decide to either show/not show the Y Axis
+                /// TODO plan to use a stateful pop over to show data cleaner than the Y Axis
                 sideTitles: SideTitles(
-                  showTitles: true,
+                  showTitles: false,
                   reservedSize: 42,
                   getTitlesWidget: (value, meta) {
                     return Text(
@@ -53,7 +56,7 @@ class _BarChartState extends State<BarGraph> {
               ),
               bottomTitles: AxisTitles(
                 axisNameWidget: Text(
-                  'U S E R _ S T A T S',
+                  'P I E C E S _ U S E R _ S T A T S',
                   style: ParticleFont.button(context,
                       customization: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
                 ),
@@ -65,16 +68,16 @@ class _BarChartState extends State<BarGraph> {
 
                     switch (value.toString()) {
                       case '0':
-                        text = 'Saved';
+                        text = 'Saved: ${StatisticsSingleton().statistics?.snippetsSaved}';
                         break;
                       case '1':
-                        text = 'Shared';
+                        text = 'Shares: ${StatisticsSingleton().statistics?.snippetsSaved}';
                         break;
                       // case '2':
                       //   text = 'Total Lines';
                       //   break;
                       case '2':
-                        text = 'Updates';
+                        text = 'Updates: ${StatisticsSingleton().statistics?.updatedSnippets}';
                         break;
                     }
 
