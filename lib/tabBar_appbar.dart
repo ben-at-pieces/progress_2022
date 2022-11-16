@@ -12,8 +12,9 @@ import 'package:core_openapi/api_client.dart';
 import 'package:flutter/material.dart';
 import 'package:runtime_client/particle.dart';
 
-import '../bar chart/bar_chart_sample7.dart';
-import '../boot.dart';
+import 'bar chart/bar_chart.dart';
+import 'chart data/boot.dart';
+import 'homepage.dart';
 
 enum LegendShape { circle, rectangle }
 
@@ -26,11 +27,6 @@ UserApi userApi = UserApi(ApiClient(basePath: host));
 List assetsSnapshot = [];
 late Future<List> assetsSnapshotFuture = Boot().getAssets();
 ApiClient api = ApiClient(basePath: 'http://localhost:1000');
-// Coffee__Snips launch3 = Coffee__Snips(api: api);
-// void main() async {
-//   // double bats = await launch.run();
-//   // double coffee = await launch.run();
-// }
 
 class HomePageAppBar extends StatefulWidget {
   @override
@@ -40,16 +36,6 @@ class HomePageAppBar extends StatefulWidget {
 class HomePageState extends State<HomePageAppBar> {
   ApiClient api = ApiClient(basePath: 'http://localhost:1000');
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    assetsSnapshotFuture.then((value) {
-      assetsSnapshot = value;
-      setState(() {});
-    });
-  }
-
   int key = 0;
 
   @override
@@ -57,25 +43,30 @@ class HomePageState extends State<HomePageAppBar> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
-        length: 1,
+        length: 2,
         child: Scaffold(
           appBar: AppBar(
-            bottom: TabBar(
+            title: TabBar(
+              // overlayColor: Colors.deepPurpleAccent,
               tabs: [
-                /// first Pie Chart
+                Text(
+                  'Activity',
+                  style: ParticleFont.micro(
+                    context,
+                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Text(
+                  ' Classifications',
+                  textWidthBasis: TextWidthBasis.parent,
+                  style: ParticleFont.micro(
+                    context,
+                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                ),
 
-                // Text('Classifications',
-                //     style: ParticleFont.micro(context,
-                //         customization:
-                //             TextStyle(color: Colors.black, fontWeight: FontWeight.bold))),
+                /// TODO implement 3rd tab ======================================================
 
-                /// Second Bar Graph
-                Text('Saved',
-                    style: ParticleFont.micro(context,
-                        customization:
-                            TextStyle(color: Colors.black, fontWeight: FontWeight.bold))),
-
-                /// third Pie Chart
                 // Text('Shared',
                 //     style: ParticleFont.micro(context,
                 //         customization:
@@ -90,19 +81,17 @@ class HomePageState extends State<HomePageAppBar> {
           ), // AppBar
           body: TabBarView(
             children: [
+              /// Vertical bar graph ==========================================================
               BarGraph(),
 
-              ///TODO work back in the
-              // HomePagePie(),
-              // SavedPie(),
+              /// Circular Pe Chart ==========================================================
+              HomePagePie(),
 
-              // Icon(Icons.grade),
+              ///TODO work in another widget
             ],
           ), // TabBarView
         ), // Scaffold
       ), // DefaultTabController
-    ); // MaterialApp
+    );
   }
 }
-
-final TextEditingController newNameController = TextEditingController();

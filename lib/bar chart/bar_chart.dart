@@ -2,8 +2,9 @@
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:runtime_client/particle.dart';
 
-import '../statistics_singleton.dart';
+import '../chart data/statistics_singleton.dart';
 
 class BarGraph extends StatefulWidget {
   @override
@@ -51,7 +52,11 @@ class _BarChartState extends State<BarGraph> {
                 ),
               ),
               bottomTitles: AxisTitles(
-                // axisNameWidget: Text('Data'),
+                axisNameWidget: Text(
+                  'U S E R _ S T A T S',
+                  style: ParticleFont.button(context,
+                      customization: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                ),
                 sideTitles: SideTitles(
                   showTitles: true,
                   reservedSize: 36,
@@ -93,17 +98,17 @@ class _BarChartState extends State<BarGraph> {
             ),
             barGroups: [
               /// Total Saved Snippets in your repo ================================================================
-              BarChartGroupData(
-                x: 0,
-                barRods: [
-                  BarChartRodData(
-                    borderRadius: BorderRadius.zero,
-                    toY: StatisticsSingleton().statistics?.snippetsSaved ?? 0,
-                    width: 40,
-                    color: Colors.black54,
-                  ),
-                ],
-              ),
+              // BarChartGroupData(
+              //   x: 0,
+              //   barRods: [
+              //     BarChartRodData(
+              //       borderRadius: BorderRadius.zero,
+              //       toY: StatisticsSingleton().statistics?.snippetsSaved ?? 0,
+              //       width: 40,
+              //       color: Colors.black54,
+              //     ),
+              //   ],
+              // ),
 
               /// Total Updated Snippets in your repo ================================================================
               BarChartGroupData(

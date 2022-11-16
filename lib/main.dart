@@ -1,71 +1,13 @@
 // import 'package:connector_openapi/api_client.dart';
-// ignore_for_file: omit_local_variable_types, prefer_const_constructors
+// ignore_for_file: omit_local_variable_types, prefer_const_constructors, use_key_in_widget_constructors
 import 'package:flutter/material.dart';
-import 'package:gsheets/statistics_singleton.dart';
+import 'package:gsheets/tabBar_appbar.dart';
 
-import 'home_appbar.dart';
-import 'statistics.dart';
+import 'chart data/statistics.dart';
+import 'chart data/statistics_singleton.dart';
 
 void main() async {
-  // CircularProgressIndicator(
-  //   color: Colors.black54,
-  //   strokeWidth: 10,
-  // );
-  //
-  // /// changes
-  // // await create();
-  // ApiClient api = ApiClient(basePath: 'http://localhost:1000');
-  //
-  // await batch_file_();
-  // await c_();
-  // await cPP_();
-  // await coffee_();
-  // await cSharp_();
-  // await cSS_();
-  // await dartCount();
-  // await erlang_();
-  // await go_();
-  // await haskell_();
-  // await html_();
-  // await image_();
-  // await java_();
-  // await json_();
-  // await javascript_();
-  // await lua_();
-  // await markdown_();
-  // await matlab_();
-  // await objective_c_();
-  // await perl_();
-  // await php_();
-  // await powerShell_();
-  // await python_();
-  // await r_();
-  // await ruby_();
-  // await rust_();
-  // await scala_();
-  // await shell_();
-  // await sql_();
-  // await swift_();
-  // await tex_();
-  // await text_();
-  // await toml_();
-  // await typeScript_();
-  // await yaml_();
-  // await empty_();
-  //
-  // dataMap.removeWhere((key, value) => value == 0);
-  //
-  // if (dataMap.length > 1) {
-  //   dataMap.removeWhere((key, value) => value == 0.01);
-  // }
-  //
-  // if (dataMap.isNotEmpty) {
-  //   double total = dataMap.values.sum;
-  //   // print('Total Snippets: $total');
-  // }
-
   StatisticsSingleton().statistics = await getStats();
-  // Statistics stats = await getStats();
   runApp(MyApp());
 }
 
@@ -74,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Pie Chart Demo',
+      title: 'Pieces Pie Chart',
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
@@ -82,24 +24,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
         brightness: Brightness.dark,
       ),
-      // home: Scaffold(
-      //   body: Column(
-      //     children: [
-      //       Row(
-      //         children: [
-      //           Text('Snippets Saved: '),
-      //           Text(StatisticsSingleton().statistics?.snippetsSaved.toString() ?? 'Nothing...'),
-      //         ],
-      //       ),
-      //       Row(
-      //         children: [
-      //           Text('Shareable Links: '),
-      //           Text(StatisticsSingleton().statistics?.shareableLinks.toString() ?? 'Default...'),
-      //         ],
-      //       ),
-      //     ],
-      //   ),
-      // ),
       home: HomePageAppBar(),
     );
   }

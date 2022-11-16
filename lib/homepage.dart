@@ -11,12 +11,11 @@ import 'package:core_openapi/api/user_api.dart';
 import 'package:core_openapi/api/users_api.dart';
 import 'package:core_openapi/api_client.dart';
 import 'package:flutter/material.dart';
-import 'package:gsheets/pie%20chart/pie%20chart/dataMap.dart';
-import 'package:gsheets/statistics_singleton.dart';
-import 'package:gsheets/tabs/pie%20chart%20home/colors.dart';
 import 'package:pie_chart/pie_chart.dart';
 
-import 'boot.dart';
+import 'chart data/boot.dart';
+import 'chart data/colors.dart';
+import 'chart data/statistics_singleton.dart';
 
 enum LegendShape { circle, rectangle }
 
