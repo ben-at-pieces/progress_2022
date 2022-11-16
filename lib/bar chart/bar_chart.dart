@@ -23,7 +23,7 @@ class _BarChartState extends State<BarGraph> {
         padding: EdgeInsets.all(20),
         child: BarChart(
           BarChartData(
-            // maxY: 50,
+            maxY: StatisticsSingleton().statistics!.classifications.length! + 10 ?? 0,
             alignment: BarChartAlignment.spaceAround,
             borderData: FlBorderData(
               show: true,
