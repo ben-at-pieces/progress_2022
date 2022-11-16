@@ -1,5 +1,6 @@
 // ignore_for_file: prefer__ructors, prefer__literals_to_create_immutables, prefer_const_constructors, use_key_in_widget_constructors
 
+import 'package:collection/collection.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:runtime_client/particle.dart';
@@ -13,6 +14,14 @@ class BarGraph extends StatefulWidget {
 
 class _BarChartState extends State<BarGraph> {
   int touchedGroupIndex = -1;
+  double highestCount = [
+    StatisticsSingleton().statistics?.snippetsSaved ?? 0.0,
+    StatisticsSingleton().statistics?.shareableLinks ?? 0.0,
+    StatisticsSingleton().statistics?.updatedSnippets ?? 0.0,
+    StatisticsSingleton().statistics?.tags.length.toDouble() ?? 0.0,
+    StatisticsSingleton().statistics?.persons.length.toDouble() ?? 0.0,
+    StatisticsSingleton().statistics?.relatedLinks.length.toDouble() ?? 0.0
+  ].max;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +32,7 @@ class _BarChartState extends State<BarGraph> {
         padding: EdgeInsets.all(20),
         child: BarChart(
           BarChartData(
-            maxY: StatisticsSingleton().statistics!.classifications.length! + 10 ?? 0,
+            maxY: highestCount + 3 ?? 0,
             alignment: BarChartAlignment.spaceAround,
             borderData: FlBorderData(
               show: true,
@@ -60,6 +69,9 @@ class _BarChartState extends State<BarGraph> {
                   style: ParticleFont.button(context,
                       customization: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
                 ),
+
+                /// TODO here there is some cleaning that can be done to make this code more readable
+                /// Currently this shows the meta data count (Below you will find the to titles data names)
                 sideTitles: SideTitles(
                   showTitles: true,
                   reservedSize: 36,
@@ -71,25 +83,39 @@ class _BarChartState extends State<BarGraph> {
                         text = 'Saved: ${StatisticsSingleton().statistics?.snippetsSaved}';
                         break;
                       case '1':
-                        text = 'Shares: ${StatisticsSingleton().statistics?.snippetsSaved}';
-                        break;
-                      // case '2':
-                      //   text = 'Total Lines';
-                      //   break;
-                      case '2':
                         text = 'Updates: ${StatisticsSingleton().statistics?.updatedSnippets}';
+                        break;
+
+                      case '2':
+                        text = 'Tags: ${StatisticsSingleton().statistics?.tags.length.toDouble()}';
+                        break;
+                      case '3':
+                        text = 'Shared: ${StatisticsSingleton().statistics?.shareableLinks}';
+                        break;
+                      case '4':
+                        text =
+                            'People: ${StatisticsSingleton().statistics?.persons.length.toDouble()}';
+                        break;
+                      case '5':
+                        text =
+                            'Related Links: ${StatisticsSingleton().statistics?.relatedLinks.length.toDouble()}';
                         break;
                     }
 
                     return SideTitleWidget(
                       axisSide: meta.axisSide,
-                      child: Text(text),
+                      child: Text(
+                        text,
+                        style: ParticleFont.micro(context,
+                            customization:
+                                TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                      ),
                     );
                   },
                 ),
               ),
               rightTitles: AxisTitles(),
-              topTitles: AxisTitles(),
+              topTitles: AxisTitles(sideTitles: SideTitles()),
             ),
             gridData: FlGridData(
               show: true,
@@ -115,7 +141,7 @@ class _BarChartState extends State<BarGraph> {
 
               /// Total Updated Snippets in your repo ================================================================
               BarChartGroupData(
-                x: 2,
+                x: 1,
                 barRods: [
                   BarChartRodData(
                     borderRadius: BorderRadius.zero,
@@ -126,30 +152,57 @@ class _BarChartState extends State<BarGraph> {
                 ],
               ),
 
+              /// Total Number of Tags
+              BarChartGroupData(
+                x: 2,
+                barRods: [
+                  BarChartRodData(
+                    borderRadius: BorderRadius.zero,
+                    toY: StatisticsSingleton().statistics?.tags.length.toDouble() ?? 0,
+                    width: 45,
+                    color: Colors.indigoAccent,
+                  ),
+                ],
+              ),
+
               /// Total user shares ================================================================
               BarChartGroupData(
-                x: 1,
+                x: 3,
                 barRods: [
                   BarChartRodData(
                     borderRadius: BorderRadius.zero,
                     toY: StatisticsSingleton().statistics?.shareableLinks ?? 0,
-                    width: 30,
+                    width: 45,
                     color: Colors.grey,
                   ),
                 ],
               ),
 
-              /// This is our line count for all of the snippets (is an outlier for thi)
-              // BarChartGroupData(
-              //   x: 2,
-              //   barRods: [
-              //     BarChartRodData(
-              //       toY: StatisticsSingleton().statistics?.totalLinesSaved ?? 0,
-              //       width: 30,
-              //       color: Colors.green,
-              //     ),
-              //   ],
-              // ),
+              /// Total user peoples ================================================================
+              BarChartGroupData(
+                x: 4,
+                barRods: [
+                  BarChartRodData(
+                    borderRadius: BorderRadius.zero,
+                    toY: StatisticsSingleton().statistics?.persons.length.toDouble() ?? 0,
+                    width: 45,
+                    color: Colors.pinkAccent,
+                  ),
+                ],
+              ),
+
+              /// Total user related links ================================================================
+              BarChartGroupData(
+                x: 5,
+                barRods: [
+                  BarChartRodData(
+                    borderRadius: BorderRadius.zero,
+                    toY: StatisticsSingleton().statistics?.relatedLinks.length.toDouble() ?? 0,
+                    width: 45,
+                    color: Colors.deepPurpleAccent,
+                  ),
+                ],
+              ),
             ],
             barTouchData: BarTouchData(
               enabled: true,

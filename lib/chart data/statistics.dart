@@ -81,9 +81,9 @@ Future<Statistics> getStats() async {
       (Map.fromEntries(tagMap.entries.toList()..sort((e1, e2) => e2.value.compareTo(e1.value))))
           .keys
           .toList();
-  if (tags.length > 5) {
-    tags = tags.take(5).toList();
-  }
+  // if (tags.length > 5) {
+  //   tags = tags.take(5).toList();
+  // }
   List<String> persons =
       (Map.fromEntries(personMap.entries.toList()..sort((e1, e2) => e2.value.compareTo(e1.value))))
           .keys
