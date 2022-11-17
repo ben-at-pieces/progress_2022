@@ -71,7 +71,7 @@ class _BarChartState extends State<BarGraph> {
 
               bottomTitles: AxisTitles(
                 axisNameWidget: Text(
-                  'P I E C E S _ U S E R _ S T A T S',
+                  'Time Saved: ${StatisticsSingleton().statistics?.timeTaken} seconds',
                   style: ParticleFont.button(context,
                       customization: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
                 ),
@@ -144,7 +144,7 @@ class _BarChartState extends State<BarGraph> {
                         visible: _isVisible,
                         child: Row(
                           children: [
-                            Text('${StatisticsSingleton().statistics?.tags ?? 0}'),
+                            Text('${StatisticsSingleton().statistics?.tags.take(5).toList() ?? 0}'),
 
                             // Text('${secondTag == null ?? 0}', style: ParticleFont.micro(context)),
 
@@ -273,7 +273,9 @@ class _BarChartState extends State<BarGraph> {
                 },
               ),
               touchCallback: (event, response) {
-                if (event.isInterestedForInteractions && response != null && response.spot != null) {
+                if (event.isInterestedForInteractions &&
+                    response != null &&
+                    response.spot != null) {
                   setState(() {
                     touchedGroupIndex = response.spot!.touchedBarGroupIndex;
                   });

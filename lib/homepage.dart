@@ -28,12 +28,12 @@ UserApi userApi = UserApi(ApiClient(basePath: host));
 List assetsSnapshot = [];
 late Future<List> assetsSnapshotFuture = Boot().getAssets();
 ApiClient api = ApiClient(basePath: 'http://localhost:1000');
+// var isClassification = StatisticsSingleton().statistics?.classifications.containsKey('') ? 0 : 1;
 
 class HomePagePie extends StatelessWidget {
   const HomePagePie({Key? key}) : super(key: key);
 
   get touchedIndex => -1;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -68,9 +68,10 @@ class HomePagePie extends StatelessWidget {
           chartRadius: math.min(MediaQuery.of(context).size.width / 2.5, 120),
           colorList: colorList,
           chartType: ChartType.ring,
-          centerText: true
-              ? '${StatisticsSingleton().statistics?.classifications.values.length} TOTAL'
-              : null,
+          // centerText: StatisticsSingleton().statistics?.classifications.containsKey('') ? '' : '',
+
+          // ${StatisticsSingleton().statistics?.classifications.values.length} TOTAL'
+          //     : null,
           legendOptions: const LegendOptions(
             showLegendsInRow: false,
             legendPosition: LegendPosition.left,
