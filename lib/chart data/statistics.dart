@@ -1,17 +1,19 @@
 import 'package:core_openapi/api.dart';
 import 'package:string_stats/string_stats.dart';
 
-import 'api.dart';
+import '../bar chart/api.dart';
 
 Future<Statistics> getStats() async {
   Assets assets = await PiecesApi.assetsApi.assetsSnapshot();
-  int snippetsSaved = 0;
-  int shareableLinks = 0;
-  int updatedSnippets = 0;
-  int currentMonth = DateTime.now().month;
-  int totalLinesSaved = 0;
-  Map<String, int> tagMap = {};
-  Map<String, int> personMap = {};
+  ReturnedUserProfile user = await PiecesApi.userApi.userSnapshot();
+
+  double snippetsSaved = 0;
+  double shareableLinks = 0;
+  double updatedSnippets = 0;
+  double currentMonth = DateTime.now().month.toDouble();
+  double totalLinesSaved = 0;
+  Map<String, double> tagMap = {};
+  Map<String, double> personMap = {};
   List<String> relatedLinks = [];
 
   Map<String, double> classifications = {};
@@ -84,7 +86,6 @@ Future<Statistics> getStats() async {
   }
   List<String> persons =
       (Map.fromEntries(personMap.entries.toList()..sort((e1, e2) => e2.value.compareTo(e1.value)))).keys.toList();
-
   Statistics statistics = Statistics(
     classifications: classifications,
     snippetsSaved: snippetsSaved,
@@ -94,19 +95,21 @@ Future<Statistics> getStats() async {
     tags: tags,
     persons: persons,
     relatedLinks: relatedLinks,
+    user: user.user?.name ?? user.user?.email ?? '',
   );
   return statistics;
 }
 
 class Statistics {
   final Map<String, double> classifications;
-  final int snippetsSaved;
-  final int shareableLinks;
-  final int updatedSnippets;
-  final int totalLinesSaved;
+  final double snippetsSaved;
+  final double shareableLinks;
+  final double updatedSnippets;
+  final double totalLinesSaved;
   final List<String> tags;
   final List<String> persons;
   final List<String> relatedLinks;
+  final String user;
   Statistics({
     required this.classifications,
     required this.snippetsSaved,
@@ -116,5 +119,6 @@ class Statistics {
     required this.tags,
     required this.persons,
     required this.relatedLinks,
+    required this.user,
   });
 }
