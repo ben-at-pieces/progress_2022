@@ -1,4 +1,4 @@
-// ignore_for_file: prefer__ructors, prefer__literals_to_create_immutables, prefer_const_constructors, use_key_in_widget_constructors
+// ignore_for_file: prefer__ructors, prefer__literals_to_create_immutables, prefer_const_constructors, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:collection/collection.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -13,6 +13,14 @@ class BarGraph extends StatefulWidget {
 }
 
 class _BarChartState extends State<BarGraph> {
+  bool _isVisible = false;
+
+  void showToast() {
+    setState(() {
+      _isVisible = !_isVisible;
+    });
+  }
+
   int touchedGroupIndex = -1;
   double highestCount = [
     StatisticsSingleton().statistics?.snippetsSaved ?? 0.0,
@@ -99,7 +107,16 @@ class _BarChartState extends State<BarGraph> {
 
                     return SideTitleWidget(
                       axisSide: meta.axisSide,
-                      child: Text(text),
+                      child: Text(
+                        text,
+                        style: ParticleFont.micro(
+                          context,
+                          customization: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     );
                   },
                 ),
@@ -109,7 +126,43 @@ class _BarChartState extends State<BarGraph> {
               rightTitles: AxisTitles(),
 
               /// No TOP Titles ================================================================
-              topTitles: AxisTitles(),
+              topTitles: AxisTitles(
+                axisNameWidget: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        textStyle: TextStyle(fontSize: 12),
+                      ),
+                      child: Text('Show Top 5 Tags'),
+                      onPressed: showToast,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Visibility(
+                        visible: _isVisible,
+                        child: Row(
+                          children: [
+                            Text('${StatisticsSingleton().statistics?.tags ?? 0}'),
+
+                            // Text('${secondTag == null ?? 0}', style: ParticleFont.micro(context)),
+
+                            // Text('${StatisticsSingleton().statistics?.tags.elementAt(1) ?? 0}',
+                            //     style: ParticleFont.micro(context)),
+                            // Text('${StatisticsSingleton().statistics?.tags.elementAt(2) ?? 0}',
+                            //     style: ParticleFont.micro(context)),
+                            // Text('${StatisticsSingleton().statistics?.tags.elementAt(3) ?? 0}',
+                            //     style: ParticleFont.micro(context)),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    // Text('${StatisticsSingleton().statistics?.tags.reversed ?? 0}'),
+                  ],
+                ),
+              ),
             ),
             gridData: FlGridData(
               show: true,
@@ -251,3 +304,9 @@ class _BarData {
   final String language;
   final double value;
 }
+
+String? firstTag = StatisticsSingleton().statistics?.tags.elementAt(0);
+String? secondTag = StatisticsSingleton().statistics?.tags.elementAt(1);
+String? thirdTag = StatisticsSingleton().statistics?.tags.elementAt(2);
+String? fourthTag = StatisticsSingleton().statistics?.tags.elementAt(3);
+String? fifthTag = StatisticsSingleton().statistics?.tags.elementAt(4);

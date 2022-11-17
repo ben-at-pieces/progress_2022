@@ -1,87 +1,64 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+import '../chart data/statistics_singleton.dart';
+
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MyHomePage(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: ShowHideDemo(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
+class ShowHideDemo extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _ShowHideDemoState createState() {
+    return _ShowHideDemoState();
+  }
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  late int showingTooltip;
+class _ShowHideDemoState extends State {
+  bool _isVisible = true;
 
-  @override
-  void initState() {
-    showingTooltip = -1;
-    super.initState();
-  }
-
-  BarChartGroupData generateGroupData(int x, int y) {
-    return BarChartGroupData(
-      x: x,
-      showingTooltipIndicators: showingTooltip == x ? [0] : [],
-      barRods: [
-        BarChartRodData(toY: 19),
-      ],
-    );
+  void showToast() {
+    setState(() {
+      _isVisible = !_isVisible;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: AspectRatio(
-            aspectRatio: 2,
-            child: BarChart(
-              BarChartData(
-                barGroups: [
-                  generateGroupData(1, 10),
-                  // generateGroupData(2, 18),
-                  // generateGroupData(3, 4),
-                  // generateGroupData(4, 11),
-                ],
-                barTouchData: BarTouchData(
-                    enabled: true,
-                    handleBuiltInTouches: false,
-                    touchCallback: (event, response) {
-                      if (response != null && response.spot != null && event is FlTapUpEvent) {
-                        setState(() {
-                          final x = response.spot!.touchedBarGroup.x;
-                          final isShowing = showingTooltip == x;
-                          if (isShowing) {
-                            showingTooltip = -1;
-                          } else {
-                            showingTooltip = x;
-                          }
-                        });
-                      }
-                    },
-                    mouseCursorResolver: (event, response) {
-                      return response == null || response.spot == null
-                          ? MouseCursor.defer
-                          : SystemMouseCursors.click;
-                    }),
-              ),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.cyan,
+        title: Text('Flutter Show/Hide Widget Demo'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Visibility(
+              visible: _isVisible,
+              child: Text('${StatisticsSingleton().statistics?.tags ?? 0}'),
             ),
-          ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                textStyle: TextStyle(fontSize: 20),
+                minimumSize: Size.fromHeight(50),
+              ),
+              onPressed: showToast,
+              child: Text('Show Top 5 Tags'),
+            ),
+          ],
         ),
       ),
     );
   }
 }
+
+///

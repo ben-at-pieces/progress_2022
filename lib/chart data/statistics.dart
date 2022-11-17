@@ -122,3 +122,12 @@ class Statistics {
     required this.relatedLinks,
   });
 }
+
+// /// Top 5 tags
+// for (Tag tag in asset.tags?.iterable ?? []) {
+// if (tagMap.containsKey(tag.text)) {
+// tagMap[tag.text] = tagMap[tag.text]! + 1;
+// } else {
+// tagMap[tag.text] = 1;
+// }
+// }
