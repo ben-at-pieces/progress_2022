@@ -1,20 +1,10 @@
 // ignore_for_file: prefer__ructors, prefer__literals_to_create_immutables, prefer_const_constructors, use_key_in_widget_constructors
 
-import 'package:collection/collection.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:runtime_client/particle.dart';
 
 import '../chart data/statistics_singleton.dart';
-
-double highestCount = [
-  StatisticsSingleton().statistics?.snippetsSaved ?? 0.0,
-  StatisticsSingleton().statistics?.shareableLinks ?? 0.0,
-  StatisticsSingleton().statistics?.updatedSnippets ?? 0.0,
-  StatisticsSingleton().statistics?.tags.length.toDouble() ?? 0.0,
-  StatisticsSingleton().statistics?.persons.length.toDouble() ?? 0.0,
-  StatisticsSingleton().statistics?.relatedLinks.length.toDouble() ?? 0.0
-].max;
 
 class BarGraph extends StatefulWidget {
   @override
@@ -23,23 +13,6 @@ class BarGraph extends StatefulWidget {
 
 class _BarChartState extends State<BarGraph> {
   int touchedGroupIndex = -1;
-  late int showingTooltip;
-
-  @override
-  void initState() {
-    showingTooltip = -1;
-    super.initState();
-  }
-
-  BarChartGroupData generateGroupData(int x, int y) {
-    return BarChartGroupData(
-      x: x,
-      showingTooltipIndicators: showingTooltip == x ? [0] : [],
-      barRods: [
-        BarChartRodData(toY: 19),
-      ],
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,70 +23,43 @@ class _BarChartState extends State<BarGraph> {
         padding: EdgeInsets.all(20),
         child: BarChart(
           BarChartData(
-            maxY: highestCount + 3 ?? 0,
+            maxY: StatisticsSingleton().statistics!.classifications.length! + 10 ?? 0,
             alignment: BarChartAlignment.spaceAround,
             borderData: FlBorderData(
               show: true,
-              border: Border.symmetric(
-                  horizontal: BorderSide(
-                    color: Colors.black,
-                  ),
-                  vertical: BorderSide(
-                    color: Colors.black,
-                  )),
+              // border: Border.symmetric(
+              //   horizontal: BorderSide(
+              //     color: Colors.transparent,
+              //   ),
+              // ),
             ),
-
-            ///TODO IMPLEMENT INTERACTION
-            barTouchData: BarTouchData(
-              enabled: true,
-              handleBuiltInTouches: true,
-              touchTooltipData: BarTouchTooltipData(
-                fitInsideVertically: true,
-                tooltipBgColor: Colors.white,
-              ),
-              touchCallback: (FlTouchEvent event, response) {
-                if (response != null && response.spot != null && event is FlTapUpEvent) {
-                  setState(() {
-                    final x = response.spot!.touchedBarGroup.barsSpace;
-                    final isShowing = showingTooltip == x;
-                    if (isShowing) {
-                      showingTooltip = -1;
-                    } else {
-                      showingTooltip = 2;
-                    }
-                  });
-                }
-              },
-              mouseCursorResolver: (event, response) {
-                return response == null || response.spot == null
-                    ? MouseCursor.defer
-                    : SystemMouseCursors.click;
-              },
-            ),
-
-            /// TITLES DATA
             titlesData: FlTitlesData(
               show: true,
               leftTitles: AxisTitles(
-                sideTitles: SideTitles(
-                  showTitles: false,
-                ),
-
                 drawBehindEverything: false,
 
                 /// TODO this is where we will decide to either show/not show the Y Axis
                 /// TODO plan to use a stateful pop over to show data cleaner than the Y Axis
+                sideTitles: SideTitles(
+                  showTitles: false,
+                  reservedSize: 42,
+                  getTitlesWidget: (value, meta) {
+                    return Text(
+                      value.toString(),
+                      style: TextStyle(
+                        color: Color(0xFF606060),
+                      ),
+                      textAlign: TextAlign.left,
+                    );
+                  },
+                ),
               ),
-              rightTitles: AxisTitles(),
               bottomTitles: AxisTitles(
-                // axisNameWidget: Text(
-                //   'P I E C E S _ U S E R _ S T A T S',
-                //   style: ParticleFont.button(context,
-                //       customization: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
-                // ),
-
-                /// TODO
-                /// Currently this shows the meta data count
+                axisNameWidget: Text(
+                  'P I E C E S _ U S E R _ S T A T S',
+                  style: ParticleFont.button(context,
+                      customization: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                ),
                 sideTitles: SideTitles(
                   showTitles: true,
                   reservedSize: 36,
@@ -125,58 +71,33 @@ class _BarChartState extends State<BarGraph> {
                         text = 'Saved: ${StatisticsSingleton().statistics?.snippetsSaved}';
                         break;
                       case '1':
-                        text = 'Updates: ${StatisticsSingleton().statistics?.updatedSnippets}';
+                        text = 'Shares: ${StatisticsSingleton().statistics?.snippetsSaved}';
                         break;
-
-                      /// this is where I want to show Top 5 Tags on hover
+                      // case '2':
+                      //   text = 'Total Lines';
+                      //   break;
                       case '2':
-                        text = 'Tags: ${StatisticsSingleton().statistics?.tags.length.toDouble()}';
-                        break;
-
-                      /// ======================================================================
-                      case '3':
-                        text = 'Shared: ${StatisticsSingleton().statistics?.shareableLinks}';
-                        break;
-                      case '4':
-                        text =
-                            'People: ${StatisticsSingleton().statistics?.persons.length.toDouble()}';
-                        break;
-                      case '5':
-                        text =
-                            'Related Links: ${StatisticsSingleton().statistics?.relatedLinks.length.toDouble()}';
+                        text = 'Updates: ${StatisticsSingleton().statistics?.updatedSnippets}';
                         break;
                     }
 
-                    /// BOTTOM LABELS
                     return SideTitleWidget(
                       axisSide: meta.axisSide,
-                      child: Text(
-                        text,
-                        style: ParticleFont.micro(
-                          context,
-                          customization: TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
+                      child: Text(text),
                     );
                   },
                 ),
               ),
-              topTitles: AxisTitles(
-                  axisNameWidget: Text(
-                    'P I E C E S _ U S E R _ S T A T S',
-                    style: ParticleFont.button(context,
-                        customization: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  ),
-
-                  /// TODO
-                  /// Currently this shows the meta data count
-                  sideTitles: SideTitles()),
+              rightTitles: AxisTitles(),
+              topTitles: AxisTitles(),
+            ),
+            gridData: FlGridData(
+              show: true,
+              drawVerticalLine: false,
+              getDrawingHorizontalLine: (value) => FlLine(
+                color: Color(0xFFececec),
+                strokeWidth: 1,
+              ),
             ),
             barGroups: [
               /// Total Saved Snippets in your repo ================================================================
@@ -194,7 +115,7 @@ class _BarChartState extends State<BarGraph> {
 
               /// Total Updated Snippets in your repo ================================================================
               BarChartGroupData(
-                x: 1,
+                x: 2,
                 barRods: [
                   BarChartRodData(
                     borderRadius: BorderRadius.zero,
@@ -205,67 +126,66 @@ class _BarChartState extends State<BarGraph> {
                 ],
               ),
 
-              /// Total Number of Tags
-              BarChartGroupData(
-                x: 2,
-                barRods: [
-                  BarChartRodData(
-                    borderRadius: BorderRadius.zero,
-                    toY: StatisticsSingleton().statistics?.tags.length.toDouble() ?? 0,
-                    width: 45,
-                    color: Colors.blueGrey,
-                  ),
-                ],
-              ),
-
               /// Total user shares ================================================================
               BarChartGroupData(
-                x: 3,
+                x: 1,
                 barRods: [
                   BarChartRodData(
                     borderRadius: BorderRadius.zero,
                     toY: StatisticsSingleton().statistics?.shareableLinks ?? 0,
-                    width: 45,
+                    width: 30,
                     color: Colors.grey,
                   ),
                 ],
               ),
 
-              /// Total user peoples ================================================================
-              BarChartGroupData(
-                x: 4,
-                barRods: [
-                  BarChartRodData(
-                    borderRadius: BorderRadius.zero,
-                    toY: StatisticsSingleton().statistics?.persons.length.toDouble() ?? 0,
-                    width: 45,
-                    color: Colors.pinkAccent,
-                  ),
-                ],
-              ),
-
-              /// Total user related links ================================================================
-              BarChartGroupData(
-                x: 5,
-                barRods: [
-                  BarChartRodData(
-                    borderRadius: BorderRadius.zero,
-                    toY: StatisticsSingleton().statistics?.relatedLinks.length.toDouble() ?? 0,
-                    width: 45,
-                    color: Colors.lightBlueAccent,
-                  ),
-                ],
-              ),
+              /// This is our line count for all of the snippets (is an outlier for thi)
+              // BarChartGroupData(
+              //   x: 2,
+              //   barRods: [
+              //     BarChartRodData(
+              //       toY: StatisticsSingleton().statistics?.totalLinesSaved ?? 0,
+              //       width: 30,
+              //       color: Colors.green,
+              //     ),
+              //   ],
+              // ),
             ],
-
-            /// AXIS LINES FOR BAR GRAPH
-            gridData: FlGridData(
-              show: true,
-              drawVerticalLine: false,
-              getDrawingHorizontalLine: (value) => FlLine(
-                color: Color(0xFFececec),
-                strokeWidth: 1,
+            barTouchData: BarTouchData(
+              enabled: true,
+              handleBuiltInTouches: false,
+              touchTooltipData: BarTouchTooltipData(
+                tooltipBgColor: Colors.transparent,
+                tooltipMargin: 0,
+                getTooltipItem: (
+                  BarChartGroupData group,
+                  int groupIndex,
+                  BarChartRodData rod,
+                  int rodIndex,
+                ) {
+                  return BarTooltipItem(
+                    rod.toY.toString(),
+                    TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: rod.color,
+                      fontSize: 18,
+                    ),
+                  );
+                },
               ),
+              touchCallback: (event, response) {
+                if (event.isInterestedForInteractions &&
+                    response != null &&
+                    response.spot != null) {
+                  setState(() {
+                    touchedGroupIndex = response.spot!.touchedBarGroupIndex;
+                  });
+                } else {
+                  setState(() {
+                    touchedGroupIndex = -1;
+                  });
+                }
+              },
             ),
           ),
         ),
@@ -274,7 +194,7 @@ class _BarChartState extends State<BarGraph> {
   }
 }
 
-/// constructor for Bar Graph data
+/// ructor for Bar Graph data
 
 class _BarData {
   _BarData(this.value, this.language);
