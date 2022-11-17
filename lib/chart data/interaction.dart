@@ -29,72 +29,65 @@ class PieChartSample1State extends State {
           children: <Widget>[
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  /// Saved ==============================================
                   Padding(
-                    padding: const EdgeInsets.only(left: 4.0),
-                    child: Indicator(
-                      color: touchedIndex == 0 ? const Color(0xff293036) : Colors.white,
-                      text: 'TOP 5 TAGS:',
-                      isSquare: true,
-                      size: touchedIndex == 0 ? 12 : 12,
-                      textColor: touchedIndex == 0 ? Colors.black : Colors.white,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 4.0),
+                    padding: const EdgeInsets.only(left: 2.0),
                     child: Indicator(
                       color: touchedIndex == 0 ? Colors.white : Colors.white,
                       text:
                           '1: ${StatisticsSingleton().statistics?.tags.elementAt(0).toLowerCase()}',
                       isSquare: true,
-                      size: touchedIndex == 0 ? 12 : 12,
+                      size: touchedIndex == 0 ? 8 : 8,
                       textColor: touchedIndex == 0 ? Colors.grey : Colors.white,
                     ),
                   ),
+
+                  /// updated ==============================================
                   Padding(
-                    padding: const EdgeInsets.only(left: 4.0, right: 4),
+                    padding: const EdgeInsets.only(left: 2.0, right: 4),
                     child: Indicator(
                       color: touchedIndex == 0 ? Colors.white : Colors.white,
                       text:
                           '2: ${StatisticsSingleton().statistics?.tags.elementAt(1).toLowerCase()}',
                       isSquare: true,
-                      size: touchedIndex == 0 ? 12 : 12,
+                      size: touchedIndex == 0 ? 8 : 8,
                       textColor: touchedIndex == 0 ? Colors.grey : Colors.white,
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 4.0, right: 4),
+                    padding: const EdgeInsets.only(left: 2.0, right: 4),
                     child: Indicator(
                       color: touchedIndex == 0 ? Colors.white : Colors.white,
                       text:
                           '3: ${StatisticsSingleton().statistics?.tags.elementAt(2).toLowerCase()}',
                       isSquare: true,
-                      size: touchedIndex == 0 ? 12 : 12,
+                      size: touchedIndex == 0 ? 8 : 8,
                       textColor: touchedIndex == 0 ? Colors.grey : Colors.white,
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 4.0, right: 4),
+                    padding: const EdgeInsets.only(left: 2.0, right: 4),
                     child: Indicator(
                       color: touchedIndex == 0 ? Colors.white : Colors.white,
                       text:
                           '4: ${StatisticsSingleton().statistics?.tags.elementAt(3).toLowerCase()}',
                       isSquare: true,
-                      size: touchedIndex == 0 ? 12 : 12,
+                      size: touchedIndex == 0 ? 8 : 8,
                       textColor: touchedIndex == 0 ? Colors.grey : Colors.white,
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 4.0, right: 4),
+                    padding: const EdgeInsets.only(left: 2.0, right: 4),
                     child: Indicator(
                       color: touchedIndex == 0 ? Colors.white : Colors.white,
                       text:
                           '5: ${StatisticsSingleton().statistics?.tags.elementAt(4).toLowerCase()}',
                       isSquare: true,
-                      size: touchedIndex == 0 ? 12 : 12,
+                      size: touchedIndex == 0 ? 8 : 8,
                       textColor: touchedIndex == 0 ? Colors.grey : Colors.white,
                     ),
                   ),
@@ -110,6 +103,10 @@ class PieChartSample1State extends State {
                 child: PieChart(
                   swapAnimationDuration: const Duration(milliseconds: 800),
                   PieChartData(
+                    sectionsSpace: 1,
+                    centerSpaceRadius: 0,
+                    sections: showingSections(),
+                    borderData: FlBorderData(show: false),
                     pieTouchData: PieTouchData(
                       touchCallback: (FlTouchEvent event, pieTouchResponse) {
                         setState(() {
@@ -123,13 +120,6 @@ class PieChartSample1State extends State {
                         });
                       },
                     ),
-                    // startDegreeOffset: 180,
-                    borderData: FlBorderData(
-                      show: false,
-                    ),
-                    sectionsSpace: 1,
-                    centerSpaceRadius: 0,
-                    sections: showingSections(),
                   ),
                 ),
               ),
@@ -197,7 +187,9 @@ class PieChartSample1State extends State {
               // titlePositionPercentageOffset: 0.55,
               borderSide: isTouched
                   ? BorderSide(color: color0, width: 6)
-                  : BorderSide(color: color0.withOpacity(0)),
+                  : BorderSide(
+                      color: color0.withOpacity(0),
+                    ),
             );
           case 3:
             return PieChartSectionData(

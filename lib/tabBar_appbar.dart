@@ -47,7 +47,8 @@ class HomePageState extends State<HomePageAppBar> {
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            title: TabBar(
+            backgroundColor: Colors.white,
+            bottom: TabBar(
               // overlayColor: Colors.deepPurpleAccent,
               tabs: [
                 Text(
@@ -78,18 +79,17 @@ class HomePageState extends State<HomePageAppBar> {
                 //             TextStyle(color: Colors.black, fontWeight: FontWeight.bold))),
               ],
             ), // TabBar
-            backgroundColor: Colors.white30,
           ), // AppBar
           body: TabBarView(
             children: [
-              /// sample pie chart
-              PieChartSample1(),
-
               /// Vertical bar graph ==========================================================
               BarGraph(),
 
               /// Circular Pie Chart ==========================================================
               HomePagePie(),
+
+              /// sample pie chart
+              PieChartSample1(),
 
               ///TODO work in another widget
             ],
