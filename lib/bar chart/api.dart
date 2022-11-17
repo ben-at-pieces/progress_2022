@@ -37,4 +37,9 @@ class PiecesApi {
   static WellKnownApi get wellKnownApi {
     return WellKnownApi(_coreClient);
   }
+
+  /// People API
+  static UserApi get userApi {
+    return UserApi(_coreClient);
+  }
 }

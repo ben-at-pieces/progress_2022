@@ -167,10 +167,7 @@ class _BarChartState extends State<BarGraph> {
             gridData: FlGridData(
               show: true,
               drawVerticalLine: false,
-              getDrawingHorizontalLine: (value) => FlLine(
-                color: Color(0xFFececec),
-                strokeWidth: 1,
-              ),
+              drawHorizontalLine: false,
             ),
 
             /// Indexed Meta Data Names and Counts =========================================================
@@ -276,9 +273,7 @@ class _BarChartState extends State<BarGraph> {
                 },
               ),
               touchCallback: (event, response) {
-                if (event.isInterestedForInteractions &&
-                    response != null &&
-                    response.spot != null) {
+                if (event.isInterestedForInteractions && response != null && response.spot != null) {
                   setState(() {
                     touchedGroupIndex = response.spot!.touchedBarGroupIndex;
                   });
