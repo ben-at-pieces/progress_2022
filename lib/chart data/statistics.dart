@@ -1,5 +1,4 @@
 import 'package:core_openapi/api.dart';
-import 'package:string_stats/string_stats.dart';
 
 import '../bar chart/api.dart';
 
@@ -11,10 +10,11 @@ Future<Statistics> getStats() async {
   double shareableLinks = 0;
   double updatedSnippets = 0;
   double currentMonth = DateTime.now().month.toDouble();
-  double totalLinesSaved = 0;
+  double totalWordsSaved = 0;
   Map<String, double> tagMap = {};
   Map<String, double> personMap = {};
   List<String> relatedLinks = [];
+  double timeTaken = 0;
 
   Map<String, double> classifications = {};
   for (Asset asset in assets.iterable) {
@@ -27,7 +27,7 @@ Future<Statistics> getStats() async {
 
     /// Line count
     if (raw != null) {
-      totalLinesSaved = totalLinesSaved + lineCount(raw);
+      totalWordsSaved = totalWordsSaved + raw.split(' ').length;
     }
 
     /// Snippets saved in a month
@@ -86,12 +86,16 @@ Future<Statistics> getStats() async {
   }
   List<String> persons =
       (Map.fromEntries(personMap.entries.toList()..sort((e1, e2) => e2.value.compareTo(e1.value)))).keys.toList();
+
+  /// Assuming average wpm is 50, we are calculating the number of seconds for total words
+  timeTaken = totalWordsSaved * 1.2;
+
   Statistics statistics = Statistics(
     classifications: classifications,
     snippetsSaved: snippetsSaved,
     shareableLinks: shareableLinks,
     updatedSnippets: updatedSnippets,
-    totalLinesSaved: totalLinesSaved,
+    timeTaken: timeTaken,
     tags: tags,
     persons: persons,
     relatedLinks: relatedLinks,
@@ -105,7 +109,7 @@ class Statistics {
   final double snippetsSaved;
   final double shareableLinks;
   final double updatedSnippets;
-  final double totalLinesSaved;
+  final double timeTaken;
   final List<String> tags;
   final List<String> persons;
   final List<String> relatedLinks;
@@ -115,7 +119,7 @@ class Statistics {
     required this.snippetsSaved,
     required this.shareableLinks,
     required this.updatedSnippets,
-    required this.totalLinesSaved,
+    required this.timeTaken,
     required this.tags,
     required this.persons,
     required this.relatedLinks,
