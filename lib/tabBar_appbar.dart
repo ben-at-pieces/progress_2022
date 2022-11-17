@@ -69,10 +69,13 @@ class HomePageState extends State<HomePageAppBar> {
 
                 /// TODO implement 3rd tab ======================================================
 
-                Text('Shared',
-                    style: ParticleFont.micro(context,
-                        customization:
-                            TextStyle(color: Colors.black, fontWeight: FontWeight.bold))),
+                Text(
+                  'Shared',
+                  style: ParticleFont.micro(
+                    context,
+                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                ),
                 // Text('Modified',
                 //     style: ParticleFont.micro(context,
                 //         customization:
@@ -88,10 +91,8 @@ class HomePageState extends State<HomePageAppBar> {
               /// Circular Pie Chart ==========================================================
               HomePagePie(),
 
-              /// sample pie chart
-              PieChartSample1(),
-
               ///TODO work in another widget
+              PieChartSample1(),
             ],
           ), // TabBarView
         ), // Scaffold
