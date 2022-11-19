@@ -65,7 +65,7 @@ class HomePagePie extends StatelessWidget {
           dataMap: StatisticsSingleton().statistics!.classifications,
           animationDuration: const Duration(milliseconds: 800),
           chartLegendSpacing: 30,
-          chartRadius: math.min(MediaQuery.of(context).size.width / 2.5, 120),
+          chartRadius: math.min(MediaQuery.of(context).size.width / 2.5, 80),
           colorList: colorList,
           chartType: ChartType.ring,
           // centerText: StatisticsSingleton().statistics?.classifications.containsKey('') ? '' : '',

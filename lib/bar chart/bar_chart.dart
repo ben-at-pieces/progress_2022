@@ -71,7 +71,7 @@ class _BarChartState extends State<BarGraph> {
 
               bottomTitles: AxisTitles(
                 axisNameWidget: Text(
-                  'Time Saved: ${StatisticsSingleton().statistics?.timeTaken} seconds',
+                  'Time Saved: ${StatisticsSingleton().statistics?.timeTaken.round()} seconds',
                   style: ParticleFont.button(context,
                       customization: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
                 ),
@@ -101,19 +101,19 @@ class _BarChartState extends State<BarGraph> {
 
                       case '5':
                         text =
-                            'Related Links: ${StatisticsSingleton().statistics?.relatedLinks.length.toDouble()}';
+                            'Links: ${StatisticsSingleton().statistics?.relatedLinks.length.toDouble()}';
                         break;
                     }
 
                     return SideTitleWidget(
                       axisSide: meta.axisSide,
-                      child: Text(
-                        text,
-                        style: ParticleFont.micro(
-                          context,
-                          customization: TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold,
+                      child: Chip(
+                        label: TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            text,
+                            style: ParticleFont.micro(context,
+                                customization: TextStyle(color: Colors.black)),
                           ),
                         ),
                       ),
@@ -127,43 +127,63 @@ class _BarChartState extends State<BarGraph> {
 
               /// No TOP Titles ================================================================
               topTitles: AxisTitles(
-                axisNameWidget: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        textStyle: TextStyle(fontSize: 12),
-                      ),
-                      child: Text('Show Top 5 Tags'),
-                      onPressed: showToast,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Visibility(
-                        visible: _isVisible,
-                        child: Row(
-                          children: [
-                            Text('${StatisticsSingleton().statistics?.tags.take(5).toList() ?? 0}'),
+                sideTitles: SideTitles(
+                  showTitles: true,
+                  reservedSize: 40,
+                  getTitlesWidget: (value, meta) {
+                    String text = '';
 
-                            // Text('${secondTag == null ?? 0}', style: ParticleFont.micro(context)),
+                    switch (value.toString()) {
+                      case '0':
+                        text = 'Top 5 Tags';
+                        break;
+                      case '1':
+                        text = '1: ${StatisticsSingleton().statistics?.tags.elementAt(1) ?? '0'}';
+                        break;
+                      case '2':
+                        text = '2: ${StatisticsSingleton().statistics?.tags.elementAt(2) ?? '0'}';
+                        break;
+                      case '3':
+                        text = '3: ${StatisticsSingleton().statistics?.tags.elementAt(3) ?? '0'}';
+                        break;
+                      case '4':
+                        text = '4: ${StatisticsSingleton().statistics?.tags.elementAt(4) ?? '0'}';
+                        break;
+                      case '5':
+                        text = '5: ${StatisticsSingleton().statistics?.tags.elementAt(5) ?? '0'}';
+                        break;
+                    }
 
-                            // Text('${StatisticsSingleton().statistics?.tags.elementAt(1) ?? 0}',
-                            //     style: ParticleFont.micro(context)),
-                            // Text('${StatisticsSingleton().statistics?.tags.elementAt(2) ?? 0}',
-                            //     style: ParticleFont.micro(context)),
-                            // Text('${StatisticsSingleton().statistics?.tags.elementAt(3) ?? 0}',
-                            //     style: ParticleFont.micro(context)),
-                          ],
+                    return SideTitleWidget(
+                      // angle: 18,
+                      axisSide: meta.axisSide,
+                      child: Chip(
+                        elevation: 5,
+                        shadowColor: Colors.grey,
+                        backgroundColor: Colors.blueGrey,
+                        // avatar: Icon(
+                        //   Icons.link_outlined,
+                        //   size: 14,
+                        //   color: Colors.white,
+                        // ),
+                        label: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: SizedBox(
+                            width: 50,
+                            child: Text(
+                              text,
+                              style: ParticleFont.micro(context,
+                                  customization: TextStyle(color: Colors.white, fontSize: 10)),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-
-                    // Text('${StatisticsSingleton().statistics?.tags.reversed ?? 0}'),
-                  ],
+                    );
+                  },
                 ),
               ),
             ),
+
             gridData: FlGridData(
               show: true,
               drawVerticalLine: false,
