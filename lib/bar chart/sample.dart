@@ -1,46 +1,99 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-// This widget is
-//the root of your application.
+  const MyApp({super.key});
+
+  static const String _title = 'Flutter Code Sample';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'TextSpan',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      title: _title,
+      home: Scaffold(
+        appBar: AppBar(title: const Text(_title)),
+        body: const MyDataTable(),
       ),
-      home: MyHomePage(),
-      debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
+class MyDataTable extends StatelessWidget {
+  const MyDataTable({super.key});
 
-class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('GeeksforGeeks'), backgroundColor: Colors.green),
-      body: Center(
-        child: Text.rich(
-          TextSpan(text: 'This is textspan ', children: <InlineSpan>[
-            TextSpan(
-              text: 'Widget in flutter',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    return DataTable(
+      columns: const <DataColumn>[
+        /// TOP LEFT TITLE
+        DataColumn(
+          label: Expanded(
+            child: Text(
+              'User',
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
-          ]),
+          ),
         ),
-      ),
-      backgroundColor: Colors.lightBlue[50],
+
+        /// FIRST COLUMN TO THE RIGHT OF THE INITIAL COLUMN
+        DataColumn(
+          label: Expanded(
+            child: Text(
+              '',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
+        DataColumn(
+          label: Expanded(
+            child: Text(
+              '2, 3',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
+        DataColumn(
+          label: Expanded(
+            child: Text(
+              '3, 3',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
+      ],
+      rows: const <DataRow>[
+        /// this is the first data row in our table
+        ///    (   x , y    )
+        DataRow(
+          cells: <DataCell>[
+            DataCell(Text('0, 2')),
+            DataCell(Text('1, 2')),
+            DataCell(Text('2, 2')),
+            DataCell(Text('3, 2')),
+          ],
+        ),
+
+        /// this is the 1st row above the bottom row
+        DataRow(
+          cells: <DataCell>[
+            DataCell(Text('0, 1')),
+            DataCell(Text('1, 1')),
+            DataCell(Text('2, 1')),
+            DataCell(Text('3, 1')),
+          ],
+        ),
+
+        /// this is the Bottom Row
+        DataRow(
+          cells: <DataCell>[
+            DataCell(Text('0, 0')),
+            DataCell(Text('1, 0')),
+            DataCell(Text('2, 0')),
+            DataCell(Text('3, 0')),
+          ],
+        ),
+      ],
     );
   }
 }

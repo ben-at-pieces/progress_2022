@@ -1,7 +1,6 @@
 // ignore_for_file: omit_local_variable_types, prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_string_interpolations
 
 import 'dart:core';
-import 'dart:math' as math;
 
 import 'package:connector_openapi/api/connector_api.dart';
 import 'package:connector_openapi/api_client.dart' as connector;
@@ -11,10 +10,10 @@ import 'package:core_openapi/api/user_api.dart';
 import 'package:core_openapi/api/users_api.dart';
 import 'package:core_openapi/api_client.dart';
 import 'package:flutter/material.dart';
-import 'package:pie_chart/pie_chart.dart';
+import 'package:runtime_client/particle.dart';
 
 import 'chart data/boot.dart';
-import 'chart data/colors.dart';
+import 'chart data/pieChartWidget.dart';
 import 'chart data/statistics_singleton.dart';
 
 enum LegendShape { circle, rectangle }
@@ -48,87 +47,197 @@ class HomePagePie extends StatelessWidget {
           // child: ,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text('Related People'),
-
-            /// pie chart
-          ],
-        ),
-
-        Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text('1: ${StatisticsSingleton().statistics?.persons.elementAt(0) ?? '0'}'),
-                Text('2: ${StatisticsSingleton().statistics?.persons.elementAt(1) ?? '0'}'),
-
-                /// pie chart
-              ],
-            ),
             Padding(
-              padding: const EdgeInsets.only(top: 18.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text('Top 5 Tags'),
-
-                  /// pie chart
-                ],
+              padding: const EdgeInsets.only(left: 18.0),
+              child: Text(
+                'User: ${StatisticsSingleton().statistics?.user}',
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text('1: ${StatisticsSingleton().statistics?.tags.elementAt(0) ?? '0'}'),
-                Text('2: ${StatisticsSingleton().statistics?.tags.elementAt(1) ?? '0'}'),
-                Text('3: ${StatisticsSingleton().statistics?.tags.elementAt(2) ?? '0'}'),
-                Text('4: ${StatisticsSingleton().statistics?.tags.elementAt(3) ?? '0'}'),
-
-                /// pie chart
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 50.0),
-              child: PieChart(
-                chartValuesOptions: const ChartValuesOptions(
-                  showChartValuesOutside: true,
-                  showChartValueBackground: true,
-                  decimalPlaces: 0,
-                  showChartValues: true,
-                  showChartValuesInPercentage: false,
-                ),
-                ringStrokeWidth: 60,
-                emptyColor: Colors.grey,
-                baseChartColor: Colors.black45,
-                centerTextStyle:
-                    TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold),
-                key: ValueKey(key),
-                dataMap: StatisticsSingleton().statistics!.classifications,
-                animationDuration: const Duration(milliseconds: 800),
-                chartLegendSpacing: 30,
-                chartRadius: math.min(MediaQuery.of(context).size.width / 2.5, 80),
-                colorList: colorList,
-                chartType: ChartType.ring,
-                // centerText: StatisticsSingleton().statistics?.classifications.containsKey('') ? '' : '',
-
-                // ${StatisticsSingleton().statistics?.classifications.values.length} TOTAL'
-                //     : null,
-                legendOptions: const LegendOptions(
-                  showLegendsInRow: false,
-                  legendPosition: LegendPosition.left,
-                  showLegends: true,
-                  legendShape: true ? BoxShape.circle : BoxShape.rectangle,
-                  legendTextStyle: TextStyle(
-                    color: Colors.black,
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
+            MyPieChart(),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 18.0),
+          child: DataTable(
+            columns: <DataColumn>[
+              /// TOP LEFT TITLE
+              DataColumn(
+                label: Expanded(
+                  child: Text(
+                    '',
                   ),
                 ),
               ),
-            ),
-          ],
+
+              /// FIRST COLUMN TO THE RIGHT OF THE INITIAL COLUMN
+              DataColumn(
+                label: Expanded(
+                  child: Text(
+                    '#1',
+                    style: ParticleFont.micro(context,
+                        customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Expanded(
+                  child: Text(
+                    '#2',
+                    style: ParticleFont.micro(context,
+                        customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Expanded(
+                  child: Text(
+                    '#3',
+                    style: ParticleFont.micro(context,
+                        customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Expanded(
+                  child: Text(
+                    '#4',
+                    style: ParticleFont.micro(context,
+                        customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                  ),
+                ),
+              ),
+            ],
+            rows: <DataRow>[
+              /// TOP 5 TAGS
+              /// this is the first data row in our table
+              ///    (   x , y    )
+              DataRow(
+                cells: <DataCell>[
+                  DataCell(Text(
+                    'TAGS:',
+                    style: ParticleFont.button(context,
+                        customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                  )),
+                  DataCell(Text(
+                    '${StatisticsSingleton().statistics?.tags.elementAt(0)}',
+                    style: ParticleFont.micro(context,
+                        customization: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                  )),
+                  DataCell(Text(
+                    '${StatisticsSingleton().statistics?.tags.elementAt(1)}',
+                    style: ParticleFont.micro(context,
+                        customization: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                  )),
+                  DataCell(Text(
+                    '${StatisticsSingleton().statistics?.tags.elementAt(2)}',
+                    style: ParticleFont.micro(context,
+                        customization: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                  )),
+                  DataCell(Text(
+                    '${StatisticsSingleton().statistics?.tags.elementAt(3)}',
+                    style: ParticleFont.micro(context,
+                        customization: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                  )),
+                ],
+              ),
+
+              /// this is the 1st row above the bottom row
+
+              /// TOP 4 links
+              /// this is the first data row in our table
+              ///    (   x , y    )
+              DataRow(
+                cells: <DataCell>[
+                  DataCell(Text(
+                    'LINKS:',
+                    style: ParticleFont.button(context,
+                        customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                  )),
+                  DataCell(SizedBox(
+                      width: 120,
+                      height: 50,
+                      child: Text(
+                        '${StatisticsSingleton().statistics?.relatedLinks.elementAt(0)}',
+                        style: ParticleFont.micro(context,
+                            customization:
+                                TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                      ))),
+                  DataCell(SizedBox(
+                      width: 120,
+                      height: 30,
+                      child: Text(
+                        '${StatisticsSingleton().statistics?.relatedLinks.elementAt(1)}',
+                        style: ParticleFont.micro(context,
+                            customization:
+                                TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                      ))),
+                  DataCell(SizedBox(
+                      width: 120,
+                      height: 30,
+                      child: Text(
+                        '${StatisticsSingleton().statistics?.relatedLinks.elementAt(2)}',
+                        style: ParticleFont.micro(context,
+                            customization:
+                                TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                      ))),
+                  DataCell(SizedBox(
+                      width: 120,
+                      height: 30,
+                      child: Text(
+                        '${StatisticsSingleton().statistics?.relatedLinks.elementAt(3)}',
+                        style: ParticleFont.micro(context,
+                            customization:
+                                TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                      ))),
+                ],
+              ),
+
+              /// this is the Bottom Row
+              DataRow(
+                cells: <DataCell>[
+                  DataCell(Text(
+                    'PEOPLE:',
+                    style: ParticleFont.button(context,
+                        customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                  )),
+                  DataCell(
+                    Text(
+                      '${StatisticsSingleton().statistics?.persons.elementAt(0) ?? '0'}',
+                      style: ParticleFont.micro(context,
+                          customization:
+                              TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                  DataCell(
+                    Text(
+                      '${StatisticsSingleton().statistics?.persons.elementAt(1) ?? '0'}',
+                      style: ParticleFont.micro(context,
+                          customization:
+                              TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                  DataCell(
+                    Text(
+                      '${StatisticsSingleton().statistics?.persons.elementAt(2) ?? '0'}',
+                      style: ParticleFont.micro(context,
+                          customization:
+                              TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                  DataCell(
+                    Text(
+                      '${StatisticsSingleton().statistics?.persons.elementAt(3) ?? '0'}',
+                      style: ParticleFont.micro(context,
+                          customization:
+                              TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
 
         /// SPACER ====================
