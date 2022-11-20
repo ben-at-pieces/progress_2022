@@ -1,64 +1,46 @@
 import 'package:flutter/material.dart';
 
-import '../chart data/statistics_singleton.dart';
-
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
+// This widget is
+//the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'TextSpan',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(),
       debugShowCheckedModeBanner: false,
-      home: ShowHideDemo(),
     );
   }
 }
 
-class ShowHideDemo extends StatefulWidget {
+class MyHomePage extends StatefulWidget {
   @override
-  _ShowHideDemoState createState() {
-    return _ShowHideDemoState();
-  }
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _ShowHideDemoState extends State {
-  bool _isVisible = true;
-
-  void showToast() {
-    setState(() {
-      _isVisible = !_isVisible;
-    });
-  }
-
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.cyan,
-        title: Text('Flutter Show/Hide Widget Demo'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Visibility(
-              visible: _isVisible,
-              child: Text('${StatisticsSingleton().statistics?.tags ?? 0}'),
+      appBar: AppBar(title: Text('GeeksforGeeks'), backgroundColor: Colors.green),
+      body: Center(
+        child: Text.rich(
+          TextSpan(text: 'This is textspan ', children: <InlineSpan>[
+            TextSpan(
+              text: 'Widget in flutter',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                textStyle: TextStyle(fontSize: 20),
-                minimumSize: Size.fromHeight(50),
-              ),
-              onPressed: showToast,
-              child: Text('Show Top 5 Tags'),
-            ),
-          ],
+          ]),
         ),
       ),
+      backgroundColor: Colors.lightBlue[50],
     );
   }
 }
-
-///

@@ -1,8 +1,9 @@
-// ignore_for_file: prefer__ructors, prefer__literals_to_create_immutables, prefer_const_constructors, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer__ructors, prefer__literals_to_create_immutables, prefer_const_constructors, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, prefer_final_fields
 
 import 'package:collection/collection.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:runtime_client/particle.dart';
 
 import '../chart data/statistics_singleton.dart';
@@ -15,12 +16,6 @@ class BarGraph extends StatefulWidget {
 class _BarChartState extends State<BarGraph> {
   bool _isVisible = false;
 
-  void showToast() {
-    setState(() {
-      _isVisible = !_isVisible;
-    });
-  }
-
   int touchedGroupIndex = -1;
   double highestCount = [
     StatisticsSingleton().statistics?.snippetsSaved ?? 0.0,
@@ -31,8 +26,12 @@ class _BarChartState extends State<BarGraph> {
     StatisticsSingleton().statistics?.relatedLinks.length.toDouble() ?? 0.0
   ].max;
 
+  late FToast fToast;
+
   @override
   Widget build(BuildContext context) {
+    /// connection to tags pop up ====================================================================
+
     return Card(
       color: Colors.white,
       elevation: 4,
@@ -40,7 +39,7 @@ class _BarChartState extends State<BarGraph> {
         padding: EdgeInsets.all(20),
         child: BarChart(
           BarChartData(
-            maxY: highestCount + 5,
+            maxY: highestCount + 10,
             alignment: BarChartAlignment.spaceAround,
             borderData: FlBorderData(
               show: true,
@@ -105,11 +104,14 @@ class _BarChartState extends State<BarGraph> {
                         break;
                     }
 
+                    ///
                     return SideTitleWidget(
                       axisSide: meta.axisSide,
                       child: Chip(
                         label: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            // showCustomToast();
+                          },
                           child: Text(
                             text,
                             style: ParticleFont.micro(context,
@@ -125,7 +127,7 @@ class _BarChartState extends State<BarGraph> {
               /// No titles to the right ================================================================
               rightTitles: AxisTitles(),
 
-              /// No TOP Titles ================================================================
+              /// TOP Titles ================================================================
               topTitles: AxisTitles(
                 sideTitles: SideTitles(
                   showTitles: true,
@@ -154,6 +156,7 @@ class _BarChartState extends State<BarGraph> {
                         break;
                     }
 
+                    ///
                     return SideTitleWidget(
                       // angle: 18,
                       axisSide: meta.axisSide,
@@ -199,7 +202,7 @@ class _BarChartState extends State<BarGraph> {
                   BarChartRodData(
                     borderRadius: BorderRadius.zero,
                     toY: StatisticsSingleton().statistics?.snippetsSaved ?? 0,
-                    width: 40,
+                    width: 50,
                     color: Colors.black54,
                   ),
                 ],
@@ -212,7 +215,7 @@ class _BarChartState extends State<BarGraph> {
                   BarChartRodData(
                     borderRadius: BorderRadius.zero,
                     toY: StatisticsSingleton().statistics?.updatedSnippets ?? 0,
-                    width: 30,
+                    width: 50,
                     color: Colors.grey,
                   ),
                 ],
@@ -225,7 +228,7 @@ class _BarChartState extends State<BarGraph> {
                   BarChartRodData(
                     borderRadius: BorderRadius.zero,
                     toY: StatisticsSingleton().statistics?.shareableLinks ?? 0,
-                    width: 45,
+                    width: 50,
                     color: Colors.deepPurple,
                   ),
                 ],
@@ -238,7 +241,7 @@ class _BarChartState extends State<BarGraph> {
                   BarChartRodData(
                     borderRadius: BorderRadius.zero,
                     toY: StatisticsSingleton().statistics?.persons.length.toDouble() ?? 0,
-                    width: 30,
+                    width: 50,
                     color: Colors.greenAccent,
                   ),
                 ],
@@ -251,7 +254,7 @@ class _BarChartState extends State<BarGraph> {
                   BarChartRodData(
                     borderRadius: BorderRadius.zero,
                     toY: StatisticsSingleton().statistics?.tags.length.toDouble() ?? 0,
-                    width: 30,
+                    width: 50,
                     color: Colors.blueGrey,
                   ),
                 ],
@@ -264,7 +267,7 @@ class _BarChartState extends State<BarGraph> {
                   BarChartRodData(
                     borderRadius: BorderRadius.zero,
                     toY: StatisticsSingleton().statistics?.relatedLinks.length.toDouble() ?? 0,
-                    width: 30,
+                    width: 50,
                     color: Colors.lightBlueAccent,
                   ),
                 ],
@@ -287,7 +290,7 @@ class _BarChartState extends State<BarGraph> {
                     TextStyle(
                       fontWeight: FontWeight.bold,
                       color: rod.color,
-                      fontSize: 18,
+                      fontSize: 25,
                     ),
                   );
                 },
@@ -311,15 +314,45 @@ class _BarChartState extends State<BarGraph> {
       ),
     );
   }
-}
 
-/// ructor for Bar Graph data
+  // showCustomToast() {
+  //   Widget toast = Container(
+  //     decoration: BoxDecoration(
+  //       borderRadius: BorderRadius.circular(25.0),
+  //       color: Colors.grey,
+  //     ),
+  //     child: Row(
+  //       children: [
+  //         Text('1: ${StatisticsSingleton().statistics?.tags.elementAt(0) ?? '0'}'),
+  //         Text('2: ${StatisticsSingleton().statistics?.tags.elementAt(1) ?? '0'}'),
+  //         Text('3: ${StatisticsSingleton().statistics?.tags.elementAt(2) ?? '0'}'),
+  //         Text('4: ${StatisticsSingleton().statistics?.tags.elementAt(3) ?? '0'}'),
+  //       ],
+  //     ),
+  //   );
+  //
+  //   fToast.showToast(
+  //     gravity: ToastGravity.TOP,
+  //     child: toast,
+  //     toastDuration: Duration(seconds: 3),
+  //   );
+  // }
+  //
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   fToast = FToast();
+  //   fToast.init(context);
+  // }
 
-class _BarData {
-  _BarData(this.value, this.language);
+  /// ructor for Bar Graph data
 
-  final String language;
-  final double value;
+// class _BarData {
+//   _BarData(this.value, this.language);
+//
+//   final String language;
+//   final double value;
+// }
 }
 
 String? firstTag = StatisticsSingleton().statistics?.tags.elementAt(0);

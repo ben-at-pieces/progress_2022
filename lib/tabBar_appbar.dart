@@ -84,11 +84,11 @@ class HomePageState extends State<HomePageAppBar> {
           ), // AppBar
           body: TabBarView(
             children: [
-              /// Vertical bar graph ==========================================================
-              BarGraph(),
-
               /// Circular Pie Chart ==========================================================
               HomePagePie(),
+
+              /// Vertical bar graph ==========================================================
+              BarGraph(),
 
               ///TODO work in another widget
               // PieChartSample1(),

@@ -34,6 +34,7 @@ class HomePagePie extends StatelessWidget {
   const HomePagePie({Key? key}) : super(key: key);
 
   get touchedIndex => -1;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -46,43 +47,88 @@ class HomePagePie extends StatelessWidget {
 
           // child: ,
         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text('Related People'),
 
-        /// pie chart
-        PieChart(
-          chartValuesOptions: const ChartValuesOptions(
-            showChartValuesOutside: true,
-            showChartValueBackground: true,
-            decimalPlaces: 0,
-            showChartValues: true,
-            showChartValuesInPercentage: false,
-          ),
-          ringStrokeWidth: 60,
-          emptyColor: Colors.grey,
-          baseChartColor: Colors.black45,
-          centerTextStyle:
-              TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold),
-          key: ValueKey(key),
-          dataMap: StatisticsSingleton().statistics!.classifications,
-          animationDuration: const Duration(milliseconds: 800),
-          chartLegendSpacing: 30,
-          chartRadius: math.min(MediaQuery.of(context).size.width / 2.5, 80),
-          colorList: colorList,
-          chartType: ChartType.ring,
-          // centerText: StatisticsSingleton().statistics?.classifications.containsKey('') ? '' : '',
+            /// pie chart
+          ],
+        ),
 
-          // ${StatisticsSingleton().statistics?.classifications.values.length} TOTAL'
-          //     : null,
-          legendOptions: const LegendOptions(
-            showLegendsInRow: false,
-            legendPosition: LegendPosition.left,
-            showLegends: true,
-            legendShape: true ? BoxShape.circle : BoxShape.rectangle,
-            legendTextStyle: TextStyle(
-              color: Colors.black,
-              fontSize: 10,
-              fontWeight: FontWeight.bold,
+        Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text('1: ${StatisticsSingleton().statistics?.persons.elementAt(0) ?? '0'}'),
+                Text('2: ${StatisticsSingleton().statistics?.persons.elementAt(1) ?? '0'}'),
+
+                /// pie chart
+              ],
             ),
-          ),
+            Padding(
+              padding: const EdgeInsets.only(top: 18.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text('Top 5 Tags'),
+
+                  /// pie chart
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text('1: ${StatisticsSingleton().statistics?.tags.elementAt(0) ?? '0'}'),
+                Text('2: ${StatisticsSingleton().statistics?.tags.elementAt(1) ?? '0'}'),
+                Text('3: ${StatisticsSingleton().statistics?.tags.elementAt(2) ?? '0'}'),
+                Text('4: ${StatisticsSingleton().statistics?.tags.elementAt(3) ?? '0'}'),
+
+                /// pie chart
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 50.0),
+              child: PieChart(
+                chartValuesOptions: const ChartValuesOptions(
+                  showChartValuesOutside: true,
+                  showChartValueBackground: true,
+                  decimalPlaces: 0,
+                  showChartValues: true,
+                  showChartValuesInPercentage: false,
+                ),
+                ringStrokeWidth: 60,
+                emptyColor: Colors.grey,
+                baseChartColor: Colors.black45,
+                centerTextStyle:
+                    TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold),
+                key: ValueKey(key),
+                dataMap: StatisticsSingleton().statistics!.classifications,
+                animationDuration: const Duration(milliseconds: 800),
+                chartLegendSpacing: 30,
+                chartRadius: math.min(MediaQuery.of(context).size.width / 2.5, 80),
+                colorList: colorList,
+                chartType: ChartType.ring,
+                // centerText: StatisticsSingleton().statistics?.classifications.containsKey('') ? '' : '',
+
+                // ${StatisticsSingleton().statistics?.classifications.values.length} TOTAL'
+                //     : null,
+                legendOptions: const LegendOptions(
+                  showLegendsInRow: false,
+                  legendPosition: LegendPosition.left,
+                  showLegends: true,
+                  legendShape: true ? BoxShape.circle : BoxShape.rectangle,
+                  legendTextStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
 
         /// SPACER ====================
