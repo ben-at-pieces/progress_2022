@@ -10,7 +10,6 @@ import 'package:core_openapi/api/user_api.dart';
 import 'package:core_openapi/api/users_api.dart';
 import 'package:core_openapi/api_client.dart';
 import 'package:flutter/material.dart';
-import 'package:runtime_client/particle.dart';
 
 import 'chart data/boot.dart';
 import 'chart data/pieChartWidget.dart';
@@ -30,9 +29,18 @@ ApiClient api = ApiClient(basePath: 'http://localhost:1000');
 // var isClassification = StatisticsSingleton().statistics?.classifications.containsKey('') ? 0 : 1;
 
 class HomePagePie extends StatelessWidget {
-  const HomePagePie({Key? key}) : super(key: key);
+  HomePagePie({Key? key}) : super(key: key);
 
   get touchedIndex => -1;
+
+  final Iterable<String>? personEmptyCheck =
+      StatisticsSingleton().statistics?.persons.where((element) => element.isNotEmpty);
+
+  final Iterable<String>? tagsEmptyCheck =
+      StatisticsSingleton().statistics?.tags.where((element) => element.isNotEmpty);
+
+  final Iterable<String>? relatedLinksEmptyCheck =
+      StatisticsSingleton().statistics?.relatedLinks.where((element) => element.isNotEmpty);
 
   @override
   Widget build(BuildContext context) {
@@ -75,36 +83,24 @@ class HomePagePie extends StatelessWidget {
               DataColumn(
                 label: Expanded(
                   child: Text(
-                    '#1',
-                    style: ParticleFont.micro(context,
-                        customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                    'PEOPLE:',
+                    style: TitleTheme.title,
                   ),
                 ),
               ),
               DataColumn(
                 label: Expanded(
                   child: Text(
-                    '#2',
-                    style: ParticleFont.micro(context,
-                        customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                    'TAGS:',
+                    style: TitleTheme.title,
                   ),
                 ),
               ),
               DataColumn(
                 label: Expanded(
                   child: Text(
-                    '#3',
-                    style: ParticleFont.micro(context,
-                        customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-                  ),
-                ),
-              ),
-              DataColumn(
-                label: Expanded(
-                  child: Text(
-                    '#4',
-                    style: ParticleFont.micro(context,
-                        customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                    'RELATED LINKS:',
+                    style: TitleTheme.title,
                   ),
                 ),
               ),
@@ -116,29 +112,22 @@ class HomePagePie extends StatelessWidget {
               DataRow(
                 cells: <DataCell>[
                   DataCell(Text(
-                    'TAGS:',
-                    style: ParticleFont.button(context,
-                        customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                    '1.',
+                    style: TitleTheme.title,
+                  )),
+                  DataCell(
+                    Text(
+                      '${personEmptyCheck?.elementAt(0) ?? '0'}',
+                      style: GreyTheme.small,
+                    ),
+                  ),
+                  DataCell(Text(
+                    '${tagsEmptyCheck?.elementAt(0) ?? '0'}',
+                    style: GreyTheme.small,
                   )),
                   DataCell(Text(
-                    '${StatisticsSingleton().statistics?.tags.elementAt(0)}',
-                    style: ParticleFont.micro(context,
-                        customization: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
-                  )),
-                  DataCell(Text(
-                    '${StatisticsSingleton().statistics?.tags.elementAt(1)}',
-                    style: ParticleFont.micro(context,
-                        customization: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
-                  )),
-                  DataCell(Text(
-                    '${StatisticsSingleton().statistics?.tags.elementAt(2)}',
-                    style: ParticleFont.micro(context,
-                        customization: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
-                  )),
-                  DataCell(Text(
-                    '${StatisticsSingleton().statistics?.tags.elementAt(3)}',
-                    style: ParticleFont.micro(context,
-                        customization: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                    '${relatedLinksEmptyCheck?.elementAt(0) ?? '0'}',
+                    style: GreyTheme.small,
                   )),
                 ],
               ),
@@ -150,88 +139,88 @@ class HomePagePie extends StatelessWidget {
               ///    (   x , y    )
               DataRow(
                 cells: <DataCell>[
-                  DataCell(Text(
-                    'LINKS:',
-                    style: ParticleFont.button(context,
-                        customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-                  )),
-                  DataCell(SizedBox(
-                      width: 120,
-                      height: 50,
-                      child: Text(
-                        '${StatisticsSingleton().statistics?.relatedLinks.elementAt(0)}',
-                        style: ParticleFont.micro(context,
-                            customization:
-                                TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
-                      ))),
-                  DataCell(SizedBox(
-                      width: 120,
-                      height: 30,
-                      child: Text(
-                        '${StatisticsSingleton().statistics?.relatedLinks.elementAt(1)}',
-                        style: ParticleFont.micro(context,
-                            customization:
-                                TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
-                      ))),
-                  DataCell(SizedBox(
+                  DataCell(
+                    Text(
+                      '2.',
+                      style: TitleTheme.title,
+                    ),
+                  ),
+                  DataCell(
+                    Text(
+                      '${personEmptyCheck?.elementAt(1) ?? '0'}',
+                      style: GreyTheme.small,
+                    ),
+                  ),
+                  DataCell(
+                    Text(
+                      '${tagsEmptyCheck?.elementAt(1) ?? '0'}',
+                      style: GreyTheme.small,
+                    ),
+                  ),
+                  DataCell(
+                    SizedBox(
                       width: 120,
                       height: 30,
                       child: Text(
-                        '${StatisticsSingleton().statistics?.relatedLinks.elementAt(2)}',
-                        style: ParticleFont.micro(context,
-                            customization:
-                                TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
-                      ))),
-                  DataCell(SizedBox(
-                      width: 120,
-                      height: 30,
-                      child: Text(
-                        '${StatisticsSingleton().statistics?.relatedLinks.elementAt(3)}',
-                        style: ParticleFont.micro(context,
-                            customization:
-                                TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
-                      ))),
+                        '${relatedLinksEmptyCheck?.elementAt(1) ?? '0'}',
+                        style: GreyTheme.small,
+                      ),
+                    ),
+                  ),
                 ],
               ),
 
-              /// this is the Bottom Row
+              /// this is the 3rd Row
               DataRow(
                 cells: <DataCell>[
                   DataCell(Text(
-                    'PEOPLE:',
-                    style: ParticleFont.button(context,
-                        customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                    '3.',
+                    style: TitleTheme.title,
                   )),
                   DataCell(
                     Text(
-                      '${StatisticsSingleton().statistics?.persons.elementAt(0) ?? '0'}',
-                      style: ParticleFont.micro(context,
-                          customization:
-                              TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                      '${personEmptyCheck?.elementAt(2) ?? '0'}',
+                      style: GreyTheme.small,
                     ),
                   ),
                   DataCell(
                     Text(
-                      '${StatisticsSingleton().statistics?.persons.elementAt(1) ?? '0'}',
-                      style: ParticleFont.micro(context,
-                          customization:
-                              TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                      '${tagsEmptyCheck?.elementAt(2) ?? '0'}',
+                      style: GreyTheme.small,
                     ),
                   ),
                   DataCell(
                     Text(
-                      '${StatisticsSingleton().statistics?.persons.elementAt(2) ?? '0'}',
-                      style: ParticleFont.micro(context,
-                          customization:
-                              TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                      '${relatedLinksEmptyCheck?.elementAt(2) ?? '0'}',
+                      style: GreyTheme.small,
+                    ),
+                  ),
+                ],
+              ),
+
+              /// this is the 4rd Row
+              DataRow(
+                cells: <DataCell>[
+                  DataCell(Text(
+                    '4.',
+                    style: TitleTheme.title,
+                  )),
+                  DataCell(
+                    Text(
+                      '${personEmptyCheck?.elementAt(3) ?? '0'}',
+                      style: GreyTheme.small,
                     ),
                   ),
                   DataCell(
                     Text(
-                      '${StatisticsSingleton().statistics?.persons.elementAt(3) ?? '0'}',
-                      style: ParticleFont.micro(context,
-                          customization:
-                              TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                      '${tagsEmptyCheck?.elementAt(3) ?? '0'}',
+                      style: GreyTheme.small,
+                    ),
+                  ),
+                  DataCell(
+                    Text(
+                      '${relatedLinksEmptyCheck?.elementAt(3) ?? '0'}',
+                      style: GreyTheme.small,
                     ),
                   ),
                 ],
@@ -288,4 +277,20 @@ Future<Context> connect() async {
   } catch (err) {
     throw Exception('Error occurred when establishing connection. error:$err');
   }
+}
+
+class GreyTheme {
+  static const TextStyle small = TextStyle(
+    fontSize: 12,
+    color: Colors.grey,
+    fontWeight: FontWeight.bold,
+  );
+}
+
+class TitleTheme {
+  static const TextStyle title = TextStyle(
+    fontSize: 14,
+    color: Colors.black,
+    fontWeight: FontWeight.bold,
+  );
 }

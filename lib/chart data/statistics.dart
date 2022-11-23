@@ -14,7 +14,13 @@ Future<Statistics> getStats() async {
   Map<String, double> tagMap = {};
   Map<String, double> personMap = {};
   List<String> relatedLinks = [];
+  List<String> jetBrainsSaved = [];
+  List<String> vsCodeSaved = [];
+  List<String> pfdSaved = [];
+  List<String> chromeSaved = [];
   double timeTaken = 0;
+
+  /// classifications map (String, double)
 
   Map<String, double> classifications = {};
   for (Asset asset in assets.iterable) {
@@ -73,6 +79,17 @@ Future<Statistics> getStats() async {
       }
     }
 
+    /// JETBRAINS
+    List<String?> jetBrainsSaved = [];
+    for (Asset jetBrain in assets.iterable ?? []) {
+      if (asset.original.reference?.application != null &&
+          asset.original.reference?.application.name.value == ApplicationNameEnum.JETBRAINS.value) {
+        jetBrainsSaved.add(jetBrain.original.reference?.application.name.value);
+      } else if (jetBrainsSaved.isEmpty) {
+        jetBrainsSaved.add('1');
+      }
+    }
+
     /// Related Links
     for (Website website in asset.websites?.iterable ?? []) {
       relatedLinks.add(website.url);
@@ -83,9 +100,7 @@ Future<Statistics> getStats() async {
       (Map.fromEntries(tagMap.entries.toList()..sort((e1, e2) => e2.value.compareTo(e1.value))))
           .keys
           .toList();
-  // if (tags.length > 5) {
-  //   tags = tags.take(5).toList();
-  // }
+
   List<String> persons =
       (Map.fromEntries(personMap.entries.toList()..sort((e1, e2) => e2.value.compareTo(e1.value))))
           .keys
@@ -97,6 +112,10 @@ Future<Statistics> getStats() async {
     classifications[''] = 0;
   }
   Statistics statistics = Statistics(
+    jetBrains: jetBrainsSaved,
+    pfd: pfdSaved,
+    vsCode: vsCodeSaved,
+    chrome: chromeSaved,
     classifications: classifications,
     snippetsSaved: snippetsSaved,
     shareableLinks: shareableLinks,
@@ -119,6 +138,10 @@ class Statistics {
   final List<String> tags;
   final List<String> persons;
   final List<String> relatedLinks;
+  final List<String> jetBrains;
+  final List<String> vsCode;
+  final List<String> pfd;
+  final List<String> chrome;
   final String user;
   Statistics({
     required this.classifications,
@@ -130,5 +153,9 @@ class Statistics {
     required this.persons,
     required this.relatedLinks,
     required this.user,
+    required this.jetBrains,
+    required this.vsCode,
+    required this.pfd,
+    required this.chrome,
   });
 }

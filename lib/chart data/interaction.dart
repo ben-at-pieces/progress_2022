@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:gsheets/chart%20data/statistics_singleton.dart';
 
 import 'indicator.dart';
 
@@ -28,29 +29,29 @@ class PieChartSample1State extends State {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Indicator(
-                  color: const Color(0xff0293ee),
-                  text: 'One',
+                  color: Color(0xfffa9d2c),
+                  text: 'JetBrains',
                   isSquare: false,
                   size: touchedIndex == 0 ? 18 : 16,
                   textColor: touchedIndex == 0 ? Colors.black : Colors.grey,
                 ),
                 Indicator(
-                  color: const Color(0xfff8b250),
-                  text: 'Two',
+                  color: Colors.lightBlueAccent,
+                  text: 'VS Code',
                   isSquare: false,
                   size: touchedIndex == 1 ? 18 : 16,
                   textColor: touchedIndex == 1 ? Colors.black : Colors.grey,
                 ),
                 Indicator(
-                  color: const Color(0xff845bef),
-                  text: 'Three',
+                  color: Colors.grey,
+                  text: 'Pieces for Developers',
                   isSquare: false,
                   size: touchedIndex == 2 ? 18 : 16,
                   textColor: touchedIndex == 2 ? Colors.black : Colors.grey,
                 ),
                 Indicator(
-                  color: const Color(0xff13d38e),
-                  text: 'Four',
+                  color: Colors.red,
+                  text: 'Chrome Ext',
                   isSquare: false,
                   size: touchedIndex == 3 ? 18 : 16,
                   textColor: touchedIndex == 3 ? Colors.black : Colors.grey,
@@ -100,65 +101,52 @@ class PieChartSample1State extends State {
       4,
       (i) {
         final isTouched = i == touchedIndex;
-        final opacity = isTouched ? 1.0 : 0.6;
-
-        const color0 = Color(0xff0293ee);
-        const color1 = Color(0xfff8b250);
-        const color2 = Color(0xff845bef);
-        const color3 = Color(0xff13d38e);
 
         switch (i) {
           case 0:
             return PieChartSectionData(
-              color: color0.withOpacity(opacity),
-              value: 25,
-              title: '',
+              color: Colors.orangeAccent,
+              title: '${StatisticsSingleton().statistics?.jetBrains ?? 0}',
               radius: 70,
               titleStyle: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color(0xff044d7c),
               ),
               titlePositionPercentageOffset: 0.55,
             );
           case 1:
             return PieChartSectionData(
-              color: color1.withOpacity(opacity),
-              value: 25,
-              title: '',
+              showTitle: true,
+              color: Colors.lightBlueAccent,
+              value: StatisticsSingleton().statistics?.vsCode.length.toDouble() ?? 0,
               radius: 70,
               titleStyle: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color(0xff90672d),
               ),
               titlePositionPercentageOffset: 0.55,
             );
           case 2:
             return PieChartSectionData(
-              color: color2.withOpacity(opacity),
-              value: 25,
-              title: '',
+              color: Colors.grey,
+              value: StatisticsSingleton().statistics?.pfd.length.toDouble() ?? 0,
               radius: 70,
               titleStyle: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color(0xff4c3788),
               ),
               titlePositionPercentageOffset: 0.6,
             );
           case 3:
             return PieChartSectionData(
-              color: color3.withOpacity(opacity),
-              value: 25,
-              title: '',
+              color: Colors.red,
+              value: StatisticsSingleton().statistics?.chrome.length.toDouble() ?? 1.9,
               radius: 70,
               titleStyle: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color(0xff0c7f55),
               ),
-              titlePositionPercentageOffset: 0.55,
+              titlePositionPercentageOffset: 0.6,
             );
           default:
             throw Error();

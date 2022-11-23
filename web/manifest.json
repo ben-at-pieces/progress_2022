@@ -1,35 +1,18 @@
 {
-    "name": "progress",
-    "short_name": "progress",
-    "start_url": ".",
-    "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "This is a Macro Repo Designed to give users a global look at their personal snippet repo.",
-    "orientation": "portrait-primary",
-    "prefer_related_applications": false,
-    "icons": [
-        {
-            "src": "icons/Icon-192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "icons/Icon-512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-        },
-        {
-            "src": "icons/Icon-maskable-192.png",
-            "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "maskable"
-        },
-        {
-            "src": "icons/Icon-maskable-512.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "maskable"
-        }
-    ]
+  "manifest_version": 3,
+  "version": "0.1",
+  "name": "Pieces Pie",
+  "description": "This extension is written with dart/flutter code!",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "PiecesFD.png",
+      "32": "icons/PiecesFD.png",
+      "48": "icons/fox.png",
+      "128": "icons/blue.png"
+    }
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; script-src-elem 'self' 'unsafe-inline' https://music.yandex.ru/;"
+}
 }
