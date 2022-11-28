@@ -6,6 +6,52 @@ Future<Statistics> getStats() async {
   Assets assets = await PiecesApi.assetsApi.assetsSnapshot();
   ReturnedUserProfile user = await PiecesApi.userApi.userSnapshot();
 
+  List<Asset> assetList = assets.iterable;
+
+  Iterable<Asset> jetBrainsSaved = assetList.where((element) =>
+      element.original.reference?.application.name.value == ApplicationNameEnum.JETBRAINS.value);
+  double jetBrainsDub = jetBrainsSaved.length.toDouble();
+
+  ///
+  Iterable<Asset> chromeSaved = assetList.where((element) =>
+      element.original.reference?.application.name.value ==
+      ApplicationNameEnum.gOOGLECHROMEEXTENSIONMV3.value);
+  double chromeDub = chromeSaved.length.toDouble();
+
+  ///
+  Iterable<Asset> vSCodeSaved = assetList.where((element) =>
+      element.original.reference?.application.name.value == ApplicationNameEnum.VS_CODE.value);
+  double vsCodeDub = vSCodeSaved.length.toDouble();
+
+  ///
+  Iterable<Asset> safari3Saved = assetList.where((element) =>
+      element.original.reference?.application.name.value ==
+      ApplicationNameEnum.sAFARIEXTENSIONMV3.value);
+  double safariDub = safari3Saved.length.toDouble();
+
+  ///
+  Iterable<Asset> fireFox3Saved = assetList.where((element) =>
+      element.original.reference?.application.name.value ==
+      ApplicationNameEnum.fIREFOXADDONMV3.value);
+  double fireFoxDub = fireFox3Saved.length.toDouble();
+
+  ///
+  Iterable<Asset> pfdSaved = assetList.where((element) =>
+      element.original.reference?.application.name.value ==
+      ApplicationNameEnum.PIECES_FOR_DEVELOPERS.value);
+  double pfdDub = pfdSaved.length.toDouble();
+
+  ///
+  Iterable<Asset> osServerSaved = assetList.where((element) =>
+      element.original.reference?.application.name.value == ApplicationNameEnum.OS_SERVER.value);
+  double osServerDub = osServerSaved.length.toDouble();
+
+  ///
+  Iterable<Asset> piecesCLISaved = assetList.where((element) =>
+      element.original.reference?.application.name.value ==
+      ApplicationNameEnum.PIECES_FOR_DEVELOPERS_CLI.value);
+  double cliDub = piecesCLISaved.length.toDouble();
+
   double snippetsSaved = 0;
   double shareableLinks = 0;
   double updatedSnippets = 0;
@@ -14,10 +60,6 @@ Future<Statistics> getStats() async {
   Map<String, double> tagMap = {};
   Map<String, double> personMap = {};
   List<String> relatedLinks = [];
-  List<String> jetBrainsSaved = [];
-  List<String> vsCodeSaved = [];
-  List<String> pfdSaved = [];
-  List<String> chromeSaved = [];
   double timeTaken = 0;
 
   /// classifications map (String, double)
@@ -114,7 +156,7 @@ Future<Statistics> getStats() async {
   Statistics statistics = Statistics(
     jetBrains: jetBrainsSaved,
     pfd: pfdSaved,
-    vsCode: vsCodeSaved,
+    vsCode: vSCodeSaved,
     chrome: chromeSaved,
     classifications: classifications,
     snippetsSaved: snippetsSaved,
@@ -125,6 +167,14 @@ Future<Statistics> getStats() async {
     persons: persons,
     relatedLinks: relatedLinks,
     user: user.user?.name ?? user.user?.email ?? '',
+    jetBrainsDub: jetBrainsDub,
+    vsCodeDub: vsCodeDub,
+    fireFoxDub: fireFoxDub,
+    safariDub: safariDub,
+    cliDub: cliDub,
+    chromeDub: chromeDub,
+    pfdDub: pfdDub,
+    osServerDub: osServerDub,
   );
   return statistics;
 }
@@ -138,11 +188,22 @@ class Statistics {
   final List<String> tags;
   final List<String> persons;
   final List<String> relatedLinks;
-  final List<String> jetBrains;
-  final List<String> vsCode;
-  final List<String> pfd;
-  final List<String> chrome;
+  final double jetBrainsDub;
+  final double vsCodeDub;
+  final double fireFoxDub;
+  final double safariDub;
+  final double cliDub;
+  final double chromeDub;
+  final double pfdDub;
+  final double osServerDub;
+
+  /// TODO these will be our assets according to origin
+  final Iterable<Asset> jetBrains;
+  final Iterable<Asset> vsCode;
+  final Iterable<Asset> pfd;
+  final Iterable<Asset> chrome;
   final String user;
+
   Statistics({
     required this.classifications,
     required this.snippetsSaved,
@@ -157,5 +218,13 @@ class Statistics {
     required this.vsCode,
     required this.pfd,
     required this.chrome,
+    required this.jetBrainsDub,
+    required this.vsCodeDub,
+    required this.fireFoxDub,
+    required this.safariDub,
+    required this.cliDub,
+    required this.chromeDub,
+    required this.pfdDub,
+    required this.osServerDub,
   });
 }

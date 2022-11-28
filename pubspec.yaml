@@ -47,6 +47,7 @@ dev_dependencies:
   fl_chart:
   flutter_test:
     sdk: flutter
+  test: ^1.21.4
 
 
 

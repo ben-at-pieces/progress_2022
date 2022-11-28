@@ -32,13 +32,16 @@ class _BarChartState extends State<BarGraph> {
   Widget build(BuildContext context) {
     /// connection to tags pop up ====================================================================
 
-    return Card(
-      color: Colors.white,
-      elevation: 4,
-      child: Padding(
-        padding: EdgeInsets.all(20),
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(100.0),
         child: BarChart(
           BarChartData(
+            gridData: FlGridData(
+              show: true,
+              drawVerticalLine: false,
+              drawHorizontalLine: false,
+            ),
             maxY: highestCount + 10,
             alignment: BarChartAlignment.spaceAround,
             borderData: FlBorderData(
@@ -187,13 +190,7 @@ class _BarChartState extends State<BarGraph> {
               ),
             ),
 
-            gridData: FlGridData(
-              show: true,
-              drawVerticalLine: false,
-              drawHorizontalLine: false,
-            ),
-
-            /// Indexed Meta Data Names and Counts =========================================================
+            /// Saved Snippets Count =========================================================
             barGroups: [
               /// Total Saved Snippets ================================================================
               BarChartGroupData(
@@ -315,35 +312,35 @@ class _BarChartState extends State<BarGraph> {
     );
   }
 
-  // showCustomToast() {
-  //   Widget toast = Container(
-  //     decoration: BoxDecoration(
-  //       borderRadius: BorderRadius.circular(25.0),
-  //       color: Colors.grey,
-  //     ),
-  //     child: Row(
-  //       children: [
-  //         Text('1: ${StatisticsSingleton().statistics?.tags.elementAt(0) ?? '0'}'),
-  //         Text('2: ${StatisticsSingleton().statistics?.tags.elementAt(1) ?? '0'}'),
-  //         Text('3: ${StatisticsSingleton().statistics?.tags.elementAt(2) ?? '0'}'),
-  //         Text('4: ${StatisticsSingleton().statistics?.tags.elementAt(3) ?? '0'}'),
-  //       ],
-  //     ),
-  //   );
-  //
-  //   fToast.showToast(
-  //     gravity: ToastGravity.TOP,
-  //     child: toast,
-  //     toastDuration: Duration(seconds: 3),
-  //   );
-  // }
-  //
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   fToast = FToast();
-  //   fToast.init(context);
-  // }
+// showCustomToast() {
+//   Widget toast = Container(
+//     decoration: BoxDecoration(
+//       borderRadius: BorderRadius.circular(25.0),
+//       color: Colors.grey,
+//     ),
+//     child: Row(
+//       children: [
+//         Text('1: ${StatisticsSingleton().statistics?.tags.elementAt(0) ?? '0'}'),
+//         Text('2: ${StatisticsSingleton().statistics?.tags.elementAt(1) ?? '0'}'),
+//         Text('3: ${StatisticsSingleton().statistics?.tags.elementAt(2) ?? '0'}'),
+//         Text('4: ${StatisticsSingleton().statistics?.tags.elementAt(3) ?? '0'}'),
+//       ],
+//     ),
+//   );
+//
+//   fToast.showToast(
+//     gravity: ToastGravity.TOP,
+//     child: toast,
+//     toastDuration: Duration(seconds: 3),
+//   );
+// }
+//
+// @override
+// void initState() {
+//   super.initState();
+//   fToast = FToast();
+//   fToast.init(context);
+// }
 
   /// ructor for Bar Graph data
 

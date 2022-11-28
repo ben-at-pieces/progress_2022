@@ -44,28 +44,61 @@ class PieChartSample1State extends State {
                 ),
                 Indicator(
                   color: Colors.grey,
-                  text: 'Pieces for Developers',
+                  text: 'PFD',
                   isSquare: false,
                   size: touchedIndex == 2 ? 18 : 16,
                   textColor: touchedIndex == 2 ? Colors.black : Colors.grey,
                 ),
                 Indicator(
-                  color: Colors.red,
+                  color: Colors.blueGrey,
                   text: 'Chrome Ext',
                   isSquare: false,
                   size: touchedIndex == 3 ? 18 : 16,
                   textColor: touchedIndex == 3 ? Colors.black : Colors.grey,
                 ),
+                Indicator(
+                  color: Colors.green,
+                  text: 'CLI',
+                  isSquare: false,
+                  size: touchedIndex == 4 ? 18 : 16,
+                  textColor: touchedIndex == 4 ? Colors.black : Colors.grey,
+                ),
+                Indicator(
+                  color: Colors.black,
+                  text: 'OS_Sever',
+                  isSquare: false,
+                  size: touchedIndex == 5 ? 18 : 16,
+                  textColor: touchedIndex == 5 ? Colors.black : Colors.grey,
+                ),
+                Indicator(
+                  color: Colors.redAccent,
+                  text: 'FireFox',
+                  isSquare: false,
+                  size: touchedIndex == 6 ? 18 : 16,
+                  textColor: touchedIndex == 6 ? Colors.black : Colors.grey,
+                ),
               ],
             ),
             const SizedBox(
-              height: 18,
+              height: 40,
+            ),
+            Text(
+              '''Snippet Origins!''',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             Expanded(
               child: AspectRatio(
                 aspectRatio: 1,
                 child: PieChart(
+                  swapAnimationDuration: const Duration(milliseconds: 800),
                   PieChartData(
+                    sectionsSpace: 2,
+                    centerSpaceRadius: 0,
+                    sections: showingSections(),
+                    startDegreeOffset: 180,
+                    borderData: FlBorderData(
+                      show: false,
+                    ),
                     pieTouchData: PieTouchData(
                       touchCallback: (FlTouchEvent event, pieTouchResponse) {
                         setState(() {
@@ -79,13 +112,6 @@ class PieChartSample1State extends State {
                         });
                       },
                     ),
-                    startDegreeOffset: 180,
-                    borderData: FlBorderData(
-                      show: false,
-                    ),
-                    sectionsSpace: 1,
-                    centerSpaceRadius: 0,
-                    sections: showingSections(),
                   ),
                 ),
               ),
@@ -98,38 +124,78 @@ class PieChartSample1State extends State {
 
   List<PieChartSectionData> showingSections() {
     return List.generate(
-      4,
+      7,
+      growable: true,
       (i) {
         final isTouched = i == touchedIndex;
 
         switch (i) {
           case 0:
             return PieChartSectionData(
-              color: Colors.orangeAccent,
-              title: '${StatisticsSingleton().statistics?.jetBrains ?? 0}',
+              color: Colors.orange,
+              title: 'Jet Brains: ${StatisticsSingleton().statistics?.jetBrainsDub ?? 0}',
               radius: 70,
               titleStyle: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
-              titlePositionPercentageOffset: 0.55,
+              titlePositionPercentageOffset: 1.5,
             );
           case 1:
             return PieChartSectionData(
               showTitle: true,
               color: Colors.lightBlueAccent,
-              value: StatisticsSingleton().statistics?.vsCode.length.toDouble() ?? 0,
+              title: 'VS Code: ${StatisticsSingleton().statistics?.vsCodeDub ?? 0}',
+              value: StatisticsSingleton().statistics?.vsCodeDub ?? 0,
               radius: 70,
               titleStyle: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
-              titlePositionPercentageOffset: 0.55,
+              titlePositionPercentageOffset: 2,
             );
           case 2:
             return PieChartSectionData(
               color: Colors.grey,
-              value: StatisticsSingleton().statistics?.pfd.length.toDouble() ?? 0,
+              title: 'PFD: ${StatisticsSingleton().statistics?.pfdDub ?? 0}',
+              value: StatisticsSingleton().statistics?.pfdDub ?? 0,
+              radius: 70,
+              titleStyle: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+              titlePositionPercentageOffset: 2,
+            );
+          case 3:
+            return PieChartSectionData(
+              color: Colors.blueGrey,
+              title: 'Chrome Ext: ${StatisticsSingleton().statistics?.chromeDub ?? 0}',
+              value: StatisticsSingleton().statistics?.chromeDub ?? 0,
+              radius: 70,
+              titleStyle: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+              titlePositionPercentageOffset: 2,
+            );
+          case 4:
+            return PieChartSectionData(
+              color: Colors.green,
+              title: 'CLI: ${StatisticsSingleton().statistics?.cliDub ?? 0}',
+              value: StatisticsSingleton().statistics?.cliDub ?? 0,
+              radius: 70,
+              titleStyle: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+              titlePositionPercentageOffset: 2,
+            );
+          case 5:
+            return PieChartSectionData(
+              // showTitle: true,
+              title: 'OS Server: ${StatisticsSingleton().statistics?.osServerDub ?? 0}',
+              color: Colors.black38,
+              value: StatisticsSingleton().statistics?.osServerDub ?? 0,
               radius: 70,
               titleStyle: const TextStyle(
                 fontSize: 18,
@@ -137,10 +203,12 @@ class PieChartSample1State extends State {
               ),
               titlePositionPercentageOffset: 0.6,
             );
-          case 3:
+          case 6:
             return PieChartSectionData(
+              // showTitle: true,
+              title: 'FireFox: ${StatisticsSingleton().statistics?.fireFoxDub ?? 0}',
               color: Colors.red,
-              value: StatisticsSingleton().statistics?.chrome.length.toDouble() ?? 1.9,
+              value: StatisticsSingleton().statistics?.fireFoxDub ?? 0,
               radius: 70,
               titleStyle: const TextStyle(
                 fontSize: 18,

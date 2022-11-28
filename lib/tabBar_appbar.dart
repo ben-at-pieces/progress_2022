@@ -10,12 +10,12 @@ import 'package:core_openapi/api/user_api.dart';
 import 'package:core_openapi/api/users_api.dart';
 import 'package:core_openapi/api_client.dart';
 import 'package:flutter/material.dart';
+import 'package:gsheets/pieTable.dart';
 import 'package:runtime_client/particle.dart';
 
 import 'bar chart/bar_chart.dart';
 import 'chart data/boot.dart';
 import 'chart data/interaction.dart';
-import 'homepage.dart';
 
 enum LegendShape { circle, rectangle }
 
@@ -52,15 +52,15 @@ class HomePageState extends State<HomePageAppBar> {
               // overlayColor: Colors.deepPurpleAccent,
               tabs: [
                 Text(
-                  'Activity',
+                  ' Classifications',
+                  textWidthBasis: TextWidthBasis.parent,
                   style: ParticleFont.micro(
                     context,
                     customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Text(
-                  ' Classifications',
-                  textWidthBasis: TextWidthBasis.parent,
+                  'Activity',
                   style: ParticleFont.micro(
                     context,
                     customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -70,7 +70,7 @@ class HomePageState extends State<HomePageAppBar> {
                 /// TODO implement 3rd tab ======================================================
 
                 Text(
-                  'Saved Origin',
+                  'Origins',
                   style: ParticleFont.micro(
                     context,
                     customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -85,11 +85,11 @@ class HomePageState extends State<HomePageAppBar> {
           ), // AppBar
           body: TabBarView(
             children: [
-              /// Vertical bar graph ==========================================================
-              BarGraph(),
-
               /// Circular Pie Chart ==========================================================
               HomePagePie(),
+
+              /// Vertical bar graph ==========================================================
+              BarGraph(),
 
               ///TODO work in another widget
               PieChartSample1(),
