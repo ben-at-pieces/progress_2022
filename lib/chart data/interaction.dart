@@ -23,7 +23,7 @@ class PieChartSample1State extends State {
         child: Column(
           children: <Widget>[
             const SizedBox(
-              height: 28,
+              height: 40,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -79,13 +79,6 @@ class PieChartSample1State extends State {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 40,
-            ),
-            Text(
-              '''Snippet Origins!''',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
             Expanded(
               child: AspectRatio(
                 aspectRatio: 1,
@@ -93,7 +86,7 @@ class PieChartSample1State extends State {
                   swapAnimationDuration: const Duration(milliseconds: 800),
                   PieChartData(
                     sectionsSpace: 2,
-                    centerSpaceRadius: 0,
+                    centerSpaceRadius: 50,
                     sections: showingSections(),
                     startDegreeOffset: 180,
                     borderData: FlBorderData(
@@ -124,7 +117,7 @@ class PieChartSample1State extends State {
 
   List<PieChartSectionData> showingSections() {
     return List.generate(
-      7,
+      8,
       growable: true,
       (i) {
         final isTouched = i == touchedIndex;
@@ -136,7 +129,7 @@ class PieChartSample1State extends State {
               title: 'Jet Brains: ${StatisticsSingleton().statistics?.jetBrainsDub ?? 0}',
               radius: 70,
               titleStyle: const TextStyle(
-                fontSize: 18,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),
               titlePositionPercentageOffset: 1.5,
@@ -149,10 +142,10 @@ class PieChartSample1State extends State {
               value: StatisticsSingleton().statistics?.vsCodeDub ?? 0,
               radius: 70,
               titleStyle: const TextStyle(
-                fontSize: 18,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),
-              titlePositionPercentageOffset: 2,
+              titlePositionPercentageOffset: 1.5,
             );
           case 2:
             return PieChartSectionData(
@@ -161,10 +154,10 @@ class PieChartSample1State extends State {
               value: StatisticsSingleton().statistics?.pfdDub ?? 0,
               radius: 70,
               titleStyle: const TextStyle(
-                fontSize: 18,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),
-              titlePositionPercentageOffset: 2,
+              titlePositionPercentageOffset: 1.5,
             );
           case 3:
             return PieChartSectionData(
@@ -173,10 +166,10 @@ class PieChartSample1State extends State {
               value: StatisticsSingleton().statistics?.chromeDub ?? 0,
               radius: 70,
               titleStyle: const TextStyle(
-                fontSize: 18,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),
-              titlePositionPercentageOffset: 2,
+              titlePositionPercentageOffset: 1.5,
             );
           case 4:
             return PieChartSectionData(
@@ -185,10 +178,10 @@ class PieChartSample1State extends State {
               value: StatisticsSingleton().statistics?.cliDub ?? 0,
               radius: 70,
               titleStyle: const TextStyle(
-                fontSize: 18,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),
-              titlePositionPercentageOffset: 2,
+              titlePositionPercentageOffset: 1.5,
             );
           case 5:
             return PieChartSectionData(
@@ -198,10 +191,10 @@ class PieChartSample1State extends State {
               value: StatisticsSingleton().statistics?.osServerDub ?? 0,
               radius: 70,
               titleStyle: const TextStyle(
-                fontSize: 18,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),
-              titlePositionPercentageOffset: 0.6,
+              titlePositionPercentageOffset: 1.5,
             );
           case 6:
             return PieChartSectionData(
@@ -211,10 +204,10 @@ class PieChartSample1State extends State {
               value: StatisticsSingleton().statistics?.fireFoxDub ?? 0,
               radius: 70,
               titleStyle: const TextStyle(
-                fontSize: 18,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),
-              titlePositionPercentageOffset: 0.6,
+              titlePositionPercentageOffset: 1.5,
             );
           default:
             throw Error();

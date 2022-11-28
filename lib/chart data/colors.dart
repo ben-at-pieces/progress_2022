@@ -37,3 +37,14 @@ final colorList = <Color>[
   const Color(0xFF4CB6FA),
   const Color(0xFFFF0000),
 ];
+
+final originColorList = <Color>[
+  const Color(0xFF0573B6),
+  const Color(0xFFEE1340),
+  const Color(0xFFE1792A),
+  const Color(0xff15c0ba),
+  const Color(0xff413f3f),
+  const Color(0xFF604DFC),
+  const Color(0xff7b9df3),
+  const Color(0xff06483a),
+];

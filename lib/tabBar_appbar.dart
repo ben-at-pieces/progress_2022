@@ -15,7 +15,6 @@ import 'package:runtime_client/particle.dart';
 
 import 'bar chart/bar_chart.dart';
 import 'chart data/boot.dart';
-import 'chart data/interaction.dart';
 
 enum LegendShape { circle, rectangle }
 
@@ -44,7 +43,7 @@ class HomePageState extends State<HomePageAppBar> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
-        length: 3,
+        length: 2,
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
@@ -69,13 +68,13 @@ class HomePageState extends State<HomePageAppBar> {
 
                 /// TODO implement 3rd tab ======================================================
 
-                Text(
-                  'Origins',
-                  style: ParticleFont.micro(
-                    context,
-                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-                  ),
-                ),
+                // Text(
+                //   'Origins',
+                //   style: ParticleFont.micro(
+                //     context,
+                //     customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                //   ),
+                // ),
                 // Text('Modified',
                 //     style: ParticleFont.micro(context,
                 //         customization:
@@ -91,8 +90,8 @@ class HomePageState extends State<HomePageAppBar> {
               /// Vertical bar graph ==========================================================
               BarGraph(),
 
-              ///TODO work in another widget
-              PieChartSample1(),
+              // ///TODO work in another widget
+              // PieChartSample1(),
 
               /// origin classification
               // HomePagePie(),

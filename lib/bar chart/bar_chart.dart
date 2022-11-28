@@ -34,7 +34,7 @@ class _BarChartState extends State<BarGraph> {
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(100.0),
+        padding: const EdgeInsets.all(45.0),
         child: BarChart(
           BarChartData(
             gridData: FlGridData(
@@ -110,17 +110,10 @@ class _BarChartState extends State<BarGraph> {
                     ///
                     return SideTitleWidget(
                       axisSide: meta.axisSide,
-                      child: Chip(
-                        label: TextButton(
-                          onPressed: () {
-                            // showCustomToast();
-                          },
-                          child: Text(
-                            text,
-                            style: ParticleFont.micro(context,
-                                customization: TextStyle(color: Colors.black)),
-                          ),
-                        ),
+                      child: Text(
+                        text,
+                        style: ParticleFont.micro(context,
+                            customization: TextStyle(color: Colors.black)),
                       ),
                     );
                   },
@@ -133,7 +126,7 @@ class _BarChartState extends State<BarGraph> {
               /// TOP Titles ================================================================
               topTitles: AxisTitles(
                 sideTitles: SideTitles(
-                  showTitles: true,
+                  showTitles: false,
                   reservedSize: 40,
                   getTitlesWidget: (value, meta) {
                     String text = '';
@@ -142,47 +135,21 @@ class _BarChartState extends State<BarGraph> {
                       case '0':
                         text = 'Top 5 Tags';
                         break;
-                      case '1':
-                        text = '1: ${StatisticsSingleton().statistics?.tags.elementAt(1) ?? '0'}';
-                        break;
-                      case '2':
-                        text = '2: ${StatisticsSingleton().statistics?.tags.elementAt(2) ?? '0'}';
-                        break;
-                      case '3':
-                        text = '3: ${StatisticsSingleton().statistics?.tags.elementAt(3) ?? '0'}';
-                        break;
-                      case '4':
-                        text = '4: ${StatisticsSingleton().statistics?.tags.elementAt(4) ?? '0'}';
-                        break;
-                      case '5':
-                        text = '5: ${StatisticsSingleton().statistics?.tags.elementAt(5) ?? '0'}';
-                        break;
                     }
 
                     ///
                     return SideTitleWidget(
                       // angle: 18,
                       axisSide: meta.axisSide,
-                      child: Chip(
-                        elevation: 5,
-                        shadowColor: Colors.grey,
-                        backgroundColor: Colors.blueGrey,
-                        // avatar: Icon(
-                        //   Icons.link_outlined,
-                        //   size: 14,
-                        //   color: Colors.white,
-                        // ),
-                        label: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: SizedBox(
-                            width: 50,
-                            child: Text(
-                              text,
-                              style: ParticleFont.micro(context,
-                                  customization: TextStyle(color: Colors.white, fontSize: 10)),
-                            ),
+                      child: Row(
+                        children: [
+                          // OriginChart(),
+                          Text(
+                            text,
+                            style: ParticleFont.micro(context,
+                                customization: TextStyle(color: Colors.black, fontSize: 10)),
                           ),
-                        ),
+                        ],
                       ),
                     );
                   },

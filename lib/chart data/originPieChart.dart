@@ -28,16 +28,16 @@ import 'colors.dart';
 //   }
 // }
 
-class MyPieChart extends StatelessWidget {
-  const MyPieChart({super.key});
+class OriginChart extends StatelessWidget {
+  const OriginChart({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 50.0),
       child: PieChart(
-        centerText: ' ${StatisticsSingleton().statistics?.snippetsSaved}',
         ringStrokeWidth: 50,
+        centerText: 'ORIGINS: ${StatisticsSingleton().statistics?.snippetsSaved}',
         chartValuesOptions: const ChartValuesOptions(
           showChartValuesOutside: true,
           showChartValueBackground: true,
@@ -45,24 +45,19 @@ class MyPieChart extends StatelessWidget {
           showChartValues: true,
           showChartValuesInPercentage: false,
         ),
-
         emptyColor: Colors.grey,
         baseChartColor: Colors.black45,
         centerTextStyle: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold),
         key: ValueKey(key),
-        dataMap: StatisticsSingleton().statistics!.classifications,
+        dataMap: StatisticsSingleton().statistics!.origins,
         animationDuration: const Duration(milliseconds: 800),
-        chartLegendSpacing: 30,
-        chartRadius: math.min(MediaQuery.of(context).size.width / 2.5, 80),
-        colorList: colorList,
+        chartLegendSpacing: 50,
+        chartRadius: math.min(MediaQuery.of(context).size.width / 1.5, 80),
+        colorList: originColorList,
         chartType: ChartType.ring,
-        // centerText: StatisticsSingleton().statistics?.classifications.containsKey('') ? '' : '',
-
-        // ${StatisticsSingleton().statistics?.classifications.values.length} TOTAL'
-        //     : null,
         legendOptions: const LegendOptions(
           showLegendsInRow: false,
-          legendPosition: LegendPosition.left,
+          legendPosition: LegendPosition.right,
           showLegends: true,
           legendShape: true ? BoxShape.circle : BoxShape.rectangle,
           legendTextStyle: TextStyle(
