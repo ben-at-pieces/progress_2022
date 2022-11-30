@@ -10,6 +10,7 @@ import 'package:core_openapi/api/users_api.dart';
 import 'package:core_openapi/api_client.dart';
 import 'package:flutter/material.dart';
 
+import 'bar chart/related_links.dart';
 import 'chart data/boot.dart';
 import 'chart data/originPieChart.dart';
 import 'chart data/pieChartWidget.dart';
@@ -33,14 +34,14 @@ class HomePagePie extends StatelessWidget {
 
   get touchedIndex => -1;
 
-  final Iterable<String>? personEmptyCheck =
-      StatisticsSingleton().statistics?.persons.where((element) => element.isNotEmpty);
-
-  final Iterable<String>? tagsEmptyCheck =
-      StatisticsSingleton().statistics?.tags.where((element) => element.isNotEmpty);
-
-  final Iterable<String>? relatedLinksEmptyCheck =
-      StatisticsSingleton().statistics?.relatedLinks.where((element) => element.isNotEmpty);
+  // final Iterable<String>? personEmptyCheck =
+  //     StatisticsSingleton().statistics?.persons.where((element) => element.isNotEmpty);
+  //
+  // final Iterable<String>? tagsEmptyCheck =
+  //     StatisticsSingleton().statistics?.tags.where((element) => element.isNotEmpty);
+  //
+  // final Iterable<String>? relatedLinksEmptyCheck =
+  //     StatisticsSingleton().statistics?.relatedLinks.where((element) => element.isNotEmpty);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -57,12 +58,14 @@ class HomePagePie extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 18.0),
-              child: Row(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
                     '${StatisticsSingleton().statistics?.user}',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
+                  DropdownRelatedLink(),
                 ],
               ),
             ),

@@ -62,9 +62,22 @@ Future<Statistics> getStats() async {
   List<String> relatedLinks = [];
   double timeTaken = 0;
 
-  /// classifications map (String, double)
+  Map<String, double> origins = {};
+  for (Asset asset in assets.iterable) {
+    String? origin = asset.original.reference?.application.name.value;
+    String? raw;
 
+    if (origin != null && !origins.containsKey(origin)) {
+      origins[origin] = 1;
+    } else if (origin != null) {
+      origins[origin] = (origins[origin]! + 1);
+    }
+  }
+
+  // if ()
+  /// classifications map (String, double)
   Map<String, double> classifications = {};
+
   for (Asset asset in assets.iterable) {
     String? classification = asset.original.reference?.classification.specific.value;
     String? raw;
@@ -86,13 +99,6 @@ Future<Statistics> getStats() async {
     /// Snippets modified in a month
     if (asset.updated.value.month == currentMonth && asset.updated.value != asset.created.value) {
       updatedSnippets = updatedSnippets + 1;
-    }
-
-    /// Classification  Map
-    if (classification != null && !classifications.containsKey(classification)) {
-      classifications[classification] = 1;
-    } else if (classification != null) {
-      classifications[classification] = (classifications[classification]! + 1);
     }
 
     /// Share links generated
@@ -121,6 +127,11 @@ Future<Statistics> getStats() async {
       }
     }
 
+    /// Related Links
+    for (Website website in asset.websites?.iterable ?? []) {
+      relatedLinks.add(website.url);
+    }
+
     /// JETBRAINS
     List<String?> jetBrainsSaved = [];
     for (Asset jetBrain in assets.iterable ?? []) {
@@ -132,7 +143,7 @@ Future<Statistics> getStats() async {
       }
     }
 
-    /// Related Links
+    /// Origins
     for (Website website in asset.websites?.iterable ?? []) {
       relatedLinks.add(website.url);
     }
@@ -153,37 +164,7 @@ Future<Statistics> getStats() async {
   if (classifications.isEmpty) {
     classifications[''] = 0;
   }
-  List<String> origins = [];
-  String jetbrains = 'JetBrains';
-  String vscode = 'VS_CODE';
 
-  String firefox = 'FIREFOX_ADDON';
-  String safari_ = 'SAFARI_EXTENSION';
-  String pfd = 'PIECES_FOR_DEVELOPERS';
-  String pfdCli = 'CLI';
-  String osServer_ = 'OS_SERVER';
-  String chrome_ = 'CHROME_EXTENSION';
-
-  origins.add(vscode);
-  origins.add(jetbrains);
-  origins.add(firefox);
-  origins.add(safari_);
-  origins.add(pfd);
-  origins.add(pfdCli);
-  origins.add(osServer_);
-  origins.add(chrome_);
-  print(origins);
-
-  List<double> originDubs = [];
-  originDubs.add(vsCodeDub);
-  originDubs.add(jetBrainsDub);
-  originDubs.add(fireFoxDub);
-  originDubs.add(safariDub);
-  originDubs.add(pfdDub);
-  originDubs.add(cliDub);
-  originDubs.add(osServerDub);
-  originDubs.add(chromeDub);
-  print(originDubs);
   Statistics statistics = Statistics(
     jetBrains: jetBrainsSaved,
     pfd: pfdSaved,
@@ -206,16 +187,7 @@ Future<Statistics> getStats() async {
     chromeDub: chromeDub,
     pfdDub: pfdDub,
     osServerDub: osServerDub,
-    origins: {
-      origins.elementAt(0) ?? '': originDubs.elementAt(0),
-      origins.elementAt(1) ?? '': originDubs.elementAt(1),
-      origins.elementAt(2) ?? '': originDubs.elementAt(2),
-      origins.elementAt(3) ?? '': originDubs.elementAt(3),
-      origins.elementAt(4) ?? '': originDubs.elementAt(4),
-      origins.elementAt(5) ?? '': originDubs.elementAt(5),
-      origins.elementAt(6) ?? '': originDubs.elementAt(6),
-      origins.elementAt(7) ?? '': originDubs.elementAt(7),
-    },
+    origins: origins,
   );
   return statistics;
 }
@@ -223,6 +195,8 @@ Future<Statistics> getStats() async {
 class Statistics {
   final Map<String, double> classifications;
   final Map<String, double> origins;
+  // final Map<String, double> origins;
+
   final double snippetsSaved;
   final double shareableLinks;
   final double updatedSnippets;
@@ -247,6 +221,7 @@ class Statistics {
   final String user;
 
   Statistics({
+    required this.origins,
     required this.classifications,
     required this.snippetsSaved,
     required this.shareableLinks,
@@ -268,6 +243,5 @@ class Statistics {
     required this.chromeDub,
     required this.pfdDub,
     required this.osServerDub,
-    required this.origins,
   });
 }

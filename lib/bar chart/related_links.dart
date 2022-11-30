@@ -64,7 +64,7 @@ class _DropdownButtonExampleState extends State<DropdownRelatedLink> {
               ),
               child: Container(
                 color: Colors.white,
-                width: 150,
+                width: 200,
                 height: 40,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 8.0),

@@ -254,7 +254,7 @@ class _BarChartState extends State<BarGraph> {
                     TextStyle(
                       fontWeight: FontWeight.bold,
                       color: rod.color,
-                      fontSize: 25,
+                      fontSize: 12,
                     ),
                   );
                 },

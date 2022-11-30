@@ -36,7 +36,7 @@ class MyPieChart extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 50.0),
       child: PieChart(
-        centerText: ' ${StatisticsSingleton().statistics?.snippetsSaved}',
+        centerText: 'TOTAL: ${StatisticsSingleton().statistics?.snippetsSaved}',
         ringStrokeWidth: 50,
         chartValuesOptions: const ChartValuesOptions(
           showChartValuesOutside: true,
@@ -45,10 +45,9 @@ class MyPieChart extends StatelessWidget {
           showChartValues: true,
           showChartValuesInPercentage: false,
         ),
-
         emptyColor: Colors.grey,
         baseChartColor: Colors.black45,
-        centerTextStyle: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold),
+        centerTextStyle: TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold),
         key: ValueKey(key),
         dataMap: StatisticsSingleton().statistics!.classifications,
         animationDuration: const Duration(milliseconds: 800),
@@ -56,10 +55,6 @@ class MyPieChart extends StatelessWidget {
         chartRadius: math.min(MediaQuery.of(context).size.width / 2.5, 80),
         colorList: colorList,
         chartType: ChartType.ring,
-        // centerText: StatisticsSingleton().statistics?.classifications.containsKey('') ? '' : '',
-
-        // ${StatisticsSingleton().statistics?.classifications.values.length} TOTAL'
-        //     : null,
         legendOptions: const LegendOptions(
           showLegendsInRow: false,
           legendPosition: LegendPosition.left,
