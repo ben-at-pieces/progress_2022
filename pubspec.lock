@@ -71,6 +71,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  builds_openapi:
+    dependency: "direct dev"
+    description:
+      path: "sdk/http/dart/builds"
+      ref: HEAD
+      resolved-ref: a57f19b1c3a225266021a7e8112a10a55321c654
+      url: "git@github.com:open-runtime/generated_runtime.git"
+    source: git
+    version: "0.0.1"
   change_case:
     dependency: transitive
     description:

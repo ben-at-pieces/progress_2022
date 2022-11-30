@@ -1,5 +1,4 @@
 // ignore_for_file: omit_local_variable_types, prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_string_interpolations
-
 import 'dart:core';
 
 import 'package:connector_openapi/api/connector_api.dart';
@@ -42,7 +41,6 @@ class HomePagePie extends StatelessWidget {
 
   final Iterable<String>? relatedLinksEmptyCheck =
       StatisticsSingleton().statistics?.relatedLinks.where((element) => element.isNotEmpty);
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -59,12 +57,17 @@ class HomePagePie extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 18.0),
-              child: Text(
-                'User: ${StatisticsSingleton().statistics?.user}',
-                style: TextStyle(fontWeight: FontWeight.bold),
+              child: Row(
+                children: [
+                  Text(
+                    '${StatisticsSingleton().statistics?.user}',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 40.0),
@@ -78,210 +81,210 @@ class HomePagePie extends StatelessWidget {
             ),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 18.0),
-          child: DataTable(
-            columns: <DataColumn>[
-              /// TOP LEFT TITLE
-              DataColumn(
-                label: Expanded(
-                  child: Text(
-                    '',
-                  ),
-                ),
-              ),
-
-              /// FIRST COLUMN TO THE RIGHT OF THE INITIAL COLUMN
-              DataColumn(
-                tooltip: 'these are the people who have contributed to your Pieces repo!',
-                label: Expanded(
-                  child: Text(
-                    'PEOPLE:',
-                    style: TitleTheme.title,
-                  ),
-                ),
-              ),
-              DataColumn(
-                tooltip: 'these are your unique tags!',
-                label: Expanded(
-                  child: Text(
-                    'TAGS:',
-                    style: TitleTheme.title,
-                  ),
-                ),
-              ),
-              DataColumn(
-                tooltip: 'return to the place you saved from!',
-                label: Expanded(
-                  child: Text(
-                    'RELATED LINKS:',
-                    style: TitleTheme.title,
-                  ),
-                ),
-              ),
-            ],
-            rows: <DataRow>[
-              /// TOP 5 TAGS
-              /// this is the first data row in our table
-              ///    (   x , y    )
-              DataRow(
-                cells: <DataCell>[
-                  DataCell(Text(
-                    '1.',
-                    style: TitleTheme.title,
-                  )),
-                  DataCell(
-                    SizedBox(
-                      width: 120,
-                      child: Text(
-                        '${personEmptyCheck?.elementAt(0) ?? '0'}',
-                        style: GreyTheme.small,
-                      ),
-                    ),
-                  ),
-                  DataCell(
-                    SizedBox(
-                      width: 90,
-                      height: 30,
-                      child: Text(
-                        '${tagsEmptyCheck?.elementAt(0) ?? '0'}',
-                        style: GreyTheme.small,
-                      ),
-                    ),
-                  ),
-                  DataCell(
-                    SizedBox(
-                      width: 200,
-                      height: 30,
-                      child: Text(
-                        '${relatedLinksEmptyCheck?.elementAt(0) ?? '0'}',
-                        style: GreyTheme.small,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              /// this is the 1st row above the bottom row
-
-              /// TOP 4 links
-              /// this is the first data row in our table
-              ///    (   x , y    )
-              DataRow(
-                cells: <DataCell>[
-                  DataCell(
-                    Text(
-                      '2.',
-                      style: TitleTheme.title,
-                    ),
-                  ),
-                  DataCell(
-                    SizedBox(
-                      width: 200,
-                      height: 30,
-                      child: Text(
-                        '${personEmptyCheck?.elementAt(1) ?? '0'}',
-                        style: GreyTheme.small,
-                      ),
-                    ),
-                  ),
-                  DataCell(
-                    SizedBox(
-                      width: 200,
-                      height: 30,
-                      child: Text(
-                        '${tagsEmptyCheck?.elementAt(1) ?? '0'}',
-                        style: GreyTheme.small,
-                      ),
-                    ),
-                  ),
-                  DataCell(
-                    SizedBox(
-                      width: 200,
-                      height: 30,
-                      child: Text(
-                        '${relatedLinksEmptyCheck?.elementAt(1) ?? '0'}',
-                        style: GreyTheme.small,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              /// this is the 3rd Row
-              DataRow(
-                cells: <DataCell>[
-                  DataCell(Text(
-                    '3.',
-                    style: TitleTheme.title,
-                  )),
-                  DataCell(
-                    SizedBox(
-                      width: 120,
-                      height: 30,
-                      child: Text(
-                        '${personEmptyCheck?.elementAt(2) ?? '0'}',
-                        style: GreyTheme.small,
-                      ),
-                    ),
-                  ),
-                  DataCell(
-                    Text(
-                      '${tagsEmptyCheck?.elementAt(2) ?? '0'}',
-                      style: GreyTheme.small,
-                    ),
-                  ),
-                  DataCell(
-                    SizedBox(
-                      width: 200,
-                      height: 30,
-                      child: Text(
-                        '${relatedLinksEmptyCheck?.elementAt(2) ?? '0'}',
-                        style: GreyTheme.small,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              /// this is the 4rd Row
-              DataRow(
-                cells: <DataCell>[
-                  DataCell(Text(
-                    '4.',
-                    style: TitleTheme.title,
-                  )),
-                  DataCell(
-                    SizedBox(
-                      width: 120,
-                      height: 30,
-                      child: Text(
-                        '${personEmptyCheck?.elementAt(3) ?? '0'}',
-                        style: GreyTheme.small,
-                      ),
-                    ),
-                  ),
-                  DataCell(
-                    Text(
-                      '${tagsEmptyCheck?.elementAt(3) ?? '0'}',
-                      style: GreyTheme.small,
-                    ),
-                  ),
-                  DataCell(
-                    SizedBox(
-                      width: 200,
-                      height: 30,
-                      child: Text(
-                        '${relatedLinksEmptyCheck?.elementAt(3) ?? '0'}',
-                        style: GreyTheme.small,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.only(top: 18.0),
+        //   child: DataTable(
+        //     columns: <DataColumn>[
+        //       /// TOP LEFT TITLE
+        //       DataColumn(
+        //         label: Expanded(
+        //           child: Text(
+        //             '',
+        //           ),
+        //         ),
+        //       ),
+        //
+        //       /// FIRST COLUMN TO THE RIGHT OF THE INITIAL COLUMN
+        //       DataColumn(
+        //         tooltip: 'these are the people who have contributed to your Pieces repo!',
+        //         label: Expanded(
+        //           child: Text(
+        //             'PEOPLE:',
+        //             style: TitleTheme.title,
+        //           ),
+        //         ),
+        //       ),
+        //       DataColumn(
+        //         tooltip: 'these are your unique tags!',
+        //         label: Expanded(
+        //           child: Text(
+        //             'TAGS:',
+        //             style: TitleTheme.title,
+        //           ),
+        //         ),
+        //       ),
+        //       DataColumn(
+        //         tooltip: 'return to the place you saved from!',
+        //         label: Expanded(
+        //           child: Text(
+        //             'RELATED LINKS:',
+        //             style: TitleTheme.title,
+        //           ),
+        //         ),
+        //       ),
+        //     ],
+        //     rows: <DataRow>[
+        //       /// TOP 5 TAGS
+        //       /// this is the first data row in our table
+        //       ///    (   x , y    )
+        //       DataRow(
+        //         cells: <DataCell>[
+        //           DataCell(Text(
+        //             '1.',
+        //             style: TitleTheme.title,
+        //           )),
+        //           DataCell(
+        //             SizedBox(
+        //               width: 120,
+        //               child: Text(
+        //                 '${personEmptyCheck?.elementAt(0) ?? '0'}',
+        //                 style: GreyTheme.small,
+        //               ),
+        //             ),
+        //           ),
+        //           DataCell(
+        //             SizedBox(
+        //               width: 90,
+        //               height: 30,
+        //               child: Text(
+        //                 '${tagsEmptyCheck?.elementAt(0) ?? '0'}',
+        //                 style: GreyTheme.small,
+        //               ),
+        //             ),
+        //           ),
+        //           DataCell(
+        //             SizedBox(
+        //               width: 200,
+        //               height: 30,
+        //               child: Text(
+        //                 '${relatedLinksEmptyCheck?.elementAt(0) ?? '0'}',
+        //                 style: GreyTheme.small,
+        //               ),
+        //             ),
+        //           ),
+        //         ],
+        //       ),
+        //
+        //       /// this is the 1st row above the bottom row
+        //
+        //       /// TOP 4 links
+        //       /// this is the first data row in our table
+        //       ///    (   x , y    )
+        //       DataRow(
+        //         cells: <DataCell>[
+        //           DataCell(
+        //             Text(
+        //               '2.',
+        //               style: TitleTheme.title,
+        //             ),
+        //           ),
+        //           DataCell(
+        //             SizedBox(
+        //               width: 200,
+        //               height: 30,
+        //               child: Text(
+        //                 '${personEmptyCheck?.elementAt(1) ?? '0'}',
+        //                 style: GreyTheme.small,
+        //               ),
+        //             ),
+        //           ),
+        //           DataCell(
+        //             SizedBox(
+        //               width: 200,
+        //               height: 30,
+        //               child: Text(
+        //                 '${tagsEmptyCheck?.elementAt(1) ?? '0'}',
+        //                 style: GreyTheme.small,
+        //               ),
+        //             ),
+        //           ),
+        //           DataCell(
+        //             SizedBox(
+        //               width: 200,
+        //               height: 30,
+        //               child: Text(
+        //                 '${relatedLinksEmptyCheck?.elementAt(1) ?? '0'}',
+        //                 style: GreyTheme.small,
+        //               ),
+        //             ),
+        //           ),
+        //         ],
+        //       ),
+        //
+        //       /// this is the 3rd Row
+        //       DataRow(
+        //         cells: <DataCell>[
+        //           DataCell(Text(
+        //             '3.',
+        //             style: TitleTheme.title,
+        //           )),
+        //           DataCell(
+        //             SizedBox(
+        //               width: 120,
+        //               height: 30,
+        //               child: Text(
+        //                 '${personEmptyCheck?.elementAt(2) ?? '0'}',
+        //                 style: GreyTheme.small,
+        //               ),
+        //             ),
+        //           ),
+        //           DataCell(
+        //             Text(
+        //               '${tagsEmptyCheck?.elementAt(2) ?? '0'}',
+        //               style: GreyTheme.small,
+        //             ),
+        //           ),
+        //           DataCell(
+        //             SizedBox(
+        //               width: 200,
+        //               height: 30,
+        //               child: Text(
+        //                 '${relatedLinksEmptyCheck?.elementAt(2) ?? '0'}',
+        //                 style: GreyTheme.small,
+        //               ),
+        //             ),
+        //           ),
+        //         ],
+        //       ),
+        //
+        //       /// this is the 4rd Row
+        //       DataRow(
+        //         cells: <DataCell>[
+        //           DataCell(Text(
+        //             '4.',
+        //             style: TitleTheme.title,
+        //           )),
+        //           DataCell(
+        //             SizedBox(
+        //               width: 120,
+        //               height: 30,
+        //               child: Text(
+        //                 '${personEmptyCheck?.elementAt(3) ?? '0'}',
+        //                 style: GreyTheme.small,
+        //               ),
+        //             ),
+        //           ),
+        //           DataCell(
+        //             Text(
+        //               '${tagsEmptyCheck?.elementAt(3) ?? '0'}',
+        //               style: GreyTheme.small,
+        //             ),
+        //           ),
+        //           DataCell(
+        //             SizedBox(
+        //               width: 200,
+        //               height: 30,
+        //               child: Text(
+        //                 '${relatedLinksEmptyCheck?.elementAt(3) ?? '0'}',
+        //                 style: GreyTheme.small,
+        //               ),
+        //             ),
+        //           ),
+        //         ],
+        //       ),
+        //     ],
+        //   ),
+        // ),
 
         /// SPACER ====================
         Padding(
@@ -311,25 +314,6 @@ class HomePagePie extends StatelessWidget {
             )),
       ],
     );
-  }
-}
-
-final TextEditingController newNameController = TextEditingController();
-
-Future<Context> connect() async {
-  try {
-    return connectorApi.connect(
-      seededConnectorConnection: SeededConnectorConnection(
-        application: SeededTrackedApplication(
-          name: ApplicationNameEnum.PIECES_FOR_DEVELOPERS,
-          platform: PlatformEnum.MACOS,
-          version: '1.5.8',
-        ),
-      ),
-    );
-    // print('======== $connect');
-  } catch (err) {
-    throw Exception('Error occurred when establishing connection. error:$err');
   }
 }
 

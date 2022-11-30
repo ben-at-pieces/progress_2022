@@ -37,13 +37,13 @@ class OriginChart extends StatelessWidget {
       padding: const EdgeInsets.only(top: 50.0),
       child: PieChart(
         ringStrokeWidth: 50,
-        centerText: 'ORIGINS: ${StatisticsSingleton().statistics?.snippetsSaved}',
+        // centerText: '${StatisticsSingleton().statistics?.snippetsSaved}',
         chartValuesOptions: const ChartValuesOptions(
           showChartValuesOutside: true,
           showChartValueBackground: true,
           decimalPlaces: 0,
           showChartValues: true,
-          showChartValuesInPercentage: false,
+          showChartValuesInPercentage: true,
         ),
         emptyColor: Colors.grey,
         baseChartColor: Colors.black45,

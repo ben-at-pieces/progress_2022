@@ -48,6 +48,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   test: ^1.21.4
+  builds_openapi:
+    git:
+      url: git@github.com:open-runtime/generated_runtime.git
+      path: ./sdk/http/dart/builds/
 
 
 
