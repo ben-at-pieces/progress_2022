@@ -100,6 +100,11 @@ Future<Statistics> getStats() async {
     if (asset.updated.value.month == currentMonth && asset.updated.value != asset.created.value) {
       updatedSnippets = updatedSnippets + 1;
     }
+    if (classification != null && !classifications.containsKey(classification)) {
+      classifications[classification] = 1;
+    } else if (classification != null) {
+      classifications[classification] = (classifications[classification]! + 1);
+    }
 
     /// Share links generated
     List<Share>? shares = asset.shares?.iterable;
