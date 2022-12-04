@@ -1,18 +1,22 @@
 {
   "manifest_version": 3,
-  "version": "0.1",
-  "name": "Pieces Pie",
-  "description": "This extension is written with dart/flutter code!",
+  "version": "0.0.1",
+  "name": "chrome_extension",
+  "description": "A new Flutter project.",
   "action": {
     "default_popup": "index.html",
     "default_icon": {
-      "16": "PiecesFD.png",
-      "32": "icons/PiecesFD.png",
-      "48": "icons/fox.png",
-      "128": "icons/blue.png"
+      "16": "icons/icon-192.png",
+      "32": "icons/icon-192.png",
+      "48": "icons/icon-192.png",
+      "128": "icons/icon-192.png"
     }
   },
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'; script-src-elem 'self' 'unsafe-inline' https://music.yandex.ru/;"
+    "extension_pages": "script-src 'self'; object-src 'self'; script-src-elem 'self' wasm-unsafe-eval https://unpkg.com;"
+  }
+
+
+
 }
-}
+

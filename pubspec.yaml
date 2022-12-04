@@ -64,8 +64,9 @@ fonts:
   - family: RobotoMono
     fonts:
       - asset: assets/fonts/RobotoMono-Regular.ttf
-          -images/piecesLogo.png
+          -images/piecesFD.png
 
     assets:
       -assets/piecesLogo.png
       -assets/dart.jpg
+      -assets/PiecesFD.png

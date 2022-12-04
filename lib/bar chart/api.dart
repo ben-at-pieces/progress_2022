@@ -42,4 +42,14 @@ class PiecesApi {
   static UserApi get userApi {
     return UserApi(_coreClient);
   }
+
+  /// Activities API
+  static ActivitiesApi get activitiesApi {
+    return ActivitiesApi(_coreClient);
+  }
+
+  /// Activity API
+  static ActivityApi get activityApi {
+    return ActivityApi(_coreClient);
+  }
 }

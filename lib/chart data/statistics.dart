@@ -6,62 +6,34 @@ Future<Statistics> getStats() async {
   Assets assets = await PiecesApi.assetsApi.assetsSnapshot();
   ReturnedUserProfile user = await PiecesApi.userApi.userSnapshot();
 
-  List<Asset> assetList = assets.iterable;
-
-  Iterable<Asset> jetBrainsSaved = assetList.where((element) =>
-      element.original.reference?.application.name.value == ApplicationNameEnum.JETBRAINS.value);
-  double jetBrainsDub = jetBrainsSaved.length.toDouble();
-
-  ///
-  Iterable<Asset> chromeSaved = assetList.where((element) =>
-      element.original.reference?.application.name.value ==
-      ApplicationNameEnum.gOOGLECHROMEEXTENSIONMV3.value);
-  double chromeDub = chromeSaved.length.toDouble();
-
-  ///
-  Iterable<Asset> vSCodeSaved = assetList.where((element) =>
-      element.original.reference?.application.name.value == ApplicationNameEnum.VS_CODE.value);
-  double vsCodeDub = vSCodeSaved.length.toDouble();
-
-  ///
-  Iterable<Asset> safari3Saved = assetList.where((element) =>
-      element.original.reference?.application.name.value ==
-      ApplicationNameEnum.sAFARIEXTENSIONMV3.value);
-  double safariDub = safari3Saved.length.toDouble();
-
-  ///
-  Iterable<Asset> fireFox3Saved = assetList.where((element) =>
-      element.original.reference?.application.name.value ==
-      ApplicationNameEnum.fIREFOXADDONMV3.value);
-  double fireFoxDub = fireFox3Saved.length.toDouble();
-
-  ///
-  Iterable<Asset> pfdSaved = assetList.where((element) =>
-      element.original.reference?.application.name.value ==
-      ApplicationNameEnum.PIECES_FOR_DEVELOPERS.value);
-  double pfdDub = pfdSaved.length.toDouble();
-
-  ///
-  Iterable<Asset> osServerSaved = assetList.where((element) =>
-      element.original.reference?.application.name.value == ApplicationNameEnum.OS_SERVER.value);
-  double osServerDub = osServerSaved.length.toDouble();
-
-  ///
-  Iterable<Asset> piecesCLISaved = assetList.where((element) =>
-      element.original.reference?.application.name.value ==
-      ApplicationNameEnum.PIECES_FOR_DEVELOPERS_CLI.value);
-  double cliDub = piecesCLISaved.length.toDouble();
+  /// Activities Information (version, platform)
+  Activities activities = await PiecesApi.activitiesApi.activitiesSnapshot();
+  Activity first = activities.iterable.first;
+  String activity = first.id;
+  Activity activitySnapshot =
+      await PiecesApi.activityApi.activitiesSpecificActivitySnapshot(activity);
+  String version = activitySnapshot.application.version;
+  String platform = activitySnapshot.application.platform.value;
+  // String? plat = activitySnapshot.user?.email;
 
   double snippetsSaved = 0;
   double shareableLinks = 0;
   double updatedSnippets = 0;
   double currentMonth = DateTime.now().month.toDouble();
   double totalWordsSaved = 0;
-  Map<String, double> tagMap = {};
-  Map<String, double> personMap = {};
-  List<String> relatedLinks = [];
   double timeTaken = 0;
 
+  Map<String, double> tagMap = {};
+
+  /// person map
+  Map<String, double> personMap = {};
+
+  /// classifications map (String, double)
+  Map<String, double> classifications = {};
+
+  List<String> relatedLinks = [];
+
+  /// origin map (String  :  double)
   Map<String, double> origins = {};
   for (Asset asset in assets.iterable) {
     String? origin = asset.original.reference?.application.name.value;
@@ -73,10 +45,6 @@ Future<Statistics> getStats() async {
       origins[origin] = (origins[origin]! + 1);
     }
   }
-
-  // if ()
-  /// classifications map (String, double)
-  Map<String, double> classifications = {};
 
   for (Asset asset in assets.iterable) {
     String? classification = asset.original.reference?.classification.specific.value;
@@ -137,17 +105,6 @@ Future<Statistics> getStats() async {
       relatedLinks.add(website.url);
     }
 
-    /// JETBRAINS
-    List<String?> jetBrainsSaved = [];
-    for (Asset jetBrain in assets.iterable ?? []) {
-      if (asset.original.reference?.application != null &&
-          asset.original.reference?.application.name.value == ApplicationNameEnum.JETBRAINS.value) {
-        jetBrainsSaved.add(jetBrain.original.reference?.application.name.value);
-      } else if (jetBrainsSaved.isEmpty) {
-        jetBrainsSaved.add('1');
-      }
-    }
-
     /// Origins
     for (Website website in asset.websites?.iterable ?? []) {
       relatedLinks.add(website.url);
@@ -171,10 +128,9 @@ Future<Statistics> getStats() async {
   }
 
   Statistics statistics = Statistics(
-    jetBrains: jetBrainsSaved,
-    pfd: pfdSaved,
-    vsCode: vSCodeSaved,
-    chrome: chromeSaved,
+    activity: activity,
+    platform: platform,
+    version: version,
     classifications: classifications,
     snippetsSaved: snippetsSaved,
     shareableLinks: shareableLinks,
@@ -184,14 +140,6 @@ Future<Statistics> getStats() async {
     persons: persons,
     relatedLinks: relatedLinks,
     user: user.user?.name ?? user.user?.email ?? '',
-    jetBrainsDub: jetBrainsDub,
-    vsCodeDub: vsCodeDub,
-    fireFoxDub: fireFoxDub,
-    safariDub: safariDub,
-    cliDub: cliDub,
-    chromeDub: chromeDub,
-    pfdDub: pfdDub,
-    osServerDub: osServerDub,
     origins: origins,
   );
   return statistics;
@@ -200,8 +148,6 @@ Future<Statistics> getStats() async {
 class Statistics {
   final Map<String, double> classifications;
   final Map<String, double> origins;
-  // final Map<String, double> origins;
-
   final double snippetsSaved;
   final double shareableLinks;
   final double updatedSnippets;
@@ -209,21 +155,11 @@ class Statistics {
   final List<String> tags;
   final List<String> persons;
   final List<String> relatedLinks;
-  final double jetBrainsDub;
-  final double vsCodeDub;
-  final double fireFoxDub;
-  final double safariDub;
-  final double cliDub;
-  final double chromeDub;
-  final double pfdDub;
-  final double osServerDub;
-
-  /// TODO these will be our assets according to origin
-  final Iterable<Asset> jetBrains;
-  final Iterable<Asset> vsCode;
-  final Iterable<Asset> pfd;
-  final Iterable<Asset> chrome;
   final String user;
+  final String activity;
+  final String platform;
+  final String version;
+
 
   Statistics({
     required this.origins,
@@ -236,17 +172,8 @@ class Statistics {
     required this.persons,
     required this.relatedLinks,
     required this.user,
-    required this.jetBrains,
-    required this.vsCode,
-    required this.pfd,
-    required this.chrome,
-    required this.jetBrainsDub,
-    required this.vsCodeDub,
-    required this.fireFoxDub,
-    required this.safariDub,
-    required this.cliDub,
-    required this.chromeDub,
-    required this.pfdDub,
-    required this.osServerDub,
+    required this.activity,
+    required this.platform,
+    required this.version,
   });
 }

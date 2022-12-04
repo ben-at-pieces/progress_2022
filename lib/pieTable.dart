@@ -11,6 +11,7 @@ import 'package:core_openapi/api_client.dart';
 import 'package:flutter/material.dart';
 
 import 'bar chart/related_links.dart';
+import 'bar chart/tags/tags.dart';
 import 'chart data/boot.dart';
 import 'chart data/originPieChart.dart';
 import 'chart data/pieChartWidget.dart';
@@ -55,17 +56,22 @@ class HomePagePie extends StatelessWidget {
           // child: ,
         ),
         Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 18.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(
-                    '${StatisticsSingleton().statistics?.user}',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      DropdownRelatedLink(),
+                      GlobalTags(),
+                      // PersonsList(),
+                    ],
                   ),
-                  DropdownRelatedLink(),
                 ],
               ),
             ),
@@ -73,11 +79,11 @@ class HomePagePie extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 40.0),
+                  padding: const EdgeInsets.only(left: 20.0),
                   child: MyPieChart(),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 150.0),
+                  padding: const EdgeInsets.only(left: 50.0),
                   child: OriginChart(),
                 ),
               ],
@@ -291,30 +297,59 @@ class HomePagePie extends StatelessWidget {
 
         /// SPACER ====================
         Padding(
-            padding: const EdgeInsets.only(top: 15.0),
-            child: SizedBox(
-              height: 40.0,
-              child: Stack(
-                textDirection: TextDirection.ltr,
-                children: [
-                  Positioned(
-                    top: 0.0,
-                    right: 0.0,
-                    left: 0.0,
-                    bottom: 0.0,
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(16.0),
-                      ),
-                      // child: Image.asset(
-                      //   'images/piecesLogo.png',
-                      //   fit: BoxFit.cover,
-                      // ),
+          padding: const EdgeInsets.only(top: 15.0),
+          child: SizedBox(
+            height: 40.0,
+            child: Stack(
+              textDirection: TextDirection.ltr,
+              children: [
+                Positioned(
+                  top: 0.0,
+                  right: 0.0,
+                  left: 0.0,
+                  bottom: 0.0,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(16.0),
                     ),
+                    // child: Image.asset(
+                    //   'images/piecesLogo.png',
+                    //   fit: BoxFit.cover,
+                    // ),
                   ),
-                ],
+                ),
+              ],
+            ),
+          ),
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0),
+              child: Text(
+                'OS: ${StatisticsSingleton().statistics?.platform}',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10, color: Colors.grey),
               ),
-            )),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0),
+              child: Text(
+                'Version: ${StatisticsSingleton().statistics?.version}',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10, color: Colors.grey),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0),
+              child: Text(
+                'Email: ${StatisticsSingleton().statistics?.user}',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10, color: Colors.grey),
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }

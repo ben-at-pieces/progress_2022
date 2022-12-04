@@ -3,31 +3,31 @@
 import 'package:badges/badges.dart';
 import 'package:core_openapi/api_client.dart';
 import 'package:flutter/material.dart';
+import 'package:gsheets/bar%20chart/tags/tags_logic.dart';
+import 'package:gsheets/chart%20data/statistics_singleton.dart';
 import 'package:runtime_client/particle.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'urls_logic.dart';
-
-class DropdownRelatedLink extends StatefulWidget {
-  const DropdownRelatedLink({super.key});
+class PersonsList extends StatefulWidget {
+  const PersonsList({super.key});
 
   @override
-  State<DropdownRelatedLink> createState() => _DropdownButtonExampleState();
+  State<PersonsList> createState() => _DropdownButtonExampleState();
 }
 
-class _DropdownButtonExampleState extends State<DropdownRelatedLink> {
+class _DropdownButtonExampleState extends State<PersonsList> {
   String? dropdownValue;
 
-  late Future<List<String>> future;
+  late Future<List<String>> futurePeoplesList;
 
   @override
   void initState() {
     super.initState();
-    AssetWebsite launch9 = AssetWebsite(
+    AssetTags launch9 = AssetTags(
       api: ApiClient(basePath: 'http://localhost:1000'),
     );
 
-    future = launch9.run();
+    futurePeoplesList = launch9.run();
   }
 
   List list = [];
@@ -35,7 +35,7 @@ class _DropdownButtonExampleState extends State<DropdownRelatedLink> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: future,
+        future: futurePeoplesList,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Text('Loading...');
@@ -51,7 +51,7 @@ class _DropdownButtonExampleState extends State<DropdownRelatedLink> {
 
           List<DropdownMenuItem<String>> items = snapshot.data!
               .map((String url) => DropdownMenuItem<String>(
-                    value: url,
+                    value: '${StatisticsSingleton().statistics?.persons.first}',
                     child: SizedBox(child: Text(url)),
                   ))
               .toList();
@@ -69,14 +69,14 @@ class _DropdownButtonExampleState extends State<DropdownRelatedLink> {
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Icon(
-                        Icons.link_outlined,
+                        Icons.local_offer_outlined,
                         color: Colors.black,
                         size: 18,
                       ),
                     ),
                     Container(
                       // color: Colors.grey,
-                      width: 300,
+                      width: 150,
                       height: 40,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8.0),
