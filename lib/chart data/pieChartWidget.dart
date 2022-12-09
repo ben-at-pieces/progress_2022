@@ -34,7 +34,7 @@ class MyPieChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 50.0),
+      padding: const EdgeInsets.only(top: 10.0),
       child: PieChart(
         centerText: 'TOTAL: ${StatisticsSingleton().statistics?.snippetsSaved}',
         ringStrokeWidth: 50,
@@ -52,7 +52,7 @@ class MyPieChart extends StatelessWidget {
         dataMap: StatisticsSingleton().statistics!.classifications,
         animationDuration: const Duration(milliseconds: 800),
         chartLegendSpacing: 30,
-        chartRadius: math.min(MediaQuery.of(context).size.width / 2.5, 80),
+        chartRadius: math.min(MediaQuery.of(context).size.width / 1.5, 100),
         colorList: colorList,
         chartType: ChartType.ring,
         legendOptions: const LegendOptions(

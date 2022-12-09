@@ -62,20 +62,21 @@ class _DropdownButtonExampleState extends State<GlobalTags> {
                 Radius.circular(6.0),
               ),
               child: Container(
-                color: Colors.grey,
+
+                color: Colors.grey[500],
                 child: Row(
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Icon(
-                        Icons.local_offer_outlined,
+                        Icons.local_offer,
                         color: Colors.black,
                         size: 18,
                       ),
                     ),
                     Container(
                       // color: Colors.grey,
-                      width: 150,
+                      width: 180,
                       height: 40,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8.0),

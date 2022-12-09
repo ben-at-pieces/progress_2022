@@ -1,6 +1,7 @@
 // ignore_for_file: omit_local_variable_types
 
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:core_openapi/api.dart' hide Theme;
 import 'package:core_openapi/api_client.dart';
@@ -12,12 +13,10 @@ void main() async {
 
   /// init the assets Api (plural)
   AssetsApi assetsApi = AssetsApi(ApiClient(basePath: host));
+
   /// init the assets Api (plural)
-ActivitiesApi activitiesApi = ActivitiesApi(ApiClient(basePath: host));
-ActivityApi activityApi = ActivityApi(ApiClient(basePath: host));
-
-
-
+  ActivitiesApi activitiesApi = ActivitiesApi(ApiClient(basePath: host));
+  ActivityApi activityApi = ActivityApi(ApiClient(basePath: host));
 
   test('/activity/{activity} [GET]', () async {
     /// (1) call /activities snapshot
@@ -34,98 +33,130 @@ ActivityApi activityApi = ActivityApi(ApiClient(basePath: host));
 
     print(activitySnapshot.application.version);
     print(activitySnapshot.application.platform);
-    print(activitySnapshot);
+    print(activitySnapshot.application);
   });
+  test('classifications', () async {
+    final AssetsApi assetsApi = AssetsApi(ApiClient(basePath: host));
+    Assets assets = await assetsApi.assetsSnapshot();
 
-
-
-
-
-
-
+    Map<String, double> origins = {};
+    for (Asset asset in assets.iterable) {
+      String? origin = asset.original.reference?.application.name.value;
+    }
+    var origin = String;
+    switch (origin) {}
+  });
 
   test('/assets [GET]', () async {
-    /// (1) get the formats of all of your assets (returns a list)
+    Stopwatch stopWatch = Stopwatch();
+    final AssetsApi assetsApi = AssetsApi(ApiClient(basePath: host));
+    Assets assets = await assetsApi.assetsSnapshot(transferables: false);
+    for (Asset asset in assets.iterable) {
+      String? classification = asset.original.reference?.classification.specific.value;
+      String? raw;
+      // print(classification);
+
+      if (asset.original.reference?.classification.generic == ClassificationGenericEnum.CODE) {
+        raw = asset.original.reference?.fragment?.string?.raw;
+        // print('${raw?.length}');
+      }
+    }
+  });
+  test('/assets --> stopwatch [milliseconds]', () async {
+    Stopwatch s = Stopwatch();
+    s.start();
+    print(s.isRunning); // true
+    final AssetsApi assetsApi = AssetsApi(ApiClient(basePath: host));
+    Assets assets = await assetsApi.assetsSnapshot(transferables: false);
+    // print(assets);
+    s.stop();
+    print('assets snapshot: ${s.elapsedMilliseconds} milliseconds (Transferrables false)');
+    s.reset();
+  });
+  test('/assets transferables true --> stopwatch [milliseconds]', () async {
+    Stopwatch s = Stopwatch();
+    s.start();
+    print(s.isRunning); // true
+    final AssetsApi assetsApi = AssetsApi(ApiClient(basePath: host));
     Assets assets = await assetsApi.assetsSnapshot(transferables: true);
-
-   List <Asset> assetIterable = assets.iterable;
-
-   print(assetIterable);
-
-    print(assets.iterable.length);
-    /// (2) Expect Statement
-    // expect(formats.runtimeType, Formats);
+    // print(assets);
+    s.stop();
+    print('assets snapshot: ${s.elapsedMilliseconds} milliseconds (Transferrables true)');
+    s.reset();
   });
 
 
 
+  test('/activities --> Discovered Count', () async {
+    Stopwatch s = Stopwatch();
+    s.start();
+
+    ActivitiesApi activitiesApi = ActivitiesApi(ApiClient(basePath: host));
+    Activities activities = await activitiesApi.activitiesSnapshot(transferables: false);
+
+    Iterable<Activity> setOfActivities = [];
+    List<Activity> activity = activities.iterable;
+
+    // print(activity);
+
+    Iterable<Activity> act = activity.where((element) => element.asset?.discovered == true);
+
+   print(act.length);
+
+
+    s.stop();
+    print('activities snapshot: ${s.elapsedMilliseconds} milliseconds');
+  });
+
+  test('/assets --> for loop', () async {
+    Stopwatch stopWatch = Stopwatch();
+    final AssetsApi assetsApi = AssetsApi(ApiClient(basePath: host));
+    Assets assets = await assetsApi.assetsSnapshot(transferables: false);
+    for (Asset asset in assets.iterable) {
+      String? classification = asset.original.reference?.classification.specific.value;
+      String? raw;
 
 
 
+      // print(classification);
 
-  // test('/formats [GET]', () async {
-  //   /// (1) get the formats of all of your assets (returns a list)
-  //   Formats formats = await formatsApi.formatsSnapshot(transferables: true);
-  //
-  //   print(formats.iterable.length);
-  //   /// (2) Expect Statement
-  //   // expect(formats.runtimeType, Formats);
-  // });
-  //
-  // test('/formats/{format} [GET]', () async {
-  //   /// (1) get the formats of all of your assets (returns a list)
-  //   Formats formats = await formatsApi.formatsSnapshot(transferables: false);
-  //
-  //   /// (2) get the first format from your formats list 'formatSnapshot
-  //   Format first = formats.iterable.first;
-  //
-  //   /// (3) get the first format ID
-  //   String format = first.id;
-  //
-  //   /// (4) use your first format ID in junction with formatsSpecificSnapshot
-  //   Format snapshot = await formatsApi.formatsSpecificFormatSnapshot(format);
-  //
-  //   /// (5) Expect formatsSpecific Snapshot to be of type Format
-  //   expect(snapshot.runtimeType, Format);
-  // });
-  //
-  // /// format (Singular format) =====================================================================
-  //
-  // test('/format/reclassify', () async {
-  //   /// (1) get the formats of all of your assets (returns a list)
-  //   Formats formats = await formatsApi.formatsSnapshot(transferables: false);
-  //
-  //   /// (2) get the first format from your formats list 'formatSnapshot
-  //   Format first = formats.iterable.first;
-  //
-  //   /// (3) get the first format ID
-  //   String format = first.id;
-  //
-  //   /// (4) use your first format ID in junction with formatsSpecificSnapshot
-  //   Format snapshot = await formatsApi.formatsSpecificFormatSnapshot(format);
-  //
-  //   print('${snapshot.analysis?.code}');
-  //
-  //   /// (5) Expect formatsSpecific Snapshot to be of type Format
-  //   expect(snapshot.runtimeType, Format);
-  // });
-  //
-  // test('format list', () async {
-  //   /// init formats api
-  //   Formats formats = await formatsApi.formatsSnapshot(transferables: false);
-  //
-  //   /// get a list of iterable singular Format
-  //   List<Format> formatsSnapshot = formats.iterable;
-  //
-  //   /// get the first format
-  //   Format first = formatsSnapshot.first;
-  //
-  //   // print(first);
-  //
-  //   print('formats -> first -> analysis -> code: ${first.analysis?.code}');
-  //   print('formats -> first -> classification -> generic: ${first.classification}');
-  //   print('formats -> first -> analysis : ${first.analysis}');
-  //   print('formats -> first -> analysis --> format: ${first.analysis?.format}');
-  //   // d5617d4b-8994-4477-b889-499280e1a311
-  // });
+      if (asset.original.reference?.classification.specific == ClassificationSpecificEnum.bat) {
+        switch(classification) {
+          case 'bat': {
+
+            print('BATCHFILE');
+          }
+          break;
+        }
+      }
+      if (asset.original.reference?.classification.specific == ClassificationSpecificEnum.c) {
+        switch(classification) {
+          case 'c': {
+            print('C');
+          }
+          break;
+        }
+      }
+      if (asset.original.reference?.classification.specific == ClassificationSpecificEnum.dart) {
+        switch(classification) {
+          case 'dart': {
+            print('DART');
+          }
+          break;
+        }
+      }
+      if (asset.original.reference?.classification.specific == ClassificationSpecificEnum.pl) {
+        switch(classification) {
+          case 'pl': {
+            print('PERL');
+          }
+          break;
+        }
+      }
+
+    }
+  });
 }
+
+
+

@@ -34,10 +34,10 @@ class OriginChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 50.0),
+      padding: const EdgeInsets.only(top: 10.0),
       child: PieChart(
         ringStrokeWidth: 50,
-        centerText: 'TOTAL: ${StatisticsSingleton().statistics?.snippetsSaved}',
+        centerText: 'ORIGINS',
         chartValuesOptions: const ChartValuesOptions(
           showChartValuesOutside: true,
           showChartValueBackground: true,
@@ -62,7 +62,7 @@ class OriginChart extends StatelessWidget {
           legendShape: true ? BoxShape.circle : BoxShape.rectangle,
           legendTextStyle: TextStyle(
             color: Colors.black,
-            fontSize: 10,
+            fontSize: 9,
             fontWeight: FontWeight.bold,
           ),
         ),

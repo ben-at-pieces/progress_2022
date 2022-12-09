@@ -76,7 +76,7 @@ packages:
     description:
       path: "sdk/http/dart/builds"
       ref: HEAD
-      resolved-ref: a57f19b1c3a225266021a7e8112a10a55321c654
+      resolved-ref: "51d8dfd4215b1d7c5625f4830272048b028d75d9"
       url: "git@github.com:open-runtime/generated_runtime.git"
     source: git
     version: "0.0.1"
@@ -113,7 +113,7 @@ packages:
     description:
       path: "sdk/http/dart/connector"
       ref: HEAD
-      resolved-ref: "575aafad742df73c3bd3de3c6ba616d007e1c680"
+      resolved-ref: "51d8dfd4215b1d7c5625f4830272048b028d75d9"
       url: "git@github.com:open-runtime/generated_runtime.git"
     source: git
     version: "0.0.1"
@@ -129,7 +129,7 @@ packages:
     description:
       path: "sdk/http/dart/core"
       ref: HEAD
-      resolved-ref: "575aafad742df73c3bd3de3c6ba616d007e1c680"
+      resolved-ref: "51d8dfd4215b1d7c5625f4830272048b028d75d9"
       url: "git@github.com:open-runtime/generated_runtime.git"
     source: git
     version: "0.0.1"
@@ -181,7 +181,7 @@ packages:
       name: dropdown_search
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.3"
+    version: "5.0.5"
   equatable:
     dependency: transitive
     description:
@@ -406,7 +406,7 @@ packages:
       name: mime
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.3"
   mime_type:
     dependency: transitive
     description:
@@ -524,7 +524,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "620a5df7580307a3385be62c85bb13c3d60ddb8d"
+      resolved-ref: "7d1daeaff266634b3a95a75f321a89ff2584f829"
       url: "git@github.com:open-runtime/runtime_client.git"
     source: git
     version: "0.0.1"
@@ -533,7 +533,7 @@ packages:
     description:
       path: "sdk/http/dart/common"
       ref: HEAD
-      resolved-ref: "575aafad742df73c3bd3de3c6ba616d007e1c680"
+      resolved-ref: "51d8dfd4215b1d7c5625f4830272048b028d75d9"
       url: "git@github.com:open-runtime/generated_runtime.git"
     source: git
     version: "0.0.1"

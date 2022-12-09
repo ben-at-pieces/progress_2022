@@ -33,7 +33,7 @@ dependencies:
   runtime_client:
     git:
       url: git@github.com:open-runtime/runtime_client.git
-  dropdown_search: ^5.0.3
+  dropdown_search:
   loader_overlay: ^2.1.0
   badges: ^2.0.3
   visibility_detector: ^0.3.3

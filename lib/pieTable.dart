@@ -16,6 +16,7 @@ import 'chart data/boot.dart';
 import 'chart data/originPieChart.dart';
 import 'chart data/pieChartWidget.dart';
 import 'chart data/statistics_singleton.dart';
+import 'package:flutter/services.dart';
 
 enum LegendShape { circle, rectangle }
 
@@ -49,18 +50,18 @@ class HomePagePie extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         /// add a piece row
-        Container(
-          color: Colors.transparent,
-          height: 20,
-
-          // child: ,
-        ),
+        // Container(
+        //   color: Colors.transparent,
+        //   height: 10,
+        //
+        //   // child: ,
+        // ),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 18.0),
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -90,216 +91,12 @@ class HomePagePie extends StatelessWidget {
             ),
           ],
         ),
-        // Padding(
-        //   padding: const EdgeInsets.only(top: 18.0),
-        //   child: DataTable(
-        //     columns: <DataColumn>[
-        //       /// TOP LEFT TITLE
-        //       DataColumn(
-        //         label: Expanded(
-        //           child: Text(
-        //             '',
-        //           ),
-        //         ),
-        //       ),
-        //
-        //       /// FIRST COLUMN TO THE RIGHT OF THE INITIAL COLUMN
-        //       DataColumn(
-        //         tooltip: 'these are the people who have contributed to your Pieces repo!',
-        //         label: Expanded(
-        //           child: Text(
-        //             'PEOPLE:',
-        //             style: TitleTheme.title,
-        //           ),
-        //         ),
-        //       ),
-        //       DataColumn(
-        //         tooltip: 'these are your unique tags!',
-        //         label: Expanded(
-        //           child: Text(
-        //             'TAGS:',
-        //             style: TitleTheme.title,
-        //           ),
-        //         ),
-        //       ),
-        //       DataColumn(
-        //         tooltip: 'return to the place you saved from!',
-        //         label: Expanded(
-        //           child: Text(
-        //             'RELATED LINKS:',
-        //             style: TitleTheme.title,
-        //           ),
-        //         ),
-        //       ),
-        //     ],
-        //     rows: <DataRow>[
-        //       /// TOP 5 TAGS
-        //       /// this is the first data row in our table
-        //       ///    (   x , y    )
-        //       DataRow(
-        //         cells: <DataCell>[
-        //           DataCell(Text(
-        //             '1.',
-        //             style: TitleTheme.title,
-        //           )),
-        //           DataCell(
-        //             SizedBox(
-        //               width: 120,
-        //               child: Text(
-        //                 '${personEmptyCheck?.elementAt(0) ?? '0'}',
-        //                 style: GreyTheme.small,
-        //               ),
-        //             ),
-        //           ),
-        //           DataCell(
-        //             SizedBox(
-        //               width: 90,
-        //               height: 30,
-        //               child: Text(
-        //                 '${tagsEmptyCheck?.elementAt(0) ?? '0'}',
-        //                 style: GreyTheme.small,
-        //               ),
-        //             ),
-        //           ),
-        //           DataCell(
-        //             SizedBox(
-        //               width: 200,
-        //               height: 30,
-        //               child: Text(
-        //                 '${relatedLinksEmptyCheck?.elementAt(0) ?? '0'}',
-        //                 style: GreyTheme.small,
-        //               ),
-        //             ),
-        //           ),
-        //         ],
-        //       ),
-        //
-        //       /// this is the 1st row above the bottom row
-        //
-        //       /// TOP 4 links
-        //       /// this is the first data row in our table
-        //       ///    (   x , y    )
-        //       DataRow(
-        //         cells: <DataCell>[
-        //           DataCell(
-        //             Text(
-        //               '2.',
-        //               style: TitleTheme.title,
-        //             ),
-        //           ),
-        //           DataCell(
-        //             SizedBox(
-        //               width: 200,
-        //               height: 30,
-        //               child: Text(
-        //                 '${personEmptyCheck?.elementAt(1) ?? '0'}',
-        //                 style: GreyTheme.small,
-        //               ),
-        //             ),
-        //           ),
-        //           DataCell(
-        //             SizedBox(
-        //               width: 200,
-        //               height: 30,
-        //               child: Text(
-        //                 '${tagsEmptyCheck?.elementAt(1) ?? '0'}',
-        //                 style: GreyTheme.small,
-        //               ),
-        //             ),
-        //           ),
-        //           DataCell(
-        //             SizedBox(
-        //               width: 200,
-        //               height: 30,
-        //               child: Text(
-        //                 '${relatedLinksEmptyCheck?.elementAt(1) ?? '0'}',
-        //                 style: GreyTheme.small,
-        //               ),
-        //             ),
-        //           ),
-        //         ],
-        //       ),
-        //
-        //       /// this is the 3rd Row
-        //       DataRow(
-        //         cells: <DataCell>[
-        //           DataCell(Text(
-        //             '3.',
-        //             style: TitleTheme.title,
-        //           )),
-        //           DataCell(
-        //             SizedBox(
-        //               width: 120,
-        //               height: 30,
-        //               child: Text(
-        //                 '${personEmptyCheck?.elementAt(2) ?? '0'}',
-        //                 style: GreyTheme.small,
-        //               ),
-        //             ),
-        //           ),
-        //           DataCell(
-        //             Text(
-        //               '${tagsEmptyCheck?.elementAt(2) ?? '0'}',
-        //               style: GreyTheme.small,
-        //             ),
-        //           ),
-        //           DataCell(
-        //             SizedBox(
-        //               width: 200,
-        //               height: 30,
-        //               child: Text(
-        //                 '${relatedLinksEmptyCheck?.elementAt(2) ?? '0'}',
-        //                 style: GreyTheme.small,
-        //               ),
-        //             ),
-        //           ),
-        //         ],
-        //       ),
-        //
-        //       /// this is the 4rd Row
-        //       DataRow(
-        //         cells: <DataCell>[
-        //           DataCell(Text(
-        //             '4.',
-        //             style: TitleTheme.title,
-        //           )),
-        //           DataCell(
-        //             SizedBox(
-        //               width: 120,
-        //               height: 30,
-        //               child: Text(
-        //                 '${personEmptyCheck?.elementAt(3) ?? '0'}',
-        //                 style: GreyTheme.small,
-        //               ),
-        //             ),
-        //           ),
-        //           DataCell(
-        //             Text(
-        //               '${tagsEmptyCheck?.elementAt(3) ?? '0'}',
-        //               style: GreyTheme.small,
-        //             ),
-        //           ),
-        //           DataCell(
-        //             SizedBox(
-        //               width: 200,
-        //               height: 30,
-        //               child: Text(
-        //                 '${relatedLinksEmptyCheck?.elementAt(3) ?? '0'}',
-        //                 style: GreyTheme.small,
-        //               ),
-        //             ),
-        //           ),
-        //         ],
-        //       ),
-        //     ],
-        //   ),
-        // ),
 
         /// SPACER ====================
         Padding(
-          padding: const EdgeInsets.only(top: 15.0),
+          padding: const EdgeInsets.only(top: 5.0),
           child: SizedBox(
-            height: 40.0,
+            height: 10.0,
             child: Stack(
               textDirection: TextDirection.ltr,
               children: [
@@ -322,34 +119,60 @@ class HomePagePie extends StatelessWidget {
             ),
           ),
         ),
-        Column(
+        Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
+            FloatingActionButton(
+              tooltip: 'copy',
+              elevation: 0,
+              mini: true,
+              backgroundColor: Colors.transparent,
+              child: Icon(
+                Icons.copy,
+                color: Colors.black,
+                size: 10,
+              ),
+              onPressed: () async {
+                ClipboardData data = ClipboardData(text: '''
+${StatisticsSingleton().statistics?.user}
+${StatisticsSingleton().statistics?.platform}
+${StatisticsSingleton().statistics?.version}
+''');
+                await Clipboard.setData(data);
+              },
+            ),
             Padding(
-              padding: const EdgeInsets.only(left: 20.0),
+              padding: const EdgeInsets.only(left: 10.0),
               child: Text(
-                'OS: ${StatisticsSingleton().statistics?.platform}',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10, color: Colors.grey),
+                'PFD v: ${StatisticsSingleton().statistics?.version}',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10, color: Colors.black),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: Text(
-                'Version: ${StatisticsSingleton().statistics?.version}',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10, color: Colors.grey),
+                'OS: ${StatisticsSingleton().statistics?.platform}',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10, color: Colors.black),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: Text(
                 'Email: ${StatisticsSingleton().statistics?.user}',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10, color: Colors.grey),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10, color: Colors.black),
               ),
             ),
           ],
         ),
+        Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: Text(
+            'Time saved while using Pieces: ${StatisticsSingleton().statistics?.timeTaken} seconds',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10, color: Colors.grey),
+          ),
+        ),
+
       ],
     );
   }

@@ -12,6 +12,7 @@ Future<Statistics> getStats() async {
   String activity = first.id;
   Activity activitySnapshot =
       await PiecesApi.activityApi.activitiesSpecificActivitySnapshot(activity);
+  // String version = activitySnapshot.application.version;
   String version = activitySnapshot.application.version;
   String platform = activitySnapshot.application.platform.value;
   // String? plat = activitySnapshot.user?.email;
@@ -53,6 +54,8 @@ Future<Statistics> getStats() async {
     if (asset.original.reference?.classification.generic == ClassificationGenericEnum.CODE) {
       raw = asset.original.reference?.fragment?.string?.raw;
     }
+
+
 
     /// Line count
     if (raw != null) {
