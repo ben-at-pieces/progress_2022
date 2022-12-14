@@ -52,7 +52,7 @@ class OriginChart extends StatelessWidget {
         dataMap: StatisticsSingleton().statistics!.origins,
         animationDuration: const Duration(milliseconds: 800),
         chartLegendSpacing: 50,
-        chartRadius: math.min(MediaQuery.of(context).size.width / 1.5, 80),
+        chartRadius: math.min(MediaQuery.of(context).size.width / 1.5, 180),
         colorList: originColorList,
         chartType: ChartType.ring,
         legendOptions: const LegendOptions(

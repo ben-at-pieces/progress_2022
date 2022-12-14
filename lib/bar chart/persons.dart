@@ -18,7 +18,7 @@ class PersonsList extends StatefulWidget {
 class _DropdownButtonExampleState extends State<PersonsList> {
   String? dropdownValue;
 
-  late Future<List<String>> futurePeoplesList;
+  late Future<List<String>> futureTags;
 
   @override
   void initState() {
@@ -27,7 +27,7 @@ class _DropdownButtonExampleState extends State<PersonsList> {
       api: ApiClient(basePath: 'http://localhost:1000'),
     );
 
-    futurePeoplesList = launch9.run();
+    futureTags = launch9.run();
   }
 
   List list = [];
@@ -35,7 +35,7 @@ class _DropdownButtonExampleState extends State<PersonsList> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: futurePeoplesList,
+        future: futureTags,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Text('Loading...');
@@ -49,11 +49,17 @@ class _DropdownButtonExampleState extends State<PersonsList> {
 
           dropdownValue ??= snapshot.data!.first;
 
+          List<String>? personsList = StatisticsSingleton().statistics?.persons;
+
           List<DropdownMenuItem<String>> items = snapshot.data!
-              .map((String url) => DropdownMenuItem<String>(
-                    value: '${StatisticsSingleton().statistics?.persons.first}',
-                    child: SizedBox(child: Text(url)),
-                  ))
+              .map(
+                (String url) => DropdownMenuItem<String>(
+                  value: url,
+                  child: SizedBox(
+                    child: Text('Emails'),
+                  ),
+                ),
+              )
               .toList();
 
           return Padding(
@@ -63,14 +69,14 @@ class _DropdownButtonExampleState extends State<PersonsList> {
                 Radius.circular(6.0),
               ),
               child: Container(
-                color: Colors.grey,
+                color: Colors.black87,
                 child: Row(
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Icon(
-                        Icons.local_offer_outlined,
-                        color: Colors.black,
+                        Icons.email_rounded,
+                        color: Colors.white,
                         size: 18,
                       ),
                     ),
@@ -81,20 +87,14 @@ class _DropdownButtonExampleState extends State<PersonsList> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: DropdownButton<String>(
-                          onTap: () async {
-                            var url = '$dropdownValue';
-                            if (await canLaunch(url)) {
-                              await launch(url);
-                            } else {
-                              throw 'Could not launch $url';
-                            }
-                          },
+                          onTap: () async {},
+
                           enableFeedback: true,
                           value: dropdownValue,
                           style: ParticleFont.micro(
                             context,
                             customization: TextStyle(
-                              color: Colors.black,
+                              color: Colors.grey,
                               fontSize: 12,
                               // fontWeight: FontWeight.bold,
                             ),
@@ -105,14 +105,14 @@ class _DropdownButtonExampleState extends State<PersonsList> {
                           icon: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Badge(
-                              badgeColor: Colors.black,
+                              badgeColor: Colors.white,
                               position: BadgePosition(isCenter: true),
                               badgeContent: Text(
-                                items.length.toString(),
+                                '${StatisticsSingleton().statistics?.persons.length}',
                                 style: ParticleFont.micro(
                                   context,
                                   customization: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontSize: 12,
                                     fontWeight: FontWeight.bold,
                                   ),

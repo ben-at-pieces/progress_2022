@@ -10,6 +10,7 @@ import 'package:core_openapi/api/user_api.dart';
 import 'package:core_openapi/api/users_api.dart';
 import 'package:core_openapi/api_client.dart';
 import 'package:flutter/material.dart';
+import 'package:gsheets/chart%20data/originPieChart.dart';
 import 'package:gsheets/pieTable.dart';
 import 'package:runtime_client/particle.dart';
 
@@ -43,7 +44,7 @@ class HomePageState extends State<HomePageAppBar> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
@@ -68,13 +69,13 @@ class HomePageState extends State<HomePageAppBar> {
 
                 /// TODO implement 3rd tab ======================================================
 
-                // Text(
-                //   'Origins',
-                //   style: ParticleFont.micro(
-                //     context,
-                //     customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-                //   ),
-                // ),
+                Text(
+                  'Origins',
+                  style: ParticleFont.micro(
+                    context,
+                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                ),
                 // Text('Modified',
                 //     style: ParticleFont.micro(context,
                 //         customization:
@@ -91,7 +92,7 @@ class HomePageState extends State<HomePageAppBar> {
               BarGraph(),
 
               // ///TODO work in another widget
-              // PieChartSample1(),
+              OriginChart(),
 
               /// origin classification
               // HomePagePie(),

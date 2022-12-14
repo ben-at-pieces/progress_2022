@@ -29,7 +29,6 @@ class _DropdownButtonExampleState extends State<GlobalTags> {
     futureTags = launch9.run();
   }
 
-  List list = [];
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +50,9 @@ class _DropdownButtonExampleState extends State<GlobalTags> {
           List<DropdownMenuItem<String>> items = snapshot.data!
               .map((String url) => DropdownMenuItem<String>(
                     value: url,
-                    child: SizedBox(child: Text(url)),
+                    child: SizedBox(
+                      child: Text(url),
+                    ),
                   ))
               .toList();
 
@@ -62,21 +63,20 @@ class _DropdownButtonExampleState extends State<GlobalTags> {
                 Radius.circular(6.0),
               ),
               child: Container(
-
-                color: Colors.grey[500],
+                color: Colors.black87,
                 child: Row(
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Icon(
                         Icons.local_offer,
-                        color: Colors.black,
+                        color: Colors.white,
                         size: 18,
                       ),
                     ),
                     Container(
                       // color: Colors.grey,
-                      width: 180,
+                      width: 150,
                       height: 40,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8.0),
@@ -94,7 +94,7 @@ class _DropdownButtonExampleState extends State<GlobalTags> {
                           style: ParticleFont.micro(
                             context,
                             customization: TextStyle(
-                              color: Colors.black,
+                              color: Colors.grey,
                               fontSize: 12,
                               // fontWeight: FontWeight.bold,
                             ),
@@ -105,14 +105,14 @@ class _DropdownButtonExampleState extends State<GlobalTags> {
                           icon: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Badge(
-                              badgeColor: Colors.black,
+                              badgeColor: Colors.white,
                               position: BadgePosition(isCenter: true),
                               badgeContent: Text(
                                 items.length.toString(),
                                 style: ParticleFont.micro(
                                   context,
                                   customization: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontSize: 12,
                                     fontWeight: FontWeight.bold,
                                   ),

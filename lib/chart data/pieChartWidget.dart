@@ -52,7 +52,7 @@ class MyPieChart extends StatelessWidget {
         dataMap: StatisticsSingleton().statistics!.classifications,
         animationDuration: const Duration(milliseconds: 800),
         chartLegendSpacing: 30,
-        chartRadius: math.min(MediaQuery.of(context).size.width / 1.5, 100),
+        chartRadius: math.min(MediaQuery.of(context).size.width / 1.5, 150),
         colorList: colorList,
         chartType: ChartType.ring,
         legendOptions: const LegendOptions(

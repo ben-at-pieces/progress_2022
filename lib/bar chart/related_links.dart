@@ -63,20 +63,20 @@ class _DropdownButtonExampleState extends State<DropdownRelatedLink> {
                 Radius.circular(6.0),
               ),
               child: Container(
-                color: Colors.grey,
+                color: Colors.black87,
                 child: Row(
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 4.0),
                       child: Icon(
                         Icons.dataset_linked,
-                        color: Colors.black,
+                        color: Colors.white,
                         size: 18,
                       ),
                     ),
                     Container(
                       // color: Colors.grey,
-                      width: 300,
+                      width: 150,
                       height: 40,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8.0),
@@ -94,7 +94,7 @@ class _DropdownButtonExampleState extends State<DropdownRelatedLink> {
                           style: ParticleFont.micro(
                             context,
                             customization: TextStyle(
-                              color: Colors.black,
+                              color: Colors.grey,
                               fontSize: 12,
                               // fontWeight: FontWeight.bold,
                             ),
@@ -105,14 +105,14 @@ class _DropdownButtonExampleState extends State<DropdownRelatedLink> {
                           icon: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Badge(
-                              badgeColor: Colors.black,
+                              badgeColor: Colors.white,
                               position: BadgePosition(isCenter: true),
                               badgeContent: Text(
                                 items.length.toString(),
                                 style: ParticleFont.micro(
                                   context,
                                   customization: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontSize: 12,
                                     fontWeight: FontWeight.bold,
                                   ),

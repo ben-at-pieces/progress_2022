@@ -1,6 +1,7 @@
 // ignore_for_file: omit_local_variable_types, prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_string_interpolations
 import 'dart:core';
 
+import 'package:alert/alert.dart';
 import 'package:connector_openapi/api/connector_api.dart';
 import 'package:connector_openapi/api_client.dart' as connector;
 import 'package:core_openapi/api/asset_api.dart';
@@ -10,6 +11,7 @@ import 'package:core_openapi/api/users_api.dart';
 import 'package:core_openapi/api_client.dart';
 import 'package:flutter/material.dart';
 
+import 'bar chart/persons.dart';
 import 'bar chart/related_links.dart';
 import 'bar chart/tags/tags.dart';
 import 'chart data/boot.dart';
@@ -46,134 +48,165 @@ class HomePagePie extends StatelessWidget {
   //     StatisticsSingleton().statistics?.relatedLinks.where((element) => element.isNotEmpty);
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        /// add a piece row
-        // Container(
-        //   color: Colors.transparent,
-        //   height: 10,
-        //
-        //   // child: ,
-        // ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Container(
+      color: Colors.black12,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          /// add a piece row
+          // Container(
+          //   color: Colors.transparent,
+          //   height: 10,
+          //
+          //   // child: ,
+          // ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        DropdownRelatedLink(),
+                        GlobalTags(),
+                        // GlobalTags(),
+                        PersonsList(),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      DropdownRelatedLink(),
-                      GlobalTags(),
-                      // PersonsList(),
-                    ],
+
+
+                  SingleChildScrollView(
+                    child: SizedBox(
+                      height: 200,
+                      width: 600,
+                      child: MyPieChart(),
+                    ),
+                  ),
+                  // SizedBox(
+                  //   height: 200,
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.only(left: 50.0),
+                  //     child: OriginChart(),
+                  //   ),
+                  // ),
+                ],
+              ),
+            ],
+          ),
+
+          /// SPACER ====================
+          Padding(
+            padding: const EdgeInsets.only(top: 5.0),
+            child: SizedBox(
+              height: 10.0,
+              child: Stack(
+                textDirection: TextDirection.ltr,
+                children: [
+                  Positioned(
+                    top: 0.0,
+                    right: 0.0,
+                    left: 0.0,
+                    bottom: 0.0,
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(16.0),
+                      ),
+                      // child: Image.asset(
+                      //   'images/piecesLogo.png',
+                      //   fit: BoxFit.cover,
+                      // ),
+                    ),
                   ),
                 ],
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: MyPieChart(),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 50.0),
-                  child: OriginChart(),
-                ),
-              ],
-            ),
-          ],
-        ),
-
-        /// SPACER ====================
-        Padding(
-          padding: const EdgeInsets.only(top: 5.0),
-          child: SizedBox(
-            height: 10.0,
-            child: Stack(
-              textDirection: TextDirection.ltr,
-              children: [
-                Positioned(
-                  top: 0.0,
-                  right: 0.0,
-                  left: 0.0,
-                  bottom: 0.0,
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(16.0),
-                    ),
-                    // child: Image.asset(
-                    //   'images/piecesLogo.png',
-                    //   fit: BoxFit.cover,
-                    // ),
-                  ),
-                ),
-              ],
-            ),
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            FloatingActionButton(
-              tooltip: 'copy',
-              elevation: 0,
-              mini: true,
-              backgroundColor: Colors.transparent,
-              child: Icon(
-                Icons.copy,
-                color: Colors.black,
-                size: 10,
-              ),
-              onPressed: () async {
-                ClipboardData data = ClipboardData(text: '''
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              FloatingActionButton(
+                tooltip: 'copy',
+                elevation: 0,
+                mini: true,
+                backgroundColor: Colors.transparent,
+                child: Icon(
+                  Icons.info,
+                  color: Colors.black,
+                  size: 15,
+                ),
+                onPressed: () async {
+                  ClipboardData data = ClipboardData(text: '''
 ${StatisticsSingleton().statistics?.user}
 ${StatisticsSingleton().statistics?.platform}
 ${StatisticsSingleton().statistics?.version}
 ''');
-                await Clipboard.setData(data);
-              },
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0),
-              child: Text(
-                'PFD v: ${StatisticsSingleton().statistics?.version}',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10, color: Colors.black),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: Text(
-                'OS: ${StatisticsSingleton().statistics?.platform}',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10, color: Colors.black),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: Text(
-                'Email: ${StatisticsSingleton().statistics?.user}',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10, color: Colors.black),
-              ),
-            ),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20.0),
-          child: Text(
-            'Time saved while using Pieces: ${StatisticsSingleton().statistics?.timeTaken} seconds',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10, color: Colors.grey),
-          ),
-        ),
+                  await Clipboard.setData(data);
 
-      ],
+
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Text(
+                  'Email: ${StatisticsSingleton().statistics?.user}',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10, color: Colors.white),
+                ),
+              ),
+
+
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: Text(
+              'Time saved while using Pieces: ${StatisticsSingleton().statistics?.timeTaken.round()} seconds',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10, color: Colors.black),
+            ),
+          ),
+          FloatingActionButton(
+            tooltip: 'view your People',
+            elevation: 0,
+            mini: true,
+            backgroundColor: Colors.transparent,
+            child: Icon(
+              Icons.accessibility,
+              color: Colors.black,
+              size: 10,
+            ),
+            onPressed: () async {
+              ClipboardData data = ClipboardData(text: '''
+${StatisticsSingleton().statistics?.persons}
+''');
+              await Clipboard.setData(data);
+              SnackBar(
+                dismissDirection: DismissDirection.down,
+                backgroundColor: Colors.white,
+                content: Text(
+                  'Saved',
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontSize: 12,
+                  ),
+                ),
+              );
+
+            },
+          ),
+
+        ],
+      ),
     );
   }
 }
