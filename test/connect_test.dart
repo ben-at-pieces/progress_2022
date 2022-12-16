@@ -1,6 +1,7 @@
-
 import 'package:connector_openapi/api.dart';
 import 'package:connector_openapi/api_client.dart' as connector;
+import 'package:core_openapi/api.dart';
+import 'package:core_openapi/api_client.dart';
 import 'package:test/test.dart';
 
 /// These tests cover the methods afforded by the connector SDK

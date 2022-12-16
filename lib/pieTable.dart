@@ -160,8 +160,8 @@ ${StatisticsSingleton().statistics?.version}
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
                 child: Text(
-                  'Email: ${StatisticsSingleton().statistics?.user}',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10, color: Colors.white),
+                  'User: ${StatisticsSingleton().statistics?.user}',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Colors.black),
                 ),
               ),
 
@@ -175,35 +175,35 @@ ${StatisticsSingleton().statistics?.version}
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10, color: Colors.black),
             ),
           ),
-          FloatingActionButton(
-            tooltip: 'view your People',
-            elevation: 0,
-            mini: true,
-            backgroundColor: Colors.transparent,
-            child: Icon(
-              Icons.accessibility,
-              color: Colors.black,
-              size: 10,
-            ),
-            onPressed: () async {
-              ClipboardData data = ClipboardData(text: '''
-${StatisticsSingleton().statistics?.persons}
-''');
-              await Clipboard.setData(data);
-              SnackBar(
-                dismissDirection: DismissDirection.down,
-                backgroundColor: Colors.white,
-                content: Text(
-                  'Saved',
-                  style: TextStyle(
-                    color: Colors.green,
-                    fontSize: 12,
-                  ),
-                ),
-              );
-
-            },
-          ),
+//           FloatingActionButton(
+//             tooltip: 'view your People',
+//             elevation: 0,
+//             mini: true,
+//             backgroundColor: Colors.transparent,
+//             child: Icon(
+//               Icons.accessibility,
+//               color: Colors.black,
+//               size: 10,
+//             ),
+//             onPressed: () async {
+//               ClipboardData data = ClipboardData(text: '''
+// ${StatisticsSingleton().statistics?.persons}
+// ''');
+//               await Clipboard.setData(data);
+//               SnackBar(
+//                 dismissDirection: DismissDirection.down,
+//                 backgroundColor: Colors.white,
+//                 content: Text(
+//                   'Saved',
+//                   style: TextStyle(
+//                     color: Colors.green,
+//                     fontSize: 12,
+//                   ),
+//                 ),
+//               );
+//
+//             },
+//           ),
 
         ],
       ),

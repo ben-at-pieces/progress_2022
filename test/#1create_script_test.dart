@@ -24,38 +24,13 @@ Future<void> main() async {
   final PersonApi personApi = PersonApi(ApiClient(basePath: host));
   final WebsiteApi websiteApi = WebsiteApi(ApiClient(basePath: host));
   final WebsitesApi websitesApi = WebsitesApi(ApiClient(basePath: host));
+  final SensitivesApi sensitivesApi = SensitivesApi(ApiClient(basePath: host));
 
-  ///^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^   /asset/{asset} POST  v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^
 
-  test('/asset/{asset}', () async {
-    /// (1) call /assets endpoint
-    Assets assets = await assetsApi.assetsSnapshot(transferables: false);
+  group(' Add 2 an update', () {
 
-    ///(2) get the first asset
-    Asset firstAsset = assets.iterable.first;
-
-    /// (3) call SpecificAssetsSnapshot
-    Asset specificAssetSnapshot = await assetApi.assetSnapshot(firstAsset.id);
-
-    /// (4) optional print
-    // print(specificAssetSnapshot);
-
-    /// expect RuntimeType: Asset
-    expect(specificAssetSnapshot.runtimeType, Asset);
-  });
-
-  /// this is a future instance of assetsApi and
-  /// allows for it to be referenced in other tests within this file
-
-  group('Add Custom Group', () {
-    ///^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^   /assets [GET]    v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^
-
-    ///^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^    /assets/create [POST]     v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^
-
-    /// TODO for this test different cases here
-    /// images, text, code, different languages, different parameters within the metadata(tags, websites, classifications))
-    ///
-    test('/assets/create JetBrains [POST]', () async {
+    ///^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^    /assets/create1[POST]     v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^
+    test('/assets/create1 [POST]', () async {
       /// (1) register or get an application first
       final ConnectorApi connectorApi = ConnectorApi(connector.ApiClient(basePath: host));
 
@@ -65,7 +40,7 @@ Future<void> main() async {
           application: SeededTrackedApplication(
             name: ApplicationNameEnum.JETBRAINS,
             platform: PlatformEnum.MACOS,
-            version: '1.5.8',
+            version: '3.1.0',
           ),
         ),
       ))
@@ -83,12 +58,12 @@ Future<void> main() async {
               ]),
               discovered: false,
               metadata: SeededAssetMetadata(
-                name: 'sample snippet',
+                name: 'JetBrains Test Snippet',
                 description: 'testing 1, 2, 3, 4, 5, 6, 7, 8, 9',
                 tags: [
                   SeededAssetTag(
-                      text: 'dart',
-                      mechanism: MechanismEnum.AUTOMATIC,
+                      text: 'JETBRAINS',
+                      mechanism: MechanismEnum.MANUAL,
                       category: TagCategoryEnum.HANDLE)
                 ],
                 persons: [
@@ -101,12 +76,12 @@ Future<void> main() async {
                           basic: PersonBasicType(
                               picture:
                                   'https://lh3.googleusercontent.com/a/AEdFTp44ple5FjUEoDP4w4InROkHFtE5i4hY3nEnGNd1gw=s288-p-rw-no',
-                              username: '??',
+                              username: 'benj',
                               name: 'benjaminbuttons',
-                              url: 'www.google.com',
+                              url: 'www.pieces.app',
                               email: 'benjaminbuttons@pieces.app')))
                 ],
-                websites: [SeededAssetWebsite(url: 'www.pieces.app', name: 'google!')],
+                websites: [SeededAssetWebsite(url: 'www.jetbrains.com', name: 'JETBRAINS')],
                 sensitives: [
                   SeededAssetSensitive(
                     text: '333 333333 333333333',
@@ -124,7 +99,7 @@ Future<void> main() async {
                 fragment: SeededFragment(
                   string: TransferableString(
                     raw: '''void main () {
- print('hello world');
+ print('hello world!');
 }''',
                   ),
                 ),
@@ -140,28 +115,9 @@ Future<void> main() async {
       expect(created.runtimeType, Asset);
       // print(response);
     });
-    test('/asset/update POST', () async {
-      /// (1) call assetsSnapshot
-      Assets assetsSnapshot = await assetsApi.assetsSnapshot(transferables: false);
 
-      /// (2) get the first asset
-      Asset firstAsset = assetsSnapshot.iterable.first;
-
-      /// (3) give your first asset a relevant name, so that it is reflected within our db
-      firstAsset.name = 'testing name update';
-
-      /// (4) call the endpoint /asset/update POST
-      Asset assetUpdate = await assetApi.assetUpdate(asset: firstAsset);
-
-      // print('/asset/update POST: ${assetUpdate}');
-      /// expect RuntimeType: AssetUpdate
-      expect(assetUpdate.runtimeType, Asset);
-    });
-
-    ///^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^   Asset/Reclassify POST    v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^
-    /// TODO in the future check all different iterations of a language
-    /// as well as text -> code and vise versa.
-    test('/asset/reclassify POST', () async {
+    ///^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^   Asset/Reclassify [POST]    v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^
+    test('/asset/reclassify1 POST', () async {
       /// (1) lets get our assets
       Assets assetsSnapshot = await assetsApi.assetsSnapshot(transferables: false);
 
@@ -177,52 +133,309 @@ Future<void> main() async {
       expect(assetReclassification.runtimeType, Asset);
     });
 
-    test('/tag/{tag} [GET]', () async {
-      /// (1) call tags snapshot
-      Tags tags = await tagsApi.tagsSnapshot(transferables: false);
+    ///^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^   Asset/Tags [POST]    v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^
+    group('Tags1 add', () {
+      test('/tags/create2 [POST]', () async {
+        /// (1) define your new tags name
+        String textTag = 'list';
 
-      /// (2) get the first tag
-      Tag first = tags.iterable.first;
+        /// (2) call assets Snapshot
+        Assets assetsSnapshot = await assetsApi.assetsSnapshot();
 
-      /// (3) get the first tags ID
-      String tag = first.id;
+        /// (3) get the first asset from assetsSnapshot
+        Asset firstAsset = assetsSnapshot.iterable.first;
 
-      /// (4) call the endpoint tagsSpecificTagSnapshot
-      Tag snapshot = await tagApi.tagsSpecificTagSnapshot(tag);
+        /// (4) call the endpoint --> tagsCreateNewTag --> creates a new string tag
+        Tag create = await tagsApi.tagsCreateNewTag(
+            seededTag: SeededTag(text: textTag, asset: firstAsset.id));
 
-      /// (5) expect runtimeType: Tag
-      expect(snapshot.runtimeType, Tag);
+        create;
+
+        /// (5) expect tagsCreate to be of type Tag
+        expect(create.runtimeType, Tag);
+
+        /// TODO create a tag and check to see that the tag is present
+      });
+      test('/tags/create3 [POST]', () async {
+        /// (1) define your new tags name
+        String textTag = 'pieces';
+
+        /// (2) call assets Snapshot
+        Assets assetsSnapshot = await assetsApi.assetsSnapshot();
+
+        /// (3) get the first asset from assetsSnapshot
+        Asset firstAsset = assetsSnapshot.iterable.first;
+
+        /// (4) call the endpoint --> tagsCreateNewTag --> creates a new string tag
+        Tag create = await tagsApi.tagsCreateNewTag(
+            seededTag: SeededTag(text: textTag, asset: firstAsset.id));
+
+        create;
+
+        /// (5) expect tagsCreate to be of type Tag
+        expect(create.runtimeType, Tag);
+
+        /// TODO create a tag and check to see that the tag is present
+      });
+      test('/tags/create4 [POST]', () async {
+        /// (1) define your new tags name
+        String textTag = 'data';
+
+        /// (2) call assets Snapshot
+        Assets assetsSnapshot = await assetsApi.assetsSnapshot();
+
+        /// (3) get the first asset from assetsSnapshot
+        Asset firstAsset = assetsSnapshot.iterable.first;
+
+        /// (4) call the endpoint --> tagsCreateNewTag --> creates a new string tag
+        Tag create = await tagsApi.tagsCreateNewTag(
+            seededTag: SeededTag(text: textTag, asset: firstAsset.id));
+
+        create;
+
+        /// (5) expect tagsCreate to be of type Tag
+        expect(create.runtimeType, Tag);
+
+        /// TODO create a tag and check to see that the tag is present
+      });
+      test('/tags/create5 [POST]', () async {
+        /// (1) define your new tags name
+        String textTag = 'v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^ ';
+
+        /// (2) call assets Snapshot
+        Assets assetsSnapshot = await assetsApi.assetsSnapshot();
+
+        /// (3) get the first asset from assetsSnapshot
+        Asset firstAsset = assetsSnapshot.iterable.first;
+
+        /// (4) call the endpoint --> tagsCreateNewTag --> creates a new string tag
+        Tag create = await tagsApi.tagsCreateNewTag(
+            seededTag: SeededTag(text: textTag, asset: firstAsset.id));
+
+        create;
+
+        /// (5) expect tagsCreate to be of type Tag
+        expect(create.runtimeType, Tag);
+
+        /// TODO create a tag and check to see that the tag is present
+      });
+      test('/tags/create6 [POST]', () async {
+        /// (1) define your new tags name
+        String textTag = 'v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^ ';
+
+        /// (2) call assets Snapshot
+        Assets assetsSnapshot = await assetsApi.assetsSnapshot();
+
+        /// (3) get the first asset from assetsSnapshot
+        Asset firstAsset = assetsSnapshot.iterable.first;
+
+        /// (4) call the endpoint --> tagsCreateNewTag --> creates a new string tag
+        Tag create = await tagsApi.tagsCreateNewTag(
+            seededTag: SeededTag(text: textTag, asset: firstAsset.id));
+
+        create;
+
+        /// (5) expect tagsCreate to be of type Tag
+        expect(create.runtimeType, Tag);
+
+        /// TODO create a tag and check to see that the tag is present
+      });
     });
 
-    /// TODO check all the properties we updated are properly updated.
-    test('/person/update [POST]', () async {
-      /// (1) call our snapshot to get the first asset, so we can update.
-      Persons persons = await personsApi.personsSnapshot();
-      if (persons.iterable.isEmpty) {
-        throw Exception(
-            '/person/update [POST] FAILED, b/c our iterable is empty and cannot truely test our test.');
-      }
+    ///^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^   /person/create [POST]   v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^
+    group('Persons1 add', () {
+      test('/persons/create1 [POST]', () async {
+        /// (1) get the asset we are going to create a person on.
+        String asset = (await assetsApi.assetsSnapshot(transferables: false)).iterable.first.id;
 
-      /// (2) update our first person locally
-      Person updated = persons.iterable.first;
+        /// (2) create our person.
+        Person created = await personsApi.personsCreateNewPerson(
+          seededPerson: SeededPerson(
+            /// you must pass in access, but providing a scope is only required for platform users.
+            access: PersonAccess(),
+            type: PersonType(
+              basic: PersonBasicType(
+                username: '@mark',
+                name: 'mark widman',
+                email: 'mark@pieces.app',
+                picture: 'https://lh3.google.com/u/0/ogw/ADea4I6m0GU1ooKiWRgvDIuDd1uP8yu0cCJuK1AjzMbu=s64-c-mo',
+                sourced: ExternallySourcedEnum.TWITTER,
+                url: 'www.twitter.com',
+              ),
+            ),
+            asset: asset,
+            mechanism: MechanismEnum.MANUAL,
+          ),
+        );
 
-      /// (3) get our old person and toJson it so we can compare at the end.
-      Map<String, dynamic> old = updated.toJson();
-      if (updated.type.basic != null) {
-        updated.type.basic!.email = 'update@pieces.app';
-      }
+        /// expect
+        /// TODO check all our properties are present.
+        /// TODO check our edge cases with error status codes.
+        /// TODO get a snapshot of the asset and ensure that our created person is on there!
+        /// TODO try and create a UserProfile && a Basic User.
+        expect(created.runtimeType, Person);
+      });
+      test('/persons/create2 [POST]', () async {
+        /// (1) get the asset we are going to create a person on.
+        String asset = (await assetsApi.assetsSnapshot(transferables: false)).iterable.first.id;
 
-      /// TODO check platform user updates. and so on. ie more update testing
+        /// (2) create our person.
+        Person created = await personsApi.personsCreateNewPerson(
+          seededPerson: SeededPerson(
+            /// you must pass in access, but providing a scope is only required for platform users.
+            access: PersonAccess(),
+            type: PersonType(
+              basic: PersonBasicType(
+                username: '@tsavo',
+                name: 'tsavo knott',
+                email: 'tsavo@pieces.app',
+                picture: 'https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/606dd1a296e8d60068d11f59/4cc12555-6e4c-4950-8d56-c94bd3c08020/128',
+                sourced: ExternallySourcedEnum.TWITTER,
+                url: 'www.twitter.com',
+              ),
+            ),
+            asset: asset,
+            mechanism: MechanismEnum.MANUAL,
+          ),
+        );
 
-      /// (4) send over our updated person
-      updated = await personApi.updatePerson(person: updated);
+        /// expect
+        /// TODO check all our properties are present.
+        /// TODO check our edge cases with error status codes.
+        /// TODO get a snapshot of the asset and ensure that our created person is on there!
+        /// TODO try and create a UserProfile && a Basic User.
+        expect(created.runtimeType, Person);
+      });
+      test('/persons/create3 [POST]', () async {
+        /// (1) get the asset we are going to create a person on.
+        String asset = (await assetsApi.assetsSnapshot(transferables: false)).iterable.first.id;
 
-      /// expect that our old and updated values are different.
-      /// TODO add individual checks.
-      expect(old != updated.toJson(), true);
+        /// (2) create our person.
+        Person created = await personsApi.personsCreateNewPerson(
+          seededPerson: SeededPerson(
+            /// you must pass in access, but providing a scope is only required for platform users.
+            access: PersonAccess(),
+            type: PersonType(
+              basic: PersonBasicType(
+                username: '@mack',
+                name: 'mack myers',
+                email: 'mack@pieces.app',
+                picture: 'https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/606dd5f32b469c007046df54/13a7e176-51d9-47b6-8e58-1cc48b338396/128',
+                sourced: ExternallySourcedEnum.TWITTER,
+                url: 'www.twitter.com',
+              ),
+            ),
+            asset: asset,
+            mechanism: MechanismEnum.MANUAL,
+          ),
+        );
+
+        /// expect
+        /// TODO check all our properties are present.
+        /// TODO check our edge cases with error status codes.
+        /// TODO get a snapshot of the asset and ensure that our created person is on there!
+        /// TODO try and create a UserProfile && a Basic User.
+        expect(created.runtimeType, Person);
+      });
+      test('/persons/create4 [POST]', () async {
+        /// (1) get the asset we are going to create a person on.
+        String asset = (await assetsApi.assetsSnapshot(transferables: false)).iterable.first.id;
+
+        /// (2) create our person.
+        Person created = await personsApi.personsCreateNewPerson(
+          seededPerson: SeededPerson(
+            /// you must pass in access, but providing a scope is only required for platform users.
+            access: PersonAccess(),
+            type: PersonType(
+              basic: PersonBasicType(
+                username: '@jordan',
+                name: 'jordan freeman',
+                email: 'jordan@pieces.app',
+                picture: 'https://ca.slack-edge.com/T016ZUW6H97-U017FNHSQ8G-edbb6e2c5925-512',
+                sourced: ExternallySourcedEnum.TWITTER,
+                url: 'www.twitter.com',
+              ),
+            ),
+            asset: asset,
+            mechanism: MechanismEnum.MANUAL,
+          ),
+        );
+
+        /// expect
+        /// TODO check all our properties are present.
+        /// TODO check our edge cases with error status codes.
+        /// TODO get a snapshot of the asset and ensure that our created person is on there!
+        /// TODO try and create a UserProfile && a Basic User.
+        expect(created.runtimeType, Person);
+      });
+      test('/persons/create5 [POST]', () async {
+        /// (1) get the asset we are going to create a person on.
+        String asset = (await assetsApi.assetsSnapshot(transferables: false)).iterable.first.id;
+
+        /// (2) create our person.
+        Person created = await personsApi.personsCreateNewPerson(
+          seededPerson: SeededPerson(
+            /// you must pass in access, but providing a scope is only required for platform users.
+            access: PersonAccess(),
+            type: PersonType(
+              basic: PersonBasicType(
+                username: '@laurin',
+                name: 'laurin mcnulty',
+                email: 'laurin@pieces.app',
+                picture: 'https://ca.slack-edge.com/T016ZUW6H97-U03GMQ257FU-036f29721739-512',
+                sourced: ExternallySourcedEnum.TWITTER,
+                url: 'www.twitter.com',
+              ),
+            ),
+            asset: asset,
+            mechanism: MechanismEnum.MANUAL,
+          ),
+        );
+
+        /// expect
+        /// TODO check all our properties are present.
+        /// TODO check our edge cases with error status codes.
+        /// TODO get a snapshot of the asset and ensure that our created person is on there!
+        /// TODO try and create a UserProfile && a Basic User.
+        expect(created.runtimeType, Person);
+      });
+      test('/persons/create6 [POST]', () async {
+        /// (1) get the asset we are going to create a person on.
+        String asset = (await assetsApi.assetsSnapshot(transferables: false)).iterable.first.id;
+
+        /// (2) create our person.
+        Person created = await personsApi.personsCreateNewPerson(
+          seededPerson: SeededPerson(
+            /// you must pass in access, but providing a scope is only required for platform users.
+            access: PersonAccess(),
+            type: PersonType(
+              basic: PersonBasicType(
+                username: '@nicole',
+                name: 'nicole wallace',
+                email: 'nicole@pieces.app',
+                picture: 'https://ca.slack-edge.com/T016ZUW6H97-U02BDJZDWPN-f051c12c0fad-512',
+                sourced: ExternallySourcedEnum.TWITTER,
+                url: 'www.twitter.com',
+              ),
+            ),
+            asset: asset,
+            mechanism: MechanismEnum.MANUAL,
+          ),
+        );
+
+        /// expect
+        /// TODO check all our properties are present.
+        /// TODO check our edge cases with error status codes.
+        /// TODO get a snapshot of the asset and ensure that our created person is on there!
+        /// TODO try and create a UserProfile && a Basic User.
+        expect(created.runtimeType, Person);
+      });
+
     });
 
-    test('/websites/create[GET]', () async {
+    ///^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^   /Related link/create [POST]   v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^
+    group('Related link1 add', () {
+    test('/websites/create1 [GET]', () async {
       /// (1) call assets Snapshot
       Assets assets = await assetsApi.assetsSnapshot(transferables: false);
 
@@ -233,7 +446,7 @@ Future<void> main() async {
       Website websitesCreate = await websitesApi.websitesCreateNewWebsite(
           seededWebsite: SeededWebsite(
             asset: first.id,
-            url: 'www.pieces.app',
+            url: 'www.google.com',
             name: first.name.toString(),
           ));
 
@@ -243,75 +456,701 @@ Future<void> main() async {
       /// (5) expect website url to not be empty
       expect(websitesCreate.url.isNotEmpty, true);
     });
+    test('/websites/create2 [GET]', () async {
+      /// (1) call assets Snapshot
+      Assets assets = await assetsApi.assetsSnapshot(transferables: false);
 
-    test('/tags/create [POST]', () async {
-      /// (1) define your new tags name
-      String textTag = 'flutter';
+      /// (2) get the first asset
+      Asset first = assets.iterable.first;
 
-      /// (2) call assets Snapshot
-      Assets assetsSnapshot = await assetsApi.assetsSnapshot();
+      /// (3) call the endpoint websitesCreateNewWebsite  --> creates a new website url that is visible in pfd info view
+      Website websitesCreate = await websitesApi.websitesCreateNewWebsite(
+          seededWebsite: SeededWebsite(
+            asset: first.id,
+            url: 'www.twitter.com',
+            name: first.name.toString(),
+          ));
 
-      /// (3) get the first asset from assetsSnapshot
-      Asset firstAsset = assetsSnapshot.iterable.first;
+      /// (4) expect /websites/create [GET] to be of type Website
+      expect(websitesCreate.runtimeType, Website);
 
-      /// (4) call the endpoint --> tagsCreateNewTag --> creates a new string tag
-      Tag create = await tagsApi.tagsCreateNewTag(seededTag: SeededTag(text: textTag, asset: firstAsset.id));
+      /// (5) expect website url to not be empty
+      expect(websitesCreate.url.isNotEmpty, true);
+    });
+    test('/websites/create3 [GET]', () async {
+      /// (1) call assets Snapshot
+      Assets assets = await assetsApi.assetsSnapshot(transferables: false);
 
-      create;
+      /// (2) get the first asset
+      Asset first = assets.iterable.first;
 
-      /// (5) expect tagsCreate to be of type Tag
-      expect(create.runtimeType, Tag);
+      /// (3) call the endpoint websitesCreateNewWebsite  --> creates a new website url that is visible in pfd info view
+      Website websitesCreate = await websitesApi.websitesCreateNewWebsite(
+          seededWebsite: SeededWebsite(
+            asset: first.id,
+            url: 'www.slack.com',
+            name: first.name.toString(),
+          ));
 
-      /// TODO create a tag and check to see that the tag is present
+      /// (4) expect /websites/create [GET] to be of type Website
+      expect(websitesCreate.runtimeType, Website);
+
+      /// (5) expect website url to not be empty
+      expect(websitesCreate.url.isNotEmpty, true);
+    });
+    test('/websites/create4 [GET]', () async {
+      /// (1) call assets Snapshot
+      Assets assets = await assetsApi.assetsSnapshot(transferables: false);
+
+      /// (2) get the first asset
+      Asset first = assets.iterable.first;
+
+      /// (3) call the endpoint websitesCreateNewWebsite  --> creates a new website url that is visible in pfd info view
+      Website websitesCreate = await websitesApi.websitesCreateNewWebsite(
+          seededWebsite: SeededWebsite(
+            asset: first.id,
+            url: 'www.dart.dev',
+            name: first.name.toString(),
+          ));
+
+      /// (4) expect /websites/create [GET] to be of type Website
+      expect(websitesCreate.runtimeType, Website);
+
+      /// (5) expect website url to not be empty
+      expect(websitesCreate.url.isNotEmpty, true);
+    });
+    test('/websites/create5 [GET]', () async {
+      /// (1) call assets Snapshot
+      Assets assets = await assetsApi.assetsSnapshot(transferables: false);
+
+      /// (2) get the first asset
+      Asset first = assets.iterable.first;
+
+      /// (3) call the endpoint websitesCreateNewWebsite  --> creates a new website url that is visible in pfd info view
+      Website websitesCreate = await websitesApi.websitesCreateNewWebsite(
+          seededWebsite: SeededWebsite(
+            asset: first.id,
+            url: 'www.stackoverflow.com',
+            name: first.name.toString(),
+          ));
+
+      /// (4) expect /websites/create [GET] to be of type Website
+      expect(websitesCreate.runtimeType, Website);
+
+      /// (5) expect website url to not be empty
+      expect(websitesCreate.url.isNotEmpty, true);
+    });
     });
 
 
-    /// TODO check our edge cases what if an asset isn't present??
-    test('/persons/create [POST]', () async {
-      /// (1) get the asset we are going to create a person on.
+
+
+    ///^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^   /sensitives/create [POST]   v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^
+
+    group('Sensitive1 add', () {
+    test('/sensitives/create1 [POST]', () async {
+      /// (1) get the asset we are going to create a sensitive on.
       String asset = (await assetsApi.assetsSnapshot(transferables: false)).iterable.first.id;
 
-      /// (2) create our person.
-      Person created = await personsApi.personsCreateNewPerson(
-        seededPerson: SeededPerson(
-          /// you must pass in access, but providing a scope is only required for platform users.
-          access: PersonAccess(),
-          type: PersonType(
-            basic: PersonBasicType(
-              username: '@mark',
-              name: 'mark widman',
-              email: 'mark@pieces.app',
-              picture: 'https://lh3.google.com/u/0/ogw/ADea4I6m0GU1ooKiWRgvDIuDd1uP8yu0cCJuK1AjzMbu=s64-c-mo',
-              sourced: ExternallySourcedEnum.TWITTER,
-              url: 'www.twitter.com',
-            ),
-          ),
+      /// (2) create our sensitive.
+      Sensitive created = await sensitivesApi.sensitivesCreateNewSensitive(
+        seededSensitive: SeededSensitive(
           asset: asset,
-          mechanism: MechanismEnum.MANUAL,
+          text: 'hello here is some sensitive information',
+          category: SensitiveCategoryEnum.API_KEY,
+          severity: SensitiveSeverityEnum.HIGH,
+          name: 'stripe key',
+          description: 'this is the key used for stripe.',
         ),
       );
 
       /// expect
       /// TODO check all our properties are present.
-      /// TODO check our edge cases with error status codes.
-      /// TODO get a snapshot of the asset and ensure that our created person is on there!
-      /// TODO try and create a UserProfile && a Basic User.
-      expect(created.runtimeType, Person);
+      expect(created.runtimeType, Sensitive);
+    });
+    test('/sensitives/create2 [POST]', () async {
+      /// (1) get the asset we are going to create a sensitive on.
+      String asset = (await assetsApi.assetsSnapshot(transferables: false)).iterable.first.id;
+
+      /// (2) create our sensitive.
+      Sensitive created = await sensitivesApi.sensitivesCreateNewSensitive(
+        seededSensitive: SeededSensitive(
+          asset: asset,
+          text: 'hello here is some sensitive information',
+          category: SensitiveCategoryEnum.API_KEY,
+          severity: SensitiveSeverityEnum.MODERATE,
+          name: 'stripe key',
+          description: 'this is the key used for stripe.',
+        ),
+      );
+
+      /// expect
+      /// TODO check all our properties are present.
+      expect(created.runtimeType, Sensitive);
+    });
+    test('/sensitives/create3 [POST]', () async {
+      /// (1) get the asset we are going to create a sensitive on.
+      String asset = (await assetsApi.assetsSnapshot(transferables: false)).iterable.first.id;
+
+      /// (2) create our sensitive.
+      Sensitive created = await sensitivesApi.sensitivesCreateNewSensitive(
+        seededSensitive: SeededSensitive(
+          asset: asset,
+          text: 'hello here is some sensitive information',
+          category: SensitiveCategoryEnum.API_KEY,
+          severity: SensitiveSeverityEnum.LOW,
+          name: 'stripe key',
+          description: 'this is the key used for stripe.',
+        ),
+      );
+
+      /// expect
+      /// TODO check all our properties are present.
+      expect(created.runtimeType, Sensitive);
+    });
     });
 
-    // test('/assets/search?searchable_tags=string [GET]', () async {
-    //   /// (1) define your string query to be searched
-    //   String searchableTags = 'dart';
-    //
-    //   /// (2) call the endpoint --> assets Search
-    //   SearchedAssets assetsSearchAssets = await assetsApi.assetsSearchAssets(searchableTags: searchableTags);
-    //
-    //   /// (3) expect assetsSearchAssets to be of type --> SearchedAssets
-    //   expect(assetsSearchAssets.runtimeType, SearchedAssets);
-    // });
+
+
+
+
+    ///^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^    /assets/create1[POST]     v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^
+    test('/assets/create2 [POST]', () async {
+      /// (1) register or get an application first
+      final ConnectorApi connectorApi = ConnectorApi(connector.ApiClient(basePath: host));
+
+      /// (2) get your application
+      Application application = (await connectorApi.connect(
+        seededConnectorConnection: SeededConnectorConnection(
+          application: SeededTrackedApplication(
+            name: ApplicationNameEnum.JETBRAINS,
+            platform: PlatformEnum.MACOS,
+            version: '3.1.0',
+          ),
+        ),
+      ))
+          .application;
+      // print('application?? ${application}');
+
+      /// (3) call the endpoint --> assetsCreateNewAsset
+      Asset created = await assetsApi.assetsCreateNewAsset(
+        seed: Seed(
+          asset: SeededAsset(
+              available: AvailableFormats(iterable: [
+                Classification(
+                    generic: ClassificationGenericEnum.CODE,
+                    specific: ClassificationSpecificEnum.coffee)
+              ]),
+              discovered: false,
+              metadata: SeededAssetMetadata(
+                name: 'JetBrains Test Snippet',
+                description: 'testing 1, 2, 3, 4, 5, 6, 7, 8, 9',
+                tags: [
+                  SeededAssetTag(
+                      text: 'JETBRAINS',
+                      mechanism: MechanismEnum.MANUAL,
+                      category: TagCategoryEnum.HANDLE)
+                ],
+                persons: [
+                  SeededPerson(
+                      access: PersonAccess(
+                          schema: EmbeddedModelSchema(
+                              migration: 1,
+                              semantic: EmbeddedModelSchemaSemanticVersionEnum.mAJOR0MINOR0PATCH1)),
+                      type: PersonType(
+                          basic: PersonBasicType(
+                              picture:
+                              'https://lh3.googleusercontent.com/a/AEdFTp44ple5FjUEoDP4w4InROkHFtE5i4hY3nEnGNd1gw=s288-p-rw-no',
+                              username: 'benj',
+                              name: 'benjaminbuttons',
+                              url: 'www.pieces.app',
+                              email: 'benjaminbuttons@pieces.app')))
+                ],
+                websites: [SeededAssetWebsite(url: 'www.jetbrains.com', name: 'JETBRAINS')],
+                sensitives: [
+                  SeededAssetSensitive(
+                    text: '333 333333 333333333',
+                    category: SensitiveCategoryEnum.CLIENT_ID,
+                    severity: SensitiveSeverityEnum.HIGH,
+                    name: 'Secret Test ==========================',
+                    description: 'testing 1, 2, 3, 4, 5, 6, 7, 8, 9',
+                  )
+                ],
+                // persons: [],
+                mechanism: MechanismEnum.AUTOMATIC,
+              ),
+              application: application,
+              format: SeededFormat(
+                fragment: SeededFragment(
+                  string: TransferableString(
+                    raw: '''void main () {
+ print('hello world!');
+}''',
+                  ),
+                ),
+              )),
+          type: SeedTypeEnum.ASSET,
+        ),
+      );
+      // print('created: ${created.original.reference?.application}');
+
+      /// TODO for when this PR merges to main
+      // expect(response.name?.contains('jpeg'), true);
+      // expect(response.description?.contains('jpeg'), true);
+      expect(created.runtimeType, Asset);
+      // print(response);
+    });
+
+    ///^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^   Asset/Reclassify [POST]    v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^
+    test('/asset/reclassify2 POST', () async {
+      /// (1) lets get our assets
+      Assets assetsSnapshot = await assetsApi.assetsSnapshot(transferables: false);
+
+      /// (2) get the first asset
+      Asset asset = assetsSnapshot.iterable.first;
+
+      /// (3) call the endpoint (AssetReclassification)
+      Asset assetReclassification = await assetApi.assetReclassify(
+          assetReclassification:
+          AssetReclassification(ext: ClassificationSpecificEnum.c, asset: asset));
+
+      /// expect RuntimeType: Asset
+      expect(assetReclassification.runtimeType, Asset);
+    });
+
+    ///^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^   Asset/Tags [POST]    v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^
+    group('Tags2 add', () {
+      test('/tags/create2 [POST]', () async {
+        /// (1) define your new tags name
+        String textTag = 'list';
+
+        /// (2) call assets Snapshot
+        Assets assetsSnapshot = await assetsApi.assetsSnapshot();
+
+        /// (3) get the first asset from assetsSnapshot
+        Asset firstAsset = assetsSnapshot.iterable.first;
+
+        /// (4) call the endpoint --> tagsCreateNewTag --> creates a new string tag
+        Tag create = await tagsApi.tagsCreateNewTag(
+            seededTag: SeededTag(text: textTag, asset: firstAsset.id));
+
+        create;
+
+        /// (5) expect tagsCreate to be of type Tag
+        expect(create.runtimeType, Tag);
+
+        /// TODO create a tag and check to see that the tag is present
+      });
+      test('/tags/create3 [POST]', () async {
+        /// (1) define your new tags name
+        String textTag = 'list';
+
+        /// (2) call assets Snapshot
+        Assets assetsSnapshot = await assetsApi.assetsSnapshot();
+
+        /// (3) get the first asset from assetsSnapshot
+        Asset firstAsset = assetsSnapshot.iterable.first;
+
+        /// (4) call the endpoint --> tagsCreateNewTag --> creates a new string tag
+        Tag create = await tagsApi.tagsCreateNewTag(
+            seededTag: SeededTag(text: textTag, asset: firstAsset.id));
+
+        create;
+
+        /// (5) expect tagsCreate to be of type Tag
+        expect(create.runtimeType, Tag);
+
+        /// TODO create a tag and check to see that the tag is present
+      });
+      test('/tags/create4 [POST]', () async {
+        /// (1) define your new tags name
+        String textTag = 'data';
+
+        /// (2) call assets Snapshot
+        Assets assetsSnapshot = await assetsApi.assetsSnapshot();
+
+        /// (3) get the first asset from assetsSnapshot
+        Asset firstAsset = assetsSnapshot.iterable.first;
+
+        /// (4) call the endpoint --> tagsCreateNewTag --> creates a new string tag
+        Tag create = await tagsApi.tagsCreateNewTag(
+            seededTag: SeededTag(text: textTag, asset: firstAsset.id));
+
+        create;
+
+        /// (5) expect tagsCreate to be of type Tag
+        expect(create.runtimeType, Tag);
+
+        /// TODO create a tag and check to see that the tag is present
+      });
+      test('/tags/create5 [POST]', () async {
+        /// (1) define your new tags name
+        String textTag = 'v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^ ';
+
+        /// (2) call assets Snapshot
+        Assets assetsSnapshot = await assetsApi.assetsSnapshot();
+
+        /// (3) get the first asset from assetsSnapshot
+        Asset firstAsset = assetsSnapshot.iterable.first;
+
+        /// (4) call the endpoint --> tagsCreateNewTag --> creates a new string tag
+        Tag create = await tagsApi.tagsCreateNewTag(
+            seededTag: SeededTag(text: textTag, asset: firstAsset.id));
+
+        create;
+
+        /// (5) expect tagsCreate to be of type Tag
+        expect(create.runtimeType, Tag);
+
+        /// TODO create a tag and check to see that the tag is present
+      });
+      test('/tags/create6 [POST]', () async {
+        /// (1) define your new tags name
+        String textTag = 'v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^ ';
+
+        /// (2) call assets Snapshot
+        Assets assetsSnapshot = await assetsApi.assetsSnapshot();
+
+        /// (3) get the first asset from assetsSnapshot
+        Asset firstAsset = assetsSnapshot.iterable.first;
+
+        /// (4) call the endpoint --> tagsCreateNewTag --> creates a new string tag
+        Tag create = await tagsApi.tagsCreateNewTag(
+            seededTag: SeededTag(text: textTag, asset: firstAsset.id));
+
+        create;
+
+        /// (5) expect tagsCreate to be of type Tag
+        expect(create.runtimeType, Tag);
+
+        /// TODO create a tag and check to see that the tag is present
+      });
+    });
+
+    ///^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^   /person/create [POST]   v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^
+    group('Persons2 add', () {
+      test('/persons/create1 [POST]', () async {
+        /// (1) get the asset we are going to create a person on.
+        String asset = (await assetsApi.assetsSnapshot(transferables: false)).iterable.first.id;
+
+        /// (2) create our person.
+        Person created = await personsApi.personsCreateNewPerson(
+          seededPerson: SeededPerson(
+            /// you must pass in access, but providing a scope is only required for platform users.
+            access: PersonAccess(),
+            type: PersonType(
+              basic: PersonBasicType(
+                username: '@mark',
+                name: 'mark widman',
+                email: 'mark@pieces.app',
+                picture: 'https://lh3.google.com/u/0/ogw/ADea4I6m0GU1ooKiWRgvDIuDd1uP8yu0cCJuK1AjzMbu=s64-c-mo',
+                sourced: ExternallySourcedEnum.TWITTER,
+                url: 'www.twitter.com',
+              ),
+            ),
+            asset: asset,
+            mechanism: MechanismEnum.MANUAL,
+          ),
+        );
+
+        /// expect
+        /// TODO check all our properties are present.
+        /// TODO check our edge cases with error status codes.
+        /// TODO get a snapshot of the asset and ensure that our created person is on there!
+        /// TODO try and create a UserProfile && a Basic User.
+        expect(created.runtimeType, Person);
+      });
+      test('/persons/create2 [POST]', () async {
+        /// (1) get the asset we are going to create a person on.
+        String asset = (await assetsApi.assetsSnapshot(transferables: false)).iterable.first.id;
+
+        /// (2) create our person.
+        Person created = await personsApi.personsCreateNewPerson(
+          seededPerson: SeededPerson(
+            /// you must pass in access, but providing a scope is only required for platform users.
+            access: PersonAccess(),
+            type: PersonType(
+              basic: PersonBasicType(
+                username: '@tsavo',
+                name: 'tsavo knott',
+                email: 'tsavo@pieces.app',
+                picture: 'https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/606dd1a296e8d60068d11f59/4cc12555-6e4c-4950-8d56-c94bd3c08020/128',
+                sourced: ExternallySourcedEnum.TWITTER,
+                url: 'www.twitter.com',
+              ),
+            ),
+            asset: asset,
+            mechanism: MechanismEnum.MANUAL,
+          ),
+        );
+
+        /// expect
+        /// TODO check all our properties are present.
+        /// TODO check our edge cases with error status codes.
+        /// TODO get a snapshot of the asset and ensure that our created person is on there!
+        /// TODO try and create a UserProfile && a Basic User.
+        expect(created.runtimeType, Person);
+      });
+      test('/persons/create3 [POST]', () async {
+        /// (1) get the asset we are going to create a person on.
+        String asset = (await assetsApi.assetsSnapshot(transferables: false)).iterable.first.id;
+
+        /// (2) create our person.
+        Person created = await personsApi.personsCreateNewPerson(
+          seededPerson: SeededPerson(
+            /// you must pass in access, but providing a scope is only required for platform users.
+            access: PersonAccess(),
+            type: PersonType(
+              basic: PersonBasicType(
+                username: '@mack',
+                name: 'mack myers',
+                email: 'mack@pieces.app',
+                picture: 'https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/606dd5f32b469c007046df54/13a7e176-51d9-47b6-8e58-1cc48b338396/128',
+                sourced: ExternallySourcedEnum.TWITTER,
+                url: 'www.twitter.com',
+              ),
+            ),
+            asset: asset,
+            mechanism: MechanismEnum.MANUAL,
+          ),
+        );
+
+        /// expect
+        /// TODO check all our properties are present.
+        /// TODO check our edge cases with error status codes.
+        /// TODO get a snapshot of the asset and ensure that our created person is on there!
+        /// TODO try and create a UserProfile && a Basic User.
+        expect(created.runtimeType, Person);
+      });
+      test('/persons/create4 [POST]', () async {
+        /// (1) get the asset we are going to create a person on.
+        String asset = (await assetsApi.assetsSnapshot(transferables: false)).iterable.first.id;
+
+        /// (2) create our person.
+        Person created = await personsApi.personsCreateNewPerson(
+          seededPerson: SeededPerson(
+            /// you must pass in access, but providing a scope is only required for platform users.
+            access: PersonAccess(),
+            type: PersonType(
+              basic: PersonBasicType(
+                username: '@jordan',
+                name: 'jordan freeman',
+                email: 'jordan@pieces.app',
+                picture: 'https://ca.slack-edge.com/T016ZUW6H97-U017FNHSQ8G-edbb6e2c5925-512',
+                sourced: ExternallySourcedEnum.TWITTER,
+                url: 'www.twitter.com',
+              ),
+            ),
+            asset: asset,
+            mechanism: MechanismEnum.MANUAL,
+          ),
+        );
+
+        /// expect
+        /// TODO check all our properties are present.
+        /// TODO check our edge cases with error status codes.
+        /// TODO get a snapshot of the asset and ensure that our created person is on there!
+        /// TODO try and create a UserProfile && a Basic User.
+        expect(created.runtimeType, Person);
+      });
+      test('/persons/create5 [POST]', () async {
+        /// (1) get the asset we are going to create a person on.
+        String asset = (await assetsApi.assetsSnapshot(transferables: false)).iterable.first.id;
+
+        /// (2) create our person.
+        Person created = await personsApi.personsCreateNewPerson(
+          seededPerson: SeededPerson(
+            /// you must pass in access, but providing a scope is only required for platform users.
+            access: PersonAccess(),
+            type: PersonType(
+              basic: PersonBasicType(
+                username: '@laurin',
+                name: 'laurin mcnulty',
+                email: 'laurin@pieces.app',
+                picture: 'https://ca.slack-edge.com/T016ZUW6H97-U03GMQ257FU-036f29721739-512',
+                sourced: ExternallySourcedEnum.TWITTER,
+                url: 'www.twitter.com',
+              ),
+            ),
+            asset: asset,
+            mechanism: MechanismEnum.MANUAL,
+          ),
+        );
+
+        /// expect
+        /// TODO check all our properties are present.
+        /// TODO check our edge cases with error status codes.
+        /// TODO get a snapshot of the asset and ensure that our created person is on there!
+        /// TODO try and create a UserProfile && a Basic User.
+        expect(created.runtimeType, Person);
+      });
+      test('/persons/create6 [POST]', () async {
+        /// (1) get the asset we are going to create a person on.
+        String asset = (await assetsApi.assetsSnapshot(transferables: false)).iterable.first.id;
+
+        /// (2) create our person.
+        Person created = await personsApi.personsCreateNewPerson(
+          seededPerson: SeededPerson(
+            /// you must pass in access, but providing a scope is only required for platform users.
+            access: PersonAccess(),
+            type: PersonType(
+              basic: PersonBasicType(
+                username: '@nicole',
+                name: 'nicole wallace',
+                email: 'nicole@pieces.app',
+                picture: 'https://ca.slack-edge.com/T016ZUW6H97-U02BDJZDWPN-f051c12c0fad-512',
+                sourced: ExternallySourcedEnum.TWITTER,
+                url: 'www.twitter.com',
+              ),
+            ),
+            asset: asset,
+            mechanism: MechanismEnum.MANUAL,
+          ),
+        );
+
+        /// expect
+        /// TODO check all our properties are present.
+        /// TODO check our edge cases with error status codes.
+        /// TODO get a snapshot of the asset and ensure that our created person is on there!
+        /// TODO try and create a UserProfile && a Basic User.
+        expect(created.runtimeType, Person);
+      });
+
+    });
+
+    ///^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^   /Related link /create [POST]   v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^
+
+    group('Related link2 add', () {
+      test('/websites/create1 [GET]', () async {
+        /// (1) call assets Snapshot
+        Assets assets = await assetsApi.assetsSnapshot(transferables: false);
+
+        /// (2) get the first asset
+        Asset first = assets.iterable.first;
+
+        /// (3) call the endpoint websitesCreateNewWebsite  --> creates a new website url that is visible in pfd info view
+        Website websitesCreate = await websitesApi.websitesCreateNewWebsite(
+            seededWebsite: SeededWebsite(
+              asset: first.id,
+              url: 'https://google.com/',
+              name: first.name.toString(),
+            ));
+
+        /// (4) expect /websites/create [GET] to be of type Website
+        expect(websitesCreate.runtimeType, Website);
+
+        /// (5) expect website url to not be empty
+        expect(websitesCreate.url.isNotEmpty, true);
+      });
+      test('/websites/create2 [GET]', () async {
+        /// (1) call assets Snapshot
+        Assets assets = await assetsApi.assetsSnapshot(transferables: false);
+
+        /// (2) get the first asset
+        Asset first = assets.iterable.first;
+
+        /// (3) call the endpoint websitesCreateNewWebsite  --> creates a new website url that is visible in pfd info view
+        Website websitesCreate = await websitesApi.websitesCreateNewWebsite(
+            seededWebsite: SeededWebsite(
+              asset: first.id,
+              url: 'https://twitter.com/',
+              name: first.name.toString(),
+            ));
+
+        /// (4) expect /websites/create [GET] to be of type Website
+        expect(websitesCreate.runtimeType, Website);
+
+        /// (5) expect website url to not be empty
+        expect(websitesCreate.url.isNotEmpty, true);
+      });
+      test('/websites/create3 [GET]', () async {
+        /// (1) call assets Snapshot
+        Assets assets = await assetsApi.assetsSnapshot(transferables: false);
+
+        /// (2) get the first asset
+        Asset first = assets.iterable.first;
+
+        /// (3) call the endpoint websitesCreateNewWebsite  --> creates a new website url that is visible in pfd info view
+        Website websitesCreate = await websitesApi.websitesCreateNewWebsite(
+            seededWebsite: SeededWebsite(
+              asset: first.id,
+              url: 'https://stackoverflow.com/',
+              name: first.name.toString(),
+            ));
+
+        /// (4) expect /websites/create [GET] to be of type Website
+        expect(websitesCreate.runtimeType, Website);
+
+        /// (5) expect website url to not be empty
+        expect(websitesCreate.url.isNotEmpty, true);
+      });
+      test('/websites/create4 [GET]', () async {
+        /// (1) call assets Snapshot
+        Assets assets = await assetsApi.assetsSnapshot(transferables: false);
+
+        /// (2) get the first asset
+        Asset first = assets.iterable.first;
+
+        /// (3) call the endpoint websitesCreateNewWebsite  --> creates a new website url that is visible in pfd info view
+        Website websitesCreate = await websitesApi.websitesCreateNewWebsite(
+            seededWebsite: SeededWebsite(
+              asset: first.id,
+              url: 'https://dart.dev/',
+              name: first.name.toString(),
+            ));
+
+        /// (4) expect /websites/create [GET] to be of type Website
+        expect(websitesCreate.runtimeType, Website);
+
+        /// (5) expect website url to not be empty
+        expect(websitesCreate.url.isNotEmpty, true);
+      });
+      test('/websites/create5 [GET]', () async {
+        /// (1) call assets Snapshot
+        Assets assets = await assetsApi.assetsSnapshot(transferables: false);
+
+        /// (2) get the first asset
+        Asset first = assets.iterable.first;
+
+        /// (3) call the endpoint websitesCreateNewWebsite  --> creates a new website url that is visible in pfd info view
+        Website websitesCreate = await websitesApi.websitesCreateNewWebsite(
+            seededWebsite: SeededWebsite(
+              asset: first.id,
+              url: 'https://facebook.com/',
+              name: first.name.toString(),
+            ));
+
+        /// (4) expect /websites/create [GET] to be of type Website
+        expect(websitesCreate.runtimeType, Website);
+
+        /// (5) expect website url to not be empty
+        expect(websitesCreate.url.isNotEmpty, true);
+      });
+    });
+
+
+
   });
 }
 
 void executeClosed() {
   print('closed');
 }
+// /^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^   /name update [GET]    v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^
+// test('/asset/update name1 [POST]', () async {
+//   /// (1) call assetsSnapshot
+//   Assets assetsSnapshot = await assetsApi.assetsSnapshot(transferables: false);
+//
+//   /// (2) get the first asset
+//   Asset firstAsset = assetsSnapshot.iterable.first;
+//
+//   /// (3) give your first asset a relevant name, so that it is reflected within our db
+//   firstAsset.name = 'testing name update';
+//
+//   /// (4) call the endpoint /asset/update POST
+//   Asset assetUpdate = await assetApi.assetUpdate(asset: firstAsset);
+//
+//   // print('/asset/update POST: ${assetUpdate}');
+//   /// expect RuntimeType: AssetUpdate
+//   expect(assetUpdate.runtimeType, Asset);
+// });
