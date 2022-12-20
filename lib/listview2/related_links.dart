@@ -24,30 +24,33 @@ class MyApp extends StatelessWidget {
 
 class RelatedLinksWidget extends StatelessWidget {
   RelatedLinksWidget({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
           itemCount: StatisticsSingleton().statistics?.relatedLinks.length,
           itemBuilder: (BuildContext context, int index) {
+            String linkUrl = '${StatisticsSingleton().statistics?.relatedLinks[index]}';
+
+
             return ListTile(
               tileColor: Colors.white,
               trailing: Icon(
                 Icons.check_box_outline_blank,
                 color: Colors.grey,
               ),
-               title:  Text('${StatisticsSingleton().statistics?.relatedLinks[index]}'),
-              subtitle: ParticleButton(
-                text: '${StatisticsSingleton().statistics?.relatedLinks[index]}',
+              title: ParticleButton(
+                backgroundColor: Colors.white,
+                textColor: Colors.black,
+                text: linkUrl,
                 onPressed: () async {
-                  const url = 'https://pieces.app'; //Twitter's URL
-                  if (await canLaunch(url)) {
+                  linkUrl = linkUrl; //Twitter's URL
+                  if (await canLaunch(linkUrl)) {
                     await launch(
-                      url,
+                      linkUrl,
                     );
                   } else {
-                    throw 'Could not launch $url';
+                    throw 'Could not launch $linkUrl';
                   }
                 },
               ),
