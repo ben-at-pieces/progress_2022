@@ -484,7 +484,7 @@ Future<void> main() async {
           seededWebsite: SeededWebsite(
             asset: first.id,
             name: '',
-            url: 'https://www.google.com/',
+            url: 'https://google.com/',
           ));
 
       /// (4) expect /websites/create [GET] to be of type Website
@@ -505,7 +505,7 @@ Future<void> main() async {
           seededWebsite: SeededWebsite(
             asset: first.id,
             name: '',
-            url: 'https://www.google.com/'
+            url: 'https://google.com/'
           ));
 
       /// (4) expect /websites/create [GET] to be of type Website
@@ -1469,7 +1469,7 @@ Future<void> main() async {
               seededWebsite: SeededWebsite(
                 asset: first.id,
                 name: '',
-                url: 'https://www.google.com/',
+                url: 'https://google.com/',
               ));
 
           /// (4) expect /websites/create [GET] to be of type Website
@@ -1490,7 +1490,7 @@ Future<void> main() async {
               seededWebsite: SeededWebsite(
                 asset: first.id,
                 name: '',
-                url: 'https://www.google.com/',
+                url: 'https://google.com/',
               ));
 
           /// (4) expect /websites/create [GET] to be of type Website
@@ -1992,7 +1992,7 @@ Future<void> main() async {
               seededWebsite: SeededWebsite(
                 asset: first.id,
                 name: '',
-                url: 'https://www.google.com/',
+                url: 'https://google.com/',
               ));
 
           /// (4) expect /websites/create [GET] to be of type Website
@@ -2013,7 +2013,7 @@ Future<void> main() async {
               seededWebsite: SeededWebsite(
                 asset: first.id,
                 name: '',
-                url: 'https://www.google.com/',
+                url: 'https://google.com/',
               ));
 
           /// (4) expect /websites/create [GET] to be of type Website

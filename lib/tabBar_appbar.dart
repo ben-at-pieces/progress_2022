@@ -19,6 +19,7 @@ import 'bar chart/bar_chart.dart';
 import 'chart data/boot.dart';
 import 'gridview_draggable/gridview.dart';
 import 'listview1/list_widget.dart';
+import 'listview3/tags.dart';
 
 enum LegendShape { circle, rectangle }
 
@@ -81,14 +82,14 @@ class HomePageState extends State<HomePageAppBar> {
 
 
                 Text(
-                  'One Click Testing',
+                  'Related Tags',
                   style: ParticleFont.micro(
                     context,
                     customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Text(
-                  'Supported Languages',
+                  'Related Links',
                   style: ParticleFont.micro(
                     context,
                     customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -115,12 +116,15 @@ class HomePageState extends State<HomePageAppBar> {
               /// Vertical bar graph ==========================================================
               BarGraph(),
 
+
+              RelatedTagsWidget(),
+
               /// 1 click testing
               RelatedLinksWidget(),
 
 
-              /// languages 2.0
-              GridWithScrollControllerExample(),
+              // /// languages 2.0
+              // GridWithScrollControllerExample(),
 
               /// RelatedPeeps ==========================================================
               ListWidget(),
