@@ -6,6 +6,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:gsheets/chart%20data/statistics_singleton.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:runtime_client/particle.dart';
 
 import 'colors.dart';
 
@@ -33,40 +34,49 @@ class MyPieChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10.0),
-      child: PieChart(
-        centerText: 'TOTAL: ${StatisticsSingleton().statistics?.snippetsSaved}',
-        ringStrokeWidth: 50,
-        chartValuesOptions: const ChartValuesOptions(
-          showChartValuesOutside: true,
-          showChartValueBackground: true,
-          decimalPlaces: 0,
-          showChartValues: true,
-          showChartValuesInPercentage: false,
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 20.0),
+          child: Text('Snippet Languages Saved', style: ParticleFont.subtitle1(context, customization: TextStyle(color: Colors.black))),
         ),
-        emptyColor: Colors.grey,
-        baseChartColor: Colors.black45,
-        centerTextStyle: TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold),
-        key: ValueKey(key),
-        dataMap: StatisticsSingleton().statistics!.classifications,
-        animationDuration: const Duration(milliseconds: 800),
-        chartLegendSpacing: 30,
-        chartRadius: math.min(MediaQuery.of(context).size.width / 1.5, 150),
-        colorList: colorList,
-        chartType: ChartType.ring,
-        legendOptions: const LegendOptions(
-          showLegendsInRow: false,
-          legendPosition: LegendPosition.left,
-          showLegends: true,
-          legendShape: true ? BoxShape.circle : BoxShape.rectangle,
-          legendTextStyle: TextStyle(
-            color: Colors.black,
-            fontSize: 10,
-            fontWeight: FontWeight.bold,
+
+        Padding(
+          padding: const EdgeInsets.only(top: 30.0),
+          child: PieChart(
+            centerText: 'TOTAL: ${StatisticsSingleton().statistics?.snippetsSaved}',
+            ringStrokeWidth: 50,
+            chartValuesOptions: const ChartValuesOptions(
+              showChartValuesOutside: true,
+              showChartValueBackground: true,
+              decimalPlaces: 0,
+              showChartValues: true,
+              showChartValuesInPercentage: false,
+            ),
+            emptyColor: Colors.grey,
+            baseChartColor: Colors.black45,
+            centerTextStyle: TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold),
+            key: ValueKey(key),
+            dataMap: StatisticsSingleton().statistics!.classifications,
+            animationDuration: const Duration(milliseconds: 800),
+            chartLegendSpacing: 30,
+            chartRadius: math.min(MediaQuery.of(context).size.width / 1.5, 180),
+            colorList: colorList,
+            chartType: ChartType.ring,
+            legendOptions: const LegendOptions(
+              showLegendsInRow: false,
+              legendPosition: LegendPosition.left,
+              showLegends: true,
+              legendShape: true ? BoxShape.circle : BoxShape.rectangle,
+              legendTextStyle: TextStyle(
+                color: Colors.black,
+                fontSize: 10,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 }

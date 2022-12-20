@@ -56,7 +56,7 @@ class _DropdownButtonExampleState extends State<PersonsList> {
                 (String url) => DropdownMenuItem<String>(
                   value: url,
                   child: SizedBox(
-                    child: Text('Emails'),
+                    child: Text('Pople'),
                   ),
                 ),
               )

@@ -12,10 +12,8 @@ Future<Statistics> getStats() async {
   String activity = first.id;
   Activity activitySnapshot =
       await PiecesApi.activityApi.activitiesSpecificActivitySnapshot(activity);
-  // String version = activitySnapshot.application.version;
   String version = activitySnapshot.application.version;
   String platform = activitySnapshot.application.platform.value;
-  // String? plat = activitySnapshot.user?.email;
 
   double snippetsSaved = 0;
   double shareableLinks = 0;

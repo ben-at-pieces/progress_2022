@@ -15,6 +15,7 @@ dependencies:
   http:
   html:
   beautiful_soup_dart:
+  flutter_draggable_gridview:
   meta: ^1.3.0
   collection: ^1.15.0
   openapi_dart_common: ^4.1.1

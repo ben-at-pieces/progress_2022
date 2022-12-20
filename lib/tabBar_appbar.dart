@@ -11,11 +11,14 @@ import 'package:core_openapi/api/users_api.dart';
 import 'package:core_openapi/api_client.dart';
 import 'package:flutter/material.dart';
 import 'package:gsheets/chart%20data/originPieChart.dart';
+import 'package:gsheets/listview2/related_links.dart';
 import 'package:gsheets/pieTable.dart';
 import 'package:runtime_client/particle.dart';
 
 import 'bar chart/bar_chart.dart';
 import 'chart data/boot.dart';
+import 'gridview_draggable/gridview.dart';
+import 'listview1/list_widget.dart';
 
 enum LegendShape { circle, rectangle }
 
@@ -44,7 +47,7 @@ class HomePageState extends State<HomePageAppBar> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
-        length: 3,
+        length: 6,
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
@@ -52,8 +55,15 @@ class HomePageState extends State<HomePageAppBar> {
               // overlayColor: Colors.deepPurpleAccent,
               tabs: [
                 Text(
-                  ' Classifications',
+                  'Snippet Types',
                   textWidthBasis: TextWidthBasis.parent,
+                  style: ParticleFont.micro(
+                    context,
+                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Text(
+                  'Origins',
                   style: ParticleFont.micro(
                     context,
                     customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -69,17 +79,28 @@ class HomePageState extends State<HomePageAppBar> {
 
                 /// TODO implement 3rd tab ======================================================
 
+
                 Text(
-                  'Origins',
+                  'One Click Testing',
                   style: ParticleFont.micro(
                     context,
                     customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                   ),
                 ),
-                // Text('Modified',
-                //     style: ParticleFont.micro(context,
-                //         customization:
-                //             TextStyle(color: Colors.black, fontWeight: FontWeight.bold))),
+                Text(
+                  'Supported Languages',
+                  style: ParticleFont.micro(
+                    context,
+                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Text(
+                  'People',
+                  style: ParticleFont.micro(
+                    context,
+                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                ),
               ],
             ), // TabBar
           ), // AppBar
@@ -88,14 +109,23 @@ class HomePageState extends State<HomePageAppBar> {
               /// Circular Pie Chart ==========================================================
               HomePagePie(),
 
+              /// origin classification ==========================================================
+              OriginChart(),
+
               /// Vertical bar graph ==========================================================
               BarGraph(),
 
-              // ///TODO work in another widget
-              OriginChart(),
+              /// 1 click testing
+              RelatedLinksWidget(),
 
-              /// origin classification
-              // HomePagePie(),
+
+              /// languages 2.0
+              GridWithScrollControllerExample(),
+
+              /// RelatedPeeps ==========================================================
+              ListWidget(),
+
+
             ],
           ), // TabBarView
         ), // Scaffold
