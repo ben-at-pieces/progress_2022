@@ -29,8 +29,8 @@ class RelatedTagsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       body: Container(
-        width: 250,
-        color: Colors.black26,
+        width: 600,
+        color: Colors.black12,
         child: Column(
           children: [
             SizedBox(
@@ -46,10 +46,7 @@ class RelatedTagsWidget extends StatelessWidget {
                         '${StatisticsSingleton().statistics?.tags[index]}',
                         style: ParticleFont.bodyText1(context, customization: TextStyle(color: Colors.black)),
                       ),
-                      leading: Text(
-                        '🏷️',
-                        style: ParticleFont.subtitle1(context),
-                      ),
+                      leading: Icon(Icons.local_offer, color: Colors.black,)
                     );
                     // title: Text('Person: $index'));
                   },

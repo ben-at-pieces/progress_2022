@@ -8,14 +8,15 @@ import 'grid_item.dart';
 import 'images.dart';
 
 class GridWithScrollControllerExample extends StatefulWidget {
-  GridWithScrollControllerExample({Key? key,}) : super(key: key);
-
+  GridWithScrollControllerExample({
+    Key? key,
+  }) : super(key: key);
 
   @override
   GridWithScrollControllerExampleState createState() => GridWithScrollControllerExampleState();
 }
 
-class GridWithScrollControllerExampleState extends State<GridWithScrollControllerExample>{
+class GridWithScrollControllerExampleState extends State<GridWithScrollControllerExample> {
   final List<DraggableGridItem> _listOfDraggableGridItem = [];
   final ScrollController _scrollController = ScrollController(
     initialScrollOffset: 0.0,
@@ -35,14 +36,14 @@ class GridWithScrollControllerExampleState extends State<GridWithScrollControlle
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.black26,
+        color: Colors.black12,
         child: DraggableGridViewBuilder(
           padding: EdgeInsets.all(2),
           controller: _scrollController,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 8,
-            childAspectRatio: MediaQuery.of(context).size.width /
-                (MediaQuery.of(context).size.height / 1),
+            childAspectRatio:
+                MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height / 1),
           ),
           children: _listOfDraggableGridItem,
           // children: _listOfDraggableGridItem,

@@ -29,8 +29,8 @@ class RelatedLinksWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.black26,
-        width: 580,
+        color: Colors.black12,
+        width: 600,
         child: ListView.builder(
             itemCount: StatisticsSingleton().statistics?.relatedLinks.length,
             itemBuilder: (BuildContext context, int index) {
@@ -39,9 +39,9 @@ class RelatedLinksWidget extends StatelessWidget {
 
               return ListTile(
                 tileColor: Colors.white,
-                leading: MyCheckBoxWidgget(),
+               leading: Icon(Icons.link, color: Colors.black,),
                 title: ParticleButton(
-                  backgroundColor: Colors.white,
+                  backgroundColor: Colors.grey,
                   textColor: Colors.black,
                   text: linkUrl,
                   onPressed: () async {
@@ -55,7 +55,7 @@ class RelatedLinksWidget extends StatelessWidget {
                     }
                   },
                 ),
-
+                trailing: MyCheckBoxWidgget(),
 
 
               );
