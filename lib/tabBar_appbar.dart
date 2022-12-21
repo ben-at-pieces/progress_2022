@@ -16,6 +16,7 @@ import 'package:gsheets/pieTable.dart';
 import 'package:runtime_client/particle.dart';
 
 import 'bar chart/bar_chart.dart';
+import 'bar chart/roll_wheel.dart';
 import 'chart data/boot.dart';
 import 'gridview_draggable/gridview.dart';
 import 'listview1/list_widget.dart';
@@ -103,7 +104,14 @@ class HomePageState extends State<HomePageAppBar> {
                     customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                   ),
                 ),
-                Icon(Icons.settings,color: Colors.black,)
+                Text(
+                  'Plugins',
+                  style: ParticleFont.micro(
+                    context,
+                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                ),
+
               ],
             ), // TabBar
           ), // AppBar
@@ -131,7 +139,12 @@ class HomePageState extends State<HomePageAppBar> {
 
 
               /// languages 2.0
-              GridWithScrollControllerExample(),
+
+              // ExampleStaggeredAnimations(),
+              Menu(),
+              // GridWithScrollControllerExample(),
+              // Center(child: ExampleParallax()),
+
             ],
           ), // TabBarView
         ), // Scaffold
