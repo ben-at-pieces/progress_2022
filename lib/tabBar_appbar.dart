@@ -57,7 +57,7 @@ class HomePageState extends State<HomePageAppBar> {
               // overlayColor: Colors.deepPurpleAccent,
               tabs: [
                 Text(
-                  'Snippet Types',
+                  'Snippets',
                   textWidthBasis: TextWidthBasis.parent,
                   style: ParticleFont.micro(
                     context,
