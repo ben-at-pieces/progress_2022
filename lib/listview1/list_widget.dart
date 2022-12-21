@@ -18,12 +18,12 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(primarySwatch: Colors.green),
         debugShowCheckedModeBanner: false,
         // home : new ListViewBuilder(), NO Need To Use Unnecessary New Keyword
-        home: ListWidget());
+        home: RelatedPeeps());
   }
 }
 
-class ListWidget extends StatelessWidget {
-  ListWidget({Key? key}) : super(key: key);
+class RelatedPeeps extends StatelessWidget {
+  RelatedPeeps({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

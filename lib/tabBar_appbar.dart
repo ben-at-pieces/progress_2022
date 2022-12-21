@@ -20,6 +20,7 @@ import 'chart data/boot.dart';
 import 'gridview_draggable/gridview.dart';
 import 'listview1/list_widget.dart';
 import 'listview3/tags.dart';
+import 'listview4/testing.dart';
 
 enum LegendShape { circle, rectangle }
 
@@ -81,14 +82,14 @@ class HomePageState extends State<HomePageAppBar> {
                 /// TODO implement 3rd tab ======================================================
 
                 Text(
-                  'Related Tags',
+                  'Tags',
                   style: ParticleFont.micro(
                     context,
                     customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Text(
-                  'Related Links',
+                  'Links',
                   style: ParticleFont.micro(
                     context,
                     customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -102,13 +103,7 @@ class HomePageState extends State<HomePageAppBar> {
                     customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                   ),
                 ),
-                Text(
-                  'Supported Languages',
-                  style: ParticleFont.micro(
-                    context,
-                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-                  ),
-                ),
+                Icon(Icons.settings,color: Colors.black,)
               ],
             ), // TabBar
           ), // AppBar
@@ -123,13 +118,17 @@ class HomePageState extends State<HomePageAppBar> {
               /// Vertical bar graph ==========================================================
               BarGraph(),
 
-              RelatedTagsWidget(),
+              /// Related TAGS ==========================================================
+              TagsListWidget(),
 
               /// 1 click testing
               RelatedLinksWidget(),
 
-              /// RelatedPeeps ==========================================================
-              ListWidget(),
+
+              /// RELATED PEOPLE
+              PeoplesListWidget(),
+
+
 
               /// languages 2.0
               GridWithScrollControllerExample(),

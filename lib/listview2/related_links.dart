@@ -39,9 +39,9 @@ class RelatedLinksWidget extends StatelessWidget {
 
               return ListTile(
                 tileColor: Colors.white,
-               leading: Icon(Icons.link, color: Colors.black,),
+               leading: Icon(Icons.dataset_linked, color: Colors.black,),
                 title: ParticleButton(
-                  backgroundColor: Colors.grey,
+                  backgroundColor: Colors.transparent,
                   textColor: Colors.black,
                   text: linkUrl,
                   onPressed: () async {

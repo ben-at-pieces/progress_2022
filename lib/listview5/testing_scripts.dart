@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:runtime_client/particle.dart';
 
 import '../chart data/statistics_singleton.dart';
+import '../listview2/related_links.dart';
 
 void main() => runApp(MyApp());
 
@@ -26,27 +27,15 @@ class RelatedTagsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-          itemCount: StatisticsSingleton().statistics?.tags.length,
-          itemBuilder: (BuildContext context, int index) {
-            return ListTile(
-              tileColor: Colors.white,
-              trailing: Icon(
-                Icons.check_box_outline_blank,
-                color: Colors.grey,
-              ),
-              title: Text(
-                '${StatisticsSingleton().statistics?.tags[index]}',
-                style: ParticleFont.bodyText1(context,
-                    customization: TextStyle(color: Colors.black)),
-              ),
-              leading: Text(
-                '🔗',
-                style: ParticleFont.subtitle1(context),
-              ),
-            );
-            // title: Text('Person: $index'));
-          }),
+      body: ListView(children: [
+
+        RelatedTagsWidget(),
+
+        /// 1 click testing
+        RelatedLinksWidget(),
+
+
+      ],),
     );
   }
 }
