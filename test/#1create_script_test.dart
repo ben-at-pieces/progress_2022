@@ -19,16 +19,16 @@ Future<void> main() async {
   String port = '1000';
   String host = 'http://localhost:$port';
   final AssetsApi assetsApi = AssetsApi(ApiClient(basePath: host));
-  final PersonsApi personsApi = PersonsApi(ApiClient(basePath: host));
   final TagsApi tagsApi = TagsApi(ApiClient(basePath: host));
   final TagApi tagApi = TagApi(ApiClient(basePath: host));
   final AssetApi assetApi = AssetApi(ApiClient(basePath: host));
-  final PersonApi personApi = PersonApi(ApiClient(basePath: host));
+
   final WebsiteApi websiteApi = WebsiteApi(ApiClient(basePath: host));
   final WebsitesApi websitesApi = WebsitesApi(ApiClient(basePath: host));
   final SensitivesApi sensitivesApi = SensitivesApi(ApiClient(basePath: host));
 
-
+  final PersonApi personApi = PersonApi(ApiClient(basePath: host));
+  final PersonsApi personsApi = PersonsApi(ApiClient(basePath: host));
 
 
 
@@ -241,7 +241,7 @@ Future<void> main() async {
 
         /// TODO create a tag and check to see that the tag is present
       });
-      test('/tags/create5 [POST]', () async {
+      test('/tags/create5 [POST]', ()  async {
         /// (1) define your new tags name
         String textTag = 'v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^ ';
 
@@ -269,6 +269,7 @@ Future<void> main() async {
       test('/persons/create1 [POST]', () async {
         /// (1) get the asset we are going to create a person on.
         String asset = (await assetsApi.assetsSnapshot(transferables: false)).iterable.first.id;
+
 
         /// (2) create our person.
         Person created = await personsApi.personsCreateNewPerson(
@@ -300,6 +301,16 @@ Future<void> main() async {
         /// (1) get the asset we are going to create a person on.
         String asset = (await assetsApi.assetsSnapshot(transferables: false)).iterable.first.id;
 
+        Persons personsSnapshot = await personsApi.personsSnapshot(transferables: false);
+
+        var people = personsSnapshot.iterable;
+
+        print(people.first.type.platform?.name);
+var name = people.first.type.platform?.name;
+var username = people.first.type.platform?.username;
+var email = people.first.type.platform?.email;
+var picture = people.first.type.platform?.picture;
+        // Person person = await personApi.personSnapshot(person);
         /// (2) create our person.
         Person created = await personsApi.personsCreateNewPerson(
           seededPerson: SeededPerson(
@@ -307,10 +318,10 @@ Future<void> main() async {
             access: PersonAccess(),
             type: PersonType(
               basic: PersonBasicType(
-                username: '@tsavo',
-                name: 'tsavo knott',
-                email: 'tsavo@pieces.app',
-                picture: 'https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/606dd1a296e8d60068d11f59/4cc12555-6e4c-4950-8d56-c94bd3c08020/128',
+                username: '$username',
+                name: '$name',
+                email: '$email',
+                picture: '$picture',
                 sourced: ExternallySourcedEnum.TWITTER,
               ),
             ),

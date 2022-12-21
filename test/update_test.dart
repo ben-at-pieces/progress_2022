@@ -116,7 +116,46 @@ Future<void> main() async {
 
       /// TODO create a tag and check to see that the tag is present
     });
+    test('/persons/create2 [POST]', () async {
+      /// (1) get the asset we are going to create a person on.
+      String asset = (await assetsApi.assetsSnapshot(transferables: false)).iterable.first.id;
 
+      Persons personsSnapshot = await personsApi.personsSnapshot(transferables: false);
+
+      var people = personsSnapshot.iterable;
+
+      print(people.first.type.platform?.name);
+      var name = people.first.type.platform?.name;
+      var username = people.first.type.platform?.username;
+      var email = people.first.type.platform?.email;
+      var picture = people.first.type.platform?.picture;
+      // Person person = await personApi.personSnapshot(person);
+      /// (2) create our person.
+      Person created = await personsApi.personsCreateNewPerson(
+        seededPerson: SeededPerson(
+          /// you must pass in access, but providing a scope is only required for platform users.
+          access: PersonAccess(scoped: PersonAccessScopedEnum.VIEWER),
+          type: PersonType(
+            basic: PersonBasicType(
+              username: '$username',
+              name: '$name',
+              email: '$email',
+              picture: '$picture',
+              // sourced: ExternallySourcedEnum.,
+            ),
+          ),
+          asset: asset,
+          mechanism: MechanismEnum.MANUAL,
+        ),
+      );
+       created;
+      /// expect
+      /// TODO check all our properties are present.
+      /// TODO check our edge cases with error status codes.
+      /// TODO get a snapshot of the asset and ensure that our created person is on there!
+      /// TODO try and create a UserProfile && a Basic User.
+      expect(created.runtimeType, Person);
+    });
 
     ///^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^   /person/create [POST]   v^v^^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^
     test('/persons/create [POST]', () async {
@@ -135,7 +174,7 @@ Future<void> main() async {
               email: 'mark@pieces.app',
               picture: 'https://lh3.google.com/u/0/ogw/ADea4I6m0GU1ooKiWRgvDIuDd1uP8yu0cCJuK1AjzMbu=s64-c-mo',
               sourced: ExternallySourcedEnum.TWITTER,
-              url: 'www.twitter.com',
+              url: 'https://twitter.com',
             ),
           ),
           asset: asset,

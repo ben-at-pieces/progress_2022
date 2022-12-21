@@ -76,20 +76,48 @@ class HomePagePie extends StatelessWidget {
 User Name: ${StatisticsSingleton().statistics?.user}
 Platform: ${StatisticsSingleton().statistics?.platform}
 Version: ${StatisticsSingleton().statistics?.version}
+  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
+:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
+'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
 
-Shareable Link count: ${StatisticsSingleton().statistics?.shareableLinks}
-=======================================================================
+Shareable Link count: 
+${StatisticsSingleton().statistics?.shareableLinks}
+  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
+:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
+'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
 
-Related Tags: ${StatisticsSingleton().statistics?.tags}
-=======================================================================
-Related Links: ${StatisticsSingleton().statistics?.relatedLinks}
-=======================================================================
-Related People: ${StatisticsSingleton().statistics?.persons}
-=======================================================================
-Snippet Counts by Origin: ${StatisticsSingleton().statistics?.origins}
+Related Tags: 
+${StatisticsSingleton().statistics?.tags}
+  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
+:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
+'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
 
+Related Links: 
+${StatisticsSingleton().statistics?.relatedLinks}
+  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
+:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
+'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
 
+Related People: 
+${StatisticsSingleton().statistics?.persons}
+  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
+:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
+'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
+
+Snippet Counts by Origin: 
+${StatisticsSingleton().statistics?.origins}
+
+  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
+:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
+'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
 ''');
+              const snackBar = SnackBar(
+                content: Text('Copied your repo information!'),
+              );
+
+// Find the ScaffoldMessenger in the widget tree
+// and use it to show a SnackBar.
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
               await Clipboard.setData(data);
             },
           ),

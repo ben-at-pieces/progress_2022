@@ -48,7 +48,7 @@ class HomePageState extends State<HomePageAppBar> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
-        length: 6,
+        length: 7,
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
@@ -80,7 +80,6 @@ class HomePageState extends State<HomePageAppBar> {
 
                 /// TODO implement 3rd tab ======================================================
 
-
                 Text(
                   'Related Tags',
                   style: ParticleFont.micro(
@@ -95,8 +94,16 @@ class HomePageState extends State<HomePageAppBar> {
                     customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                   ),
                 ),
+
                 Text(
                   'People',
+                  style: ParticleFont.micro(
+                    context,
+                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Text(
+                  'Supported Languages',
                   style: ParticleFont.micro(
                     context,
                     customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -116,20 +123,16 @@ class HomePageState extends State<HomePageAppBar> {
               /// Vertical bar graph ==========================================================
               BarGraph(),
 
-
               RelatedTagsWidget(),
 
               /// 1 click testing
               RelatedLinksWidget(),
 
-
-              // /// languages 2.0
-              // GridWithScrollControllerExample(),
-
               /// RelatedPeeps ==========================================================
               ListWidget(),
 
-
+              /// languages 2.0
+              GridWithScrollControllerExample(),
             ],
           ), // TabBarView
         ), // Scaffold
