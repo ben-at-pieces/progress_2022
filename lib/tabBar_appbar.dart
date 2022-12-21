@@ -73,6 +73,13 @@ class HomePageState extends State<HomePageAppBar> {
                   ),
                 ),
                 Text(
+                  'Plugins',
+                  style: ParticleFont.micro(
+                    context,
+                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Text(
                   'Activity',
                   style: ParticleFont.micro(
                     context,
@@ -104,14 +111,6 @@ class HomePageState extends State<HomePageAppBar> {
                     customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                   ),
                 ),
-                Text(
-                  'Plugins',
-                  style: ParticleFont.micro(
-                    context,
-                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-                  ),
-                ),
-
               ],
             ), // TabBar
           ), // AppBar
@@ -123,6 +122,9 @@ class HomePageState extends State<HomePageAppBar> {
               /// origin classification ==========================================================
               OriginChart(),
 
+              /// languages 2.0
+              Menu(),
+
               /// Vertical bar graph ==========================================================
               BarGraph(),
 
@@ -132,19 +134,13 @@ class HomePageState extends State<HomePageAppBar> {
               /// 1 click testing
               RelatedLinksWidget(),
 
-
               /// RELATED PEOPLE
               PeoplesListWidget(),
 
-
-
-              /// languages 2.0
-
               // ExampleStaggeredAnimations(),
-              Menu(),
+
               // GridWithScrollControllerExample(),
               // Center(child: ExampleParallax()),
-
             ],
           ), // TabBarView
         ), // Scaffold

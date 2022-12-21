@@ -6,6 +6,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:gsheets/chart%20data/statistics_singleton.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:runtime_client/particle.dart';
 
 import 'colors.dart';
 
@@ -33,44 +34,55 @@ class OriginChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.black12,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 10.0),
-        child: PieChart(
-          ringStrokeWidth: 50,
-          centerText: 'ORIGINS',
-          chartValuesOptions: const ChartValuesOptions(
-            showChartValuesOutside: true,
-            showChartValueBackground: true,
-            decimalPlaces: 0,
-            showChartValues: true,
-            showChartValuesInPercentage: false,
-          ),
-          emptyColor: Colors.grey,
-          baseChartColor: Colors.black45,
-          centerTextStyle:
-              TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold),
-          key: ValueKey(key),
-          dataMap: StatisticsSingleton().statistics!.origins,
-          animationDuration: const Duration(milliseconds: 800),
-          chartLegendSpacing: 50,
-          chartRadius: math.min(MediaQuery.of(context).size.width / 1.5, 180),
-          colorList: originColorList,
-          chartType: ChartType.ring,
-          legendOptions: const LegendOptions(
-            showLegendsInRow: false,
-            legendPosition: LegendPosition.right,
-            showLegends: true,
-            legendShape: true ? BoxShape.circle : BoxShape.rectangle,
-            legendTextStyle: TextStyle(
-              color: Colors.black,
-              fontSize: 9,
-              fontWeight: FontWeight.bold,
+    return Column(
+      children: [
+
+        Padding(
+          padding: const EdgeInsets.only(top: 30.0),
+          child: Text('''Saved Origins Breakdown''', style: ParticleFont.subtitle1(context, customization: TextStyle(color: Colors.black))),
+        ),
+
+        SizedBox(
+          height: 200,
+          width: 550,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 30.0),
+            child: PieChart(
+              ringStrokeWidth: 50,
+              centerText: 'ORIGINS',
+              chartValuesOptions: const ChartValuesOptions(
+                showChartValuesOutside: true,
+                showChartValueBackground: true,
+                decimalPlaces: 0,
+                showChartValues: true,
+                showChartValuesInPercentage: false,
+              ),
+              emptyColor: Colors.grey,
+              baseChartColor: Colors.black45,
+              centerTextStyle:
+                  TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold),
+              key: ValueKey(key),
+              dataMap: StatisticsSingleton().statistics!.origins,
+              animationDuration: const Duration(milliseconds: 800),
+              chartLegendSpacing: 50,
+              chartRadius: math.min(MediaQuery.of(context).size.width / 1.5, 180),
+              colorList: originColorList,
+              chartType: ChartType.ring,
+              legendOptions: const LegendOptions(
+                showLegendsInRow: false,
+                legendPosition: LegendPosition.right,
+                showLegends: true,
+                legendShape: true ? BoxShape.circle : BoxShape.rectangle,
+                legendTextStyle: TextStyle(
+                  color: Colors.black,
+                  fontSize: 9,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ),
         ),
-      ),
+      ],
     );
   }
 }

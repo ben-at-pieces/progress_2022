@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:runtime_client/particle.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 void main() {
   runApp(
     const MaterialApp(
@@ -16,8 +16,7 @@ class ExampleStaggeredAnimations extends StatefulWidget {
   });
 
   @override
-  State<ExampleStaggeredAnimations> createState() =>
-      _ExampleStaggeredAnimationsState();
+  State<ExampleStaggeredAnimations> createState() => _ExampleStaggeredAnimationsState();
 }
 
 class _ExampleStaggeredAnimationsState extends State<ExampleStaggeredAnimations>
@@ -64,43 +63,12 @@ class _ExampleStaggeredAnimationsState extends State<ExampleStaggeredAnimations>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: _buildAppBar(),
       body: Stack(
         children: [
           _buildContent(),
           _buildDrawer(),
         ],
       ),
-    );
-  }
-
-  PreferredSizeWidget _buildAppBar() {
-    return AppBar(
-      title: const Text(
-        'Flutter Menu',
-        style: TextStyle(
-          color: Colors.black,
-        ),
-      ),
-      backgroundColor: Colors.transparent,
-      elevation: 0.0,
-      automaticallyImplyLeading: false,
-      actions: [
-        AnimatedBuilder(
-          animation: _drawerSlideController,
-          builder: (context, child) {
-            return IconButton(
-              onPressed: _toggleDrawer,
-              icon: _isDrawerOpen() || _isDrawerOpening()
-                  ? const Icon(
-                Icons.clear,
-                color: Colors.black,
-              )
-                  : const  Icon(Icons.settings,color: Colors.black,)
-            );
-          },
-        ),
-      ],
     );
   }
 
@@ -143,10 +111,8 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
   static const _staggerTime = Duration(milliseconds: 50);
   static const _buttonDelayTime = Duration(milliseconds: 150);
   static const _buttonTime = Duration(milliseconds: 500);
-  final _animationDuration = _initialDelayTime +
-      (_staggerTime * _menuTitles.length) +
-      _buttonDelayTime +
-      _buttonTime;
+  final _animationDuration =
+      _initialDelayTime + (_staggerTime * _menuTitles.length) + _buttonDelayTime + _buttonTime;
 
   late AnimationController _staggeredController;
   final List<Interval> _itemSlideIntervals = [];
@@ -176,8 +142,7 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
       );
     }
 
-    final buttonStartTime =
-        Duration(milliseconds: (_menuTitles.length * 50)) + _buttonDelayTime;
+    final buttonStartTime = Duration(milliseconds: (_menuTitles.length * 50)) + _buttonDelayTime;
     final buttonEndTime = buttonStartTime + _buttonTime;
     _buttonInterval = Interval(
       buttonStartTime.inMilliseconds / _animationDuration.inMilliseconds,
@@ -200,6 +165,13 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
         children: [
           _buildFlutterLogo(),
           _buildContent(),
+          // ListView(
+          //   children: [
+          //     Text(
+          //       'pfd',
+          //     )
+          //   ],
+          // )
         ],
       ),
     );
@@ -212,7 +184,7 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
       child: Opacity(
         opacity: 0.2,
         child: FlutterLogo(
-          size: 400,
+          size: 500,
         ),
       ),
     );
@@ -252,12 +224,21 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
             );
           },
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 36.0, vertical: 16),
-            child: Text(
-              _menuTitles[i],
-              textAlign: TextAlign.left,
-                style: ParticleFont.micro(context, customization: TextStyle(color: Colors.black, fontSize: 14))
-
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.shortcut,
+                  color: Colors.lightBlue,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Text(_menuTitles[i],
+                      textAlign: TextAlign.left,
+                      style: ParticleFont.micro(context,
+                          customization: TextStyle(color: Colors.black, fontSize: 14))),
+                ),
+              ],
             ),
           ),
         ),
@@ -274,8 +255,8 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
         child: AnimatedBuilder(
           animation: _staggeredController,
           builder: (context, child) {
-            final animationPercent = Curves.elasticOut.transform(
-                _buttonInterval.transform(_staggeredController.value));
+            final animationPercent =
+                Curves.elasticOut.transform(_buttonInterval.transform(_staggeredController.value));
             final opacity = animationPercent.clamp(0.0, 1.0);
             final scale = (animationPercent * 0.5) + 0.5;
 
@@ -293,16 +274,29 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
               backgroundColor: Colors.black54,
               padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 14),
             ),
-            onPressed: () {},
-            child:  Row(
+            onPressed: () async{
+              String linkUrl = 'https://code.pieces.app/save-code-snippets';
+
+              linkUrl = linkUrl; //Twitter's URL
+              if (await canLaunch(linkUrl)) {
+              await launch(
+              linkUrl,
+              );
+              } else {
+              throw 'Could not launch $linkUrl';
+              }
+            },
+            child: Row(
               children: [
                 Icon(
                   Icons.bolt_sharp,
                   color: Colors.white,
                 ),
-                Text(
-                  'Powered by Runtime',
-                  style: ParticleFont.micro(context, customization: TextStyle(color: Colors.white, fontSize: 10))
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Powered by Pieces Runtime',
+                      style: ParticleFont.micro(context,
+                          customization: TextStyle(color: Colors.white, fontSize: 10))),
                 ),
               ],
             ),
