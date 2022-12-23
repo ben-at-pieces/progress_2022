@@ -18,6 +18,7 @@ import 'package:runtime_client/particle.dart';
 import 'bar chart/bar_chart.dart';
 import 'bar chart/roll_wheel.dart';
 import 'chart data/boot.dart';
+import 'chart data/pieChartWidget.dart';
 import 'gridview_draggable/gridview.dart';
 import 'listview1/list_widget.dart';
 import 'listview3/tags.dart';
@@ -59,26 +60,18 @@ class HomePageState extends State<HomePageAppBar> {
               tabs: [
                 Text(
                   'Snippets',
-                  textWidthBasis: TextWidthBasis.parent,
                   style: ParticleFont.micro(
                     context,
                     customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                   ),
-                ),
-                Text(
+                ),          Text(
                   'Origins',
                   style: ParticleFont.micro(
                     context,
                     customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                   ),
                 ),
-                Text(
-                  'Plugins',
-                  style: ParticleFont.micro(
-                    context,
-                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-                  ),
-                ),
+
                 Text(
                   'Activity',
                   style: ParticleFont.micro(
@@ -111,19 +104,26 @@ class HomePageState extends State<HomePageAppBar> {
                     customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                   ),
                 ),
+                Text(
+                  'Plugins',
+                  textWidthBasis: TextWidthBasis.parent,
+                  style: ParticleFont.micro(
+                    context,
+                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                ),
               ],
             ), // TabBar
           ), // AppBar
           body: TabBarView(
             children: [
               /// Circular Pie Chart ==========================================================
-              HomePagePie(),
-
+                  // HomePagePie(),
+              MyPieChart(),
               /// origin classification ==========================================================
               OriginChart(),
 
-              /// languages 2.0
-              Menu(),
+
 
               /// Vertical bar graph ==========================================================
               BarGraph(),
@@ -137,6 +137,8 @@ class HomePageState extends State<HomePageAppBar> {
               /// RELATED PEOPLE
               PeoplesListWidget(),
 
+              /// languages 2.0
+              Menu(),
               // ExampleStaggeredAnimations(),
 
               // GridWithScrollControllerExample(),
