@@ -37,12 +37,12 @@ class _BarChartState extends State<BarGraph> {
     return Scaffold(
       appBar: AppBar(
         leading: FloatingActionButton(
-          tooltip: 'copy your Pieces Repo Data',
+          tooltip: 'copy repository statistics',
           elevation: 0,
           mini: true,
           backgroundColor: Colors.transparent,
           child: Icon(
-            Icons.info_outline,
+            Icons.copy,
             color: Colors.white,
             size: 15,
           ),
@@ -51,43 +51,29 @@ class _BarChartState extends State<BarGraph> {
 User Name: ${StatisticsSingleton().statistics?.user}
 Platform: ${StatisticsSingleton().statistics?.platform}
 Version: ${StatisticsSingleton().statistics?.version}
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
 
-Shareable Link count: 
+Shareable Links: 
 ${StatisticsSingleton().statistics?.shareableLinks}
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
 
-Related Tags: 
+Tags saved to Pieces: 
 ${StatisticsSingleton().statistics?.tags}
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
 
-Related Links: 
+Related Links saved to Pieces: : 
 ${StatisticsSingleton().statistics?.relatedLinks}
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
 
 Related People: 
 ${StatisticsSingleton().statistics?.persons}
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
 
 Snippet Counts by Origin: 
 ${StatisticsSingleton().statistics?.origins}
 
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
+Snippet Counts by Language: 
+${StatisticsSingleton().statistics?.classifications
+            }
+
 ''');
             const snackBar = SnackBar(
-              content: Text('Copied your repo information!'),
+              content: Text('Successfully copied Repository data!'),
             );
 
 // Find the ScaffoldMessenger in the widget tree
@@ -96,10 +82,9 @@ ${StatisticsSingleton().statistics?.origins}
             await Clipboard.setData(data);
           },
         ),
-
-        backgroundColor: Colors.black54,
+        backgroundColor: Colors.black87,
         title: Text(
-          'User: ${StatisticsSingleton().statistics?.user} Repository Statistics',
+          'Repository Statistics',
           style: ParticleFont.button(context,
               customization: TextStyle(
                 color: Colors.white,
@@ -361,8 +346,22 @@ ${StatisticsSingleton().statistics?.origins}
           elevation: 5,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
-
             children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    '${StatisticsSingleton().statistics?.user}',
+                    style: ParticleFont.micro(
+                      context,
+                      customization: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                      ),
+                    ),
+                  )
+                ],
+              ),
               Icon(
                 Icons.bolt_sharp,
                 color: Colors.white,
@@ -373,7 +372,7 @@ ${StatisticsSingleton().statistics?.origins}
                   style: ParticleFont.micro(
                     context,
                     customization: TextStyle(
-                      color: Colors.white,
+                      color: Colors.grey,
                       fontSize: 10,
                     ),
                   ),

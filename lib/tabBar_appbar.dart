@@ -54,21 +54,22 @@ class HomePageState extends State<HomePageAppBar> {
         length: 7,
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.black54,
             title: TabBar(
-              // overlayColor: Colors.deepPurpleAccent,
+              indicatorColor: Colors.white,
+
               tabs: [
                 Text(
                   'Snippets',
                   style: ParticleFont.micro(
                     context,
-                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                    customization: TextStyle(color: Colors.white, ),
                   ),
                 ),          Text(
                   'Origins',
                   style: ParticleFont.micro(
                     context,
-                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                    customization: TextStyle(color: Colors.white, ),
                   ),
                 ),
 
@@ -76,7 +77,7 @@ class HomePageState extends State<HomePageAppBar> {
                   'Activity',
                   style: ParticleFont.micro(
                     context,
-                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                    customization: TextStyle(color: Colors.white, ),
                   ),
                 ),
 
@@ -86,14 +87,14 @@ class HomePageState extends State<HomePageAppBar> {
                   'Tags',
                   style: ParticleFont.micro(
                     context,
-                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                    customization: TextStyle(color: Colors.white, ),
                   ),
                 ),
                 Text(
                   'Links',
                   style: ParticleFont.micro(
                     context,
-                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                    customization: TextStyle(color: Colors.white, ),
                   ),
                 ),
 
@@ -101,7 +102,7 @@ class HomePageState extends State<HomePageAppBar> {
                   'People',
                   style: ParticleFont.micro(
                     context,
-                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                    customization: TextStyle(color: Colors.white, ),
                   ),
                 ),
                 Text(
@@ -109,7 +110,7 @@ class HomePageState extends State<HomePageAppBar> {
                   textWidthBasis: TextWidthBasis.parent,
                   style: ParticleFont.micro(
                     context,
-                    customization: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                    customization: TextStyle(color: Colors.white, ),
                   ),
                 ),
               ],
@@ -118,7 +119,7 @@ class HomePageState extends State<HomePageAppBar> {
           body: TabBarView(
             children: [
               /// Circular Pie Chart ==========================================================
-                  // HomePagePie(),
+                   // HomePagePie(),
               MyPieChart(),
               /// origin classification ==========================================================
               OriginChart(),

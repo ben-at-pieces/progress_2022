@@ -1,41 +1,88 @@
-import 'package:flutter/material.dart';
-import 'package:runtime_client/particle.dart';
-
-import '../chart data/statistics_singleton.dart';
-import '../listview2/related_links.dart';
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
-// This widget is the root
-// of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        title: "ListView.builder",
-        theme: ThemeData(primarySwatch: Colors.green),
-        debugShowCheckedModeBanner: false,
-        // home : new ListViewBuilder(), NO Need To Use Unnecessary New Keyword
-        home: RelatedTagsWidget());
-  }
-}
-
-class RelatedTagsWidget extends StatelessWidget {
-  RelatedTagsWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView(children: [
-
-        RelatedTagsWidget(),
-
-        /// 1 click testing
-        RelatedLinksWidget(),
-
-
-      ],),
-    );
-  }
-}
+// import 'package:flutter/material.dart';
+// import 'package:side_navigation/side_navigation.dart';
+// import 'package:flutter/material.dart';
+// import 'package:runtime_client/particle.dart';
+// import 'package:url_launcher/url_launcher.dart';
+//
+// import '../chart data/statistics_singleton.dart';
+// import '../checkbox.dart';
+// import 'package:flutter/services.dart';
+// import 'package:url_launcher/url_launcher.dart';
+// void main() {
+//   runApp(
+//     MaterialApp(
+//       theme: ThemeData.dark(),
+//       themeMode: ThemeMode.dark,
+//       home: const MainView(),
+//     ),
+//   );
+// }
+//
+// class MainView extends StatefulWidget {
+//   const MainView({Key? key}) : super(key: key);
+//
+//   @override
+//   _MainViewState createState() => _MainViewState();
+// }
+//
+// class _MainViewState extends State<MainView> {
+//   /// Views to display
+//   List<Widget> views = const [
+//     Center(
+//       child: Text('TOTAL: ${StatisticsSingleton().statistics?.snippetsSaved}'),
+//     ),
+//     Center(
+//       child: Text('Account'),
+//     ),
+//     Center(
+//       child: Text('Settings'),
+//     ),
+//   ];
+//
+//   /// The currently selected index of the bar
+//   int selectedIndex = 0;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       /// You can use an AppBar if you want to
+//       //appBar: AppBar(
+//       //  title: const Text('App'),
+//       //),
+//
+//       // The row is needed to display the current view
+//       body: Row(
+//         children: [
+//           /// Pretty similar to the BottomNavigationBar!
+//           SideNavigationBar(
+//             selectedIndex: selectedIndex,
+//             items: const [
+//               SideNavigationBarItem(
+//                 icon: Icons.dashboard,
+//                 label: 'Dashboard',
+//               ),
+//               SideNavigationBarItem(
+//                 icon: Icons.person,
+//                 label: 'Account',
+//               ),
+//               SideNavigationBarItem(
+//                 icon: Icons.settings,
+//                 label: 'Settings',
+//               ),
+//             ],
+//             onTap: (index) {
+//               setState(() {
+//                 selectedIndex = index;
+//               });
+//             },
+//           ),
+//
+//           /// Make it take the rest of the available width
+//           Expanded(
+//             child: views.elementAt(selectedIndex),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }

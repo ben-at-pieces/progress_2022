@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:runtime_client/particle.dart';
+import 'package:runtime_client/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../chart data/statistics_singleton.dart';
 import 'package:flutter/services.dart';
@@ -39,14 +40,32 @@ class Menu extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Icon(Icons.bolt_sharp, color: Colors.white,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    '${StatisticsSingleton().statistics?.user}',
+                    style: ParticleFont.micro(
+                      context,
+                      customization: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              Icon(
+                Icons.bolt_sharp,
+                color: Colors.white,
+              ),
               TextButton(
                 child: Text(
                   'Powered by Pieces Runtime',
                   style: ParticleFont.micro(
                     context,
                     customization: TextStyle(
-                      color: Colors.white,
+                      color: Colors.grey,
                       fontSize: 10,
                     ),
                   ),
@@ -69,14 +88,14 @@ class Menu extends StatelessWidget {
         ),
       ),
       appBar: AppBar(
-        backgroundColor: Colors.black54,
+        backgroundColor: Colors.black87,
         leading: FloatingActionButton(
-          tooltip: 'copy your Pieces Repo Data',
+          tooltip: 'copy these links',
           elevation: 0,
           mini: true,
           backgroundColor: Colors.transparent,
           child: Icon(
-            Icons.info_outline,
+            Icons.copy,
             color: Colors.white,
             size: 15,
           ),
@@ -89,36 +108,31 @@ Version: ${StatisticsSingleton().statistics?.version}
 :::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
 '      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
 
-Shareable Link count: 
-${StatisticsSingleton().statistics?.shareableLinks}
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
+Pieces for Developers Desktop App: 
+https://code.pieces.app/install
 
-Related Tags: 
-${StatisticsSingleton().statistics?.tags}
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
+Pieces for Visual Studio Code: MarketPlace
+https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode
 
-Related Links: 
-${StatisticsSingleton().statistics?.relatedLinks}
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
+Pieces for JetBrains: MarketPlace
+https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets
 
-Related People: 
-${StatisticsSingleton().statistics?.persons}
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
+Pieces Code From ScreenShot Link
+https://www.codefromscreenshot.com/
 
-Snippet Counts by Origin: 
-${StatisticsSingleton().statistics?.origins}
+Pieces Text From ScreenShot Link
+https://www.textfromscreenshot.com/
+
+Pieces Better Code for Slack
+https://www.codeplusplus.app/
+
+Pieces from Chrome Web Extension
+https://code.pieces.app/save-code-snippets
 
   .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
 :::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
 '      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
+
 ''');
             const snackBar = SnackBar(
               content: Text('Copied your repo information!'),
@@ -138,44 +152,465 @@ ${StatisticsSingleton().statistics?.origins}
               )),
         ),
       ),
-      body: Row(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 380,
-            width: 170,
-            child: ListView(
-              padding: const EdgeInsets.all(20),
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Get Started',
-                      style: ParticleFont.micro(
-                        context,
-                        customization: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
+          Padding(
+            padding: const EdgeInsets.only(left: 10.0),
+            child: Row(
+              children: [
+                SizedBox(
+                  height: 250,
+                  width: 120,
+                  child: ListView(
+                    padding: const EdgeInsets.all(10),
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Pieces',
+                            style: ParticleFont.micro(
+                              context,
+                              customization: TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            TextButton(
+                              child: Text(
+                                'Desktop App',
+                                style: ParticleFont.micro(
+                                  context,
+                                  customization: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              onPressed: () async {
+                                String linkUrl = 'https://code.pieces.app/install';
+
+                                linkUrl = linkUrl; //Twitter's URL
+                                if (await canLaunch(linkUrl)) {
+                                  await launch(
+                                    linkUrl,
+                                  );
+                                } else {
+                                  throw 'Could not launch $linkUrl';
+                                }
+                              },
+                            ),
+                            Icon(Icons.install_desktop),
+                          ],
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
+                SizedBox(
+                  height: 250,
+                  width: 165,
+                  child: ListView(
+                    padding: const EdgeInsets.all(10),
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'IDE',
+                            style: ParticleFont.micro(
+                              context,
+                              customization: TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            TextButton(
+                              child: Text(
+                                'Pieces for VS Code',
+                                style: ParticleFont.micro(
+                                  context,
+                                  customization: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              onPressed: () async {
+                                String linkUrl =
+                                    'https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode';
+
+                                linkUrl = linkUrl; //Twitter's URL
+                                if (await canLaunch(linkUrl)) {
+                                  await launch(
+                                    linkUrl,
+                                  );
+                                } else {
+                                  throw 'Could not launch $linkUrl';
+                                }
+                              },
+                            ),
+                            Icon(Icons.laptop_chromebook),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            child: Text(
+                              'Pieces for JetBrains',
+                              style: ParticleFont.micro(
+                                context,
+                                customization: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            onPressed: () async {
+                              String linkUrl =
+                                  'https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets';
+
+                              linkUrl = linkUrl; //Twitter's URL
+                              if (await canLaunch(linkUrl)) {
+                                await launch(
+                                  linkUrl,
+                                );
+                              } else {
+                                throw 'Could not launch $linkUrl';
+                              }
+                            },
+                          ),
+                          Icon(Icons.laptop_chromebook),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 250,
+                  width: 170,
+                  child: ListView(
+                    padding: const EdgeInsets.all(10),
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Enhancements',
+                            style: ParticleFont.micro(
+                              context,
+                              customization: TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            TextButton(
+                              child: Text(
+                                'Code From Screenshot',
+                                style: ParticleFont.micro(
+                                  context,
+                                  customization: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              onPressed: () async {
+                                String linkUrl = 'https://www.codefromscreenshot.com/';
+
+                                linkUrl = linkUrl; //Twitter's URL
+                                if (await canLaunch(linkUrl)) {
+                                  await launch(
+                                    linkUrl,
+                                  );
+                                } else {
+                                  throw 'Could not launch $linkUrl';
+                                }
+                              },
+                            ),
+                            Icon(Icons.screenshot_monitor_outlined),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            child: Text(
+                              'Text From Screenshot',
+                              style: ParticleFont.micro(
+                                context,
+                                customization: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            onPressed: () async {
+                              String linkUrl = 'https://www.textfromscreenshot.com/';
+
+                              linkUrl = linkUrl; //Twitter's URL
+                              if (await canLaunch(linkUrl)) {
+                                await launch(
+                                  linkUrl,
+                                );
+                              } else {
+                                throw 'Could not launch $linkUrl';
+                              }
+                            },
+                          ),
+                          Icon(Icons.screenshot_monitor_outlined),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            child: Text(
+                              'Better Code for Slack',
+                              style: ParticleFont.micro(
+                                context,
+                                customization: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            onPressed: () async {
+                              String linkUrl = 'https://www.codeplusplus.app/';
+
+                              linkUrl = linkUrl; //Twitter's URL
+                              if (await canLaunch(linkUrl)) {
+                                await launch(
+                                  linkUrl,
+                                );
+                              } else {
+                                throw 'Could not launch $linkUrl';
+                              }
+                            },
+                          ),
+                          Icon(Icons.developer_mode_sharp),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 250,
+                  width: 150,
+                  child: ListView(
+                    padding: const EdgeInsets.all(10),
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Browsers',
+                            style: ParticleFont.micro(
+                              context,
+                              customization: TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            TextButton(
+                              child: Text(
+                                ' Pieces for Chrome',
+                                style: ParticleFont.micro(
+                                  context,
+                                  customization: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              onPressed: () async {
+                                String linkUrl =
+                                    'https://chrome.google.com/webstore/detail/pieces-save-code-snippets/igbgibhbfonhmjlechmeefimncpekepm';
+
+                                linkUrl = linkUrl; //Twitter's URL
+                                if (await canLaunch(linkUrl)) {
+                                  await launch(
+                                    linkUrl,
+                                  );
+                                } else {
+                                  throw 'Could not launch $linkUrl';
+                                }
+                              },
+                            ),
+                            Icon(Icons.language),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            child: Text(
+                              'Pieces for Safari',
+                              style: ParticleFont.micro(
+                                context,
+                                customization: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            onPressed: () async {
+                              String linkUrl = '';
+
+                              linkUrl = linkUrl; //Twitter's URL
+                              if (await canLaunch(linkUrl)) {
+                                await launch(
+                                  linkUrl,
+                                );
+                              } else {
+                                throw 'Could not launch $linkUrl';
+                              }
+                            },
+                          ),
+                          Icon(Icons.language),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            child: Text(
+                              'Pieces for FireFox',
+                              style: ParticleFont.micro(
+                                context,
+                                customization: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            onPressed: () async {
+                              String linkUrl = '';
+
+                              linkUrl = linkUrl; //Twitter's URL
+                              if (await canLaunch(linkUrl)) {
+                                await launch(
+                                  linkUrl,
+                                );
+                              } else {
+                                throw 'Could not launch $linkUrl';
+                              }
+                            },
+                          ),
+                          Icon(Icons.language),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            child: Text(
+                              'Pieces for Brave',
+                              style: ParticleFont.micro(
+                                context,
+                                customization: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            onPressed: () async {
+                              String linkUrl = '';
+
+                              linkUrl = linkUrl; //Twitter's URL
+                              if (await canLaunch(linkUrl)) {
+                                await launch(
+                                  linkUrl,
+                                );
+                              } else {
+                                throw 'Could not launch $linkUrl';
+                              }
+                            },
+                          ),
+                          Icon(Icons.language),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 15.0),
+                  padding: const EdgeInsets.only(left: 15.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                            Colors.black87,
+                          ),
+                        ),
                         child: Text(
-                          'Pieces Desktop App',
+                          'Pieces.app',
                           style: ParticleFont.micro(
                             context,
                             customization: TextStyle(
-                              color: Colors.black,
+                              color: Colors.white,
                               fontSize: 10,
-                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
@@ -192,57 +627,107 @@ ${StatisticsSingleton().statistics?.origins}
                           }
                         },
                       ),
-                      Icon(Icons.install_desktop),
                     ],
                   ),
                 ),
-
-
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 400,
-            width: 170,
-            child: ListView(
-              padding: const EdgeInsets.all(20),
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Master your IDE',
-                      style: ParticleFont.micro(
-                        context,
-                        customization: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 15.0),
+                  padding: const EdgeInsets.only(left: 15.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                            Colors.black87,
+                          ),
+                        ),
                         child: Text(
-                          'Pieces for VS Code',
+                          'LinkedIn',
                           style: ParticleFont.micro(
                             context,
                             customization: TextStyle(
-                              color: Colors.black,
+                              color: Colors.white,
                               fontSize: 10,
-                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        onPressed: () async {
+                          String linkUrl = 'https://www.linkedin.com/company/getpieces/mycompany/';
+
+                          linkUrl = linkUrl; //Twitter's URL
+                          if (await canLaunch(linkUrl)) {
+                            await launch(
+                              linkUrl,
+                            );
+                          } else {
+                            throw 'Could not launch $linkUrl';
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                            Colors.black87,
+                          ),
+                        ),
+                        child: Text(
+                          'Twitter',
+                          style: ParticleFont.micro(
+                            context,
+                            customization: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                        onPressed: () async {
+                          String linkUrl = 'https://twitter.com/getpieces';
+
+                          linkUrl = linkUrl; //Twitter's URL
+                          if (await canLaunch(linkUrl)) {
+                            await launch(
+                              linkUrl,
+                            );
+                          } else {
+                            throw 'Could not launch $linkUrl';
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                            Colors.black87,
+                          ),
+                        ),
+                        child: Text(
+                          'Facebook',
+                          style: ParticleFont.micro(
+                            context,
+                            customization: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
                             ),
                           ),
                         ),
                         onPressed: () async {
                           String linkUrl =
-                              'https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode';
+                              'https://www.facebook.com/518508470288885/posts/559057106234021';
 
                           linkUrl = linkUrl; //Twitter's URL
                           if (await canLaunch(linkUrl)) {
@@ -254,326 +739,17 @@ ${StatisticsSingleton().statistics?.origins}
                           }
                         },
                       ),
-                      Icon(Icons.laptop_chromebook),
                     ],
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      child: Text(
-                        'Pieces for JetBrains',
-                        style: ParticleFont.micro(
-                          context,
-                          customization: TextStyle(
-                            color: Colors.black,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      onPressed: () async {
-                        String linkUrl =
-                            'https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets';
-
-                        linkUrl = linkUrl; //Twitter's URL
-                        if (await canLaunch(linkUrl)) {
-                          await launch(
-                            linkUrl,
-                          );
-                        } else {
-                          throw 'Could not launch $linkUrl';
-                        }
-                      },
-                    ),
-                    Icon(Icons.laptop_chromebook),
-                  ],
-                ),
-
-
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 400,
-            width: 195,
-            child: ListView(
-              padding: const EdgeInsets.all(20),
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Enhancements',
-                      style: ParticleFont.micro(
-                        context,
-                        customization: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 15.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        child: Text(
-                          'Code From Screenshot',
-                          style: ParticleFont.micro(
-                            context,
-                            customization: TextStyle(
-                              color: Colors.black,
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        onPressed: () async {
-                          String linkUrl = 'https://www.codefromscreenshot.com/';
-
-                          linkUrl = linkUrl; //Twitter's URL
-                          if (await canLaunch(linkUrl)) {
-                            await launch(
-                              linkUrl,
-                            );
-                          } else {
-                            throw 'Could not launch $linkUrl';
-                          }
-                        },
-                      ),
-                      Icon(Icons.screenshot_monitor_outlined),
-                    ],
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      child: Text(
-                        'Text From Screenshot',
-                        style: ParticleFont.micro(
-                          context,
-                          customization: TextStyle(
-                            color: Colors.black,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      onPressed: () async {
-                        String linkUrl = 'https://www.textfromscreenshot.com/';
-
-                        linkUrl = linkUrl; //Twitter's URL
-                        if (await canLaunch(linkUrl)) {
-                          await launch(
-                            linkUrl,
-                          );
-                        } else {
-                          throw 'Could not launch $linkUrl';
-                        }
-                      },
-                    ),
-                    Icon(Icons.fit_screen_sharp),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      child: Text(
-                        'Better Code for Slack',
-                        style: ParticleFont.micro(
-                          context,
-                          customization: TextStyle(
-                            color: Colors.black,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      onPressed: () async {
-                        String linkUrl = 'https://www.codeplusplus.app/';
-
-                        linkUrl = linkUrl; //Twitter's URL
-                        if (await canLaunch(linkUrl)) {
-                          await launch(
-                            linkUrl,
-                          );
-                        } else {
-                          throw 'Could not launch $linkUrl';
-                        }
-                      },
-                    ),
-                    Icon(Icons.developer_mode_sharp),
-                  ],
                 ),
               ],
             ),
           ),
-          SizedBox(
-            height: 400,
-            width: 170,
-            child: ListView(
-              padding: const EdgeInsets.all(20),
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Browser Support',
-                      style: ParticleFont.micro(
-                        context,
-                        customization: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 15.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        child: Text(
-                          ' Pieces for Chrome',
-                          style: ParticleFont.micro(
-                            context,
-                            customization: TextStyle(
-                              color: Colors.black,
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        onPressed: () async {
-                          String linkUrl = 'https://code.pieces.app/save-code-snippets';
-
-                          linkUrl = linkUrl; //Twitter's URL
-                          if (await canLaunch(linkUrl)) {
-                            await launch(
-                              linkUrl,
-                            );
-                          } else {
-                            throw 'Could not launch $linkUrl';
-                          }
-                        },
-                      ),
-                      Icon(Icons.language),
-                    ],
-                  ),
-                ),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      child: Text(
-                        'Pieces for Safari',
-                        style: ParticleFont.micro(
-                          context,
-                          customization: TextStyle(
-                            color: Colors.black,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      onPressed: () async {
-                        String linkUrl = 'https://code.pieces.app/save-code-snippets';
-
-                        linkUrl = linkUrl; //Twitter's URL
-                        if (await canLaunch(linkUrl)) {
-                          await launch(
-                            linkUrl,
-                          );
-                        } else {
-                          throw 'Could not launch $linkUrl';
-                        }
-                      },
-                    ),
-                    Icon(Icons.language),
-                  ],
-                ),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      child: Text(
-                        'Pieces for FireFox',
-                        style: ParticleFont.micro(
-                          context,
-                          customization: TextStyle(
-                            color: Colors.black,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      onPressed: () async {
-                        String linkUrl = 'https://code.pieces.app/save-code-snippets';
-
-                        linkUrl = linkUrl; //Twitter's URL
-                        if (await canLaunch(linkUrl)) {
-                          await launch(
-                            linkUrl,
-                          );
-                        } else {
-                          throw 'Could not launch $linkUrl';
-                        }
-                      },
-                    ),
-                    Icon(Icons.language),
-                  ],
-                ),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      child: Text(
-                        'Pieces for Brave',
-                        style: ParticleFont.micro(
-                          context,
-                          customization: TextStyle(
-                            color: Colors.black,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      onPressed: () async {
-                        String linkUrl = 'https://code.pieces.app/save-code-snippets';
-
-                        linkUrl = linkUrl; //Twitter's URL
-                        if (await canLaunch(linkUrl)) {
-                          await launch(
-                            linkUrl,
-                          );
-                        } else {
-                          throw 'Could not launch $linkUrl';
-                        }
-                      },
-                    ),
-                    Icon(Icons.language),
-                  ],
-                ),
-              ],
-            ),
-          ),
+          // https://www.facebook.com/518508470288885/posts/559057106234021
         ],
       ),
     );
   }
 }
 // https://www.codeplusplus.app/
+//https://www.facebook.com/getpieces?hc_ref=ARTty9yMKDnC6EOC_dukOB8gsP09WwI5IUY7joQePSgH_eL8mwtbaDQcRwGymY7PSgI&fref=nf&__xts__[0]=68.ARArJRvE3X4gZQbgIIJ4o3jEHlG8obp9EF2jC70I6Z9Jc_ol75UDquczKVgZGoc2Vmky-PzPlcPQD26uZUlAcXu48nDQl8gEO_Wd7V1Bhg8rHq0NxfvuuOul8XypYOy86m8gtisqe_3AF5bZLImHCtbtasfrtvxTXtPCoFClqP6TIxHJp0PUXROvHGV-1doBtEBlqJ9BxPWUpefeLXNO8KgafE7V3M_ohQi7ZEheRc1y4Zi02St-vdArwbzSkmsl6qDh-KFPJqLVDlztD4sk_OPsRlxFvukPVrGRFFA68UpjKJpPmaI

@@ -41,6 +41,7 @@ dependencies:
   fluttertoast: ^8.1.1
   alert: ^2.0.1
   flutter_expandable_fab: ^1.6.1
+  side_navigation: ^1.0.4
 dev_dependencies:
   pedantic: ^1.11.1
   flutter_app_name: ^0.1.1

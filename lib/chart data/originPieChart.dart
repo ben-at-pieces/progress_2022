@@ -37,58 +37,25 @@ class OriginChart extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black12,
       appBar: AppBar(
+        backgroundColor: Colors.black87,
+
         leading: FloatingActionButton(
-          tooltip: 'copy your Pieces Repo Data',
+          tooltip: 'copy snippet Origins',
           elevation: 0,
           mini: true,
           backgroundColor: Colors.transparent,
           child: Icon(
-            Icons.info_outline,
+            Icons.copy,
             color: Colors.white,
             size: 15,
           ),
           onPressed: () async {
             ClipboardData data = ClipboardData(text: '''
-User Name: ${StatisticsSingleton().statistics?.user}
-Platform: ${StatisticsSingleton().statistics?.platform}
-Version: ${StatisticsSingleton().statistics?.version}
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
-
-Shareable Link count: 
-${StatisticsSingleton().statistics?.shareableLinks}
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
-
-Related Tags: 
-${StatisticsSingleton().statistics?.tags}
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
-
-Related Links: 
-${StatisticsSingleton().statistics?.relatedLinks}
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
-
-Related People: 
-${StatisticsSingleton().statistics?.persons}
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
-
-Snippet Counts by Origin: 
-${StatisticsSingleton().statistics?.origins}
-
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
+Snippet Origins:
+${StatisticsSingleton().statistics?.origins.entries}
 ''');
             const snackBar = SnackBar(
-              content: Text('Copied your repo information!'),
+              content: Text('Successfully copied snippet origins!'),
             );
 
 // Find the ScaffoldMessenger in the widget tree
@@ -97,9 +64,8 @@ ${StatisticsSingleton().statistics?.origins}
             await Clipboard.setData(data);
           },
         ),
-        backgroundColor: Colors.black54,
         title: Text(
-          'User: ${StatisticsSingleton().statistics?.user} Snippet Origins',
+          'Snippet Origins',
           style: ParticleFont.button(context,
               customization: TextStyle(
                 color: Colors.white,
@@ -154,8 +120,22 @@ ${StatisticsSingleton().statistics?.origins}
           elevation: 5,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
-
             children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    '${StatisticsSingleton().statistics?.user}',
+                    style: ParticleFont.micro(
+                      context,
+                      customization: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                      ),
+                    ),
+                  )
+                ],
+              ),
               Icon(
                 Icons.bolt_sharp,
                 color: Colors.white,
@@ -166,7 +146,7 @@ ${StatisticsSingleton().statistics?.origins}
                   style: ParticleFont.micro(
                     context,
                     customization: TextStyle(
-                      color: Colors.white,
+                      color: Colors.grey,
                       fontSize: 10,
                     ),
                   ),

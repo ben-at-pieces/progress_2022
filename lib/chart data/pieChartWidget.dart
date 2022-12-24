@@ -2,6 +2,7 @@
 
 import 'dart:core';
 import 'dart:math' as math;
+import 'package:side_navigation/side_navigation.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:gsheets/chart%20data/statistics_singleton.dart';
@@ -36,62 +37,30 @@ class MyPieChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(child: Icon(Icons.import_contacts_sharp),),
       backgroundColor: Colors.black12,
       appBar: AppBar(
-
+        toolbarHeight: 40,
         leading: FloatingActionButton(
-          tooltip: 'copy your Pieces Repo Data',
+          tooltip: 'copy Snippet Classifications',
           elevation: 0,
           mini: true,
           backgroundColor: Colors.transparent,
           child: Icon(
-            Icons.info_outline,
+            Icons.copy,
             color: Colors.white,
             size: 15,
           ),
           onPressed: () async {
             ClipboardData data = ClipboardData(text: '''
-User Name: ${StatisticsSingleton().statistics?.user}
-Platform: ${StatisticsSingleton().statistics?.platform}
-Version: ${StatisticsSingleton().statistics?.version}
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
-
-Shareable Link count: 
-${StatisticsSingleton().statistics?.shareableLinks}
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
-
-Related Tags: 
-${StatisticsSingleton().statistics?.tags}
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
-
-Related Links: 
-${StatisticsSingleton().statistics?.relatedLinks}
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
-
-Related People: 
-${StatisticsSingleton().statistics?.persons}
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
-
 Snippet Counts by Origin: 
-${StatisticsSingleton().statistics?.origins}
+${StatisticsSingleton().statistics?.classifications}
 
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
 ''');
             const snackBar = SnackBar(
-              content: Text('Copied your repo information!'),
+              content: Text(
+                'Successfully copied Snippet Classifications!',
+             style: TextStyle(color: Colors.white),
+              ),
             );
 
 // Find the ScaffoldMessenger in the widget tree
@@ -100,54 +69,60 @@ ${StatisticsSingleton().statistics?.origins}
             await Clipboard.setData(data);
           },
         ),
-        backgroundColor: Colors.black54,
+        backgroundColor: Colors.black87,
         title: Text(
-          'User: ${StatisticsSingleton().statistics?.user} Snippet Classifications',
-          style: ParticleFont.button(context,
-              customization: TextStyle(
-                color: Colors.white,
-              )),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 40.0),
-        child: SizedBox(
-          height: 200,
-          width: 550,
-          child: PieChart(
-            centerText: 'TOTAL: ${StatisticsSingleton().statistics?.snippetsSaved}',
-            ringStrokeWidth: 50,
-            chartValuesOptions: const ChartValuesOptions(
-              showChartValuesOutside: true,
-              showChartValueBackground: true,
-              decimalPlaces: 0,
-              showChartValues: true,
-              showChartValuesInPercentage: false,
-            ),
-            emptyColor: Colors.grey,
-            baseChartColor: Colors.black45,
-            centerTextStyle:
-                TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold),
-            key: ValueKey(key),
-            dataMap: StatisticsSingleton().statistics!.classifications,
-            animationDuration: const Duration(milliseconds: 800),
-            chartLegendSpacing: 30,
-            chartRadius: math.min(MediaQuery.of(context).size.width / 1.5, 180),
-            colorList: colorList,
-            chartType: ChartType.ring,
-            legendOptions: const LegendOptions(
-              showLegendsInRow: false,
-              legendPosition: LegendPosition.left,
-              showLegends: true,
-              legendShape: true ? BoxShape.circle : BoxShape.rectangle,
-              legendTextStyle: TextStyle(
-                color: Colors.black,
-                fontSize: 10,
-                fontWeight: FontWeight.bold,
-              ),
+          'Snippet Classifications',
+          style: ParticleFont.button(
+            context,
+            customization: TextStyle(
+              color: Colors.white,
             ),
           ),
         ),
+      ),
+      body: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 40.0),
+            child: SizedBox(
+              height: 200,
+              width: 550,
+              child: PieChart(
+                centerText: 'TOTAL: ${StatisticsSingleton().statistics?.snippetsSaved}',
+                ringStrokeWidth: 50,
+                chartValuesOptions: const ChartValuesOptions(
+                  showChartValuesOutside: true,
+                  showChartValueBackground: true,
+                  decimalPlaces: 0,
+                  showChartValues: true,
+                  showChartValuesInPercentage: false,
+                ),
+                emptyColor: Colors.grey,
+                baseChartColor: Colors.black45,
+                centerTextStyle:
+                    TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold),
+                key: ValueKey(key),
+                dataMap: StatisticsSingleton().statistics!.classifications,
+                animationDuration: const Duration(milliseconds: 800),
+                chartLegendSpacing: 30,
+                chartRadius: math.min(MediaQuery.of(context).size.width / 1.5, 180),
+                colorList: colorList,
+                chartType: ChartType.ring,
+                legendOptions: const LegendOptions(
+                  showLegendsInRow: false,
+                  legendPosition: LegendPosition.left,
+                  showLegends: true,
+                  legendShape: true ? BoxShape.circle : BoxShape.rectangle,
+                  legendTextStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: SizedBox(
         height: 30,
@@ -157,8 +132,51 @@ ${StatisticsSingleton().statistics?.origins}
           elevation: 5,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
-
             children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  FloatingActionButton(
+                    tooltip: 'copy user data',
+                    elevation: 0,
+                    mini: true,
+                    backgroundColor: Colors.transparent,
+                    child: Icon(
+                      Icons.info_outline,
+                      color: Colors.white,
+                      size: 15,
+                    ),
+                    onPressed: () async {
+                      ClipboardData data = ClipboardData(text: '''
+User Name: ${StatisticsSingleton().statistics?.user}
+Platform: ${StatisticsSingleton().statistics?.platform}
+Version: ${StatisticsSingleton().statistics?.version}''');
+                      const snackBar = SnackBar(
+                        content: Text(
+                          'Successfully saved User data to clipboard!',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      );
+
+// Find the ScaffoldMessenger in the widget tree
+// and use it to show a SnackBar.
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      await Clipboard.setData(data);
+                    },
+
+                  ),
+                  Text(
+                    '${StatisticsSingleton().statistics?.user}',
+                    style: ParticleFont.micro(
+                      context,
+                      customization: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                      ),
+                    ),
+                  )
+                ],
+              ),
               Icon(
                 Icons.bolt_sharp,
                 color: Colors.white,
@@ -169,7 +187,7 @@ ${StatisticsSingleton().statistics?.origins}
                   style: ParticleFont.micro(
                     context,
                     customization: TextStyle(
-                      color: Colors.white,
+                      color: Colors.grey,
                       fontSize: 10,
                     ),
                   ),
@@ -187,7 +205,6 @@ ${StatisticsSingleton().statistics?.origins}
                   }
                 },
               ),
-
             ],
           ),
         ),
