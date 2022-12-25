@@ -34,6 +34,8 @@ import 'colors.dart';
 class MyPieChart extends StatelessWidget {
   const MyPieChart({super.key});
 
+  get index => imgList.length;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +61,7 @@ ${StatisticsSingleton().statistics?.classifications}
             const snackBar = SnackBar(
               content: Text(
                 'Successfully copied Snippet Classifications!',
-             style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white),
               ),
             );
 
@@ -82,6 +84,42 @@ ${StatisticsSingleton().statistics?.classifications}
       ),
       body: Row(
         children: [
+          SizedBox(
+            height: 450,
+            width: 100,
+            child: ListView(
+              // scrollDirection: Axis.vertical,
+              children: [
+                // showing list of images
+                for (var item in imgList)
+                  SizedBox(
+                    height: 40,
+                    child: ListTile(
+                        leading: IconButton(
+                      tooltip: 'named language',
+                          onPressed: () => showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: Text('TOTAL: ${Language().languages}'),
+                              content: const Text('AlertDialog description'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context, 'Cancel'),
+                                  child: const Text('Cancel'),
+                                ),
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context, 'OK'),
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            ),
+                          ),
+                      icon: item,
+                    )),
+                  )
+              ],
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 40.0),
             child: SizedBox(
@@ -163,7 +201,6 @@ Version: ${StatisticsSingleton().statistics?.version}''');
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       await Clipboard.setData(data);
                     },
-
                   ),
                   Text(
                     '${StatisticsSingleton().statistics?.user}',
@@ -212,3 +249,78 @@ Version: ${StatisticsSingleton().statistics?.version}''');
     );
   }
 }
+
+class Language {
+  List languages = [
+    'batchfile',
+        'c',
+        'sharp',
+        'coffees',
+        'cpp',
+        'css',
+        'dart',
+        'erlang',
+        'go',
+        'haskell',
+        'html',
+        'java',
+        'javascript',
+        'json',
+        'lua',
+        'markdown',
+        'matlab',
+        'objective-c',
+        'perl',
+        'php',
+        'powershell',
+        'python',
+        'r',
+        'ruby',
+        'rust',
+        'scala',
+        'sql',
+        'swift',
+        'typescript',
+        'tex',
+        'text',
+        'toml',
+        'yaml',
+
+  ];}
+
+List imgList = [
+  Image.asset('batchfile-black.jpg'),
+  Image.asset('c.jpg'),
+  Image.asset('c-sharp.jpg'),
+  Image.asset('coffeescript-black.jpg'),
+  Image.asset('cpp.jpg'),
+  Image.asset('css.jpg'),
+  Image.asset('dart.jpg'),
+  Image.asset('erlang.jpg'),
+  Image.asset('go.jpg'),
+  Image.asset('haskell.jpg'),
+  Image.asset('html.jpg'),
+  Image.asset('java.jpg'),
+  Image.asset('javascript.jpg'),
+  Image.asset('json.jpg'),
+  Image.asset('lua.jpg'),
+  Image.asset('markdown-black.jpg'),
+  Image.asset('matlab.jpg'),
+  Image.asset('objective-c.jpg'),
+  Image.asset('perl.jpg'),
+  Image.asset('php.jpg'),
+  Image.asset('powershell.jpg'),
+  Image.asset('python.jpg'),
+  Image.asset('r.jpg'),
+  Image.asset('ruby.jpg'),
+  Image.asset('rust-black.jpg'),
+  Image.asset('scala.jpg'),
+  Image.asset('sql.jpg'),
+  Image.asset('swift.jpg'),
+  Image.asset('typescript.jpg'),
+  Image.asset('tex-black.jpg'),
+  Image.asset('text.jpg'),
+  Image.asset('toml-black.jpg'),
+  Image.asset('yaml-black.jpg'),
+];
+

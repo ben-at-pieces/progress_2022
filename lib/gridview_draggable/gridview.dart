@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_draggable_gridview/flutter_draggable_gridview.dart';
 
+import '../snippet_specifics.dart';
 import 'grid_item.dart';
 import 'images.dart';
 
@@ -35,30 +36,30 @@ class GridWithScrollControllerExampleState extends State<GridWithScrollControlle
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: Colors.black12,
-        child: DraggableGridViewBuilder(
-          padding: EdgeInsets.all(2),
-          controller: _scrollController,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 8,
-            childAspectRatio:
-                MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height / 1),
-          ),
-          children: _listOfDraggableGridItem,
-          // children: _listOfDraggableGridItem,
-          dragCompletion: onDragAccept,
-          isOnlyLongPress: false,
-          dragFeedback: feedback,
-          dragPlaceHolder: placeHolder,
+      body: DraggableGridViewBuilder(
+        padding: EdgeInsets.all(2),
+        controller: _scrollController,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 8,
+          childAspectRatio:
+              MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height / 1),
         ),
+        children: _listOfDraggableGridItem,
+        // children: _listOfDraggableGridItem,
+        dragCompletion: onDragAccept,
+        isOnlyLongPress: false,
+        dragFeedback: feedback,
+        dragPlaceHolder: placeHolder,
       ),
     );
   }
 
   Widget feedback(List<DraggableGridItem> list, int index) {
     return Container(
-      child: list[index].child,
+      color: Colors.greenAccent,
+      // child: list[index].child,
+
+
       width: 200,
       height: 350,
     );
@@ -84,17 +85,18 @@ class GridWithScrollControllerExampleState extends State<GridWithScrollControlle
           isDraggable: true,
           dragCallback: (context, isDragging) {
             log('isDragging: $isDragging');
+
           },
         ),
         // DraggableGridItem(child: GridItem(image: Images.asset_1), isDraggable: true),
-        DraggableGridItem(child: GridItem(image: Images.asset_2), isDraggable: true),
-        DraggableGridItem(child: GridItem(image: Images.asset_3), isDraggable: true),
-        DraggableGridItem(child: GridItem(image: Images.asset_4), isDraggable: true),
-        DraggableGridItem(child: GridItem(image: Images.asset_5), isDraggable: true),
-        DraggableGridItem(child: GridItem(image: Images.asset_6), isDraggable: true),
-        DraggableGridItem(child: GridItem(image: Images.asset_7), isDraggable: true),
-        DraggableGridItem(child: GridItem(image: Images.asset_8), isDraggable: true),
-        DraggableGridItem(child: GridItem(image: Images.asset_9), isDraggable: true),
+        DraggableGridItem(child: GridItem(image: Images.asset_2),  isDraggable: true),
+        DraggableGridItem(child: GridItem(image: Images.asset_3),  isDraggable: true),
+        DraggableGridItem(child: GridItem(image: Images.asset_4),  isDraggable: true),
+        DraggableGridItem(child: GridItem(image: Images.asset_5),  isDraggable: true),
+        DraggableGridItem(child: GridItem(image: Images.asset_6),  isDraggable: true),
+        DraggableGridItem(child: GridItem(image: Images.asset_7),  isDraggable: true),
+        DraggableGridItem(child: GridItem(image: Images.asset_8),  isDraggable: true),
+        DraggableGridItem(child: GridItem(image: Images.asset_9),  isDraggable: true),
         DraggableGridItem(child: GridItem(image: Images.asset_10), isDraggable: true),
         DraggableGridItem(child: GridItem(image: Images.asset_11), isDraggable: true),
         DraggableGridItem(child: GridItem(image: Images.asset_12), isDraggable: true),

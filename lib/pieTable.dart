@@ -15,7 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:runtime_client/particle.dart';
 import 'chart data/boot.dart';
-import 'chart data/expaded_widget.dart';
+import 'expaded_widget.dart';
 import 'chart data/originPieChart.dart';
 import 'chart data/pieChartWidget.dart';
 import 'chart data/statistics_singleton.dart';

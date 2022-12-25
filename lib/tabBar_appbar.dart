@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:gsheets/chart%20data/originPieChart.dart';
 import 'package:gsheets/listview2/related_links.dart';
 import 'package:gsheets/pieTable.dart';
+import 'package:gsheets/snippet_specifics.dart';
 import 'package:runtime_client/particle.dart';
 
 import 'bar chart/bar_chart.dart';
@@ -51,7 +52,7 @@ class HomePageState extends State<HomePageAppBar> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
-        length: 7,
+        length: 8,
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.black54,
@@ -113,6 +114,14 @@ class HomePageState extends State<HomePageAppBar> {
                     customization: TextStyle(color: Colors.white, ),
                   ),
                 ),
+                Text(
+                  'Viewer',
+                  textWidthBasis: TextWidthBasis.parent,
+                  style: ParticleFont.micro(
+                    context,
+                    customization: TextStyle(color: Colors.white, ),
+                  ),
+                ),
               ],
             ), // TabBar
           ), // AppBar
@@ -140,9 +149,12 @@ class HomePageState extends State<HomePageAppBar> {
 
               /// languages 2.0
               Menu(),
+
+
+              KindaCodeDemo(),
               // ExampleStaggeredAnimations(),
 
-              // GridWithScrollControllerExample(),
+              GridWithScrollControllerExample(),
               // Center(child: ExampleParallax()),
             ],
           ), // TabBarView
