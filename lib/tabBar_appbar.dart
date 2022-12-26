@@ -21,6 +21,7 @@ import 'bar chart/roll_wheel.dart';
 import 'chart data/boot.dart';
 import 'chart data/pieChartWidget.dart';
 import 'gridview_draggable/gridview.dart';
+import 'gridview_draggable/viewer.dart';
 import 'listview1/list_widget.dart';
 import 'listview3/tags.dart';
 import 'listview4/testing.dart';
@@ -52,7 +53,7 @@ class HomePageState extends State<HomePageAppBar> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
-        length: 8,
+        length: 7,
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.black54,
@@ -114,21 +115,14 @@ class HomePageState extends State<HomePageAppBar> {
                     customization: TextStyle(color: Colors.white, ),
                   ),
                 ),
-                Text(
-                  'Viewer',
-                  textWidthBasis: TextWidthBasis.parent,
-                  style: ParticleFont.micro(
-                    context,
-                    customization: TextStyle(color: Colors.white, ),
-                  ),
-                ),
+
               ],
             ), // TabBar
           ), // AppBar
           body: TabBarView(
             children: [
               /// Circular Pie Chart ==========================================================
-                   // HomePagePie(),
+                    // HomePagePie(),
               MyPieChart(),
               /// origin classification ==========================================================
               OriginChart(),
@@ -147,14 +141,15 @@ class HomePageState extends State<HomePageAppBar> {
               /// RELATED PEOPLE
               PeoplesListWidget(),
 
+
               /// languages 2.0
               Menu(),
 
 
-              KindaCodeDemo(),
+              // KindaCodeDemo(),
               // ExampleStaggeredAnimations(),
-
-              GridWithScrollControllerExample(),
+              // Add_Piece(),
+              // GridWithScrollControllerExample(),
               // Center(child: ExampleParallax()),
             ],
           ), // TabBarView
