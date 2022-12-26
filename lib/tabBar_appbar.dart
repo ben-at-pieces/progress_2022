@@ -10,21 +10,16 @@ import 'package:core_openapi/api/user_api.dart';
 import 'package:core_openapi/api/users_api.dart';
 import 'package:core_openapi/api_client.dart';
 import 'package:flutter/material.dart';
-import 'package:gsheets/chart%20data/originPieChart.dart';
-import 'package:gsheets/listview2/related_links.dart';
-import 'package:gsheets/pieTable.dart';
-import 'package:gsheets/snippet_specifics.dart';
 import 'package:runtime_client/particle.dart';
 
-import 'bar chart/bar_chart.dart';
-import 'bar chart/roll_wheel.dart';
-import 'chart data/boot.dart';
-import 'chart data/pieChartWidget.dart';
-import 'gridview_draggable/gridview.dart';
-import 'gridview_draggable/viewer.dart';
-import 'listview1/list_widget.dart';
-import 'listview3/tags.dart';
-import 'listview4/testing.dart';
+import 'Tab_Activity_Bar_Chart/bar_chart.dart';
+import 'Tab_Origin_Pie_Chart/originPieChart.dart';
+import 'Tab_Peoples_List/peoples_list.dart';
+import 'Tab_Plugins_and_More/plugins_and_more.dart';
+import 'Tab_Related_Links_List/related_links_List.dart';
+import 'Tab_Tags_List/tags_list.dart';
+import 'connections/boot.dart';
+import 'Language_Pie_List/pieChartWidget.dart';
 
 enum LegendShape { circle, rectangle }
 
@@ -143,7 +138,7 @@ class HomePageState extends State<HomePageAppBar> {
 
 
               /// languages 2.0
-              Menu(),
+              Plugins(),
 
 
               // KindaCodeDemo(),

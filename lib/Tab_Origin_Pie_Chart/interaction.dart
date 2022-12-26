@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:gsheets/chart%20data/statistics_singleton.dart';
+import 'package:gsheets/connections/statistics_singleton.dart';
 
 import 'indicator.dart';
 

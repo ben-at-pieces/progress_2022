@@ -2,7 +2,7 @@ import 'package:connector_openapi/api.dart';
 import 'package:connector_openapi/api_client.dart' as connector;
 import 'package:core_openapi/api.dart';
 import 'package:core_openapi/api_client.dart';
-import 'package:gsheets/chart%20data/statistics_singleton.dart';
+import 'package:gsheets/connections/statistics_singleton.dart';
 import 'package:test/test.dart';
 
 /// /assets [GET]

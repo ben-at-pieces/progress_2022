@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:runtime_client/particle.dart';
-
-import '../chart data/statistics_singleton.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../appbar_class.dart';
+import '../bottom_appbar_class.dart';
+import '../connections/statistics_singleton.dart';
 import '../checkbox.dart';
-
+import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -14,20 +17,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: "ListView.builder",
+      // title: "ListView.builder",
         theme: ThemeData(primarySwatch: Colors.green),
         debugShowCheckedModeBanner: false,
         // home : new ListViewBuilder(), NO Need To Use Unnecessary New Keyword
-        home: RelatedPeeps());
+        home: PeoplesListWidget());
   }
 }
 
-class RelatedPeeps extends StatelessWidget {
-  RelatedPeeps({Key? key}) : super(key: key);
+class PeoplesListWidget extends StatelessWidget {
+  PeoplesListWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CutomAppBar(title: 'Related People',),
       body: Container(
         color: Colors.black12,
         child: ListView.builder(
@@ -36,19 +40,20 @@ class RelatedPeeps extends StatelessWidget {
               return ListTile(
                 tileColor: Colors.white,
                 leading: Icon(
-                  Icons.mail,
-                  color: Colors.grey,
+                  Icons.account_circle_sharp,
+                  color: Colors.black,
                 ),
                 title: Text(
                   '${StatisticsSingleton().statistics?.persons[index]}  ',
                   style:
-                      ParticleFont.bodyText1(context, customization: TextStyle(color: Colors.black)),
+                  ParticleFont.bodyText1(context, customization: TextStyle(color: Colors.black)),
                 ),
                 trailing: MyCheckBoxWidgget(),
               );
               // title: Text('Person: $index'));
             }),
       ),
+      bottomNavigationBar: CutomBottomAppBar(),
     );
   }
 }

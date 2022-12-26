@@ -1,6 +1,6 @@
 import 'package:core_openapi/api.dart';
 
-import '../bar chart/api.dart';
+import 'api.dart';
 
 Future<StatisticsData> getStats() async {
   Assets assets = await PiecesApi.assetsApi.assetsSnapshot();

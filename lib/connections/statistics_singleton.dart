@@ -1,4 +1,4 @@
-import 'package:gsheets/chart%20data/statistics.dart';
+import 'package:gsheets/connections/statistics.dart';
 
 class StatisticsSingleton {
   static final StatisticsSingleton _singleton = StatisticsSingleton._internal();

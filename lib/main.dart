@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:gsheets/tabBar_appbar.dart';
 import 'package:runtime_client/particle.dart';
 
-import 'chart data/statistics.dart';
-import 'chart data/statistics_singleton.dart';
+import 'connections/statistics.dart';
+import 'connections/statistics_singleton.dart';
 
 void main() async {
   StatisticsSingleton().statistics = await getStats();

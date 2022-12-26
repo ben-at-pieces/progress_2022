@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:runtime_client/particle.dart';
 import 'package:runtime_client/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../chart data/statistics_singleton.dart';
+import '../appbar_class.dart';
+import '../bottom_appbar_class.dart';
+import '../connections/statistics_singleton.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -20,138 +22,19 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(primarySwatch: Colors.green),
         debugShowCheckedModeBanner: false,
         // home : new ListViewBuilder(), NO Need To Use Unnecessary New Keyword
-        home: Menu());
+        home: Plugins());
   }
 }
 
-class Menu extends StatelessWidget {
-  Menu({Key? key}) : super(key: key);
+class Plugins extends StatelessWidget {
+  Plugins({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black12,
-      bottomNavigationBar: SizedBox(
-        height: 30,
-        child: BottomAppBar(
-          notchMargin: 5,
-          color: Colors.black54,
-          elevation: 5,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    '${StatisticsSingleton().statistics?.user}',
-                    style: ParticleFont.micro(
-                      context,
-                      customization: TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              Icon(
-                Icons.bolt_sharp,
-                color: Colors.white,
-              ),
-              TextButton(
-                child: Text(
-                  'Powered by Pieces Runtime',
-                  style: ParticleFont.micro(
-                    context,
-                    customization: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 10,
-                    ),
-                  ),
-                ),
-                onPressed: () async {
-                  String linkUrl = 'https://www.runtime.dev/';
-
-                  linkUrl = linkUrl; //Twitter's URL
-                  if (await canLaunch(linkUrl)) {
-                    await launch(
-                      linkUrl,
-                    );
-                  } else {
-                    throw 'Could not launch $linkUrl';
-                  }
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
-      appBar: AppBar(
-        backgroundColor: Colors.black87,
-        leading: FloatingActionButton(
-          tooltip: 'copy these links',
-          elevation: 0,
-          mini: true,
-          backgroundColor: Colors.transparent,
-          child: Icon(
-            Icons.copy,
-            color: Colors.white,
-            size: 15,
-          ),
-          onPressed: () async {
-            ClipboardData data = ClipboardData(text: '''
-User Name: ${StatisticsSingleton().statistics?.user}
-Platform: ${StatisticsSingleton().statistics?.platform}
-Version: ${StatisticsSingleton().statistics?.version}
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
-
-Pieces for Developers Desktop App: 
-https://code.pieces.app/install
-
-Pieces for Visual Studio Code: MarketPlace
-https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode
-
-Pieces for JetBrains: MarketPlace
-https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets
-
-Pieces Code From ScreenShot Link
-https://www.codefromscreenshot.com/
-
-Pieces Text From ScreenShot Link
-https://www.textfromscreenshot.com/
-
-Pieces Better Code for Slack
-https://www.codeplusplus.app/
-
-Pieces from Chrome Web Extension
-https://code.pieces.app/save-code-snippets
-
-  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\
-'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
-
-''');
-            const snackBar = SnackBar(
-              content: Text('Copied your repo information!'),
-            );
-
-// Find the ScaffoldMessenger in the widget tree
-// and use it to show a SnackBar.
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            await Clipboard.setData(data);
-          },
-        ),
-        title: Text(
-          'Plugins & More!',
-          style: ParticleFont.button(context,
-              customization: TextStyle(
-                color: Colors.white,
-              )),
-        ),
-      ),
+      bottomNavigationBar: CutomBottomAppBar(),
+      appBar: CutomAppBar(title: 'Plugins & More',),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
