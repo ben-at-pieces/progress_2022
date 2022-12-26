@@ -802,13 +802,158 @@ https://code.pieces.app/save-code-snippets
                   ],
                 ),
               ),
+              SizedBox(
+                height: 200,
+                width: 50,
+                child: ListView(
+                  // scrollDirection: Axis.vertical,
+                  children: [
+                    // showing list of images
+                    for (var item in imgList7)
+                      SizedBox(
+                          height: 40,
+                          width: 50,
+                          child:  IconButton(
+                            icon: item,
+                            // tooltip: 'named language',
+                            onPressed: () => showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: Text('TOTAL: ${Language().languages}'),
+                                content: const Text('AlertDialog description'),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context, 'Cancel'),
+                                    child: const Text('Cancel'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context, 'OK'),
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 200,
+                width: 50,
+                child: ListView(
+                  // scrollDirection: Axis.vertical,
+                  children: [
+                    // showing list of images
+                    for (var item in imgList8)
+                      SizedBox(
+                          height: 40,
+                          width: 50,
+                          child:  IconButton(
+                            icon: item,
+                            // tooltip: 'named language',
+                            onPressed: () => showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: Text('TOTAL: ${Language().languages}'),
+                                content: const Text('AlertDialog description'),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context, 'Cancel'),
+                                    child: const Text('Cancel'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context, 'OK'),
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 200,
+                width: 50,
+                child: ListView(
+                  // scrollDirection: Axis.vertical,
+                  children: [
+                    // showing list of images
+                    for (var item in imgList9)
+                      SizedBox(
+                          height: 40,
+                          width: 50,
+                          child:  IconButton(
+                            icon: item,
+                            // tooltip: 'named language',
+                            onPressed: () => showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: Text('TOTAL: ${Language().languages}'),
+                                content: const Text('AlertDialog description'),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context, 'Cancel'),
+                                    child: const Text('Cancel'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context, 'OK'),
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 200,
+                width: 50,
+                child: ListView(
+                  // scrollDirection: Axis.vertical,
+                  children: [
+                    // showing list of images
+                    for (var item in imgList10)
+                      SizedBox(
+                          height: 40,
+                          width: 50,
+                          child:  IconButton(
+                            icon: item,
+                            // tooltip: 'named language',
+                            onPressed: () => showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: Text('TOTAL: ${Language().languages}'),
+                                content: const Text('AlertDialog description'),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context, 'Cancel'),
+                                    child: const Text('Cancel'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context, 'OK'),
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )),
+                  ],
+                ),
+              ),
+
+
+
+
               Padding(
-                padding: const EdgeInsets.only(left: 10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                padding: const EdgeInsets.only(left: 10.0, top: 15),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
+                      padding: const EdgeInsets.only(left: 10.0, top: 15),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -845,7 +990,7 @@ https://code.pieces.app/save-code-snippets
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
+                      padding: const EdgeInsets.only(left: 10.0, top: 15),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -882,7 +1027,7 @@ https://code.pieces.app/save-code-snippets
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
+                      padding: const EdgeInsets.only(left: 10.0, top: 15),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -919,7 +1064,7 @@ https://code.pieces.app/save-code-snippets
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
+                      padding: const EdgeInsets.only(left: 10.0, top: 15),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -1009,49 +1154,47 @@ class Language {
   ];
 }
 
+
+
 List imgList1 = [
+
+
   Image.asset('batchfile-black.jpg'),
-  Image.asset('c.jpg'),
-  Image.asset('c-sharp.jpg'),
-  Image.asset('coffeescript-black.jpg'),
-  Image.asset('cpp.jpg'),
+
+
 
 
 
 ];
-
 List imgList2 = [
 
 
-  Image.asset('css.jpg'),
-  Image.asset('dart.jpg'),
-  Image.asset('erlang.jpg'),
-  Image.asset('go.jpg'),
-  Image.asset('haskell.jpg'),
+
+  Image.asset('c.jpg'),
+
+
+
 
 ];
 
 List imgList3 = [
-  Image.asset('html.jpg'),
-  Image.asset('java.jpg'),
-  Image.asset('javascript.jpg'),
-  Image.asset('json.jpg'),
-  Image.asset('lua.jpg'),
+
+
+  Image.asset('c-sharp.jpg'),
+  Image.asset('coffeescript-black.jpg'),
 
 
 
 ];
+
+
 List imgList4 = [
 
 
 
 
-  Image.asset('markdown-black.jpg'),
-  Image.asset('matlab.jpg'),
-  Image.asset('objective-c.jpg'),
-  Image.asset('r.jpg'),
-  Image.asset('ruby.jpg'),
-
+  Image.asset('cpp.jpg'),
+  Image.asset('css.jpg'),
 
 
 ];
@@ -1059,28 +1202,59 @@ List imgList4 = [
 List imgList5 = [
 
 
-
-
-
-  Image.asset('rust-black.jpg'),
-  Image.asset('scala.jpg'),
-  Image.asset('sql.jpg'),
-  Image.asset('swift.jpg'),
-  Image.asset('typescript.jpg'),
-
+  Image.asset('dart.jpg'),
+  Image.asset('erlang.jpg'),
+  Image.asset('go.jpg'),
 
 ];
-
 
 List imgList6 = [
 
+  Image.asset('haskell.jpg'),
+  Image.asset('html.jpg'),
+  Image.asset('java.jpg'),
 
 
+];
 
-  Image.asset('tex-black.jpg'),
-  Image.asset('text.jpg'),
-  Image.asset('toml-black.jpg'),
-  Image.asset('yaml-black.jpg'),
+List imgList7 = [
+
+
+  Image.asset('javascript.jpg'),
+  Image.asset('json.jpg'),
+  Image.asset('lua.jpg'),
+  Image.asset('markdown-black.jpg'),
+
+
 ];
 
 
+List imgList8 = [
+
+
+  Image.asset('matlab.jpg'),
+  Image.asset('objective-c.jpg'),
+  Image.asset('r.jpg'),
+  Image.asset('ruby.jpg'),
+
+];
+
+List imgList9 = [
+
+
+Image.asset('rust-black.jpg'),
+Image.asset('scala.jpg'),
+Image.asset('sql.jpg'),
+Image.asset('swift.jpg'),
+
+];
+
+List imgList10 = [
+
+
+Image.asset('typescript.jpg'),
+Image.asset('tex-black.jpg'),
+Image.asset('text.jpg'),
+Image.asset('toml-black.jpg'),
+Image.asset('yaml-black.jpg'),
+];
