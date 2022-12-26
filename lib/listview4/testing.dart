@@ -93,10 +93,10 @@ ${StatisticsSingleton().statistics?.persons}
           color: Colors.black54,
           elevation: 5,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     '${StatisticsSingleton().statistics?.user}',
