@@ -12,6 +12,7 @@ import 'package:core_openapi/api_client.dart';
 import 'package:flutter/material.dart';
 import 'package:runtime_client/particle.dart';
 
+import 'Card_Tab/card_list.dart';
 import 'Tab_Activity_Bar_Chart/bar_chart.dart';
 import 'Tab_Origin_Pie_Chart/originPieChart.dart';
 import 'Tab_Peoples_List/peoples_list.dart';
@@ -20,6 +21,8 @@ import 'Tab_Related_Links_List/related_links_List.dart';
 import 'Tab_Tags_List/tags_list.dart';
 import 'connections/boot.dart';
 import 'Language_Pie_List/pieChartWidget.dart';
+import 'jscon_converter/main.dart';
+import 'jscon_converter/tree_from_json.dart';
 
 enum LegendShape { circle, rectangle }
 
@@ -48,58 +51,65 @@ class HomePageState extends State<HomePageAppBar> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
-        length: 7,
+        length: 8,
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.black54,
             title: TabBar(
               indicatorColor: Colors.white,
-
               tabs: [
                 Text(
                   'Snippets',
                   style: ParticleFont.micro(
                     context,
-                    customization: TextStyle(color: Colors.white, ),
+                    customization: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
-                ),          Text(
+                ),
+                Text(
                   'Origins',
                   style: ParticleFont.micro(
                     context,
-                    customization: TextStyle(color: Colors.white, ),
+                    customization: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-
                 Text(
                   'Activity',
                   style: ParticleFont.micro(
                     context,
-                    customization: TextStyle(color: Colors.white, ),
+                    customization: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-
-                /// TODO implement 3rd tab ======================================================
-
                 Text(
                   'Tags',
                   style: ParticleFont.micro(
                     context,
-                    customization: TextStyle(color: Colors.white, ),
+                    customization: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 Text(
                   'Links',
                   style: ParticleFont.micro(
                     context,
-                    customization: TextStyle(color: Colors.white, ),
+                    customization: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-
                 Text(
                   'People',
                   style: ParticleFont.micro(
                     context,
-                    customization: TextStyle(color: Colors.white, ),
+                    customization: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 Text(
@@ -107,22 +117,33 @@ class HomePageState extends State<HomePageAppBar> {
                   textWidthBasis: TextWidthBasis.parent,
                   style: ParticleFont.micro(
                     context,
-                    customization: TextStyle(color: Colors.white, ),
+                    customization: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-
+                Text(
+                  'JSON',
+                  textWidthBasis: TextWidthBasis.parent,
+                  style: ParticleFont.micro(
+                    context,
+                    customization: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
               ],
             ), // TabBar
           ), // AppBar
           body: TabBarView(
             children: [
-              /// Circular Pie Chart ==========================================================
-                    // HomePagePie(),
+
+              // CardExamplesApp(),
+              /// Language Pie Chart ==========================================================
               MyPieChart(),
+
               /// origin classification ==========================================================
               OriginChart(),
-
-
 
               /// Vertical bar graph ==========================================================
               BarGraph(),
@@ -130,22 +151,17 @@ class HomePageState extends State<HomePageAppBar> {
               /// Related TAGS ==========================================================
               TagsListWidget(),
 
-              /// 1 click testing
+              /// Related Links ==========================================================
               RelatedLinksWidget(),
 
-              /// RELATED PEOPLE
+              /// Related Links ==========================================================
               PeoplesListWidget(),
 
-
-              /// languages 2.0
+              /// Plugins & More ==========================================================
               Plugins(),
 
-
-              // KindaCodeDemo(),
-              // ExampleStaggeredAnimations(),
-              // Add_Piece(),
-              // GridWithScrollControllerExample(),
-              // Center(child: ExampleParallax()),
+              /// json ===================================================================
+              TreeFromJson(),
             ],
           ), // TabBarView
         ), // Scaffold

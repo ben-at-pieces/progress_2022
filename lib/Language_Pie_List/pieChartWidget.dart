@@ -40,76 +40,54 @@ class MyPieChart extends StatelessWidget {
 
   get index => imgList1.length;
 
-  Future<Context> connect() async {
-    try {
-      return connectorApi.connect(
-        seededConnectorConnection: SeededConnectorConnection(
-          application: SeededTrackedApplication(
-            name: ApplicationNameEnum.ULTRA_EDIT,
-            platform: PlatformEnum.MACOS,
-            version: '1.5.8',
-          ),
-        ),
-      );
-      // print('======== $connect');
-    } catch (err) {
-      throw Exception('Error occurred when establishing connection. error:$err');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _textFieldController = TextEditingController();
-
 
     return Scaffold(
+      bottomNavigationBar: CutomBottomAppBar(),
       backgroundColor: Colors.black12,
       appBar: CutomAppBar(title: 'Snippet Classifications',),
-      body: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 40.0, left: 40),
-            child: SizedBox(
-              height: 200,
-              width: 550,
-              child: PieChart(
-                centerText: 'TOTAL: ${StatisticsSingleton().statistics?.snippetsSaved}',
-                ringStrokeWidth: 50,
-                chartValuesOptions: const ChartValuesOptions(
-                  showChartValuesOutside: true,
-                  showChartValueBackground: true,
-                  decimalPlaces: 0,
-                  showChartValues: true,
-                  showChartValuesInPercentage: false,
-                ),
-                emptyColor: Colors.grey,
-                baseChartColor: Colors.black45,
-                centerTextStyle:
-                    TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold),
-                key: ValueKey(key),
-                dataMap: StatisticsSingleton().statistics!.classifications,
-                animationDuration: const Duration(milliseconds: 800),
-                chartLegendSpacing: 40,
-                chartRadius: math.min(MediaQuery.of(context).size.width / 1.5, 180),
-                colorList: colorList,
-                chartType: ChartType.ring,
-                legendOptions: const LegendOptions(
-                  showLegendsInRow: false,
-                  legendPosition: LegendPosition.left,
-                  showLegends: true,
-                  legendShape: true ? BoxShape.circle : BoxShape.rectangle,
-                  legendTextStyle: TextStyle(
-                    color: Colors.black,
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 60.0, left: 40),
+        child: SizedBox(
+          height: 200,
+          width: 550,
+          child: PieChart(
+            centerText: 'TOTAL: ${StatisticsSingleton().statistics?.snippetsSaved}',
+            ringStrokeWidth: 70,
+            chartValuesOptions: const ChartValuesOptions(
+              showChartValuesOutside: true,
+              showChartValueBackground: true,
+              decimalPlaces: 0,
+              showChartValues: true,
+              showChartValuesInPercentage: false,
+            ),
+            emptyColor: Colors.grey,
+            baseChartColor: Colors.black45,
+            centerTextStyle:
+                TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold),
+            key: ValueKey(key),
+            dataMap: StatisticsSingleton().statistics!.classifications,
+            animationDuration: const Duration(milliseconds: 800),
+            chartLegendSpacing: 40,
+            chartRadius: math.min(MediaQuery.of(context).size.width / 1.5, 180),
+            colorList: colorList,
+            chartType: ChartType.ring,
+            legendOptions: const LegendOptions(
+              showLegendsInRow: false,
+              legendPosition: LegendPosition.left,
+              showLegends: true,
+              legendShape: true ? BoxShape.circle : BoxShape.rectangle,
+              legendTextStyle: TextStyle(
+                color: Colors.black,
+                fontSize: 10,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
-        ],
+        ),
       ),
-      bottomNavigationBar: CutomBottomAppBar(),
+
     );
   }
 }

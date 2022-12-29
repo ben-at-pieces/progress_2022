@@ -35,34 +35,19 @@ import '../tabBar_appbar.dart';
 
 class OriginChart extends StatelessWidget {
   const OriginChart({super.key});
-  Future<Context> connect() async {
-    try {
-      return connectorApi.connect(
-        seededConnectorConnection: SeededConnectorConnection(
-          application: SeededTrackedApplication(
-            name: ApplicationNameEnum.ULTRA_EDIT,
-            platform: PlatformEnum.MACOS,
-            version: '1.5.8',
-          ),
-        ),
-      );
-      // print('======== $connect');
-    } catch (err) {
-      throw Exception('Error occurred when establishing connection. error:$err');
-    }
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black12,
       appBar: CutomAppBar(title: 'Snippet Origins',),
-      body: SizedBox(
-        height: 200,
-        width: 550,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 40.0, left: 40),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 60.0, left: 40),
+        child: SizedBox(
+          height: 200,
+          width: 550,
           child: PieChart(
-            ringStrokeWidth: 50,
+            ringStrokeWidth: 100,
             centerText: 'ORIGINS',
             chartValuesOptions: const ChartValuesOptions(
               showChartValuesOutside: true,
@@ -84,7 +69,7 @@ class OriginChart extends StatelessWidget {
             chartType: ChartType.ring,
             legendOptions: const LegendOptions(
               showLegendsInRow: false,
-              legendPosition: LegendPosition.right,
+              legendPosition: LegendPosition.left,
               showLegends: true,
               legendShape: true ? BoxShape.circle : BoxShape.rectangle,
               legendTextStyle: TextStyle(

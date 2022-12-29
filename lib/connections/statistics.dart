@@ -4,6 +4,15 @@ import 'api.dart';
 
 Future<Statistics> getStats() async {
   Assets assets = await PiecesApi.assetsApi.assetsSnapshot();
+
+  List<Asset> asset = assets.iterable;
+
+
+  Iterable<Asset> yaml = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.json);
+
+  // List<Asset> json_snippets = asse
+
   ReturnedUserProfile user = await PiecesApi.userApi.userSnapshot();
 
   /// Activities Information (version, platform)
@@ -31,6 +40,7 @@ Future<Statistics> getStats() async {
   Map<String, double> classifications = {};
 
   List<String> relatedLinks = [];
+  List<String> relatedLinkz = [];
 
   /// origin map (String  :  double)
   Map<String, double> origins = {};
@@ -52,8 +62,6 @@ Future<Statistics> getStats() async {
     if (asset.original.reference?.classification.generic == ClassificationGenericEnum.CODE) {
       raw = asset.original.reference?.fragment?.string?.raw;
     }
-
-
 
     /// Line count
     if (raw != null) {
@@ -101,11 +109,6 @@ Future<Statistics> getStats() async {
       }
     }
 
-    /// Related Links
-    for (Website website in asset.websites?.iterable ?? []) {
-      relatedLinks.add(website.url);
-    }
-
     /// Origins
     for (Website website in asset.websites?.iterable ?? []) {
       relatedLinks.add(website.url);
@@ -142,6 +145,8 @@ Future<Statistics> getStats() async {
     relatedLinks: relatedLinks,
     user: user.user?.name ?? user.user?.email ?? '',
     origins: origins,
+    yaml: yaml,
+    raw: '',
   );
   return statistics;
 }
@@ -160,21 +165,24 @@ class Statistics {
   final String activity;
   final String platform;
   final String version;
+  final String raw;
 
+  final Iterable<Asset> yaml;
 
-  Statistics({
-    required this.origins,
-    required this.classifications,
-    required this.snippetsSaved,
-    required this.shareableLinks,
-    required this.updatedSnippets,
-    required this.timeTaken,
-    required this.tags,
-    required this.persons,
-    required this.relatedLinks,
-    required this.user,
-    required this.activity,
-    required this.platform,
-    required this.version,
-  });
+  Statistics(
+      {required this.yaml,
+      required this.origins,
+      required this.classifications,
+      required this.snippetsSaved,
+      required this.shareableLinks,
+      required this.updatedSnippets,
+      required this.timeTaken,
+      required this.tags,
+      required this.persons,
+      required this.relatedLinks,
+      required this.user,
+      required this.activity,
+      required this.platform,
+      required this.version,
+      required this.raw});
 }

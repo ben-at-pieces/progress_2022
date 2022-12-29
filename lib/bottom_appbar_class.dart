@@ -12,23 +12,7 @@ class CutomBottomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _textFieldController = TextEditingController();
-    Future<Context> connect() async {
-      try {
-        return connectorApi.connect(
-          seededConnectorConnection: SeededConnectorConnection(
-            application: SeededTrackedApplication(
-              name: ApplicationNameEnum.ULTRA_EDIT,
-              platform: PlatformEnum.MACOS,
-              version: '1.5.8',
-            ),
-          ),
-        );
-        // print('======== $connect');
-      } catch (err) {
-        throw Exception('Error occurred when establishing connection. error:$err');
-      }
-    }
+
     return SizedBox(
       height: 30,
       child: BottomAppBar(

@@ -34,13 +34,17 @@ class Plugins extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black12,
       bottomNavigationBar: CutomBottomAppBar(),
-      appBar: CutomAppBar(title: 'Plugins & More',),
+      appBar: CutomAppBar(
+        title: 'Plugins & More',
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 10.0),
+
+            /// =========================================
             child: Row(
               children: [
                 SizedBox(
@@ -471,11 +475,170 @@ class Plugins extends StatelessWidget {
               ],
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10.0, top: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, top: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                            Colors.black54,
+                          ),
+                        ),
+                        child: Text(
+                          'Pieces.app',
+                          style: ParticleFont.micro(
+                            context,
+                            customization: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                        onPressed: () async {
+                          String linkUrl = 'https://code.pieces.app/install';
 
+                          linkUrl = linkUrl; //Twitter's URL
+                          if (await canLaunch(linkUrl)) {
+                            await launch(
+                              linkUrl,
+                            );
+                          } else {
+                            throw 'Could not launch $linkUrl';
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, top: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                            Colors.black54,
+                          ),
+                        ),
+                        child: Text(
+                          'LinkedIn',
+                          style: ParticleFont.micro(
+                            context,
+                            customization: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                        onPressed: () async {
+                          String linkUrl = 'https://www.linkedin.com/company/getpieces/mycompany/';
+
+                          linkUrl = linkUrl; //Twitter's URL
+                          if (await canLaunch(linkUrl)) {
+                            await launch(
+                              linkUrl,
+                            );
+                          } else {
+                            throw 'Could not launch $linkUrl';
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, top: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                            Colors.black54,
+                          ),
+                        ),
+                        child: Text(
+                          'Twitter',
+                          style: ParticleFont.micro(
+                            context,
+                            customization: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                        onPressed: () async {
+                          String linkUrl = 'https://twitter.com/getpieces';
+
+                          linkUrl = linkUrl; //Twitter's URL
+                          if (await canLaunch(linkUrl)) {
+                            await launch(
+                              linkUrl,
+                            );
+                          } else {
+                            throw 'Could not launch $linkUrl';
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, top: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                            Colors.black54,
+                          ),
+                        ),
+                        child: Text(
+                          'Facebook',
+                          style: ParticleFont.micro(
+                            context,
+                            customization: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                        onPressed: () async {
+                          String linkUrl =
+                              'https://www.facebook.com/518508470288885/posts/559057106234021';
+
+                          linkUrl = linkUrl; //Twitter's URL
+                          if (await canLaunch(linkUrl)) {
+                            await launch(
+                              linkUrl,
+                            );
+                          } else {
+                            throw 'Could not launch $linkUrl';
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: 200,
+                height: 120,
                 width: 50,
                 child: ListView(
                   // scrollDirection: Axis.vertical,
@@ -483,34 +646,35 @@ class Plugins extends StatelessWidget {
                     // showing list of images
                     for (var item in imgList1)
                       SizedBox(
-                          height: 40,
-                          width: 50,
-                          child:  IconButton(
-                            icon: item,
-                            // tooltip: 'named language',
-                            onPressed: () => showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: Text('TOTAL: ${Language().languages}'),
-                                content: const Text('AlertDialog description'),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'Cancel'),
-                                    child: const Text('Cancel'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'OK'),
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              ),
+                        height: 40,
+                        width: 50,
+                        child: IconButton(
+                          icon: item,
+                          // tooltip: 'named language',
+                          onPressed: () => showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: Text('Show Suggestions or other useful shit}'),
+                              content: const Text('AlertDialog description'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context, 'Cancel'),
+                                  child: const Text('Cancel'),
+                                ),
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context, 'OK'),
+                                  child: const Text('OK'),
+                                ),
+                              ],
                             ),
-                          )),
+                          ),
+                        ),
+                      ),
                   ],
                 ),
               ),
               SizedBox(
-                height: 200,
+                height: 120,
                 width: 50,
                 child: ListView(
                   // scrollDirection: Axis.vertical,
@@ -520,7 +684,7 @@ class Plugins extends StatelessWidget {
                       SizedBox(
                           height: 40,
                           width: 50,
-                          child:  IconButton(
+                          child: IconButton(
                             icon: item,
                             // tooltip: 'named language',
                             onPressed: () => showDialog<String>(
@@ -545,7 +709,7 @@ class Plugins extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 200,
+                height: 120,
                 width: 50,
                 child: ListView(
                   // scrollDirection: Axis.vertical,
@@ -555,7 +719,7 @@ class Plugins extends StatelessWidget {
                       SizedBox(
                           height: 40,
                           width: 50,
-                          child:  IconButton(
+                          child: IconButton(
                             icon: item,
                             // tooltip: 'named language',
                             onPressed: () => showDialog<String>(
@@ -580,7 +744,7 @@ class Plugins extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 200,
+                height: 120,
                 width: 50,
                 child: ListView(
                   // scrollDirection: Axis.vertical,
@@ -590,7 +754,7 @@ class Plugins extends StatelessWidget {
                       SizedBox(
                           height: 40,
                           width: 50,
-                          child:  IconButton(
+                          child: IconButton(
                             icon: item,
                             // tooltip: 'named language',
                             onPressed: () => showDialog<String>(
@@ -614,9 +778,8 @@ class Plugins extends StatelessWidget {
                   ],
                 ),
               ),
-
               SizedBox(
-                height: 200,
+                height: 120,
                 width: 50,
                 child: ListView(
                   // scrollDirection: Axis.vertical,
@@ -626,7 +789,7 @@ class Plugins extends StatelessWidget {
                       SizedBox(
                           height: 40,
                           width: 50,
-                          child:  IconButton(
+                          child: IconButton(
                             icon: item,
                             // tooltip: 'named language',
                             onPressed: () => showDialog<String>(
@@ -651,7 +814,7 @@ class Plugins extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 200,
+                height: 120,
                 width: 50,
                 child: ListView(
                   // scrollDirection: Axis.vertical,
@@ -661,7 +824,7 @@ class Plugins extends StatelessWidget {
                       SizedBox(
                           height: 40,
                           width: 50,
-                          child:  IconButton(
+                          child: IconButton(
                             icon: item,
                             // tooltip: 'named language',
                             onPressed: () => showDialog<String>(
@@ -686,7 +849,7 @@ class Plugins extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 200,
+                height: 120,
                 width: 50,
                 child: ListView(
                   // scrollDirection: Axis.vertical,
@@ -696,7 +859,7 @@ class Plugins extends StatelessWidget {
                       SizedBox(
                           height: 40,
                           width: 50,
-                          child:  IconButton(
+                          child: IconButton(
                             icon: item,
                             // tooltip: 'named language',
                             onPressed: () => showDialog<String>(
@@ -721,7 +884,7 @@ class Plugins extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 200,
+                height: 120,
                 width: 50,
                 child: ListView(
                   // scrollDirection: Axis.vertical,
@@ -731,7 +894,7 @@ class Plugins extends StatelessWidget {
                       SizedBox(
                           height: 40,
                           width: 50,
-                          child:  IconButton(
+                          child: IconButton(
                             icon: item,
                             // tooltip: 'named language',
                             onPressed: () => showDialog<String>(
@@ -756,7 +919,7 @@ class Plugins extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 200,
+                height: 120,
                 width: 50,
                 child: ListView(
                   // scrollDirection: Axis.vertical,
@@ -766,7 +929,7 @@ class Plugins extends StatelessWidget {
                       SizedBox(
                           height: 40,
                           width: 50,
-                          child:  IconButton(
+                          child: IconButton(
                             icon: item,
                             // tooltip: 'named language',
                             onPressed: () => showDialog<String>(
@@ -791,7 +954,7 @@ class Plugins extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 200,
+                height: 120,
                 width: 50,
                 child: ListView(
                   // scrollDirection: Axis.vertical,
@@ -801,7 +964,7 @@ class Plugins extends StatelessWidget {
                       SizedBox(
                           height: 40,
                           width: 50,
-                          child:  IconButton(
+                          child: IconButton(
                             icon: item,
                             // tooltip: 'named language',
                             onPressed: () => showDialog<String>(
@@ -825,171 +988,8 @@ class Plugins extends StatelessWidget {
                   ],
                 ),
               ),
-
-
-
-
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0, top: 15),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0, top: 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                Colors.black87,
-                              ),
-                            ),
-                            child: Text(
-                              'Pieces.app',
-                              style: ParticleFont.micro(
-                                context,
-                                customization: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10,
-                                ),
-                              ),
-                            ),
-                            onPressed: () async {
-                              String linkUrl = 'https://code.pieces.app/install';
-
-                              linkUrl = linkUrl; //Twitter's URL
-                              if (await canLaunch(linkUrl)) {
-                                await launch(
-                                  linkUrl,
-                                );
-                              } else {
-                                throw 'Could not launch $linkUrl';
-                              }
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0, top: 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                Colors.black87,
-                              ),
-                            ),
-                            child: Text(
-                              'LinkedIn',
-                              style: ParticleFont.micro(
-                                context,
-                                customization: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10,
-                                ),
-                              ),
-                            ),
-                            onPressed: () async {
-                              String linkUrl = 'https://www.linkedin.com/company/getpieces/mycompany/';
-
-                              linkUrl = linkUrl; //Twitter's URL
-                              if (await canLaunch(linkUrl)) {
-                                await launch(
-                                  linkUrl,
-                                );
-                              } else {
-                                throw 'Could not launch $linkUrl';
-                              }
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0, top: 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                Colors.black87,
-                              ),
-                            ),
-                            child: Text(
-                              'Twitter',
-                              style: ParticleFont.micro(
-                                context,
-                                customization: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10,
-                                ),
-                              ),
-                            ),
-                            onPressed: () async {
-                              String linkUrl = 'https://twitter.com/getpieces';
-
-                              linkUrl = linkUrl; //Twitter's URL
-                              if (await canLaunch(linkUrl)) {
-                                await launch(
-                                  linkUrl,
-                                );
-                              } else {
-                                throw 'Could not launch $linkUrl';
-                              }
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0, top: 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                Colors.black87,
-                              ),
-                            ),
-                            child: Text(
-                              'Facebook',
-                              style: ParticleFont.micro(
-                                context,
-                                customization: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10,
-                                ),
-                              ),
-                            ),
-                            onPressed: () async {
-                              String linkUrl =
-                                  'https://www.facebook.com/518508470288885/posts/559057106234021';
-
-                              linkUrl = linkUrl; //Twitter's URL
-                              if (await canLaunch(linkUrl)) {
-                                await launch(
-                                  linkUrl,
-                                );
-                              } else {
-                                throw 'Could not launch $linkUrl';
-                              }
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ],
           ),
-
 
           // https://www.facebook.com/518508470288885/posts/559057106234021
         ],
@@ -997,6 +997,7 @@ class Plugins extends StatelessWidget {
     );
   }
 }
+
 // https://www.codeplusplus.app/
 //https://www.facebook.com/getpieces?hc_ref=ARTty9yMKDnC6EOC_dukOB8gsP09WwI5IUY7joQePSgH_eL8mwtbaDQcRwGymY7PSgI&fref=nf&__xts__[0]=68.ARArJRvE3X4gZQbgIIJ4o3jEHlG8obp9EF2jC70I6Z9Jc_ol75UDquczKVgZGoc2Vmky-PzPlcPQD26uZUlAcXu48nDQl8gEO_Wd7V1Bhg8rHq0NxfvuuOul8XypYOy86m8gtisqe_3AF5bZLImHCtbtasfrtvxTXtPCoFClqP6TIxHJp0PUXROvHGV-1doBtEBlqJ9BxPWUpefeLXNO8KgafE7V3M_ohQi7ZEheRc1y4Zi02St-vdArwbzSkmsl6qDh-KFPJqLVDlztD4sk_OPsRlxFvukPVrGRFFA68UpjKJpPmaI
 class Language {
@@ -1037,107 +1038,60 @@ class Language {
   ];
 }
 
-
-
 List imgList1 = [
-
-
   Image.asset('batchfile-black.jpg'),
-
-
-
-
-
+  Image.asset('c.jpg'),
+  Image.asset('c-sharp.jpg'),
 ];
 List imgList2 = [
-
-
-
-  Image.asset('c.jpg'),
-
-
-
-
+  Image.asset('coffeescript-black.jpg'),
+  Image.asset('cpp.jpg'),
+  Image.asset('css.jpg'),
 ];
 
 List imgList3 = [
-
-
-  Image.asset('c-sharp.jpg'),
-  Image.asset('coffeescript-black.jpg'),
-
-
-
-];
-
-
-List imgList4 = [
-
-
-
-
-  Image.asset('cpp.jpg'),
-  Image.asset('css.jpg'),
-
-
-];
-
-List imgList5 = [
-
-
   Image.asset('dart.jpg'),
   Image.asset('erlang.jpg'),
   Image.asset('go.jpg'),
-
 ];
 
-List imgList6 = [
-
+List imgList4 = [
   Image.asset('haskell.jpg'),
   Image.asset('html.jpg'),
   Image.asset('java.jpg'),
-
-
 ];
 
-List imgList7 = [
-
-
+List imgList5 = [
   Image.asset('javascript.jpg'),
   Image.asset('json.jpg'),
   Image.asset('lua.jpg'),
-  Image.asset('markdown-black.jpg'),
-
-
 ];
 
-
-List imgList8 = [
-
-
+List imgList6 = [
+  Image.asset('markdown-black.jpg'),
   Image.asset('matlab.jpg'),
   Image.asset('objective-c.jpg'),
+];
+
+List imgList7 = [
   Image.asset('r.jpg'),
   Image.asset('ruby.jpg'),
+  Image.asset('rust-black.jpg'),
+];
 
+List imgList8 = [
+  Image.asset('scala.jpg'),
+  Image.asset('sql.jpg'),
+  Image.asset('swift.jpg'),
 ];
 
 List imgList9 = [
-
-
-Image.asset('rust-black.jpg'),
-Image.asset('scala.jpg'),
-Image.asset('sql.jpg'),
-Image.asset('swift.jpg'),
-
+  Image.asset('typescript.jpg'),
+  Image.asset('tex-black.jpg'),
+  Image.asset('text.jpg'),
 ];
 
 List imgList10 = [
-
-
-Image.asset('typescript.jpg'),
-Image.asset('tex-black.jpg'),
-Image.asset('text.jpg'),
-Image.asset('toml-black.jpg'),
-Image.asset('yaml-black.jpg'),
+  Image.asset('toml-black.jpg'),
+  Image.asset('yaml-black.jpg'),
 ];

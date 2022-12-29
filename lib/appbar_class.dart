@@ -15,13 +15,15 @@ class CutomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
     final TextEditingController _textFieldController = TextEditingController();
     Future<Context> connect() async {
       try {
         return connectorApi.connect(
           seededConnectorConnection: SeededConnectorConnection(
             application: SeededTrackedApplication(
-              name: ApplicationNameEnum.ULTRA_EDIT,
+              name: ApplicationNameEnum.gOOGLECHROMEEXTENSIONMV3,
               platform: PlatformEnum.MACOS,
               version: '1.5.8',
             ),
@@ -32,41 +34,14 @@ class CutomAppBar extends StatelessWidget implements PreferredSizeWidget {
         throw Exception('Error occurred when establishing connection. error:$err');
       }
     }
+
     return AppBar(
       toolbarHeight: 40,
       leadingWidth: 150,
       title: Text(title),
       leading: Row(
         children: [
-//           FloatingActionButton(
-//             tooltip: 'copy your snippet classifications',
-//             elevation: 0,
-//             mini: true,
-//             backgroundColor: Colors.transparent,
-//             child: Icon(
-//               Icons.copy,
-//               color: Colors.white,
-//               size: 15,
-//             ),
-//             onPressed: () async {
-//               ClipboardData data = ClipboardData(text: '''
-// Snippet Counts by Origin:
-// ${StatisticsSingleton().statistics?.classifications}
-//
-// ''');
-//               const snackBar = SnackBar(
-//                 content: Text(
-//                   'Successfully copied Snippet Classifications!',
-//                   style: TextStyle(color: Colors.white),
-//                 ),
-//               );
-//
-// // Find the ScaffoldMessenger in the widget tree
-// // and use it to show a SnackBar.
-//               ScaffoldMessenger.of(context).showSnackBar(snackBar);
-//               await Clipboard.setData(data);
-//             },
-//           ),
+
           FloatingActionButton(
             focusColor: Colors.green,
             tooltip: 'create a snippet',
@@ -96,7 +71,6 @@ class CutomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     ),
                     content: Column(
                       children: [
-
                         Container(
                           color: Colors.white,
                           height: 250,
@@ -104,7 +78,7 @@ class CutomAppBar extends StatelessWidget implements PreferredSizeWidget {
                           child: TextField(
                             autofocus: true,
                             style: ParticleFont.micro(context,
-                                customization: TextStyle(color: Colors.black,fontSize: 14)),
+                                customization: TextStyle(color: Colors.black, fontSize: 14)),
                             toolbarOptions: ToolbarOptions(
                               copy: true,
                               paste: true,
@@ -117,14 +91,16 @@ class CutomAppBar extends StatelessWidget implements PreferredSizeWidget {
                             autocorrect: true,
                             controller: _textFieldController,
                             decoration: InputDecoration(
-                              labelStyle: ParticleFont.micro(context, customization: TextStyle(color: Colors.black, fontSize: 16),),
+                              labelStyle: ParticleFont.micro(
+                                context,
+                                customization: TextStyle(color: Colors.black, fontSize: 16),
+                              ),
                               floatingLabelBehavior: FloatingLabelBehavior.auto,
                               labelText: 'Type something...',
-
-                              hintStyle: ParticleFont.micro(context, customization: TextStyle(color: Colors.black)),
+                              hintStyle: ParticleFont.micro(context,
+                                  customization: TextStyle(color: Colors.black)),
                               suffixIcon: Column(
                                 children: [
-
                                   IconButton(
                                     iconSize: 15,
                                     icon: Icon(
@@ -158,7 +134,14 @@ class CutomAppBar extends StatelessWidget implements PreferredSizeWidget {
                             child: TextButton(
                               child: Text(
                                 'save to pieces',
-                                style:  ParticleFont.micro(context, customization: TextStyle(color: Colors.white, fontSize: 12),),                                ),
+                                style: ParticleFont.micro(
+                                  context,
+                                  customization: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ),
                               onPressed: () async {
                                 Context connection = await connect();
 
@@ -172,8 +155,7 @@ class CutomAppBar extends StatelessWidget implements PreferredSizeWidget {
                                         mechanism: MechanismEnum.MANUAL,
                                       ),
                                       format: SeededFormat(
-                                        websites: [
-                                        ],
+                                        websites: [],
                                         fragment: SeededFragment(
                                           metadata: FragmentMetadata(
                                               ext: ClassificationSpecificEnum.dart),
@@ -223,7 +205,11 @@ class CutomAppBar extends StatelessWidget implements PreferredSizeWidget {
                               child: TextButton(
                                 child: Text(
                                   'close',
-                                  style:  ParticleFont.micro(context, customization: TextStyle(color: Colors.white, fontSize: 12),),                                ),
+                                  style: ParticleFont.micro(
+                                    context,
+                                    customization: TextStyle(color: Colors.white, fontSize: 12),
+                                  ),
+                                ),
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
@@ -241,7 +227,7 @@ class CutomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ],
       ),
       backgroundColor: Colors.black87,
-    );// AppBar
+    ); // AppBar
   }
 
   @override
