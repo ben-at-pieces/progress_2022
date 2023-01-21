@@ -11,7 +11,17 @@ Future<Statistics> getStats() async {
   Iterable<Asset> yaml = asset.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.json);
 
-  // List<Asset> json_snippets = asse
+  Iterable<Asset> batch = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.bat);
+
+  Iterable<Asset> c = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.c);
+
+  Iterable<Asset> cSharp = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.cs);
+
+
+
 
   ReturnedUserProfile user = await PiecesApi.userApi.userSnapshot();
 
@@ -40,7 +50,6 @@ Future<Statistics> getStats() async {
   Map<String, double> classifications = {};
 
   List<String> relatedLinks = [];
-  List<String> relatedLinkz = [];
 
   /// origin map (String  :  double)
   Map<String, double> origins = {};
@@ -146,11 +155,14 @@ Future<Statistics> getStats() async {
     user: user.user?.name ?? user.user?.email ?? '',
     origins: origins,
     yaml: yaml,
+    batch: batch,
+    c: c,
+    cSharp: cSharp,
     raw: '',
   );
   return statistics;
 }
-
+/// Statistics class ================================================================
 class Statistics {
   final Map<String, double> classifications;
   final Map<String, double> origins;
@@ -168,9 +180,17 @@ class Statistics {
   final String raw;
 
   final Iterable<Asset> yaml;
+  final Iterable<Asset> batch;
+  final Iterable<Asset> c;
+  final Iterable<Asset> cSharp;
 
+  /// Statistics class constructors ================================================================
   Statistics(
-      {required this.yaml,
+      {
+        required this.yaml,
+        required this.batch,
+        required this.c,
+        required this.cSharp,
       required this.origins,
       required this.classifications,
       required this.snippetsSaved,

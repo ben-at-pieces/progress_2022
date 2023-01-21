@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:runtime_client/particle.dart';
 
 import 'Card_Tab/card_list.dart';
+import 'Dashboard/textSpan.dart';
 import 'Tab_Activity_Bar_Chart/bar_chart.dart';
 import 'Tab_Origin_Pie_Chart/originPieChart.dart';
 import 'Tab_Peoples_List/peoples_list.dart';
@@ -51,13 +52,22 @@ class HomePageState extends State<HomePageAppBar> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
-        length: 8,
+        length: 9,
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.black54,
             title: TabBar(
               indicatorColor: Colors.white,
               tabs: [
+                Text(
+                  'Home',
+                  style: ParticleFont.micro(
+                    context,
+                    customization: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
                 Text(
                   'Snippets',
                   style: ParticleFont.micro(
@@ -138,7 +148,8 @@ class HomePageState extends State<HomePageAppBar> {
           body: TabBarView(
             children: [
 
-              // CardExamplesApp(),
+              /// Home Dash
+              MyDashBoard(),
               /// Language Pie Chart ==========================================================
               MyPieChart(),
 

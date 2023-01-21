@@ -44,6 +44,7 @@ class MyPieChart extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
+
       bottomNavigationBar: CutomBottomAppBar(),
       backgroundColor: Colors.black12,
       appBar: CutomAppBar(title: 'Snippet Classifications',),

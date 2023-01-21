@@ -71,57 +71,7 @@ class CutomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     ),
                     content: Column(
                       children: [
-                        Container(
-                          color: Colors.white,
-                          height: 250,
-                          width: 450,
-                          child: TextField(
-                            autofocus: true,
-                            style: ParticleFont.micro(context,
-                                customization: TextStyle(color: Colors.black, fontSize: 14)),
-                            toolbarOptions: ToolbarOptions(
-                              copy: true,
-                              paste: true,
-                              selectAll: true,
-                            ),
-                            cursorHeight: 12,
-                            cursorColor: Colors.black,
-                            minLines: 20,
-                            maxLines: 20,
-                            autocorrect: true,
-                            controller: _textFieldController,
-                            decoration: InputDecoration(
-                              labelStyle: ParticleFont.micro(
-                                context,
-                                customization: TextStyle(color: Colors.black, fontSize: 16),
-                              ),
-                              floatingLabelBehavior: FloatingLabelBehavior.auto,
-                              labelText: 'Type something...',
-                              hintStyle: ParticleFont.micro(context,
-                                  customization: TextStyle(color: Colors.black)),
-                              suffixIcon: Column(
-                                children: [
-                                  IconButton(
-                                    iconSize: 15,
-                                    icon: Icon(
-                                      Icons.clear,
-                                      color: Colors.grey,
-                                    ),
-                                    onPressed: () {
-                                      _textFieldController.clear();
-                                    },
-                                  ),
-                                ],
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  style: BorderStyle.solid,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+
                       ],
                     ),
                     actions: [
