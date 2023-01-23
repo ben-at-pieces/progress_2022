@@ -9,6 +9,8 @@ import 'connections/statistics_singleton.dart';
 
 void main() async {
   StatisticsSingleton().statistics = await getStats();
+  
+  print('${StatisticsSingleton().statistics?.classifications.keys}');
   runApp(MyApp());
 }
 

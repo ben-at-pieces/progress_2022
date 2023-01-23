@@ -1,0 +1,42 @@
+
+
+
+
+
+List languages = [
+  'Batchfile',
+  'C',
+  'Coffeescript',
+  'C++',
+  'C#',
+  'CSS',
+  'Dart',
+  'Erlang',
+  'Go',
+  'Haskell',
+  'HTML',
+  'Image',
+  'Java',
+  'Javascript',
+  'JSON',
+  'Lua',
+  'MarkDown',
+  'Matlab',
+  'ObjectiveC',
+  'Perl',
+  'PHP',
+  'Powershell',
+  'Python',
+  'R',
+  'Ruby',
+  'Rust',
+  'Scala',
+  'Shell',
+  'SQL',
+  'Swift',
+  'Tex',
+  'Text',
+  'Toml',
+  'Typescript',
+  'YAML',
+];

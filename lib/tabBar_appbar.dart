@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:runtime_client/particle.dart';
 
 import 'Card_Tab/card_list.dart';
-import 'Dashboard/textSpan.dart';
+import 'Dashboard/vertical_language_tabs.dart';
 import 'Tab_Activity_Bar_Chart/bar_chart.dart';
 import 'Tab_Origin_Pie_Chart/originPieChart.dart';
 import 'Tab_Peoples_List/peoples_list.dart';

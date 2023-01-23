@@ -17,6 +17,9 @@ Future<Statistics> getStats() async {
   Iterable<Asset> c = asset.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.c);
 
+  Iterable<Asset> coffee = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.coffee);
+
   Iterable<Asset> cSharp = asset.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.cs);
 
@@ -50,6 +53,12 @@ Future<Statistics> getStats() async {
   Map<String, double> classifications = {};
 
   List<String> relatedLinks = [];
+
+
+  // /// Map Classification & Assets
+  // Map<String, String> classAssets = {};
+
+
 
   /// origin map (String  :  double)
   Map<String, double> origins = {};
@@ -158,7 +167,7 @@ Future<Statistics> getStats() async {
     batch: batch,
     c: c,
     cSharp: cSharp,
-    raw: '',
+    raw: '', coffee: coffee,
   );
   return statistics;
 }
@@ -182,6 +191,7 @@ class Statistics {
   final Iterable<Asset> yaml;
   final Iterable<Asset> batch;
   final Iterable<Asset> c;
+  final Iterable<Asset> coffee;
   final Iterable<Asset> cSharp;
 
   /// Statistics class constructors ================================================================
@@ -190,6 +200,8 @@ class Statistics {
         required this.yaml,
         required this.batch,
         required this.c,
+        required this.coffee,
+
         required this.cSharp,
       required this.origins,
       required this.classifications,
