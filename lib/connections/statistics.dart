@@ -7,7 +7,6 @@ Future<Statistics> getStats() async {
 
   List<Asset> asset = assets.iterable;
 
-
   Iterable<Asset> yaml = asset.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.json);
 
@@ -17,14 +16,74 @@ Future<Statistics> getStats() async {
   Iterable<Asset> c = asset.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.c);
 
+  Iterable<Asset> cPlus = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.cpp);
+
   Iterable<Asset> coffee = asset.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.coffee);
 
   Iterable<Asset> cSharp = asset.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.cs);
 
+  Iterable<Asset> css = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.css);
 
+  Iterable<Asset> dart = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.dart);
 
+  Iterable<Asset> erlang = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.erl);
+
+  Iterable<Asset> go = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.go);
+  Iterable<Asset> haskell = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.hs);
+  Iterable<Asset> html = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.html);
+  Iterable<Asset> java = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.java);
+  Iterable<Asset> javascript = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.js);
+  Iterable<Asset> json = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.json);
+  Iterable<Asset> lua = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.lua);
+  Iterable<Asset> markdown = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.md);
+  Iterable<Asset> matLab = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.matlab);
+  Iterable<Asset> objectiveC = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.m);
+  Iterable<Asset> php = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.php);
+  Iterable<Asset> perl = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.pl);
+  Iterable<Asset> powershell = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.ps1);
+  Iterable<Asset> python = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.py);
+  Iterable<Asset> r = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.r);
+  Iterable<Asset> ruby = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.rb);
+  Iterable<Asset> rust = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.rs);
+  Iterable<Asset> scala = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.scala);
+  Iterable<Asset> shell = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.ps);
+  Iterable<Asset> sql = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.sql);
+  Iterable<Asset> swift = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.swift);
+  Iterable<Asset> typescript = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.ts);
+  Iterable<Asset> tex = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.tex);
+  Iterable<Asset> text = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.text);
+  Iterable<Asset> toml = asset.where((element) =>
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.toml);
 
   ReturnedUserProfile user = await PiecesApi.userApi.userSnapshot();
 
@@ -54,11 +113,8 @@ Future<Statistics> getStats() async {
 
   List<String> relatedLinks = [];
 
-
   // /// Map Classification & Assets
   // Map<String, String> classAssets = {};
-
-
 
   /// origin map (String  :  double)
   Map<String, double> origins = {};
@@ -166,11 +222,42 @@ Future<Statistics> getStats() async {
     yaml: yaml,
     batch: batch,
     c: c,
+    cPlus: cPlus,
     cSharp: cSharp,
-    raw: '', coffee: coffee,
+    raw: '',
+    coffee: coffee,
+    css: css,
+    dart: dart,
+    erlang: erlang,
+    matLab: matLab,
+    objectiveC: objectiveC,
+    php: php,
+    perl: perl,
+    powershell: powershell,
+    python: python,
+    r: r,
+    ruby: ruby,
+    rust: rust,
+    scala: scala,
+    shell: shell,
+    sql: sql,
+    swift: swift,
+    typescript: typescript,
+    tex: tex,
+    text: text,
+    toml: toml,
+    go: go,
+    haskell: haskell,
+    html: html,
+    java: java,
+    javascript: javascript,
+    json: json,
+    lua: lua,
+    markdown: markdown,
   );
   return statistics;
 }
+
 /// Statistics class ================================================================
 class Statistics {
   final Map<String, double> classifications;
@@ -193,16 +280,72 @@ class Statistics {
   final Iterable<Asset> c;
   final Iterable<Asset> coffee;
   final Iterable<Asset> cSharp;
+  final Iterable<Asset> css;
+  final Iterable<Asset> cPlus;
+  final Iterable<Asset> dart;
+  final Iterable<Asset> erlang;
+  final Iterable<Asset> go;
+  final Iterable<Asset> haskell;
+  final Iterable<Asset> html;
+  final Iterable<Asset> java;
+  final Iterable<Asset> javascript;
+  final Iterable<Asset> json;
+  final Iterable<Asset> lua;
+  final Iterable<Asset> markdown;
+  final Iterable<Asset> matLab;
+  final Iterable<Asset> objectiveC;
+  final Iterable<Asset> php;
+  final Iterable<Asset> perl;
+  final Iterable<Asset> powershell;
+  final Iterable<Asset> python;
+  final Iterable<Asset> r;
+  final Iterable<Asset> ruby;
+  final Iterable<Asset> rust;
+  final Iterable<Asset> scala;
+  final Iterable<Asset> shell;
+  final Iterable<Asset> sql;
+  final Iterable<Asset> swift;
+  final Iterable<Asset> typescript;
+  final Iterable<Asset> tex;
+  final Iterable<Asset> text;
+  final Iterable<Asset> toml;
 
   /// Statistics class constructors ================================================================
   Statistics(
-      {
-        required this.yaml,
-        required this.batch,
-        required this.c,
-        required this.coffee,
-
-        required this.cSharp,
+      {required this.batch,
+      required this.c,
+      required this.cPlus,
+      required this.coffee,
+      required this.css,
+      required this.cSharp,
+      required this.dart,
+      required this.erlang,
+      required this.go,
+      required this.haskell,
+      required this.html,
+      required this.java,
+      required this.javascript,
+      required this.json,
+      required this.lua,
+      required this.markdown,
+      required this.matLab,
+      required this.objectiveC,
+      required this.php,
+      required this.perl,
+      required this.powershell,
+      required this.python,
+      required this.r,
+      required this.ruby,
+      required this.rust,
+      required this.scala,
+      required this.shell,
+      required this.sql,
+      required this.swift,
+      required this.typescript,
+      required this.tex,
+      required this.text,
+      required this.toml,
+      required this.yaml,
       required this.origins,
       required this.classifications,
       required this.snippetsSaved,
