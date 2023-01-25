@@ -58,75 +58,78 @@ class CutomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 context: context,
                 builder: (context) {
                   return AlertDialog(
-                    backgroundColor: Colors.grey,
+                    backgroundColor: Colors.white,
                     title: Text(
                       'Create a Custom Snippet:',
                       style: ParticleFont.subtitle1(
                         context,
                         customization: TextStyle(
                           fontSize: 14,
-                          color: Colors.black,
+                          color: Colors.black54,
                         ),
                       ),
                     ),
-                    content: Column(
-                      children: [
-                        Container(
-                          color: Colors.white,
-                          height: 250,
-                          width: 450,
-                          child: TextField(
-                            autofocus: true,
-                            style: ParticleFont.micro(context,
-                                customization: TextStyle(color: Colors.black, fontSize: 14)),
-                            toolbarOptions: ToolbarOptions(
-                              copy: true,
-                              paste: true,
-                              selectAll: true,
-                            ),
-                            cursorHeight: 12,
-                            cursorColor: Colors.black,
-                            minLines: 20,
-                            maxLines: 20,
-                            autocorrect: true,
-                            controller: _textFieldController,
-                            decoration: InputDecoration(
-                              labelStyle: ParticleFont.micro(
-                                context,
-                                customization: TextStyle(color: Colors.black, fontSize: 16),
+                    content: SizedBox(
+                      height: 260,
+                      child: Column(
+                        children: [
+                          Container(
+                            color: Colors.white,
+                            height: 250,
+                            width: 350,
+                            child: TextField(
+                              autofocus: true,
+                              style: ParticleFont.micro(context,
+                                  customization: TextStyle(color: Colors.black, fontSize: 14)),
+                              toolbarOptions: ToolbarOptions(
+                                copy: true,
+                                paste: true,
+                                selectAll: true,
                               ),
-                              floatingLabelBehavior: FloatingLabelBehavior.auto,
-                              labelText: 'Type something...',
-                              hintStyle: ParticleFont.micro(context,
-                                  customization: TextStyle(color: Colors.black)),
-                              suffixIcon: Column(
-                                children: [
-                                  IconButton(
-                                    iconSize: 15,
-                                    icon: Icon(
-                                      Icons.clear,
-                                      color: Colors.grey,
+                              cursorHeight: 12,
+                              cursorColor: Colors.black,
+                              minLines: 20,
+                              maxLines: 20,
+                              autocorrect: true,
+                              controller: _textFieldController,
+                              decoration: InputDecoration(
+                                labelStyle: ParticleFont.micro(
+                                  context,
+                                  customization: TextStyle(color: Colors.black, fontSize: 16),
+                                ),
+                                floatingLabelBehavior: FloatingLabelBehavior.auto,
+                                labelText: 'Type something...',
+                                hintStyle: ParticleFont.micro(context,
+                                    customization: TextStyle(color: Colors.black)),
+                                suffixIcon: Column(
+                                  children: [
+                                    IconButton(
+                                      iconSize: 15,
+                                      icon: Icon(
+                                        Icons.clear,
+                                        color: Colors.grey,
+                                      ),
+                                      onPressed: () {
+                                        _textFieldController.clear();
+                                      },
                                     ),
-                                    onPressed: () {
-                                      _textFieldController.clear();
-                                    },
+                                  ],
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    style: BorderStyle.solid,
+                                    color: Colors.black,
                                   ),
-                                ],
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  style: BorderStyle.solid,
-                                  color: Colors.black,
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     actions: [
                       Padding(
-                        padding: const EdgeInsets.all(5.0),
+                        padding: const EdgeInsets.all(15.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
                           child: Container(
@@ -195,25 +198,22 @@ class CutomAppBar extends StatelessWidget implements PreferredSizeWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(5.0),
+                        padding: const EdgeInsets.all(15.0),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(7),
-                          child: Padding(
-                            padding: const EdgeInsets.all(2.0),
-                            child: Container(
-                              color: Colors.black54,
-                              child: TextButton(
-                                child: Text(
-                                  'close',
-                                  style: ParticleFont.micro(
-                                    context,
-                                    customization: TextStyle(color: Colors.white, fontSize: 12),
-                                  ),
+                          borderRadius: BorderRadius.circular(8),
+                          child: Container(
+                            color: Colors.black54,
+                            child: TextButton(
+                              child: Text(
+                                'close',
+                                style: ParticleFont.micro(
+                                  context,
+                                  customization: TextStyle(color: Colors.white, fontSize: 12),
                                 ),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
                               ),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
                             ),
                           ),
                         ),

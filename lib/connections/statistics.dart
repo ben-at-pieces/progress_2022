@@ -85,6 +85,10 @@ Future<Statistics> getStats() async {
   Iterable<Asset> toml = asset.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.toml);
 
+
+  Iterable<Asset> image = asset.where((element) =>
+      element.original.reference?.classification.generic == ClassificationGenericEnum.IMAGE);
+
   ReturnedUserProfile user = await PiecesApi.userApi.userSnapshot();
 
   /// Activities Information (version, platform)
@@ -221,6 +225,7 @@ Future<Statistics> getStats() async {
     origins: origins,
     yaml: yaml,
     batch: batch,
+    image: image,
     c: c,
     cPlus: cPlus,
     cSharp: cSharp,
@@ -287,6 +292,7 @@ class Statistics {
   final Iterable<Asset> go;
   final Iterable<Asset> haskell;
   final Iterable<Asset> html;
+  final Iterable<Asset> image;
   final Iterable<Asset> java;
   final Iterable<Asset> javascript;
   final Iterable<Asset> json;
@@ -312,7 +318,8 @@ class Statistics {
 
   /// Statistics class constructors ================================================================
   Statistics(
-      {required this.batch,
+      {
+      required this.batch,
       required this.c,
       required this.cPlus,
       required this.coffee,
@@ -323,6 +330,8 @@ class Statistics {
       required this.go,
       required this.haskell,
       required this.html,
+      required this.image,
+
       required this.java,
       required this.javascript,
       required this.json,

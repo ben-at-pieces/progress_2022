@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyDashBoard> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CutomBottomAppBar(),
-      appBar: CutomAppBar(title: 'Home',),
+      appBar: CutomAppBar(title: '',),
       body: VerticalTabBar(),
       backgroundColor: Colors.lightBlue[50],
     );

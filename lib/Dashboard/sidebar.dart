@@ -12,12 +12,15 @@ import 'Language_Logic/batch_language.dart';
 import 'Language_Logic/c++_language.dart';
 import 'Language_Logic/c_language.dart';
 import 'Language_Logic/coffee_language.dart';
+import 'Language_Logic/csharp_language.dart';
 import 'Language_Logic/css_language.dart';
 import 'Language_Logic/dart_language.dart';
 import 'Language_Logic/erlang_language.dart';
 import 'Language_Logic/go_language.dart';
 import 'Language_Logic/haskell_language.dart';
+import 'Language_Logic/home_language.dart';
 import 'Language_Logic/html_language.dart';
+import 'Language_Logic/image_language.dart';
 import 'Language_Logic/javaScript_language.dart';
 import 'Language_Logic/java_language.dart';
 import 'Language_Logic/json_language.dart';
@@ -84,7 +87,7 @@ class _VerticalTabBarState extends State<VerticalTabBar> {
           child: Row(
             children: [
             SizedBox(
-            width: 150,
+            width: 120,
             child: ListView.separated(
               itemCount: languages.length,
               separatorBuilder: (BuildContext context, int index) {
@@ -103,11 +106,12 @@ class _VerticalTabBarState extends State<VerticalTabBar> {
                     child: Row(
                       children: [
                         AnimatedContainer(
+
                           alignment: Alignment.center,
                           duration: Duration(milliseconds: 500),
-                          height: (selectedIndex == index) ? 0 : 0,
+                          height: (selectedIndex == index) ? 45 : 0,
                           width: 5,
-                          color: Colors.blue,
+                          color: Colors.black12,
                         ),
                         Expanded(
                           child: Container(
@@ -134,18 +138,19 @@ class _VerticalTabBarState extends State<VerticalTabBar> {
               child: PageView(
                   controller: _pageController,
                   children: [
-                    LanguageBuilder(title: 'Batchfile',subtitle: '', leading: Image.asset('batchfile-black.jpg'),),
+                    HomeLanguageBuilder(title: '',subtitle: '', leading: Image.asset('PLogo.jpg'),),
+                    BatchLanguageBuilder(title: 'Batchfile',subtitle: '', leading: Image.asset('batchfile-black.jpg'),),
                     CLanguageBuilder(title: 'C',subtitle: 'sub', leading: Image.asset('c.jpg'),),
                     CoffeeLanguageBuilder(title: 'Coffeescript',subtitle: 'sub', leading: Image.asset('coffeescript-black.jpg'),),
                     CPlusLanguageBuilder(title: 'C++',subtitle: 'sub', leading: Image.asset('cpp.jpg'),),
-                    LanguageBuilder(title: 'C#',subtitle: 'sub', leading: Image.asset('c-sharp.jpg'),),
+                    CSharpLanguageBuilder(title: 'C#',subtitle: 'sub', leading: Image.asset('c-sharp.jpg'),),
                     CSSLanguageBuilder(title: 'CSS',subtitle: 'sub', leading: Image.asset('css.jpg'),),
                     DartLanguageBuilder(title: 'Dart',subtitle: 'sub', leading: Image.asset('dart.jpg'),),
                     ErlangLanguageBuilder(title: 'Erlang',subtitle: 'sub', leading: Image.asset('erlang.jpg'),),
                     GoLanguageBuilder(title: 'Go',subtitle: 'sub', leading: Image.asset('go.jpg'),),
                     HaskellLanguageBuilder(title: 'Haskell',subtitle: 'sub', leading: Image.asset('haskell.jpg'),),
                     HTMLLanguageBuilder(title: 'HTML',subtitle: 'sub', leading: Image.asset('html.jpg'),),
-                    LanguageBuilder(title: 'Image',subtitle: 'sub', leading: Image.asset('Gallery_icon small.jpeg'),),
+                    ImageLanguageBuilder(title: 'Image',subtitle: 'sub', leading: Image.asset('APFD.jpeg'),),
                     JavaLanguageBuilder(title: 'Java',subtitle: 'sub', leading: Image.asset('java.jpg'),),
                     JavaScriptLanguageBuilder(title: 'Javascript',subtitle: 'sub', leading: Image.asset('javascript.jpg'),),
                     JSONLanguageBuilder(title: 'JSON',subtitle: 'sub', leading: Image.asset('json.jpg'),),

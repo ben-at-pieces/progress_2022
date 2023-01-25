@@ -20,23 +20,9 @@ class CutomBottomAppBar extends StatelessWidget implements PreferredSizeWidget {
         color: Colors.black54,
         elevation: 5,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  '${StatisticsSingleton().statistics?.user}',
-                  style: ParticleFont.micro(
-                    context,
-                    customization: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10,
-                    ),
-                  ),
-                )
-              ],
-            ),
+
             Icon(
               Icons.bolt_sharp,
               color: Colors.white,

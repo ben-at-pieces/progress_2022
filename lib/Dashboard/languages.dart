@@ -4,6 +4,7 @@
 
 
 List languages = [
+  'Home',
   'Batchfile',
   'C',
   'Coffeescript',

@@ -20,12 +20,12 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class BatchLanguageBuilder extends StatelessWidget {
+class CSharpLanguageBuilder extends StatelessWidget {
   final String title;
   final String subtitle;
   final Image leading;
 
-  BatchLanguageBuilder({
+  CSharpLanguageBuilder({
     required this.title,
     required this.subtitle,
     required this.leading,
@@ -36,7 +36,7 @@ class BatchLanguageBuilder extends StatelessWidget {
     return Container(
       color: Colors.grey,
       child: ListView.builder(
-        itemCount: StatisticsSingleton().statistics?.batch.length,
+        itemCount: StatisticsSingleton().statistics?.cSharp.length,
         itemBuilder: (BuildContext context, int index) {
           return Card(
             child: Column(
@@ -50,8 +50,8 @@ class BatchLanguageBuilder extends StatelessWidget {
                 ),
                 ListTile(
                   // leading: Image.asset('batchfile-black.jpg'),
-                  title: Text('${StatisticsSingleton().statistics?.batch.elementAt(index).name}' ?? ''),
-                  subtitle: Text('${StatisticsSingleton().statistics?.batch.elementAt(index).description}' ?? ''),
+                  title: Text('${StatisticsSingleton().statistics?.cSharp.elementAt(index).name}' ?? ''),
+                  subtitle: Text('${StatisticsSingleton().statistics?.cSharp.elementAt(index).description}' ?? ''),
                   trailing: Icon(Icons.copy),
                 ),
               ],
