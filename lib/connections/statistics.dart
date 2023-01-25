@@ -8,7 +8,7 @@ Future<Statistics> getStats() async {
   List<Asset> asset = assets.iterable;
 
   Iterable<Asset> yaml = asset.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.json);
+      element.original.reference?.classification.specific == ClassificationSpecificEnum.yaml);
 
   Iterable<Asset> batch = asset.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.bat);

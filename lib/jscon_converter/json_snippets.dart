@@ -33,7 +33,7 @@ class JSONListWidget extends StatelessWidget {
       body: Container(
         color: Colors.black12,
         child:  ListView.builder(
-            itemCount: StatisticsSingleton().statistics?.yaml.length,
+            itemCount: StatisticsSingleton().statistics?.json.length,
             itemBuilder: (BuildContext context, int index) {
               return ListTile(
                   leading:  IconButton(
@@ -59,7 +59,7 @@ class JSONListWidget extends StatelessWidget {
                               microseconds: 10),
                         ),
                       );
-                      ClipboardData data = ClipboardData(text: '${StatisticsSingleton().statistics?.yaml.elementAt(index).original.reference?.fragment?.string?.raw}');
+                      ClipboardData data = ClipboardData(text: '${StatisticsSingleton().statistics?.json.elementAt(index).original.reference?.fragment?.string?.raw}');
                       await Clipboard.setData(data);
                     },
                   ),
@@ -68,7 +68,7 @@ class JSONListWidget extends StatelessWidget {
                     color: Colors.black,
                     size: 18,
                   ),
-                  title: Text("${StatisticsSingleton().statistics?.yaml.elementAt(index).name}"));
+                  title: Text("${StatisticsSingleton().statistics?.json.elementAt(index).name}"));
 
 
               // title: Text('Person: $index'));
