@@ -90,7 +90,7 @@ class PythonImageBuilder extends StatelessWidget {
                         SizedBox(
                           width: 127,
                           child: Text(
-                            '${StatisticsSingleton().statistics?.dart.elementAt(index).name}' ?? '',
+                            'Name: ${StatisticsSingleton().statistics?.python.elementAt(index).name}' ?? '',
                             style: ParticleFont.bodyText1(
                               context,
                               customization: TextStyle(color: Colors.black, fontSize: 14),
@@ -114,12 +114,12 @@ class PythonImageBuilder extends StatelessWidget {
                               builder: (context) {
                                 return AlertDialog(
                                     title: Text(
-                                        '${StatisticsSingleton().statistics?.dart.elementAt(index).name}'),
+                                        '${StatisticsSingleton().statistics?.python.elementAt(index).name}'),
                                     content: SizedBox(
                                       height: 150,
                                       child: SingleChildScrollView(
                                         child: Text(
-                                            '${StatisticsSingleton().statistics?.dart.elementAt(index).original.reference?.fragment?.string?.raw}'),
+                                            '${StatisticsSingleton().statistics?.python.elementAt(index).original.reference?.fragment?.string?.raw}'),
                                       ),
                                     ),
                                     actions: <Widget>[
