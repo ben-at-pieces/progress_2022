@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gsheets/Dashboard/languages.dart';
-import 'package:gsheets/Dashboard/r_language.dart';
+import 'package:gsheets/Dashboard/Language_Logic/r_language.dart';
 import 'package:gsheets/Dashboard/sidebar.dart';
 import 'package:side_navigation/side_navigation.dart';
 import 'package:gsheets/connections/statistics_singleton.dart';
@@ -150,7 +150,7 @@ class _VerticalTabBarState extends State<VerticalTabBar> {
                     GoLanguageBuilder(title: 'Go',subtitle: 'sub', leading: Image.asset('go.jpg'),),
                     HaskellLanguageBuilder(title: 'Haskell',subtitle: 'sub', leading: Image.asset('haskell.jpg'),),
                     HTMLLanguageBuilder(title: 'HTML',subtitle: 'sub', leading: Image.asset('html.jpg'),),
-                    ImageLanguageBuilder(title: 'Image',subtitle: 'sub', leading: Image.asset('APFD.jpeg'),),
+                    ImageLanguageBuilder(title: 'png/jpg',subtitle: 'sub', leading: Image.asset('image.jpeg'),),
                     JavaLanguageBuilder(title: 'Java',subtitle: 'sub', leading: Image.asset('java.jpg'),),
                     JavaScriptLanguageBuilder(title: 'Javascript',subtitle: 'sub', leading: Image.asset('javascript.jpg'),),
                     JSONLanguageBuilder(title: 'JSON',subtitle: 'sub', leading: Image.asset('json.jpg'),),

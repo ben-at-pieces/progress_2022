@@ -44,7 +44,7 @@ class PeoplesListWidget extends StatelessWidget {
                   color: Colors.black,
                 ),
                 title: Text(
-                  '${StatisticsSingleton().statistics?.persons[index]}  ',
+                  '${StatisticsSingleton().statistics?.persons.elementAt(index)}  ',
                   style:
                   ParticleFont.bodyText1(context, customization: TextStyle(color: Colors.black)),
                 ),

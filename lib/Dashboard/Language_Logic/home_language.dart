@@ -1,3 +1,4 @@
+import 'package:connector_openapi/api.dart';
 import 'package:flutter/material.dart';
 import 'package:runtime_client/particle.dart';
 
@@ -44,6 +45,7 @@ class HomeLanguageBuilder extends StatelessWidget {
           return Card(
             elevation: 2,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ListTile(
                   leading: Image.asset('user.jpg'),
@@ -61,15 +63,20 @@ class HomeLanguageBuilder extends StatelessWidget {
                       customization: TextStyle(fontSize: 10, color: Colors.black),
                     ),
                   ),
+                  trailing: Text(
+                    'os: ${StatisticsSingleton().statistics?.version}' ?? '',
+                    style: ParticleFont.bodyText1(
+                      context,
+                      customization: TextStyle(fontSize: 10, color: Colors.black),
+                    ),
+                  ),
                 ),
                 Divider(
                   color: Colors.grey,
                 ),
                 ListTile(
                   // leading: Image.asset('APFD.jpeg'),
-                  title: Text(
-                      'Snippets: ${StatisticsSingleton().statistics?.snippetsSaved}' ??
-                          ''),
+                  title: Text('Snippets: ${StatisticsSingleton().statistics?.snippetsSaved}' ?? ''),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -89,12 +96,48 @@ class HomeLanguageBuilder extends StatelessWidget {
                         child: Text(
                             'Shares: ${StatisticsSingleton().statistics?.shareableLinks}' ?? ''),
                       ),
+
+                      ///
                       Padding(
-                        padding: const EdgeInsets.only(top: 12.0, bottom: 100),
+                        padding: const EdgeInsets.only(top: 14.0, bottom: 50),
                         child: Text(
                             'People: ${StatisticsSingleton().statistics?.persons.length}' ?? ''),
                       ),
                     ],
+                  ),
+                ),
+
+
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 12,
+                    top: 12.0,
+                  ),
+                  child: Text(
+                    'Products in use: ${StatisticsSingleton().statistics?.origins.length} /5 ',
+                    style: ParticleFont.subtitle1(
+                      context,
+                      customization: TextStyle(
+                        fontSize: 14,
+                        color: Colors.black54,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 12,
+                    top: 12.0,
+                  ),
+                  child: Text(
+                    'Time Saved Using Pieces ${StatisticsSingleton().statistics?.timeTaken.round()} seconds',
+                    style: ParticleFont.subtitle1(
+                      context,
+                      customization: TextStyle(
+                        fontSize: 14,
+                        color: Colors.black54,
+                      ),
+                    ),
                   ),
                 ),
                 Divider(
@@ -119,7 +162,7 @@ class HomeLanguageBuilder extends StatelessWidget {
                   ),
                   trailing: FloatingActionButton(
                     focusColor: Colors.green,
-                    tooltip: 'create a snippet',
+                    tooltip: 'preferences',
                     hoverColor: Colors.grey,
                     elevation: 0,
                     backgroundColor: Colors.transparent,
@@ -209,7 +252,6 @@ class HomeLanguageBuilder extends StatelessWidget {
                                         TextButton(
                                           onPressed: () {
                                             Navigator.of(context).pop();
-
                                           },
                                           child: Text(
                                             'FAQs',
@@ -217,9 +259,27 @@ class HomeLanguageBuilder extends StatelessWidget {
                                               context,
                                               customization: TextStyle(
                                                 fontSize: 14,
-                                                color: Colors.black54,
+                                                color: Colors.black,
                                               ),
                                             ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 30.0),
+                                          child: TextButton(
+                                            child: Text(
+                                              'User Guide',
+                                              style: ParticleFont.subtitle1(
+                                                context,
+                                                customization: TextStyle(
+                                                  fontSize: 14,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
                                           ),
                                         ),
                                         Padding(
@@ -231,7 +291,7 @@ class HomeLanguageBuilder extends StatelessWidget {
                                                 context,
                                                 customization: TextStyle(
                                                   fontSize: 14,
-                                                  color: Colors.black54,
+                                                  color: Colors.black,
                                                 ),
                                               ),
                                             ),
@@ -247,7 +307,6 @@ class HomeLanguageBuilder extends StatelessWidget {
                               ),
                             ),
                             actions: [
-
                               Padding(
                                 padding: const EdgeInsets.all(15.0),
                                 child: ClipRRect(
