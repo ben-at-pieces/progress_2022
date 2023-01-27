@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../appbar_class.dart';
+
 class SearchableListView extends StatefulWidget {
   @override
   _SearchableListViewState createState() => _SearchableListViewState();
@@ -8,16 +10,16 @@ class SearchableListView extends StatefulWidget {
 class _SearchableListViewState extends State<SearchableListView> {
   // list of items to display in the ListView
   final List<String> _items = [
-    "Apple",
-    "Banana",
-    "Cherry",
-    "Date",
-    "Grape",
-    "Kiwi",
-    "Mango",
-    "Orange",
-    "Pineapple",
-    "Strawberry",
+    'Power Tip 1',
+    'Power Tip 2',
+    'Power Tip 3',
+    'Power Tip 4',
+    'Power Tip 5',
+    'Power Tip 6',
+    'Power Tip 7',
+    'Power Tip 8',
+    'Power Tip 9',
+    'Power Tip 10',
   ];
 
   // list of items filtered based on user's search
@@ -48,16 +50,17 @@ class _SearchableListViewState extends State<SearchableListView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Searchable List"),
-      ),
+      appBar: CutomAppBar(title: 'Support Center',),
       body: Column(
         children: [
           // search TextField
-          TextField(
-            controller: _searchController,
-            decoration: InputDecoration(
-              hintText: "Search...",
+          Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: TextField(autofocus: true,
+              controller: _searchController,
+              decoration: InputDecoration(
+                hintText: 'Search...',
+              ),
             ),
           ),
           Expanded(
