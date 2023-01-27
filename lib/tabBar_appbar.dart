@@ -61,85 +61,66 @@ class HomePageState extends State<HomePageAppBar> {
               tabs: [
                 Text(
                   'Home',
-                  style: ParticleFont.micro(
-                    context,
-                    customization: TextStyle(
-                      color: Colors.white,
-                    ),
+              style:  TextStyle(
+                color: Colors.white,
+                fontSize: 10,
+              ),
                   ),
-                ),
                 Text(
-                  'Snippets',
-                  style: ParticleFont.micro(
-                    context,
-                    customization: TextStyle(
+                  'Chart',
+                  style:  TextStyle(
                       color: Colors.white,
+                    fontSize: 10,
                     ),
                   ),
-                ),
+
                 Text(
                   'Origins',
-                  style: ParticleFont.micro(
-                    context,
-                    customization: TextStyle(
-                      color: Colors.white,
-                    ),
+                  style:  TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
                   ),
-                ),
+                  ),
                 Text(
                   'Activity',
-                  style: ParticleFont.micro(
-                    context,
-                    customization: TextStyle(
-                      color: Colors.white,
-                    ),
+                  style:  TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
                   ),
                 ),
                 Text(
                   'Tags',
-                  style: ParticleFont.micro(
-                    context,
-                    customization: TextStyle(
-                      color: Colors.white,
-                    ),
+                  style:  TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
                   ),
-                ),
+                  ),
                 Text(
                   'Links',
-                  style: ParticleFont.micro(
-                    context,
-                    customization: TextStyle(
-                      color: Colors.white,
-                    ),
+                  style:  TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
                   ),
                 ),
                 Text(
                   'People',
-                  style: ParticleFont.micro(
-                    context,
-                    customization: TextStyle(
-                      color: Colors.white,
-                    ),
+                  style:  TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
                   ),
                 ),
                 Text(
                   'Plugins',
-                  textWidthBasis: TextWidthBasis.parent,
-                  style: ParticleFont.micro(
-                    context,
-                    customization: TextStyle(
-                      color: Colors.white,
-                    ),
+                  style:  TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
                   ),
                 ),
                 Text(
                   'JSON',
-                  textWidthBasis: TextWidthBasis.parent,
-                  style: ParticleFont.micro(
-                    context,
-                    customization: TextStyle(
-                      color: Colors.white,
-                    ),
+                  style:  TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
                   ),
                 ),
               ],

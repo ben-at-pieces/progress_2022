@@ -6,7 +6,11 @@ import 'api.dart';
 Future<Statistics> getStats() async {
   Assets assets = await PiecesApi.assetsApi.assetsSnapshot();
 
+
+
+
   List<Asset> asset = assets.iterable;
+
 
   Iterable<Asset> yaml = asset.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.yaml);

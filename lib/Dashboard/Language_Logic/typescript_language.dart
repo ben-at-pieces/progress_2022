@@ -62,14 +62,14 @@ class TypeScriptLanguageBuilder extends StatelessWidget {
                 leading: TextButton(
                   child: Text.rich(
                     textAlign: TextAlign.center,
-                    TextSpan(text: 'Browse this collection to get started! ----', style: ParticleFont.micro(context, customization: TextStyle(color: Colors.grey)), children: <InlineSpan>[
+                    TextSpan(text: 'Get started! ----', style: ParticleFont.micro(context, customization: TextStyle(color: Colors.grey)), children: <InlineSpan>[
                       TextSpan(
-                        text: 'Python Collection',
+                        text: 'TypeScript Collection',
                         style: ParticleFont.micro(
                           context,
                           customization: TextStyle(
                               color: Colors.blueAccent,
-                              fontSize: 22
+                              fontSize: 14
                           ),
                         ),
                       )
@@ -77,7 +77,7 @@ class TypeScriptLanguageBuilder extends StatelessWidget {
                   ),
                   onPressed: () async {
                     String linkUrl =
-                        'https://code.pieces.app/collections/dart?os=C67CACB2-1171-48D6-88F4-3363FC54E34C%0A&user=db21f9b1-f7a4-45ba-82c4-5f029e9177d0';
+                        'https://code.pieces.app/collections/typescript?os=C67CACB2-1171-48D6-88F4-3363FC54E34C%0A&user=db21f9b1-f7a4-45ba-82c4-5f029e9177d0';
 
                     linkUrl = linkUrl; //Twitter's URL
                     if (await canLaunch(linkUrl)) {

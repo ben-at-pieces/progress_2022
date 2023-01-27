@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gsheets/Dashboard/languages.dart';
 import 'package:gsheets/Dashboard/Language_Logic/r_language.dart';
+import 'package:gsheets/Dashboard/settings_bar.dart';
 import 'package:gsheets/Dashboard/sidebar.dart';
 import 'package:side_navigation/side_navigation.dart';
 import 'package:gsheets/connections/statistics_singleton.dart';
@@ -18,7 +19,7 @@ import 'Language_Logic/dart_language.dart';
 import 'Language_Logic/erlang_language.dart';
 import 'Language_Logic/go_language.dart';
 import 'Language_Logic/haskell_language.dart';
-import 'Language_Logic/home_language.dart';
+import '../home_language.dart';
 import 'Language_Logic/html_language.dart';
 import 'Language_Logic/image_language.dart';
 import 'Language_Logic/javaScript_language.dart';
