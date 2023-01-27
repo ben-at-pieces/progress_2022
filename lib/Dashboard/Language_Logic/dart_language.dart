@@ -140,23 +140,23 @@ class DartLanguageBuilder extends StatelessWidget {
                     leading: leading,
                     title: Text(title),
                     trailing: TextButton(
-                          child: SizedBox(
-                            height: 20,
-                            child: Image.asset('chatgptSmall.jpeg'),
-                          ),
-                          onPressed: () async {
-                            String linkUrl = 'https://chat.openai.com/chat';
+                      child: SizedBox(
+                        height: 20,
+                        child: Image.asset('chatgptSmall.jpeg'),
+                      ),
+                      onPressed: () async {
+                        String linkUrl = 'https://chat.openai.com/chat';
 
-                            linkUrl = linkUrl; //Twitter's URL
-                            if (await canLaunch(linkUrl)) {
-                              await launch(
-                                linkUrl,
-                              );
-                            } else {
-                              throw 'Could not launch $linkUrl';
-                            }
-                          },
-                        ),
+                        linkUrl = linkUrl; //Twitter's URL
+                        if (await canLaunch(linkUrl)) {
+                          await launch(
+                            linkUrl,
+                          );
+                        } else {
+                          throw 'Could not launch $linkUrl';
+                        }
+                      },
+                    ),
                   ),
                   Divider(
                     color: Colors.grey,
@@ -168,9 +168,7 @@ class DartLanguageBuilder extends StatelessWidget {
                         TextButton(
                           child: SizedBox(
                               height: 40, width: 40, child: Image.asset('pieces_small.jpeg')),
-                          onPressed: () async {
-
-                          },
+                          onPressed: () async {},
                         ),
                         SizedBox(
                           width: 200,
@@ -200,7 +198,7 @@ class DartLanguageBuilder extends StatelessWidget {
                                   title:
                                       '${StatisticsSingleton().statistics?.dart.elementAt(index).name}',
                                   content:
-                                      '${StatisticsSingleton().statistics?.dart.elementAt(index).original.reference?.fragment?.string}',
+                                      '${StatisticsSingleton().statistics?.dart.elementAt(index).original.reference?.fragment?.string?.raw}',
                                 );
                               },
                             );
@@ -226,7 +224,7 @@ class DartLanguageBuilder extends StatelessWidget {
                                   title:
                                       'Snippet: ${StatisticsSingleton().statistics?.dart.elementAt(index).name} Tags',
                                   content:
-                                      '${StatisticsSingleton().statistics?.dart.elementAt(index).tags}',
+                                      '${StatisticsSingleton().statistics?.dart.elementAt(index).tags?.iterable.toList().elementAt(index).text}',
                                 );
                               },
                             );
@@ -244,16 +242,24 @@ class DartLanguageBuilder extends StatelessWidget {
                             color: Colors.black54,
                           ),
                           onPressed: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialogWidget(
-                                  // title: '${StatisticsSingleton().statistics?.dart.elementAt(index).name}',
-                                  title:
-                                      'Share: ${StatisticsSingleton().statistics?.dart.elementAt(index).name} with your team',
-                                  content: '${StatisticsSingleton().statistics?.persons}',
-                                );
-                              },
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                backgroundColor: Colors.black87,
+                                content: Text(
+                                  'Generating your sharable link!',
+                                  style: ParticleFont.micro(context,
+                                      customization: TextStyle(
+                                        color: Colors.green,
+                                      )),
+                                ),
+                                duration: Duration(
+                                    days: 0,
+                                    hours: 0,
+                                    minutes: 0,
+                                    seconds: 1,
+                                    milliseconds: 30,
+                                    microseconds: 10),
+                              ),
                             );
                           },
                         ),
@@ -274,10 +280,8 @@ class DartLanguageBuilder extends StatelessWidget {
                               builder: (context) {
                                 return AlertDialogWidget(
                                   // title: '${StatisticsSingleton().statistics?.dart.elementAt(index).name}',
-                                  title:
-                                      'Snippet: ${StatisticsSingleton().statistics?.dart.elementAt(index).name} Tags',
-                                  content:
-                                      '${StatisticsSingleton().statistics?.dart.elementAt(index).original.reference?.fragment?.string}',
+                                  title: 'Snippet: links',
+                                  content: '${StatisticsSingleton().statistics?.relatedLinks}',
                                 );
                               },
                             );
@@ -295,18 +299,32 @@ class DartLanguageBuilder extends StatelessWidget {
                             color: Colors.black54,
                           ),
                           onPressed: () {
-
                             showDialog(
                               context: context,
                               builder: (context) {
-                                return AlertDialogWidget(
+                                return AlertDialog(
                                   // title: '${StatisticsSingleton().statistics?.dart.elementAt(index).name}',
-                                  title:
-                                      '${StatisticsSingleton().statistics?.dart.elementAt(index).name}',
-                                  content:
-                                      '${StatisticsSingleton().statistics?.dart.elementAt(index).original.reference?.fragment?.string}',
+                                  title: Text('Are you sure you want to delete this snippet?'),
+                                  content: Text(
+                                      '${StatisticsSingleton().statistics?.dart.elementAt(index).name}'),
+                                  actions: [
+                                    ParticleButton(
+                                      textColor: Colors.white,
+                                      backgroundColor: Colors.red,
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      text: ('Delete'),
+                                    ),  ParticleButton(
+                                      textColor: Colors.white,
+                                      backgroundColor: Colors.black54,
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      text: ('close'),
+                                    ),
+                                  ],
                                 );
-
                               },
                             );
                           },

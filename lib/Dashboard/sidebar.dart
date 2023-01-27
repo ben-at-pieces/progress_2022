@@ -86,7 +86,8 @@ class _VerticalTabBarState extends State<VerticalTabBar> {
         body: SafeArea(
           child: Row(
             children: [
-            SizedBox(
+            Container(
+              color: Colors.black26,
             width: 120,
             child: ListView.separated(
               itemCount: languages.length,
@@ -109,7 +110,7 @@ class _VerticalTabBarState extends State<VerticalTabBar> {
 
                           alignment: Alignment.center,
                           duration: Duration(milliseconds: 500),
-                          height: (selectedIndex == index) ? 45 : 0,
+                          height: (selectedIndex == index) ? 49 : 0,
                           width: 5,
                           color: Colors.black12,
                         ),
