@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gsheets/Dashboard/languages.dart';
 import 'package:gsheets/Dashboard/Language_Logic/r_language.dart';
+import 'package:gsheets/Dashboard/settingsLanguageBuilder.dart';
 import 'package:gsheets/Dashboard/settings_bar.dart';
 import 'package:gsheets/Dashboard/sidebar.dart';
 import 'package:side_navigation/side_navigation.dart';
@@ -140,7 +141,7 @@ class _VerticalTabBarState extends State<VerticalTabBar> {
               child: PageView(
                   controller: _pageController,
                   children: [
-                    HomeLanguageBuilder(title: '',subtitle: '', leading: Image.asset('PLogo.jpg'),),
+                    HomeLanguageBuilder(subtitle: '', leading: Image.asset('PLogo.jpg'),),
                     BatchLanguageBuilder(title: 'Batchfile',subtitle: '', leading: Image.asset('batchfile-black.jpg'),),
                     CLanguageBuilder(title: 'C',subtitle: 'sub', leading: Image.asset('c.jpg'),),
                     CoffeeLanguageBuilder(title: 'Coffeescript',subtitle: 'sub', leading: Image.asset('coffeescript-black.jpg'),),

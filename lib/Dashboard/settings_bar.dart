@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:runtime_client/particle.dart';
 
 import '../appbar_class.dart';
 import '../bottom_appbar_class.dart';
+import 'copy_widget.dart';
 
 class SearchableListView extends StatefulWidget {
   @override
@@ -11,7 +13,10 @@ class SearchableListView extends StatefulWidget {
 class _SearchableListViewState extends State<SearchableListView> {
   // list of items to display in the ListView
   final List<String> _items = [
-    'Connect to Pieces OS',
+    'Single-Click Save',
+    'IDE ListView & MetaData OverView',
+    'Proactive Save -VS Code',
+    'Share Code with Shareable Links',
     'Automatic Smart Descriptions',
     'Shareable Links',
     'Renaming an Asset',
@@ -22,6 +27,8 @@ class _SearchableListViewState extends State<SearchableListView> {
     'Insert a Snippet',
     'Custom Subdomains',
     'Working with Sensitives',
+    'Information View',
+    'AutoComplete',
   ];
 
   // list of items filtered based on user's search
@@ -44,7 +51,8 @@ class _SearchableListViewState extends State<SearchableListView> {
 
       // filter the list of items based on the search text
       setState(() {
-        _filteredItems = _items.where((item) => item.toLowerCase().contains(searchText.toLowerCase())).toList();
+        _filteredItems =
+            _items.where((item) => item.toLowerCase().contains(searchText.toLowerCase())).toList();
       });
     });
   }
@@ -52,35 +60,85 @@ class _SearchableListViewState extends State<SearchableListView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CutomAppBar(title: 'Support Center',),
+      // appBar: CutomAppBar(
+      //   title: 'Support Center',
+      // ),
+
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // search TextField
           Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: TextField(autofocus: true,
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              cursorHeight: 18,
+              toolbarOptions: ToolbarOptions(
+                copy: true,
+                paste: true,
+                selectAll: true,
+              ),
+              autofocus: true,
               controller: _searchController,
               decoration: InputDecoration(
-                hintText: 'Search for Power Tips...',
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.lightBlue,
+                  size: 25,
+                ),
+                hintText: 'Search...',
               ),
             ),
           ),
-          Expanded(
-            // list view of filtered items
-            child: ListView.builder(
-              itemCount: _filteredItems.length,
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  title: Text(_filteredItems[index]),
-                );
-              },
-            ),
+          Column(
+            children: [
+              Container(
+                color: Colors.white38,
+                height: 230,
+
+                // list view of filtered items
+                child: ListView.builder(
+                  itemCount: _filteredItems.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ListTile(
+                      // subtitle: Text('Tip Link'),
+                      title: Visibility(
+                        visible: true,
+                        child: Text(
+                          _filteredItems[index],
+                          style: ParticleFont.micro(
+                            context,
+                            customization: TextStyle(
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: ParticleButton(
+                      backgroundColor: Colors.grey,
+                      textColor: Colors.white,
+                      text: 'close',
+                      onPressed: () async {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ],
       ),
-      bottomNavigationBar: CutomBottomAppBar(),
+      // bottomNavigationBar: CutomBottomAppBar(),
     );
   }
 }

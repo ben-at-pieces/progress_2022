@@ -2,6 +2,7 @@ import 'package:connector_openapi/api.dart';
 import 'package:flutter/material.dart';
 import 'package:runtime_client/particle.dart';
 
+import 'Dashboard/copy_widget.dart';
 import 'Dashboard/settings_bar.dart';
 import 'connections/statistics_singleton.dart';
 import 'package:flutter/services.dart';
@@ -26,12 +27,12 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeLanguageBuilder extends StatelessWidget {
-  final String title;
+  // final String title;
   final String subtitle;
   final Image leading;
 
   HomeLanguageBuilder({
-    required this.title,
+    // required this.title,
     required this.subtitle,
     required this.leading,
   });
@@ -163,21 +164,21 @@ class HomeLanguageBuilder extends StatelessWidget {
                   ),
                   trailing: FloatingActionButton(
                     focusColor: Colors.green,
-                    tooltip: 'preferences',
+                    tooltip: 'power tips',
                     hoverColor: Colors.grey,
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     child: Icon(
-                      Icons.settings,
+                      Icons.tips_and_updates_outlined,
                       size: 25,
-                      color: Colors.black54,
+                      color: Colors.black,
                     ),
                     onPressed: () {
                       showDialog(
                         context: context,
                         builder: (context) {
                           return
-                            SearchableListView();
+                            FloatingCopyButton();
                         },
                       );
                     },

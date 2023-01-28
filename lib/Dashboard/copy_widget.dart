@@ -1,6 +1,14 @@
+import 'package:connector_openapi/api.dart';
 import 'package:flutter/material.dart';
+import 'package:gsheets/Dashboard/settings_bar.dart';
+import 'package:runtime_client/particle.dart';
+
+
 import 'package:flutter/services.dart';
-import '../../../connections/statistics_singleton.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../connections/statistics_singleton.dart';
+import '../tabBar_appbar.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,36 +39,34 @@ class _MyHomePageState extends State<FloatingCopyButton> {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      trailing: IconButton(
-        tooltip: 'copy',
-        splashRadius: 2,
-        icon: Icon(
-          Icons.copy,
-          color: Colors.black,
-          size: 20,
-        ),
-        onPressed: () async {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                'Copied to Clipboard',
-              ),
-              duration: Duration(
-                  days: 0,
-                  hours: 0,
-                  minutes: 0,
-                  seconds: 1,
-                  milliseconds: 30,
-                  microseconds: 20),
-            ),
-          );
-          ClipboardData data = ClipboardData(
-              text:
-              '${StatisticsSingleton().statistics?.python.elementAt(index!).original.reference?.fragment?.string?.raw}');
-          await Clipboard.setData(data);
-        },
-      ),
-    );
+    return
+              AlertDialog(
+                titleTextStyle: ParticleFont.micro(context),
+                backgroundColor: Colors.white,
+                title: Row(
+                  children: [SizedBox(
+                    height: 30,
+                    width: 30,
+                    child: Image.asset('icon_path_black.png'),
+                  ),
+                    Text(
+                      'Pro Tips',
+                      style: ParticleFont.subtitle2(
+                        context,
+                        customization: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                content: SearchableListView(),
+                // content:
+
+
+
+              );
   }
 }
+final TextEditingController _textFieldController = TextEditingController();
