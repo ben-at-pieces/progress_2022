@@ -32,8 +32,8 @@ class TagsListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CutomBottomAppBar(),
-      appBar: CutomAppBar(
+      bottomNavigationBar: CustomBottomAppBar(),
+      appBar: CustomAppBar(
         title: 'User Tags',
       ),
       body: Scaffold(

@@ -271,6 +271,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+  flutter_table:
+    dependency: "direct main"
+    description:
+      name: flutter_table
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -533,6 +540,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.3"
+  puppeteer:
+    dependency: "direct main"
+    description:
+      name: puppeteer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.22.0"
   quiver:
     dependency: transitive
     description:

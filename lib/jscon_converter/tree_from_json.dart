@@ -56,7 +56,7 @@ class _TreeFromJsonState extends State<TreeFromJson> {
     // print(yamlList);
 
     return Scaffold(
-      appBar: CutomAppBar(title: 'Format JSON',),
+      appBar: CustomAppBar(title: 'Format JSON',),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Row(

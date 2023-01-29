@@ -3,7 +3,6 @@ import 'package:runtime_client/particle.dart';
 
 import '../appbar_class.dart';
 import '../bottom_appbar_class.dart';
-import 'copy_widget.dart';
 
 class SearchableListView extends StatefulWidget {
   @override
@@ -14,13 +13,14 @@ class _SearchableListViewState extends State<SearchableListView> {
   // list of items to display in the ListView
   final List<String> _items = [
     'Single-Click Save',
-    'IDE ListView & MetaData OverView',
+    'VS Code list view and Overview',
+    'Save to Pieces'
     'Proactive Save -VS Code',
     'Share Code with Shareable Links',
     'Automatic Smart Descriptions',
     'Shareable Links',
     'Renaming an Asset',
-    'Reclassifying an Asset',
+    'Reclassify Snippet',
     'Workflow Activity View',
     'Snippet Discovery',
     'Getting Started with VS Code',
@@ -29,6 +29,36 @@ class _SearchableListViewState extends State<SearchableListView> {
     'Working with Sensitives',
     'Information View',
     'AutoComplete',
+    'AutoExpansion',
+    'Save to Pieces As',
+    'Collections',
+    'Pieces OS',
+    'bracket Control',
+  ];
+
+  final List<String> _items2 = [
+    'Single-Click Save',
+    'VS Code list view and Overview',
+    'Save to Pieces'
+        'Proactive Save -VS Code',
+    'Share Code with Shareable Links',
+    'Automatic Smart Descriptions',
+    'Shareable Links',
+    'Renaming an Asset',
+    'Reclassify Snippet',
+    'Workflow Activity View',
+    'Snippet Discovery',
+    'Getting Started with VS Code',
+    'Insert a Snippet',
+    'Custom Subdomains',
+    'Working with Sensitives',
+    'Information View',
+    'AutoComplete',
+    'AutoExpansion',
+    'Save to Pieces As',
+    'Collections',
+    'Pieces OS',
+    'bracket Control',
   ];
 
   // list of items filtered based on user's search
@@ -60,83 +90,56 @@ class _SearchableListViewState extends State<SearchableListView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: CutomAppBar(
-      //   title: 'Support Center',
-      // ),
-
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // search TextField
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              cursorHeight: 18,
-              toolbarOptions: ToolbarOptions(
-                copy: true,
-                paste: true,
-                selectAll: true,
-              ),
-              autofocus: true,
-              controller: _searchController,
-              decoration: InputDecoration(
-                icon: Icon(
-                  Icons.search,
-                  color: Colors.lightBlue,
-                  size: 25,
-                ),
-                hintText: 'Search...',
-              ),
+      appBar: AppBar(
+        backwardsCompatibility: true,
+        backgroundColor: Colors.grey,
+        toolbarHeight: 40,
+        // titleSpacing: 50,
+        title: TextField(
+          cursorHeight: 18,
+          cursorColor: Colors.black,
+          toolbarOptions: ToolbarOptions(
+            copy: true,
+            paste: true,
+            selectAll: true,
+          ),
+          autofocus: true,
+          controller: _searchController,
+          decoration: InputDecoration(
+            prefixIcon: Icon(
+              Icons.search,
+              color: Colors.grey,
+              size: 20,
             ),
-          ),
-          Column(
-            children: [
-              Container(
-                color: Colors.white38,
-                height: 230,
+            filled: true,
+              fillColor: Colors.white,
 
-                // list view of filtered items
-                child: ListView.builder(
-                  itemCount: _filteredItems.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ListTile(
-                      // subtitle: Text('Tip Link'),
-                      title: Visibility(
-                        visible: true,
-                        child: Text(
-                          _filteredItems[index],
-                          style: ParticleFont.micro(
-                            context,
-                            customization: TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
+              hintText: 'Search...',
+              hintStyle: TextStyle(fontSize: 12)
+          ),
+        ),
+      ),
+      body: ListView.builder(
+        itemCount: _filteredItems.length,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(
+            enableFeedback: true,
+            subtitle: Text(_filteredItems[index],style: TextStyle(color: Colors.black),),
+            title: Visibility(
+              visible: true,
+              child: Text(
+                _filteredItems[index],
+                style: ParticleFont.micro(
+                  context,
+                  customization: TextStyle(
+                    color: Colors.grey,
+                  ),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
-                    child: ParticleButton(
-                      backgroundColor: Colors.grey,
-                      textColor: Colors.white,
-                      text: 'close',
-                      onPressed: () async {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
+
+            ),
+          );
+        },
       ),
       // bottomNavigationBar: CutomBottomAppBar(),
     );

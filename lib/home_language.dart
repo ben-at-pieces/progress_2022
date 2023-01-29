@@ -2,7 +2,8 @@ import 'package:connector_openapi/api.dart';
 import 'package:flutter/material.dart';
 import 'package:runtime_client/particle.dart';
 
-import 'Dashboard/copy_widget.dart';
+import 'Dashboard/pro_tips.dart';
+import 'Dashboard/settings.dart';
 import 'Dashboard/settings_bar.dart';
 import 'connections/statistics_singleton.dart';
 import 'package:flutter/services.dart';
@@ -39,6 +40,7 @@ class HomeLanguageBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       color: Colors.grey,
       child: ListView.builder(
@@ -58,19 +60,28 @@ class HomeLanguageBuilder extends StatelessWidget {
                       customization: TextStyle(fontSize: 15, color: Colors.black),
                     ),
                   ),
-                  subtitle: Text(
-                    '${StatisticsSingleton().statistics?.platform.toLowerCase()}' ?? '',
-                    style: ParticleFont.bodyText1(
-                      context,
-                      customization: TextStyle(fontSize: 10, color: Colors.black),
-                    ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        '${StatisticsSingleton().statistics?.platform.toLowerCase()}' ?? '',
+                        style: ParticleFont.bodyText1(
+                          context,
+                          customization: TextStyle(fontSize: 10, color: Colors.black),
+                        ),
+                      ),
+                      Text(
+                        'os: ${StatisticsSingleton().statistics?.version}' ?? '',
+                        style: ParticleFont.bodyText1(
+                          context,
+                          customization: TextStyle(fontSize: 10, color: Colors.black),
+                        ),
+                      ),  ],
                   ),
-                  trailing: Text(
-                    'os: ${StatisticsSingleton().statistics?.version}' ?? '',
-                    style: ParticleFont.bodyText1(
-                      context,
-                      customization: TextStyle(fontSize: 10, color: Colors.black),
-                    ),
+                  trailing: Icon(
+                    Icons.add_box_outlined,
+                    size: 20,
+                    color: Colors.white,
                   ),
                 ),
                 Divider(
@@ -116,7 +127,7 @@ class HomeLanguageBuilder extends StatelessWidget {
                     top: 5.0,
                   ),
                   child: Text(
-                    'Products in use: ${StatisticsSingleton().statistics?.origins.length} /5 ',
+                    '${StatisticsSingleton().statistics?.classifications} ',
                     style: ParticleFont.subtitle1(
                       context,
                       customization: TextStyle(
@@ -126,43 +137,12 @@ class HomeLanguageBuilder extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 12,
-                    top: 12.0,
-                  ),
-                  child: Text(
-                    'Time Saved Using Pieces ${StatisticsSingleton().statistics?.timeTaken.round()} seconds',
-                    style: ParticleFont.subtitle1(
-                      context,
-                      customization: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
+
                 Divider(
                   color: Colors.grey,
                 ),
                 ListTile(
-                  // leading: Image.asset('APFD.jpeg'),
-                  leading: TextButton(
-                    child: Image.asset('APFD.jpeg'),
-                    onPressed: () async {
-                      String linkUrl = 'https://code.pieces.app/install';
-
-                      linkUrl = linkUrl; //Twitter's URL
-                      if (await canLaunch(linkUrl)) {
-                        await launch(
-                          linkUrl,
-                        );
-                      } else {
-                        throw 'Could not launch $linkUrl';
-                      }
-                    },
-                  ),
-                  trailing: FloatingActionButton(
+                  leading: FloatingActionButton(
                     focusColor: Colors.green,
                     tooltip: 'power tips',
                     hoverColor: Colors.grey,
@@ -178,7 +158,28 @@ class HomeLanguageBuilder extends StatelessWidget {
                         context: context,
                         builder: (context) {
                           return
-                            FloatingCopyButton();
+                            FloatingProTipButton();
+                        },
+                      );
+                    },
+                  ),
+                  trailing: FloatingActionButton(
+                    focusColor: Colors.green,
+                    tooltip: 'power tips',
+                    hoverColor: Colors.grey,
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    child: Icon(
+                      Icons.settings,
+                      size: 25,
+                      color: Colors.black,
+                    ),
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return
+                            FloatingSettingsButton();
                         },
                       );
                     },

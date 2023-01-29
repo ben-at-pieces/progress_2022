@@ -40,7 +40,7 @@ class OriginChart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black12,
-      appBar: CutomAppBar(title: 'Snippet Origins',),
+      appBar: CustomAppBar(title: 'Snippet Origins',),
       body: Padding(
         padding: const EdgeInsets.only(top: 60.0, left: 40),
         child: SizedBox(
@@ -81,7 +81,7 @@ class OriginChart extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: CutomBottomAppBar(),
+      bottomNavigationBar: CustomBottomAppBar(),
     );
   }
 }

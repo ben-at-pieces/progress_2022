@@ -33,8 +33,8 @@ class Plugins extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black12,
-      bottomNavigationBar: CutomBottomAppBar(),
-      appBar: CutomAppBar(
+      bottomNavigationBar: CustomBottomAppBar(),
+      appBar: CustomAppBar(
         title: 'Plugins & More',
       ),
       body: Column(

@@ -31,7 +31,7 @@ class RelatedLinksWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CutomAppBar(
+      appBar: CustomAppBar(
         title: 'Related Links',
       ),
       body: Scaffold(
@@ -157,7 +157,7 @@ class RelatedLinksWidget extends StatelessWidget {
               // title: Text('Person: $index'));
             }),
       ),
-      bottomNavigationBar: CutomBottomAppBar(),
+      bottomNavigationBar: CustomBottomAppBar(),
     );
   }
 }

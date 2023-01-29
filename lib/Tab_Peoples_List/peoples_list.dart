@@ -31,7 +31,7 @@ class PeoplesListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CutomAppBar(title: 'Related People',),
+      appBar: CustomAppBar(title: 'Related People',),
       body: Container(
         color: Colors.black12,
         child: ListView.builder(
@@ -53,7 +53,7 @@ class PeoplesListWidget extends StatelessWidget {
               // title: Text('Person: $index'));
             }),
       ),
-      bottomNavigationBar: CutomBottomAppBar(),
+      bottomNavigationBar: CustomBottomAppBar(),
     );
   }
 }

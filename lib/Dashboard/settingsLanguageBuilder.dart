@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:runtime_client/particle.dart';
 
 import '../appbar_class.dart';
 import '../bottom_appbar_class.dart';
@@ -57,52 +58,156 @@ class _SearchableListViewState extends State<SettingsLanguageBuilder> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: CutomAppBar(
-        title: 'Support Center',
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // search TextField
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: SizedBox(
-              width: 280,
-              child: TextField(
-                autofocus: true,
-                controller: _searchController,
-                decoration: InputDecoration(
-                  icon: SizedBox(
-                    height: 40,
-                    child: Image.asset('powertip.png'),
-                  ),
-                  hintText: 'Search Pro Tips...',
-                ),
-              ),
-            ),
-          ),
-          Expanded(
-            // list view of filtered items
-            child: ListView.builder(
-              itemCount: _filteredItems.length,
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  // subtitle: Text('Tip Link'),
-                  title: Visibility(
-                    visible: true,
-                    child: Text(
-                      _filteredItems[index],
+    return  Container(
+      color: Colors.grey,
+      child: ListView.builder(
+        itemCount: 1,
+        itemBuilder: (BuildContext context, int index) {
+          return Card(
+            elevation: 2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ListTile(
+                  leading: Image.asset('user.jpg'),
+                  title: Text(
+                    'Setting' ?? '',
+                    style: ParticleFont.bodyText1(
+                      context,
+                      customization: TextStyle(fontSize: 15, color: Colors.black),
                     ),
                   ),
-                );
-              },
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        'Subtitle' ?? '',
+                        style: ParticleFont.bodyText1(
+                          context,
+                          customization: TextStyle(fontSize: 10, color: Colors.black),
+                        ),
+                      ),
+                      // Text(
+                      //   'os: ${StatisticsSingleton().statistics?.version}' ?? '',
+                      //   style: ParticleFont.bodyText1(
+                      //     context,
+                      //     customization: TextStyle(fontSize: 10, color: Colors.black),
+                      //   ),
+                      // ),
+                    ],
+                  ),
+                  trailing: Icon(
+                    Icons.add_box_outlined,
+                    size: 20,
+                    color: Colors.white,
+                  ),
+                ),
+                Divider(
+                  color: Colors.grey,
+                ),
+                ListTile(
+                  // leading: Image.asset('APFD.jpeg'),
+                  // title: Text('Snippets: ${StatisticsSingleton().statistics?.snippetsSaved}' ?? ''),
+                  // subtitle: Column(
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     Padding(
+                  //       padding: const EdgeInsets.only(top: 12.0),
+                  //       child: Text('Tags: ${StatisticsSingleton().statistics?.tags.length}' ?? ''),
+                  //     ),
+                  //     Padding(
+                  //       padding: const EdgeInsets.only(top: 12.0),
+                  //       child: Text(
+                  //           'Links: ${StatisticsSingleton().statistics?.relatedLinks.length}' ??
+                  //               ''),
+                  //     ),
+                  //     Padding(
+                  //       padding: const EdgeInsets.only(top: 12.0),
+                  //       child: Text(
+                  //           'Shares: ${StatisticsSingleton().statistics?.shareableLinks}' ?? ''),
+                  //     ),
+                  //
+                  //     ///
+                  //     Padding(
+                  //       padding: const EdgeInsets.only(top: 14.0, bottom: 8),
+                  //       child: Text(
+                  //           'People: ${StatisticsSingleton().statistics?.persons.length}' ?? ''),
+                  //     ),
+                  //   ],
+                  // ),
+                ),
+
+
+                // Padding(
+                //   padding: const EdgeInsets.only(
+                //     left: 12,
+                //     top: 5.0,
+                //   ),
+                //   child: Text(
+                //     '${StatisticsSingleton().statistics?.classifications} ',
+                //     style: ParticleFont.subtitle1(
+                //       context,
+                //       customization: TextStyle(
+                //         fontSize: 14,
+                //         color: Colors.black54,
+                //       ),
+                //     ),
+                //   ),
+                // ),
+
+                Divider(
+                  color: Colors.grey,
+                ),
+                ListTile(
+                  leading: FloatingActionButton(
+                    focusColor: Colors.green,
+                    tooltip: 'power tips',
+                    hoverColor: Colors.grey,
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    child: Icon(
+                      Icons.tips_and_updates_outlined,
+                      size: 25,
+                      color: Colors.black,
+                    ),
+                    onPressed: () {
+                    //   showDialog(
+                    //     context: context,
+                    //     builder: (context) {
+                    //       return
+                    //         FloatingProTipButton();
+                    //     },
+                    //   );
+                    },
+                  ),
+                  trailing: FloatingActionButton(
+                    focusColor: Colors.green,
+                    tooltip: 'power tips',
+                    hoverColor: Colors.grey,
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    child: Icon(
+                      Icons.settings,
+                      size: 25,
+                      color: Colors.black,
+                    ),
+                    onPressed: () {
+                      // showDialog(
+                      //   context: context,
+                      //   builder: (context) {
+                      //     return
+                      //       FloatingSettingsButton();
+                      //   },
+                      // );
+                    },
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
+          );
+        },
       ),
-      bottomNavigationBar: CutomBottomAppBar(),
     );
   }
 }

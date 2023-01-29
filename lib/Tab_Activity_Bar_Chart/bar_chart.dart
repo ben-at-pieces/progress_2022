@@ -56,7 +56,7 @@ class _BarChartState extends State<BarGraph> {
     /// connection to tags pop up ====================================================================
 
     return Scaffold(
-      appBar: CutomAppBar(title: 'Repository Statistics',),
+      appBar: CustomAppBar(title: 'Repository Statistics',),
       body: Container(
         color: Colors.black12,
         child: Padding(
@@ -304,7 +304,7 @@ class _BarChartState extends State<BarGraph> {
           ),
         ),
       ),
-      bottomNavigationBar: CutomBottomAppBar(),
+      bottomNavigationBar: CustomBottomAppBar(),
     );
   }
 

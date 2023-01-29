@@ -37,8 +37,8 @@ class _MyHomePageState extends State<MyDashBoard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CutomBottomAppBar(),
-      appBar: CutomAppBar(title: '',),
+      bottomNavigationBar: CustomBottomAppBar(),
+      appBar: CustomAppBar(title: '',),
       body: VerticalTabBar(),
       backgroundColor: Colors.lightBlue[50],
     );

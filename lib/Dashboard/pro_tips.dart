@@ -23,18 +23,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: FloatingCopyButton(),
+      home: FloatingProTipButton(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class FloatingCopyButton extends StatefulWidget {
+class FloatingProTipButton extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<FloatingCopyButton> {
+class _MyHomePageState extends State<FloatingProTipButton> {
   int? index = StatisticsSingleton().statistics?.python.length;
 
   @override
@@ -44,24 +44,20 @@ class _MyHomePageState extends State<FloatingCopyButton> {
                 titleTextStyle: ParticleFont.micro(context),
                 backgroundColor: Colors.white,
                 title: Row(
-                  children: [SizedBox(
-                    height: 30,
-                    width: 30,
-                    child: Image.asset('icon_path_black.png'),
-                  ),
-                    Text(
-                      'Pro Tips',
-                      style: ParticleFont.subtitle2(
-                        context,
-                        customization: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
+                  children: [
+                    // SizedBox(
+                    //   height: 50,
+                    //   width: 50,
+                    //   child: Image.asset('icon_path_black.png'),
+                    // ),
+                    Text('Pro Tips', style: TextStyle(color: Colors.black),)
                   ],
                 ),
-                content: SearchableListView(),
+                content: Container(
+                    height: 280,
+                    width: 400,
+
+                    child: SearchableListView()),
                 // content:
 
 

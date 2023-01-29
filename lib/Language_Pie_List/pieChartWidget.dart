@@ -45,9 +45,9 @@ class MyPieChart extends StatelessWidget {
 
     return Scaffold(
 
-      bottomNavigationBar: CutomBottomAppBar(),
+      bottomNavigationBar: CustomBottomAppBar(),
       backgroundColor: Colors.black12,
-      appBar: CutomAppBar(title: 'Snippet Classifications',),
+      appBar: CustomAppBar(title: 'Snippet Classifications',),
       body: Padding(
         padding: const EdgeInsets.only(top: 10.0, left: 10),
         child: SizedBox(
