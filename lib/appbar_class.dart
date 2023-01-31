@@ -36,15 +36,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     return Container(
       color: Colors.black87,
-      child: Row(children: [
-        Image.asset('icon_path_white.png'),
-        Text(
+      child: ListTile(
+       leading: Image.asset('icon_path_white.png'),
+       title: Text(
           title,
           style: ParticleFont.micro(
             context,
             customization: TextStyle(color: Colors.white),
           ),
         ),
+         trailing: SizedBox(
+             height: 25, child: Image.asset('OpenAI_Logo.svg.png')),
         // FloatingActionButton(
         //   focusColor: Colors.green,
         //   tooltip: 'create a snippet',
@@ -227,7 +229,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         //     );
         //   },
         // ),
-      ]),
+      ),
     );
   }
 

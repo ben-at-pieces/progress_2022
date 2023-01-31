@@ -12,6 +12,8 @@ Future<Statistics> getStats() async {
   List<Asset> asset = assets.iterable;
 
 
+
+
   Iterable<Asset> yaml = asset.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.yaml);
 
@@ -103,7 +105,45 @@ Future<Statistics> getStats() async {
   ReturnedUserProfile user = await PiecesApi.userApi.userSnapshot();
   // ReturnedUserProfile users = await PiecesApi.;
 
+  List<Iterable<Asset>> filteredLanguages = [
 
+    batch,
+    c,
+    cPlus,
+    coffee,
+    css,
+    cSharp,
+    dart,
+    erlang,
+    go,
+    haskell,
+    html,
+    image,
+    java,
+    javascript,
+    json,
+    lua,
+    markdown,
+    matLab,
+    objectiveC,
+    php,
+    perl,
+    powershell,
+    python,
+    r,
+    ruby,
+    rust,
+    scala,
+    shell,
+    sql,
+    swift,
+    typescript,
+    tex,
+    text,
+    toml,
+    yaml,
+
+  ];
 
   /// Activities Information (version, platform)
   Activities activities = await PiecesApi.activitiesApi.activitiesSnapshot();
@@ -224,6 +264,7 @@ Future<Statistics> getStats() async {
   }
 
   Statistics statistics = Statistics(
+    filteredLanguages: filteredLanguages,
     activity: activity,
     platform: platform,
     version: version,
@@ -279,6 +320,7 @@ Future<Statistics> getStats() async {
 
 /// Statistics class ================================================================
 class Statistics {
+  final List<Iterable<Asset>> filteredLanguages;
   final Map<String, double> classifications;
   final Map<String, double> origins;
   final double snippetsSaved;
@@ -333,6 +375,7 @@ class Statistics {
   /// Statistics class constructors ================================================================
   Statistics(
       {
+      required this.filteredLanguages,
       required this.batch,
       required this.c,
       required this.cPlus,
@@ -384,3 +427,5 @@ class Statistics {
       required this.version,
       required this.raw});
 }
+
+

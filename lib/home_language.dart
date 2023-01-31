@@ -50,7 +50,7 @@ class HomeLanguageBuilder extends StatelessWidget {
           return Card(
             elevation: 2,
             child: Container(
-              height: 3200,
+              height: 350,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

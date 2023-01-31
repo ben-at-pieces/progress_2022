@@ -80,7 +80,7 @@ class _VerticalTabBarState extends State<VerticalTabBar> {
 
   @override
   Widget build(BuildContext context) {
-    int? classificationCount = StatisticsSingleton().statistics?.classifications.length;
+    int? classificationCount = StatisticsSingleton().statistics?.classifications.length.toInt();
     Iterable<String>? classificationsList = StatisticsSingleton().statistics?.classifications.keys;
 
     /// ======= THIS IS WHERE WE CN CUSTOMIZE THE LAYOUT OF THE VERTICAL TAB BAR
@@ -92,7 +92,7 @@ class _VerticalTabBarState extends State<VerticalTabBar> {
               color: Colors.black26,
             width: 120,
             child: ListView.separated(
-              itemCount: languages.length,
+              itemCount: classificationCount ?? 0,
               separatorBuilder: (BuildContext context, int index) {
                 return SizedBox(height: 5);
               },
@@ -139,6 +139,7 @@ class _VerticalTabBarState extends State<VerticalTabBar> {
           Expanded(
             child: Container(
               // height: 250,
+              ///todo impliment pagebuilder
               child: PageView(
                   controller: _pageController,
                   children: [
