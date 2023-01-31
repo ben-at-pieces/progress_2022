@@ -91,31 +91,20 @@ class _SearchableListViewState extends State<SearchableListView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backwardsCompatibility: true,
+        // backwardsCompatibility: false,
         backgroundColor: Colors.grey,
-        toolbarHeight: 40,
+        // toolbarHeight: 40,
         // titleSpacing: 50,
-        title: TextField(
-          cursorHeight: 18,
-          cursorColor: Colors.black,
-          toolbarOptions: ToolbarOptions(
-            copy: true,
-            paste: true,
-            selectAll: true,
-          ),
-          autofocus: true,
-          controller: _searchController,
-          decoration: InputDecoration(
-            prefixIcon: Icon(
-              Icons.search,
-              color: Colors.grey,
-              size: 20,
-            ),
-            filled: true,
-              fillColor: Colors.white,
-
+        title:Container(
+          padding: EdgeInsets.all(8.0),
+          child: TextField(
+            cursorColor: Colors.black,
+            controller: _searchController,
+            decoration: InputDecoration(
+              prefixIcon: Icon(Icons.search, color: Colors.white,),
               hintText: 'Search...',
-              hintStyle: TextStyle(fontSize: 12)
+
+            ),
           ),
         ),
       ),
@@ -124,19 +113,15 @@ class _SearchableListViewState extends State<SearchableListView> {
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
             enableFeedback: true,
-            subtitle: Text(_filteredItems[index],style: TextStyle(color: Colors.black),),
-            title: Visibility(
-              visible: true,
-              child: Text(
-                _filteredItems[index],
-                style: ParticleFont.micro(
-                  context,
-                  customization: TextStyle(
-                    color: Colors.grey,
-                  ),
+            // subtitle: Text(_filteredItems[index],style: TextStyle(color: Colors.black),),
+            title: Text(
+              _filteredItems[index],
+              style: ParticleFont.micro(
+                context,
+                customization: TextStyle(
+                  color: Colors.grey,
                 ),
               ),
-
             ),
           );
         },

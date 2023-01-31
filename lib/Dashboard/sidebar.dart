@@ -138,6 +138,7 @@ class _VerticalTabBarState extends State<VerticalTabBar> {
           /// Widget List ========================================================
           Expanded(
             child: Container(
+              // height: 250,
               child: PageView(
                   controller: _pageController,
                   children: [

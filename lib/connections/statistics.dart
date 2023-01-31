@@ -101,6 +101,9 @@ Future<Statistics> getStats() async {
       element.original.reference?.classification.generic == ClassificationGenericEnum.IMAGE);
 
   ReturnedUserProfile user = await PiecesApi.userApi.userSnapshot();
+  // ReturnedUserProfile users = await PiecesApi.;
+
+
 
   /// Activities Information (version, platform)
   Activities activities = await PiecesApi.activitiesApi.activitiesSnapshot();
