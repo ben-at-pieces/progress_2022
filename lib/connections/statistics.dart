@@ -1,18 +1,13 @@
 import 'package:core_openapi/api.dart';
 import 'package:gsheets/Dashboard/Language_Logic/empty_state.dart';
+import 'package:gsheets/connections/statistics_singleton.dart';
 
 import 'api.dart';
 
 Future<Statistics> getStats() async {
   Assets assets = await PiecesApi.assetsApi.assetsSnapshot();
 
-
-
-
   List<Asset> asset = assets.iterable;
-
-
-
 
   Iterable<Asset> yaml = asset.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.yaml);
@@ -26,8 +21,6 @@ Future<Statistics> getStats() async {
 
   Iterable<Asset> c = asset.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.c);
-
-
 
   Iterable<Asset> cPlus = asset.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.cpp);
@@ -98,15 +91,14 @@ Future<Statistics> getStats() async {
   Iterable<Asset> toml = asset.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.toml);
 
-
   Iterable<Asset> image = asset.where((element) =>
       element.original.reference?.classification.generic == ClassificationGenericEnum.IMAGE);
 
   ReturnedUserProfile user = await PiecesApi.userApi.userSnapshot();
   // ReturnedUserProfile users = await PiecesApi.;
 
-  List<Iterable<Asset>> filteredLanguages = [
 
+  List<Iterable<Asset>> filteredLanguages = [
     batch,
     c,
     cPlus,
@@ -142,7 +134,6 @@ Future<Statistics> getStats() async {
     text,
     toml,
     yaml,
-
   ];
 
   /// Activities Information (version, platform)
@@ -314,12 +305,14 @@ Future<Statistics> getStats() async {
     json: json,
     lua: lua,
     markdown: markdown,
+    asset: asset,
   );
   return statistics;
 }
 
 /// Statistics class ================================================================
 class Statistics {
+  final List<Asset> asset;
   final List<Iterable<Asset>> filteredLanguages;
   final Map<String, double> classifications;
   final Map<String, double> origins;
@@ -374,7 +367,7 @@ class Statistics {
 
   /// Statistics class constructors ================================================================
   Statistics(
-      {
+      {required this.asset,
       required this.filteredLanguages,
       required this.batch,
       required this.c,
@@ -388,7 +381,6 @@ class Statistics {
       required this.haskell,
       required this.html,
       required this.image,
-
       required this.java,
       required this.javascript,
       required this.json,
@@ -427,5 +419,3 @@ class Statistics {
       required this.version,
       required this.raw});
 }
-
-

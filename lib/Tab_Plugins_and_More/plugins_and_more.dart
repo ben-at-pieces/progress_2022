@@ -633,363 +633,363 @@ class Plugins extends StatelessWidget {
               ],
             ),
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 120,
-                width: 50,
-                child: ListView(
-                  // scrollDirection: Axis.vertical,
-                  children: [
-                    // showing list of images
-                    for (var item in imgList1)
-                      SizedBox(
-                        height: 40,
-                        width: 50,
-                        child: IconButton(
-                          icon: item,
-                          // tooltip: 'named language',
-                          onPressed: () => showDialog<String>(
-                            context: context,
-                            builder: (BuildContext context) => AlertDialog(
-                              title: Text('Show Suggestions or other useful shit}'),
-                              content: const Text('AlertDialog description'),
-                              actions: <Widget>[
-                                TextButton(
-                                  onPressed: () => Navigator.pop(context, 'Cancel'),
-                                  child: const Text('Cancel'),
-                                ),
-                                TextButton(
-                                  onPressed: () => Navigator.pop(context, 'OK'),
-                                  child: const Text('OK'),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 120,
-                width: 50,
-                child: ListView(
-                  // scrollDirection: Axis.vertical,
-                  children: [
-                    // showing list of images
-                    for (var item in imgList2)
-                      SizedBox(
-                          height: 40,
-                          width: 50,
-                          child: IconButton(
-                            icon: item,
-                            // tooltip: 'named language',
-                            onPressed: () => showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: Text('TOTAL: ${Language().languages}'),
-                                content: const Text('AlertDialog description'),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'Cancel'),
-                                    child: const Text('Cancel'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'OK'),
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 120,
-                width: 50,
-                child: ListView(
-                  // scrollDirection: Axis.vertical,
-                  children: [
-                    // showing list of images
-                    for (var item in imgList3)
-                      SizedBox(
-                          height: 40,
-                          width: 50,
-                          child: IconButton(
-                            icon: item,
-                            // tooltip: 'named language',
-                            onPressed: () => showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: Text('TOTAL: ${Language().languages}'),
-                                content: const Text('AlertDialog description'),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'Cancel'),
-                                    child: const Text('Cancel'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'OK'),
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 120,
-                width: 50,
-                child: ListView(
-                  // scrollDirection: Axis.vertical,
-                  children: [
-                    // showing list of images
-                    for (var item in imgList4)
-                      SizedBox(
-                          height: 40,
-                          width: 50,
-                          child: IconButton(
-                            icon: item,
-                            // tooltip: 'named language',
-                            onPressed: () => showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: Text('TOTAL: ${Language().languages}'),
-                                content: const Text('AlertDialog description'),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'Cancel'),
-                                    child: const Text('Cancel'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'OK'),
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 120,
-                width: 50,
-                child: ListView(
-                  // scrollDirection: Axis.vertical,
-                  children: [
-                    // showing list of images
-                    for (var item in imgList5)
-                      SizedBox(
-                          height: 40,
-                          width: 50,
-                          child: IconButton(
-                            icon: item,
-                            // tooltip: 'named language',
-                            onPressed: () => showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: Text('TOTAL: ${Language().languages}'),
-                                content: const Text('AlertDialog description'),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'Cancel'),
-                                    child: const Text('Cancel'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'OK'),
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 120,
-                width: 50,
-                child: ListView(
-                  // scrollDirection: Axis.vertical,
-                  children: [
-                    // showing list of images
-                    for (var item in imgList6)
-                      SizedBox(
-                          height: 40,
-                          width: 50,
-                          child: IconButton(
-                            icon: item,
-                            // tooltip: 'named language',
-                            onPressed: () => showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: Text('TOTAL: ${Language().languages}'),
-                                content: const Text('AlertDialog description'),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'Cancel'),
-                                    child: const Text('Cancel'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'OK'),
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 120,
-                width: 50,
-                child: ListView(
-                  // scrollDirection: Axis.vertical,
-                  children: [
-                    // showing list of images
-                    for (var item in imgList7)
-                      SizedBox(
-                          height: 40,
-                          width: 50,
-                          child: IconButton(
-                            icon: item,
-                            // tooltip: 'named language',
-                            onPressed: () => showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: Text('TOTAL: ${Language().languages}'),
-                                content: const Text('AlertDialog description'),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'Cancel'),
-                                    child: const Text('Cancel'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'OK'),
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 120,
-                width: 50,
-                child: ListView(
-                  // scrollDirection: Axis.vertical,
-                  children: [
-                    // showing list of images
-                    for (var item in imgList8)
-                      SizedBox(
-                          height: 40,
-                          width: 50,
-                          child: IconButton(
-                            icon: item,
-                            // tooltip: 'named language',
-                            onPressed: () => showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: Text('TOTAL: ${Language().languages}'),
-                                content: const Text('AlertDialog description'),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'Cancel'),
-                                    child: const Text('Cancel'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'OK'),
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 120,
-                width: 50,
-                child: ListView(
-                  // scrollDirection: Axis.vertical,
-                  children: [
-                    // showing list of images
-                    for (var item in imgList9)
-                      SizedBox(
-                          height: 40,
-                          width: 50,
-                          child: IconButton(
-                            icon: item,
-                            // tooltip: 'named language',
-                            onPressed: () => showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: Text('TOTAL: ${Language().languages}'),
-                                content: const Text('AlertDialog description'),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'Cancel'),
-                                    child: const Text('Cancel'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'OK'),
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 120,
-                width: 50,
-                child: ListView(
-                  // scrollDirection: Axis.vertical,
-                  children: [
-                    // showing list of images
-                    for (var item in imgList10)
-                      SizedBox(
-                          height: 40,
-                          width: 50,
-                          child: IconButton(
-                            icon: item,
-                            // tooltip: 'named language',
-                            onPressed: () => showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: Text('TOTAL: ${Language().languages}'),
-                                content: const Text('AlertDialog description'),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'Cancel'),
-                                    child: const Text('Cancel'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'OK'),
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )),
-                  ],
-                ),
-              ),
-            ],
-          ),
+          // Row(
+          //   crossAxisAlignment: CrossAxisAlignment.start,
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
+          //     SizedBox(
+          //       height: 120,
+          //       width: 50,
+          //       child: ListView(
+          //         // scrollDirection: Axis.vertical,
+          //         children: [
+          //           // showing list of images
+          //           for (var item in imgList1)
+          //             SizedBox(
+          //               height: 40,
+          //               width: 50,
+          //               child: IconButton(
+          //                 icon: item,
+          //                 // tooltip: 'named language',
+          //                 onPressed: () => showDialog<String>(
+          //                   context: context,
+          //                   builder: (BuildContext context) => AlertDialog(
+          //                     title: Text('Show Suggestions or other useful shit}'),
+          //                     content: const Text('AlertDialog description'),
+          //                     actions: <Widget>[
+          //                       TextButton(
+          //                         onPressed: () => Navigator.pop(context, 'Cancel'),
+          //                         child: const Text('Cancel'),
+          //                       ),
+          //                       TextButton(
+          //                         onPressed: () => Navigator.pop(context, 'OK'),
+          //                         child: const Text('OK'),
+          //                       ),
+          //                     ],
+          //                   ),
+          //                 ),
+          //               ),
+          //             ),
+          //         ],
+          //       ),
+          //     ),
+          //     SizedBox(
+          //       height: 120,
+          //       width: 50,
+          //       child: ListView(
+          //         // scrollDirection: Axis.vertical,
+          //         children: [
+          //           // showing list of images
+          //           for (var item in imgList2)
+          //             SizedBox(
+          //                 height: 40,
+          //                 width: 50,
+          //                 child: IconButton(
+          //                   icon: item,
+          //                   // tooltip: 'named language',
+          //                   onPressed: () => showDialog<String>(
+          //                     context: context,
+          //                     builder: (BuildContext context) => AlertDialog(
+          //                       title: Text('TOTAL: ${Language().languages}'),
+          //                       content: const Text('AlertDialog description'),
+          //                       actions: <Widget>[
+          //                         TextButton(
+          //                           onPressed: () => Navigator.pop(context, 'Cancel'),
+          //                           child: const Text('Cancel'),
+          //                         ),
+          //                         TextButton(
+          //                           onPressed: () => Navigator.pop(context, 'OK'),
+          //                           child: const Text('OK'),
+          //                         ),
+          //                       ],
+          //                     ),
+          //                   ),
+          //                 )),
+          //         ],
+          //       ),
+          //     ),
+          //     SizedBox(
+          //       height: 120,
+          //       width: 50,
+          //       child: ListView(
+          //         // scrollDirection: Axis.vertical,
+          //         children: [
+          //           // showing list of images
+          //           for (var item in imgList3)
+          //             SizedBox(
+          //                 height: 40,
+          //                 width: 50,
+          //                 child: IconButton(
+          //                   icon: item,
+          //                   // tooltip: 'named language',
+          //                   onPressed: () => showDialog<String>(
+          //                     context: context,
+          //                     builder: (BuildContext context) => AlertDialog(
+          //                       title: Text('TOTAL: ${Language().languages}'),
+          //                       content: const Text('AlertDialog description'),
+          //                       actions: <Widget>[
+          //                         TextButton(
+          //                           onPressed: () => Navigator.pop(context, 'Cancel'),
+          //                           child: const Text('Cancel'),
+          //                         ),
+          //                         TextButton(
+          //                           onPressed: () => Navigator.pop(context, 'OK'),
+          //                           child: const Text('OK'),
+          //                         ),
+          //                       ],
+          //                     ),
+          //                   ),
+          //                 )),
+          //         ],
+          //       ),
+          //     ),
+          //     SizedBox(
+          //       height: 120,
+          //       width: 50,
+          //       child: ListView(
+          //         // scrollDirection: Axis.vertical,
+          //         children: [
+          //           // showing list of images
+          //           for (var item in imgList4)
+          //             SizedBox(
+          //                 height: 40,
+          //                 width: 50,
+          //                 child: IconButton(
+          //                   icon: item,
+          //                   // tooltip: 'named language',
+          //                   onPressed: () => showDialog<String>(
+          //                     context: context,
+          //                     builder: (BuildContext context) => AlertDialog(
+          //                       title: Text('TOTAL: ${Language().languages}'),
+          //                       content: const Text('AlertDialog description'),
+          //                       actions: <Widget>[
+          //                         TextButton(
+          //                           onPressed: () => Navigator.pop(context, 'Cancel'),
+          //                           child: const Text('Cancel'),
+          //                         ),
+          //                         TextButton(
+          //                           onPressed: () => Navigator.pop(context, 'OK'),
+          //                           child: const Text('OK'),
+          //                         ),
+          //                       ],
+          //                     ),
+          //                   ),
+          //                 )),
+          //         ],
+          //       ),
+          //     ),
+          //     SizedBox(
+          //       height: 120,
+          //       width: 50,
+          //       child: ListView(
+          //         // scrollDirection: Axis.vertical,
+          //         children: [
+          //           // showing list of images
+          //           for (var item in imgList5)
+          //             SizedBox(
+          //                 height: 40,
+          //                 width: 50,
+          //                 child: IconButton(
+          //                   icon: item,
+          //                   // tooltip: 'named language',
+          //                   onPressed: () => showDialog<String>(
+          //                     context: context,
+          //                     builder: (BuildContext context) => AlertDialog(
+          //                       title: Text('TOTAL: ${Language().languages}'),
+          //                       content: const Text('AlertDialog description'),
+          //                       actions: <Widget>[
+          //                         TextButton(
+          //                           onPressed: () => Navigator.pop(context, 'Cancel'),
+          //                           child: const Text('Cancel'),
+          //                         ),
+          //                         TextButton(
+          //                           onPressed: () => Navigator.pop(context, 'OK'),
+          //                           child: const Text('OK'),
+          //                         ),
+          //                       ],
+          //                     ),
+          //                   ),
+          //                 )),
+          //         ],
+          //       ),
+          //     ),
+          //     SizedBox(
+          //       height: 120,
+          //       width: 50,
+          //       child: ListView(
+          //         // scrollDirection: Axis.vertical,
+          //         children: [
+          //           // showing list of images
+          //           for (var item in imgList6)
+          //             SizedBox(
+          //                 height: 40,
+          //                 width: 50,
+          //                 child: IconButton(
+          //                   icon: item,
+          //                   // tooltip: 'named language',
+          //                   onPressed: () => showDialog<String>(
+          //                     context: context,
+          //                     builder: (BuildContext context) => AlertDialog(
+          //                       title: Text('TOTAL: ${Language().languages}'),
+          //                       content: const Text('AlertDialog description'),
+          //                       actions: <Widget>[
+          //                         TextButton(
+          //                           onPressed: () => Navigator.pop(context, 'Cancel'),
+          //                           child: const Text('Cancel'),
+          //                         ),
+          //                         TextButton(
+          //                           onPressed: () => Navigator.pop(context, 'OK'),
+          //                           child: const Text('OK'),
+          //                         ),
+          //                       ],
+          //                     ),
+          //                   ),
+          //                 )),
+          //         ],
+          //       ),
+          //     ),
+          //     SizedBox(
+          //       height: 120,
+          //       width: 50,
+          //       child: ListView(
+          //         // scrollDirection: Axis.vertical,
+          //         children: [
+          //           // showing list of images
+          //           for (var item in imgList7)
+          //             SizedBox(
+          //                 height: 40,
+          //                 width: 50,
+          //                 child: IconButton(
+          //                   icon: item,
+          //                   // tooltip: 'named language',
+          //                   onPressed: () => showDialog<String>(
+          //                     context: context,
+          //                     builder: (BuildContext context) => AlertDialog(
+          //                       title: Text('TOTAL: ${Language().languages}'),
+          //                       content: const Text('AlertDialog description'),
+          //                       actions: <Widget>[
+          //                         TextButton(
+          //                           onPressed: () => Navigator.pop(context, 'Cancel'),
+          //                           child: const Text('Cancel'),
+          //                         ),
+          //                         TextButton(
+          //                           onPressed: () => Navigator.pop(context, 'OK'),
+          //                           child: const Text('OK'),
+          //                         ),
+          //                       ],
+          //                     ),
+          //                   ),
+          //                 )),
+          //         ],
+          //       ),
+          //     ),
+          //     SizedBox(
+          //       height: 120,
+          //       width: 50,
+          //       child: ListView(
+          //         // scrollDirection: Axis.vertical,
+          //         children: [
+          //           // showing list of images
+          //           for (var item in imgList8)
+          //             SizedBox(
+          //                 height: 40,
+          //                 width: 50,
+          //                 child: IconButton(
+          //                   icon: item,
+          //                   // tooltip: 'named language',
+          //                   onPressed: () => showDialog<String>(
+          //                     context: context,
+          //                     builder: (BuildContext context) => AlertDialog(
+          //                       title: Text('TOTAL: ${Language().languages}'),
+          //                       content: const Text('AlertDialog description'),
+          //                       actions: <Widget>[
+          //                         TextButton(
+          //                           onPressed: () => Navigator.pop(context, 'Cancel'),
+          //                           child: const Text('Cancel'),
+          //                         ),
+          //                         TextButton(
+          //                           onPressed: () => Navigator.pop(context, 'OK'),
+          //                           child: const Text('OK'),
+          //                         ),
+          //                       ],
+          //                     ),
+          //                   ),
+          //                 )),
+          //         ],
+          //       ),
+          //     ),
+          //     SizedBox(
+          //       height: 120,
+          //       width: 50,
+          //       child: ListView(
+          //         // scrollDirection: Axis.vertical,
+          //         children: [
+          //           // showing list of images
+          //           for (var item in imgList9)
+          //             SizedBox(
+          //                 height: 40,
+          //                 width: 50,
+          //                 child: IconButton(
+          //                   icon: item,
+          //                   // tooltip: 'named language',
+          //                   onPressed: () => showDialog<String>(
+          //                     context: context,
+          //                     builder: (BuildContext context) => AlertDialog(
+          //                       title: Text('TOTAL: ${Language().languages}'),
+          //                       content: const Text('AlertDialog description'),
+          //                       actions: <Widget>[
+          //                         TextButton(
+          //                           onPressed: () => Navigator.pop(context, 'Cancel'),
+          //                           child: const Text('Cancel'),
+          //                         ),
+          //                         TextButton(
+          //                           onPressed: () => Navigator.pop(context, 'OK'),
+          //                           child: const Text('OK'),
+          //                         ),
+          //                       ],
+          //                     ),
+          //                   ),
+          //                 )),
+          //         ],
+          //       ),
+          //     ),
+          //     SizedBox(
+          //       height: 120,
+          //       width: 50,
+          //       child: ListView(
+          //         // scrollDirection: Axis.vertical,
+          //         children: [
+          //           // showing list of images
+          //           for (var item in imgList10)
+          //             SizedBox(
+          //                 height: 40,
+          //                 width: 50,
+          //                 child: IconButton(
+          //                   icon: item,
+          //                   // tooltip: 'named language',
+          //                   onPressed: () => showDialog<String>(
+          //                     context: context,
+          //                     builder: (BuildContext context) => AlertDialog(
+          //                       title: Text('TOTAL: ${Language().languages}'),
+          //                       content: const Text('AlertDialog description'),
+          //                       actions: <Widget>[
+          //                         TextButton(
+          //                           onPressed: () => Navigator.pop(context, 'Cancel'),
+          //                           child: const Text('Cancel'),
+          //                         ),
+          //                         TextButton(
+          //                           onPressed: () => Navigator.pop(context, 'OK'),
+          //                           child: const Text('OK'),
+          //                         ),
+          //                       ],
+          //                     ),
+          //                   ),
+          //                 )),
+          //         ],
+          //       ),
+          //     ),
+          //   ],
+          // ),
 
           // https://www.facebook.com/518508470288885/posts/559057106234021
         ],

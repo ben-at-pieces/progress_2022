@@ -1,16 +1,25 @@
 import 'package:connector_openapi/api.dart';
 import 'package:flutter/material.dart';
+import 'package:gsheets/Dashboard/pro_tips.dart';
 import 'package:runtime_client/particle.dart';
 
-import 'Dashboard/cloud.dart';
-import 'Dashboard/faqs.dart';
-import 'Dashboard/pro_tips.dart';
-import 'Dashboard/settings_bar.dart';
-import 'connections/statistics_singleton.dart';
+import '../connections/statistics.dart';
+import '../connections/statistics_singleton.dart' hide getStats;
+
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-void main() => runApp(MyApp());
+import 'cloud.dart';
+import 'faqs.dart';
+
+void main() async {
+  StatisticsSingleton().statistics = await getStats();
+
+  print('${StatisticsSingleton().statistics?.classifications.keys}');
+  runApp(
+    MyApp(),
+  );
+}
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
@@ -23,20 +32,20 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.green),
       debugShowCheckedModeBanner: false,
       // home : new ListViewBuilder(), NO Need To Use Unnecessary New Keyword
-      // home:  LanguageBuilder());
+      home:  PageLanguageBuilder( subtitle: '',),
     );
   }
 }
 
-class HomeLanguageBuilder extends StatelessWidget {
+class PageLanguageBuilder extends StatelessWidget {
   // final String title;
   final String subtitle;
-  final Image leading;
+  // final Image leading;
 
-  HomeLanguageBuilder({
+  PageLanguageBuilder({
     // required this.title,
     required this.subtitle,
-    required this.leading,
+    // required this.leading,
   });
 
   @override
@@ -45,7 +54,7 @@ class HomeLanguageBuilder extends StatelessWidget {
     return Container(
       color: Colors.grey,
       child: ListView.builder(
-        itemCount: 1,
+        itemCount: StatisticsSingleton().statistics?.asset.length,
         itemBuilder: (BuildContext context, int index) {
           return Card(
             elevation: 2,
@@ -55,12 +64,12 @@ class HomeLanguageBuilder extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ListTile(
-                    leading: Image.asset('user.jpg'),
+                    leading: Image.asset('batchfile-black.jpg'),
                     title: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${StatisticsSingleton().statistics?.user}' ?? '',
+                          StatisticsSingleton().statistics?.filteredLanguages.elementAt(index).toList().elementAt(index).original.reference?.fragment?.string?.raw.toString() ?? '',
                           style: ParticleFont.bodyText1(
                             context,
                             customization: TextStyle(fontSize: 15, color: Colors.black),
@@ -97,38 +106,7 @@ class HomeLanguageBuilder extends StatelessWidget {
                   Divider(
                     color: Colors.grey,
                   ),
-                  ListTile(
-                    // leading: Image.asset('APFD.jpeg'),
-                    title: Text('Snippets: ${StatisticsSingleton().statistics?.snippetsSaved}' ?? ''),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 12.0),
-                          child: Text('Tags: ${StatisticsSingleton().statistics?.tags.length}' ?? ''),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 12.0),
-                          child: Text(
-                              'Links: ${StatisticsSingleton().statistics?.relatedLinks.length}' ??
-                                  ''),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 12.0),
-                          child: Text(
-                              'Shares: ${StatisticsSingleton().statistics?.shareableLinks}' ?? ''),
-                        ),
 
-                        ///
-                        Padding(
-                          padding: const EdgeInsets.only(top: 14.0, bottom: 8),
-                          child: Text(
-                              'People: ${StatisticsSingleton().statistics?.persons.length}' ?? ''),
-                        ),
-                      ],
-                    ),
-                  ),
 
 
                   Padding(
@@ -138,6 +116,23 @@ class HomeLanguageBuilder extends StatelessWidget {
                     ),
                     child: Text(
                       'Classifications: ${StatisticsSingleton().statistics?.classifications} ',
+                      style: ParticleFont.subtitle1(
+                        context,
+                        customization: TextStyle(
+                          fontSize: 14,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 12,
+                      top: 5.0,
+                    ),
+                    child: Text(
+                      'Classifications: ${StatisticsSingleton().statistics?.relatedLinks.elementAt(index)} ',
                       style: ParticleFont.subtitle1(
                         context,
                         customization: TextStyle(

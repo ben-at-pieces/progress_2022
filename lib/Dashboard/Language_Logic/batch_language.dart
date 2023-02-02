@@ -4,6 +4,7 @@ import '../../Card_Tab/hover_text.dart';
 import '../../connections/statistics_singleton.dart';
 import '../Empty States/batch_empty.dart';
 import '../dNotEmpty/batch_images_row.dart';
+import '../pageview_builder.dart';
 
 void main() => runApp(MyApp());
 
@@ -41,7 +42,7 @@ class BatchLanguageBuilder extends StatelessWidget {
     if (count == 0) {
       return BatchEmptyBuilder();
     } else {
-      return ScratchImageBuilder();
+      return PageLanguageBuilder(subtitle: '', );
     }
   }
 }

@@ -43,7 +43,6 @@ dependencies:
   flutter_expandable_fab: ^1.6.1
   side_navigation: ^1.0.4
   flutter_simple_treeview: ^3.0.2
-  flutter_table: ^1.1.0
   puppeteer: ^2.22.0
   hovering: ^1.0.4
 dev_dependencies:
