@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:runtime_client/particle.dart';
 
 void main() => runApp( MyApp());
 
@@ -10,9 +11,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: _title,
       home: Scaffold(
-        appBar: AppBar(title:  Text(_title)),
+        appBar: AppBar(title:  Text(_title,   style: ParticleFont.micro(
+          context,
+          customization: TextStyle(color: Colors.black, fontSize: 10),
+        ),),),
         body:  Center(
           child: MyCheckBoxWidgget(),
         ),

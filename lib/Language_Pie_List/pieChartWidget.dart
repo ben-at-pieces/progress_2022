@@ -49,7 +49,7 @@ class MyPieChart extends StatelessWidget {
       backgroundColor: Colors.black12,
       appBar: CustomAppBar(title: 'Snippet Classifications',),
       body: Padding(
-        padding: const EdgeInsets.only(top: 10.0, left: 10),
+        padding: const EdgeInsets.only(top: 35.0, left: 10),
         child: SizedBox(
           height: 350,
           width: 550,
@@ -71,7 +71,7 @@ class MyPieChart extends StatelessWidget {
             dataMap: StatisticsSingleton().statistics!.classifications,
             animationDuration: const Duration(milliseconds: 800),
             chartLegendSpacing: 100,
-            chartRadius: math.min(MediaQuery.of(context).size.width / 1.5, 180),
+            chartRadius: math.min(MediaQuery.of(context).size.width / 1.5, 150),
             colorList: colorList,
             chartType: ChartType.ring,
             legendOptions: const LegendOptions(

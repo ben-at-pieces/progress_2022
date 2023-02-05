@@ -55,7 +55,7 @@ class TagsListWidget extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 18.0),
                     child: Text(
-                      'Save Selected Tags',
+                      'View Related Tags',
                       style: ParticleFont.button(context,
                           customization: TextStyle(
                             color: Colors.white,
@@ -76,7 +76,6 @@ class TagsListWidget extends StatelessWidget {
             itemCount: StatisticsSingleton().statistics?.tags.length,
             itemBuilder: (BuildContext context, int index) {
               return ListTile(
-
                 tileColor: Colors.white,
                 trailing: Icon(
                   Icons.local_offer,
@@ -84,8 +83,10 @@ class TagsListWidget extends StatelessWidget {
                 ),
                 title: Text(
                   '${StatisticsSingleton().statistics?.tags[index]}  ',
-                  style: ParticleFont.bodyText1(context,
-                      customization: TextStyle(color: Colors.black)),
+                  style: ParticleFont.bodyText1(
+                    context,
+                    customization: TextStyle(color: Colors.black),
+                  ),
                 ),
                 subtitle: Row(
                   children: [
@@ -113,8 +114,8 @@ class TagsListWidget extends StatelessWidget {
                                 microseconds: 10),
                           ),
                         );
-                        ClipboardData data = ClipboardData(
-                            text: '${StatisticsSingleton().statistics?.tags[index]}  ');
+                        ClipboardData data =
+                            ClipboardData(text: '${StatisticsSingleton().statistics?.tags[index]}');
 
                         await Clipboard.setData(data);
                       },
@@ -129,9 +130,7 @@ class TagsListWidget extends StatelessWidget {
                         color: Colors.black,
                         size: 18,
                       ),
-                      onPressed: () async {
-
-                      },
+                      onPressed: () async {},
                     ),
                   ],
                 ),

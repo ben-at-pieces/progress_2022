@@ -22,20 +22,22 @@ import 'Tab_Related_Links_List/related_links_List.dart';
 import 'Tab_Tags_List/tags_list.dart';
 import 'connections/boot.dart';
 import 'Language_Pie_List/pieChartWidget.dart';
+import 'connections/suggestions.dart';
+import 'home_language.dart';
 import 'jscon_converter/main.dart';
 import 'jscon_converter/tree_from_json.dart';
 
 enum LegendShape { circle, rectangle }
 
-String host = 'http://localhost:1000';
+String host = 'http://localhost:800';
 AssetsApi assetsApi = AssetsApi(ApiClient(basePath: host));
 AssetApi assetApi = AssetApi(ApiClient(basePath: host));
-ConnectorApi connectorApi = ConnectorApi(connector.ApiClient(basePath: 'http://localhost:1000'));
+ConnectorApi connectorApi = ConnectorApi(connector.ApiClient(basePath: 'http://localhost:800'));
 UsersApi usersApi = UsersApi(ApiClient(basePath: host));
 UserApi userApi = UserApi(ApiClient(basePath: host));
 List assetsSnapshot = [];
 late Future<List> assetsSnapshotFuture = Boot().getAssets();
-ApiClient api = ApiClient(basePath: 'http://localhost:1000');
+ApiClient api = ApiClient(basePath: 'http://localhost:800');
 
 class HomePageAppBar extends StatefulWidget {
   @override
@@ -43,7 +45,7 @@ class HomePageAppBar extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePageAppBar> {
-  ApiClient api = ApiClient(basePath: 'http://localhost:1000');
+  ApiClient api = ApiClient(basePath: 'http://localhost:800');
 
   int key = 0;
 
@@ -52,7 +54,7 @@ class HomePageState extends State<HomePageAppBar> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
-        length: 9,
+        length: 8,
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.black54,
@@ -63,14 +65,21 @@ class HomePageState extends State<HomePageAppBar> {
                   'Home',
               style:  TextStyle(
                 color: Colors.white,
-                fontSize: 10,
+                fontSize: 8,
               ),
                   ),
+              //   Text(
+              //     'List',
+              // style:  TextStyle(
+              //   color: Colors.white,
+              //   fontSize: 8,
+              // ),
+              //     ),
                 Text(
                   'Chart',
                   style:  TextStyle(
                       color: Colors.white,
-                    fontSize: 10,
+                    fontSize: 8,
                     ),
                   ),
 
@@ -78,49 +87,49 @@ class HomePageState extends State<HomePageAppBar> {
                   'Origins',
                   style:  TextStyle(
                     color: Colors.white,
-                    fontSize: 10,
+                    fontSize: 8,
                   ),
                   ),
                 Text(
                   'Activity',
                   style:  TextStyle(
                     color: Colors.white,
-                    fontSize: 10,
+                    fontSize: 8,
                   ),
                 ),
                 Text(
                   'Tags',
                   style:  TextStyle(
                     color: Colors.white,
-                    fontSize: 10,
+                    fontSize: 8,
                   ),
                   ),
                 Text(
                   'Links',
                   style:  TextStyle(
                     color: Colors.white,
-                    fontSize: 10,
+                    fontSize: 8,
                   ),
                 ),
-                Text(
-                  'People',
-                  style:  TextStyle(
-                    color: Colors.white,
-                    fontSize: 10,
-                  ),
-                ),
+                // Text(
+                //   'People',
+                //   style:  TextStyle(
+                //     color: Colors.white,
+                //     fontSize: 8,
+                //   ),
+                // ),
                 Text(
                   'Plugins',
                   style:  TextStyle(
                     color: Colors.white,
-                    fontSize: 10,
+                    fontSize: 8,
                   ),
                 ),
                 Text(
                   'JSON',
                   style:  TextStyle(
                     color: Colors.white,
-                    fontSize: 10,
+                    fontSize: 8,
                   ),
                 ),
               ],
@@ -128,10 +137,9 @@ class HomePageState extends State<HomePageAppBar> {
           ), // AppBar
           body: TabBarView(
             children: [
-
-
+              RelatedItems(),
               /// Home Dash
-              MyDashBoard(),
+              // MyDashBoard(),
               /// Language Pie Chart ==========================================================
               MyPieChart(),
 
@@ -148,7 +156,8 @@ class HomePageState extends State<HomePageAppBar> {
               RelatedLinksWidget(),
 
               /// Related Links ==========================================================
-              PeoplesListWidget(),
+              // HomeLanguageBuilder(subtitle: 'Home', leading: Image.asset('APFD.jpg'),),
+
 
               /// Plugins & More ==========================================================
               Plugins(),

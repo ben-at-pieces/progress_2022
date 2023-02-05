@@ -7,96 +7,90 @@ import 'api.dart';
 Future<Statistics> getStats() async {
   Assets assets = await PiecesApi.assetsApi.assetsSnapshot();
 
-  List<Asset> asset = assets.iterable;
+  List<Asset> assetsList = assets.iterable;
 
-  Iterable<Asset> yaml = asset.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.yaml);
+
 
   // if (yaml.isEmpty) {
   //   EmptyLanguageBuilder();
   // }
 
-  Iterable<Asset> batch = asset.where((element) =>
+  Iterable<Asset> batch = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.bat);
 
-  Iterable<Asset> c = asset.where((element) =>
+
+
+  Iterable<Asset> c = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.c);
-
-  Iterable<Asset> cPlus = asset.where((element) =>
+  Iterable<Asset> cPlus = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.cpp);
-
-  Iterable<Asset> coffee = asset.where((element) =>
+  Iterable<Asset> coffee = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.coffee);
-
-  Iterable<Asset> cSharp = asset.where((element) =>
+  Iterable<Asset> cSharp = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.cs);
-
-  Iterable<Asset> css = asset.where((element) =>
+  Iterable<Asset> css = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.css);
-
-  Iterable<Asset> dart = asset.where((element) =>
+  Iterable<Asset> dart = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.dart);
-
-  Iterable<Asset> erlang = asset.where((element) =>
+  Iterable<Asset> erlang = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.erl);
-
-  Iterable<Asset> go = asset.where((element) =>
+  Iterable<Asset> go = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.go);
-  Iterable<Asset> haskell = asset.where((element) =>
+  Iterable<Asset> haskell = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.hs);
-  Iterable<Asset> html = asset.where((element) =>
+  Iterable<Asset> html = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.html);
-  Iterable<Asset> java = asset.where((element) =>
+  Iterable<Asset> java = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.java);
-  Iterable<Asset> javascript = asset.where((element) =>
+  Iterable<Asset> javascript = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.js);
-  Iterable<Asset> json = asset.where((element) =>
+  Iterable<Asset> json = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.json);
-  Iterable<Asset> lua = asset.where((element) =>
+  Iterable<Asset> lua = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.lua);
-  Iterable<Asset> markdown = asset.where((element) =>
+  Iterable<Asset> markdown = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.md);
-  Iterable<Asset> matLab = asset.where((element) =>
+  Iterable<Asset> matLab = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.matlab);
-  Iterable<Asset> objectiveC = asset.where((element) =>
+  Iterable<Asset> objectiveC = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.m);
-  Iterable<Asset> php = asset.where((element) =>
+  Iterable<Asset> php = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.php);
-  Iterable<Asset> perl = asset.where((element) =>
+  Iterable<Asset> perl = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.pl);
-  Iterable<Asset> powershell = asset.where((element) =>
+  Iterable<Asset> powershell = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.ps1);
-  Iterable<Asset> python = asset.where((element) =>
+  Iterable<Asset> python = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.py);
-  Iterable<Asset> r = asset.where((element) =>
+  Iterable<Asset> r = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.r);
-  Iterable<Asset> ruby = asset.where((element) =>
+  Iterable<Asset> ruby = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.rb);
-  Iterable<Asset> rust = asset.where((element) =>
+  Iterable<Asset> rust = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.rs);
-  Iterable<Asset> scala = asset.where((element) =>
+  Iterable<Asset> scala = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.scala);
-  Iterable<Asset> shell = asset.where((element) =>
+  Iterable<Asset> shell = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.ps);
-  Iterable<Asset> sql = asset.where((element) =>
+  Iterable<Asset> sql = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.sql);
-  Iterable<Asset> swift = asset.where((element) =>
+  Iterable<Asset> swift = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.swift);
-  Iterable<Asset> typescript = asset.where((element) =>
+  Iterable<Asset> typescript = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.ts);
-  Iterable<Asset> tex = asset.where((element) =>
+  Iterable<Asset> tex = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.tex);
-  Iterable<Asset> text = asset.where((element) =>
+  Iterable<Asset> text = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.text);
-  Iterable<Asset> toml = asset.where((element) =>
+  Iterable<Asset> toml = assetsList.where((element) =>
       element.original.reference?.classification.specific == ClassificationSpecificEnum.toml);
-
-  Iterable<Asset> image = asset.where((element) =>
+  Iterable<Asset> yaml = assetsList.where((element) =>
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.yaml);
+  Iterable<Asset> image = assetsList.where((element) =>
       element.original.reference?.classification.generic == ClassificationGenericEnum.IMAGE);
 
   ReturnedUserProfile user = await PiecesApi.userApi.userSnapshot();
   // ReturnedUserProfile users = await PiecesApi.;
-
 
   List<Iterable<Asset>> filteredLanguages = [
     batch,
@@ -136,6 +130,31 @@ Future<Statistics> getStats() async {
     yaml,
   ];
 
+  /// classifications map (String, double)
+  Map<String, double> classifications = {};
+// int unique = ;
+  List<Iterable<Asset>> filteredList = [];
+  for (Iterable<Asset> language in filteredLanguages) {
+    if (language.isNotEmpty) {
+      filteredList.add(language);
+
+      List<Asset> subAsset = language.toList();
+
+      int unique = subAsset.length;
+
+      print(subAsset.toList().length);
+    }
+    List<Iterable<Asset>> nestedList = [];
+    for (Iterable<Asset> languageFilter in filteredLanguages) {
+      if (languageFilter.isNotEmpty) {
+        nestedList.add(languageFilter);
+        int count = filteredList.toList().length;
+
+        // print();
+      }
+    }
+  }
+
   /// Activities Information (version, platform)
   Activities activities = await PiecesApi.activitiesApi.activitiesSnapshot();
   Activity first = activities.iterable.first;
@@ -156,9 +175,6 @@ Future<Statistics> getStats() async {
 
   /// person map
   Map<String, double> personMap = {};
-
-  /// classifications map (String, double)
-  Map<String, double> classifications = {};
 
   List<String> relatedLinks = [];
 
@@ -254,7 +270,9 @@ Future<Statistics> getStats() async {
     classifications[''] = 0;
   }
 
+  List<Iterable<Asset>> nestedList = [];
   Statistics statistics = Statistics(
+    filteredList: filteredList,
     filteredLanguages: filteredLanguages,
     activity: activity,
     platform: platform,
@@ -305,7 +323,8 @@ Future<Statistics> getStats() async {
     json: json,
     lua: lua,
     markdown: markdown,
-    asset: asset,
+    asset: assetsList,
+    nestedList: nestedList = [],
   );
   return statistics;
 }
@@ -365,57 +384,63 @@ class Statistics {
   final Iterable<Asset> text;
   final Iterable<Asset> toml;
 
+  final List<Iterable<Asset>> filteredList;
+  final List<Iterable<Asset>> nestedList;
+
   /// Statistics class constructors ================================================================
-  Statistics(
-      {required this.asset,
-      required this.filteredLanguages,
-      required this.batch,
-      required this.c,
-      required this.cPlus,
-      required this.coffee,
-      required this.css,
-      required this.cSharp,
-      required this.dart,
-      required this.erlang,
-      required this.go,
-      required this.haskell,
-      required this.html,
-      required this.image,
-      required this.java,
-      required this.javascript,
-      required this.json,
-      required this.lua,
-      required this.markdown,
-      required this.matLab,
-      required this.objectiveC,
-      required this.php,
-      required this.perl,
-      required this.powershell,
-      required this.python,
-      required this.r,
-      required this.ruby,
-      required this.rust,
-      required this.scala,
-      required this.shell,
-      required this.sql,
-      required this.swift,
-      required this.typescript,
-      required this.tex,
-      required this.text,
-      required this.toml,
-      required this.yaml,
-      required this.origins,
-      required this.classifications,
-      required this.snippetsSaved,
-      required this.shareableLinks,
-      required this.updatedSnippets,
-      required this.timeTaken,
-      required this.tags,
-      required this.persons,
-      required this.relatedLinks,
-      required this.user,
-      required this.activity,
-      required this.platform,
-      required this.version,
-      required this.raw});
+  Statistics({
+    required this.asset,
+    required this.filteredLanguages,
+    required this.batch,
+    required this.c,
+    required this.cPlus,
+    required this.coffee,
+    required this.css,
+    required this.cSharp,
+    required this.dart,
+    required this.erlang,
+    required this.go,
+    required this.haskell,
+    required this.html,
+    required this.image,
+    required this.java,
+    required this.javascript,
+    required this.json,
+    required this.lua,
+    required this.markdown,
+    required this.matLab,
+    required this.objectiveC,
+    required this.php,
+    required this.perl,
+    required this.powershell,
+    required this.python,
+    required this.r,
+    required this.ruby,
+    required this.rust,
+    required this.scala,
+    required this.shell,
+    required this.sql,
+    required this.swift,
+    required this.typescript,
+    required this.tex,
+    required this.text,
+    required this.toml,
+    required this.yaml,
+    required this.origins,
+    required this.classifications,
+    required this.snippetsSaved,
+    required this.shareableLinks,
+    required this.updatedSnippets,
+    required this.timeTaken,
+    required this.tags,
+    required this.persons,
+    required this.relatedLinks,
+    required this.user,
+    required this.activity,
+    required this.platform,
+    required this.version,
+    required this.raw,
+    required this.filteredList,
+    required this.nestedList,
+  });
 }

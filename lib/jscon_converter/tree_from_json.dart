@@ -146,7 +146,7 @@ class _TreeFromJsonState extends State<TreeFromJson> {
       );
     } on FormatException catch (e) {
       return SizedBox(
-        height: 350,
+        height: 250,
         width: 350,
         child: Padding(
           padding: const EdgeInsets.all(30.0),

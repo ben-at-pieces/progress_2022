@@ -29,7 +29,9 @@ Future<void> main() async {
 
     test('/assets/create JETBRAINS [POST]', () async {
       /// (1) register or get an application first
-      final ConnectorApi connectorApi = ConnectorApi(connector.ApiClient(basePath: host));
+      final ConnectorApi connectorApi = ConnectorApi(
+        connector.ApiClient(basePath: host),
+      );
 
       /// (2) get your application
       Application application = (await connectorApi.connect(
@@ -379,7 +381,6 @@ Future<void> main() async {
       // expect(response.description?.contains('jpeg'), true);
       expect(created.runtimeType, Asset);
     });
-
   });
 }
 

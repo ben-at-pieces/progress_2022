@@ -1,8 +1,6 @@
 import 'package:connector_openapi/api.dart';
 import 'package:flutter/material.dart';
-import 'package:gsheets/connections/statistics_singleton.dart';
 import 'package:runtime_client/particle.dart';
-import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'tabBar_appbar.dart';
 
@@ -13,7 +11,7 @@ class CustomBottomAppBar extends StatelessWidget implements PreferredSizeWidget 
       height: 50,
       child: BottomAppBar(
         notchMargin: 5,
-        color: Colors.black54,
+        color: Colors.black45,
         elevation: 5,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -123,52 +121,31 @@ class CustomBottomAppBar extends StatelessWidget implements PreferredSizeWidget 
                                   ),
                                 ),
                                 onPressed: () async {
-                                  Context connection = await connect();
 
-                                  String create = await connectorApi.create(
-                                    connection.application.id,
-                                    seededConnectorCreation: SeededConnectorCreation(
-                                      asset: SeededConnectorAsset(
-                                        metadata: SeededAssetMetadata(
-                                          // description: 'SNIPPET FROM EXPEDITION',
-                                          // name: '',
-                                          mechanism: MechanismEnum.AUTOMATIC,
-                                        ),
-                                        format: SeededFormat(
-                                          websites: [],
-                                          fragment: SeededFragment(
-                                            metadata: FragmentMetadata(
-                                                ext: ClassificationSpecificEnum.text),
-                                            string: TransferableString(
-                                              raw: _textFieldController.text,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  );
 
-                                  Navigator.of(context).pop();
 
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      backgroundColor: Colors.white,
-                                      content: Text(
-                                        'Saved',
-                                        style: ParticleFont.micro(context,
-                                            customization: TextStyle(
-                                              color: Colors.green,
-                                            )),
-                                      ),
-                                      duration: Duration(
-                                          days: 0,
-                                          hours: 0,
-                                          minutes: 0,
-                                          seconds: 1,
-                                          milliseconds: 30,
-                                          microseconds: 10),
-                                    ),
-                                  );
+
+
+
+                                  // ScaffoldMessenger.of(context).showSnackBar(
+                                  //   SnackBar(
+                                  //     backgroundColor: Colors.white,
+                                  //     content: Text(
+                                  //       'Saved',
+                                  //       style: ParticleFont.micro(context,
+                                  //           customization: TextStyle(
+                                  //             color: Colors.green,
+                                  //           )),
+                                  //     ),
+                                  //     duration: Duration(
+                                  //         days: 0,
+                                  //         hours: 0,
+                                  //         minutes: 0,
+                                  //         seconds: 1,
+                                  //         milliseconds: 30,
+                                  //         microseconds: 10),
+                                  //   ),
+                                  // );
                                 },
                               ),
                             ),
@@ -247,6 +224,10 @@ class CustomBottomAppBar extends StatelessWidget implements PreferredSizeWidget 
 
 final TextEditingController _textFieldController = TextEditingController();
 
+const String port = '1000';
+const String host = 'http://localhost:$port';
+
+/// Future instance of Connect to be used in connectorApi Tests ->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->
 Future<Context> connect() async {
   try {
     return connectorApi.connect(
@@ -254,7 +235,7 @@ Future<Context> connect() async {
         application: SeededTrackedApplication(
           name: ApplicationNameEnum.gOOGLECHROMEEXTENSIONMV3,
           platform: PlatformEnum.MACOS,
-          version: '3.1.2',
+          version: '3.2.0',
         ),
       ),
     );

@@ -42,7 +42,7 @@ class OriginChart extends StatelessWidget {
       backgroundColor: Colors.black12,
       appBar: CustomAppBar(title: 'Snippet Origins',),
       body: Padding(
-        padding: const EdgeInsets.only(top: 60.0, left: 40),
+        padding: const EdgeInsets.only(top: 50.0, left: 40),
         child: SizedBox(
           height: 200,
           width: 550,
@@ -64,7 +64,7 @@ class OriginChart extends StatelessWidget {
             dataMap: StatisticsSingleton().statistics!.origins,
             animationDuration: const Duration(milliseconds: 800),
             chartLegendSpacing: 50,
-            chartRadius: math.min(MediaQuery.of(context).size.width / 1.5, 180),
+            chartRadius: math.min(MediaQuery.of(context).size.width / 1.5, 150),
             colorList: originColorList,
             chartType: ChartType.ring,
             legendOptions: const LegendOptions(
