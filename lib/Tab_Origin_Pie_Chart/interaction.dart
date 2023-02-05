@@ -119,7 +119,7 @@ class PieChartSample1State extends State {
     return List.generate(
       8,
       growable: true,
-      (i) {
+          (i) {
         final isTouched = i == touchedIndex;
 
         switch (i) {
@@ -162,7 +162,7 @@ class PieChartSample1State extends State {
           case 3:
             return PieChartSectionData(
               color: Colors.blueGrey,
-              title: 'Chrome Ext: ${StatisticsSingleton().statistics?.activity ?? 0}',
+              title: 'Chrome Ext: ${StatisticsSingleton().statistics?.version ?? 0}',
               value: StatisticsSingleton().statistics?.updatedSnippets ?? 0,
               radius: 70,
               titleStyle: const TextStyle(

@@ -1,5 +1,5 @@
 import 'package:core_openapi/api.dart';
-import 'package:gsheets/Dashboard/Language_Logic/empty_state.dart';
+import 'package:core_openapi/api_client.dart';
 import 'package:gsheets/connections/statistics_singleton.dart';
 
 import 'api.dart';
@@ -7,90 +7,111 @@ import 'api.dart';
 Future<Statistics> getStats() async {
   Assets assets = await PiecesApi.assetsApi.assetsSnapshot();
 
+  String port = '1000';
+  String host = 'http://localhost:$port';
+
+  /// users & user
+  final UsersApi users = UsersApi(ApiClient(basePath: host));
+
+  /// applications
+
+  final ApplicationsApi applicationsApi = ApplicationsApi(ApiClient(basePath: host));
+
+  Applications applicationsSnapshot = await applicationsApi.applicationsSnapshot();
+
+  Application first = applicationsSnapshot.iterable.first;
+
+  final String name = first.name.value;
+  final String version = first.version;
+  final PlatformEnum platform = first.platform;
+
   List<Asset> assetsList = assets.iterable;
 
+  int index = assetsList.length;
 
+  // print(assetsList);
 
   // if (yaml.isEmpty) {
   //   EmptyLanguageBuilder();
   // }
 
   Iterable<Asset> batch = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.bat);
-
-
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.bat);
 
   Iterable<Asset> c = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.c);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.c);
   Iterable<Asset> cPlus = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.cpp);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.cpp);
   Iterable<Asset> coffee = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.coffee);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.coffee);
   Iterable<Asset> cSharp = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.cs);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.cs);
   Iterable<Asset> css = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.css);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.css);
   Iterable<Asset> dart = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.dart);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.dart);
   Iterable<Asset> erlang = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.erl);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.erl);
   Iterable<Asset> go = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.go);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.go);
   Iterable<Asset> haskell = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.hs);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.hs);
   Iterable<Asset> html = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.html);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.html);
   Iterable<Asset> java = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.java);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.java);
   Iterable<Asset> javascript = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.js);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.js);
   Iterable<Asset> json = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.json);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.json);
   Iterable<Asset> lua = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.lua);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.lua);
   Iterable<Asset> markdown = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.md);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.md);
   Iterable<Asset> matLab = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.matlab);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.matlab);
   Iterable<Asset> objectiveC = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.m);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.m);
   Iterable<Asset> php = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.php);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.php);
   Iterable<Asset> perl = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.pl);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.pl);
   Iterable<Asset> powershell = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.ps1);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.ps1);
   Iterable<Asset> python = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.py);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.py);
   Iterable<Asset> r = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.r);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.r);
   Iterable<Asset> ruby = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.rb);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.rb);
   Iterable<Asset> rust = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.rs);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.rs);
   Iterable<Asset> scala = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.scala);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.scala);
   Iterable<Asset> shell = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.ps);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.ps);
   Iterable<Asset> sql = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.sql);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.sql);
   Iterable<Asset> swift = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.swift);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.swift);
   Iterable<Asset> typescript = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.ts);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.ts);
   Iterable<Asset> tex = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.tex);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.tex);
   Iterable<Asset> text = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.text);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.text);
   Iterable<Asset> toml = assetsList.where((element) =>
-      element.original.reference?.classification.specific == ClassificationSpecificEnum.toml);
+  element.original.reference?.classification.specific == ClassificationSpecificEnum.toml);
   Iterable<Asset> yaml = assetsList.where((element) =>
   element.original.reference?.classification.specific == ClassificationSpecificEnum.yaml);
   Iterable<Asset> image = assetsList.where((element) =>
-      element.original.reference?.classification.generic == ClassificationGenericEnum.IMAGE);
+  element.original.reference?.classification.generic == ClassificationGenericEnum.IMAGE);
 
   ReturnedUserProfile user = await PiecesApi.userApi.userSnapshot();
-  // ReturnedUserProfile users = await PiecesApi.;
+  String? vanityName = user.user?.vanityname;
+  String? userPicture = user.user?.picture;
+  String? email = user.user?.email;
+  String? versionProfile = user.user?.allocation?.version;
 
   List<Iterable<Asset>> filteredLanguages = [
     batch,
@@ -154,15 +175,6 @@ Future<Statistics> getStats() async {
       }
     }
   }
-
-  /// Activities Information (version, platform)
-  Activities activities = await PiecesApi.activitiesApi.activitiesSnapshot();
-  Activity first = activities.iterable.first;
-  String activity = first.id;
-  Activity activitySnapshot =
-      await PiecesApi.activityApi.activitiesSpecificActivitySnapshot(activity);
-  String version = activitySnapshot.application.version;
-  String platform = activitySnapshot.application.platform.value;
 
   double snippetsSaved = 0;
   double shareableLinks = 0;
@@ -255,14 +267,14 @@ Future<Statistics> getStats() async {
   }
 
   List<String> tags =
-      (Map.fromEntries(tagMap.entries.toList()..sort((e1, e2) => e2.value.compareTo(e1.value))))
-          .keys
-          .toList();
+  (Map.fromEntries(tagMap.entries.toList()..sort((e1, e2) => e2.value.compareTo(e1.value))))
+      .keys
+      .toList();
 
   List<String> persons =
-      (Map.fromEntries(personMap.entries.toList()..sort((e1, e2) => e2.value.compareTo(e1.value))))
-          .keys
-          .toList();
+  (Map.fromEntries(personMap.entries.toList()..sort((e1, e2) => e2.value.compareTo(e1.value))))
+      .keys
+      .toList();
 
   /// Assuming average wpm is 50, we are calculating the number of seconds for total words
   timeTaken = totalWordsSaved * 1.2;
@@ -274,9 +286,6 @@ Future<Statistics> getStats() async {
   Statistics statistics = Statistics(
     filteredList: filteredList,
     filteredLanguages: filteredLanguages,
-    activity: activity,
-    platform: platform,
-    version: version,
     classifications: classifications,
     snippetsSaved: snippetsSaved,
     shareableLinks: shareableLinks,
@@ -325,6 +334,14 @@ Future<Statistics> getStats() async {
     markdown: markdown,
     asset: assetsList,
     nestedList: nestedList = [],
+    name: name,
+    platform: platform,
+    version: version,
+    userPicture: userPicture,
+    email: email,
+    vanityName: vanityName,
+    versionProfile: versionProfile,
+    // snippetNames: snippetNames,
   );
   return statistics;
 }
@@ -343,8 +360,7 @@ class Statistics {
   final List<String> persons;
   final List<String> relatedLinks;
   final String user;
-  final String activity;
-  final String platform;
+  final String name;
   final String version;
   final String raw;
 
@@ -383,12 +399,23 @@ class Statistics {
   final Iterable<Asset> tex;
   final Iterable<Asset> text;
   final Iterable<Asset> toml;
-
+  final PlatformEnum platform;
   final List<Iterable<Asset>> filteredList;
   final List<Iterable<Asset>> nestedList;
 
+  final String? userPicture;
+  final String? email;
+
+  final String? vanityName;
+
+  final String? versionProfile;
+
+  // final List<String> snippetNames;
+
   /// Statistics class constructors ================================================================
   Statistics({
+    required this.version,
+    required this.name,
     required this.asset,
     required this.filteredLanguages,
     required this.batch,
@@ -436,11 +463,14 @@ class Statistics {
     required this.persons,
     required this.relatedLinks,
     required this.user,
-    required this.activity,
-    required this.platform,
-    required this.version,
     required this.raw,
     required this.filteredList,
     required this.nestedList,
+    required this.platform,
+    required this.userPicture,
+    required this.email,
+    required this.vanityName,
+    required this.versionProfile,
+    // required this.snippetNames,
   });
 }

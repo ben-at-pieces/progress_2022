@@ -48,7 +48,7 @@ class Plugins extends StatelessWidget {
             child: Row(
               children: [
                 SizedBox(
-                  height: 150,
+                  height: 200,
                   width: 120,
                   child: ListView(
                     padding: const EdgeInsets.all(10),
@@ -56,16 +56,22 @@ class Plugins extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            'Pieces',
-                            style: ParticleFont.micro(
-                              context,
-                              customization: TextStyle(
-                                color: Colors.black,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
+                          Row(
+                            children: [
+                              Icon(Icons.auto_awesome),
+
+                              Text(
+                                'Pieces',
+                                style: ParticleFont.micro(
+                                  context,
+                                  customization: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           ),
                         ],
                       ),
@@ -80,7 +86,7 @@ class Plugins extends StatelessWidget {
                                 style: ParticleFont.micro(
                                   context,
                                   customization: TextStyle(
-                                    color: Colors.black,
+                                    color: Colors.grey,
                                     fontSize: 10,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -99,7 +105,10 @@ class Plugins extends StatelessWidget {
                                 }
                               },
                             ),
-                            Icon(Icons.install_desktop),
+                            SizedBox(
+                                height: 25,
+                                width: 25,
+                                child: Image.asset('roundedpfd.png')),
                           ],
                         ),
                       ),
@@ -107,7 +116,7 @@ class Plugins extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 150,
+                  height: 200,
                   width: 165,
                   child: ListView(
                     padding: const EdgeInsets.all(10),
@@ -115,8 +124,11 @@ class Plugins extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          Icon(Icons.devices_outlined),
+
+
                           Text(
-                            'IDE',
+                            'Develop',
                             style: ParticleFont.micro(
                               context,
                               customization: TextStyle(
@@ -139,7 +151,7 @@ class Plugins extends StatelessWidget {
                                 style: ParticleFont.micro(
                                   context,
                                   customization: TextStyle(
-                                    color: Colors.black,
+                                    color: Colors.grey,
                                     fontSize: 10,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -159,7 +171,7 @@ class Plugins extends StatelessWidget {
                                 }
                               },
                             ),
-                            Icon(Icons.laptop_chromebook),
+                            SizedBox(height: 25, width: 25, child: Image.asset('vscode.png')),
                           ],
                         ),
                       ),
@@ -172,7 +184,7 @@ class Plugins extends StatelessWidget {
                               style: ParticleFont.micro(
                                 context,
                                 customization: TextStyle(
-                                  color: Colors.black,
+                                  color: Colors.grey,
                                   fontSize: 10,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -192,14 +204,14 @@ class Plugins extends StatelessWidget {
                               }
                             },
                           ),
-                          Icon(Icons.laptop_chromebook),
+                          SizedBox(height: 25, width: 25, child: Image.asset('jetbrains.png')),
                         ],
                       ),
                     ],
                   ),
                 ),
                 SizedBox(
-                  height: 150,
+                  height: 200,
                   width: 170,
                   child: ListView(
                     padding: const EdgeInsets.all(10),
@@ -207,16 +219,23 @@ class Plugins extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            'Enhancements',
-                            style: ParticleFont.micro(
-                              context,
-                              customization: TextStyle(
-                                color: Colors.black,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
+                          Row(
+                            children: [
+
+                              Icon(Icons.auto_fix_high),
+
+                              Text(
+                                'Enhance',
+                                style: ParticleFont.micro(
+                                  context,
+                                  customization: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           ),
                         ],
                       ),
@@ -231,7 +250,7 @@ class Plugins extends StatelessWidget {
                                 style: ParticleFont.micro(
                                   context,
                                   customization: TextStyle(
-                                    color: Colors.black,
+                                    color: Colors.grey,
                                     fontSize: 10,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -263,7 +282,7 @@ class Plugins extends StatelessWidget {
                               style: ParticleFont.micro(
                                 context,
                                 customization: TextStyle(
-                                  color: Colors.black,
+                                  color: Colors.grey,
                                   fontSize: 10,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -294,7 +313,7 @@ class Plugins extends StatelessWidget {
                               style: ParticleFont.micro(
                                 context,
                                 customization: TextStyle(
-                                  color: Colors.black,
+                                  color: Colors.grey,
                                   fontSize: 10,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -320,7 +339,7 @@ class Plugins extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 150,
+                  height: 200,
                   width: 150,
                   child: ListView(
                     padding: const EdgeInsets.all(10),
@@ -328,16 +347,22 @@ class Plugins extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            'Browsers',
-                            style: ParticleFont.micro(
-                              context,
-                              customization: TextStyle(
-                                color: Colors.black,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
+                          Row(
+                            children: [
+                              Icon(Icons.travel_explore_outlined),
+
+                              Text(
+                                'Browse',
+                                style: ParticleFont.micro(
+                                  context,
+                                  customization: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           ),
                         ],
                       ),
@@ -346,13 +371,14 @@ class Plugins extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
+
                             TextButton(
                               child: Text(
-                                ' Pieces for Chrome',
+                                'Pieces for Chrome',
                                 style: ParticleFont.micro(
                                   context,
                                   customization: TextStyle(
-                                    color: Colors.black,
+                                    color: Colors.grey,
                                     fontSize: 10,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -372,20 +398,25 @@ class Plugins extends StatelessWidget {
                                 }
                               },
                             ),
-                            Icon(Icons.language),
-                          ],
+                            SizedBox(
+                              height: 24,
+                              width: 24,
+                              child: Image.asset('Chrome.png'),
+                            ),      ],
                         ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
+
+
                           TextButton(
                             child: Text(
                               'Pieces for Safari',
                               style: ParticleFont.micro(
                                 context,
                                 customization: TextStyle(
-                                  color: Colors.black,
+                                  color: Colors.grey,
                                   fontSize: 10,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -404,19 +435,24 @@ class Plugins extends StatelessWidget {
                               }
                             },
                           ),
-                          Icon(Icons.language),
-                        ],
+                          SizedBox(
+                            height: 24,
+                            width: 24,
+                            child: Image.asset('Safari.png'),
+                          ),     ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
+
+
                           TextButton(
                             child: Text(
                               'Pieces for FireFox',
                               style: ParticleFont.micro(
                                 context,
                                 customization: TextStyle(
-                                  color: Colors.black,
+                                  color: Colors.grey,
                                   fontSize: 10,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -435,19 +471,24 @@ class Plugins extends StatelessWidget {
                               }
                             },
                           ),
-                          Icon(Icons.language),
-                        ],
+                          SizedBox(
+                            height: 24,
+                            width: 24,
+                            child: Image.asset('Firefox.png'),
+                          ),     ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
+
+
                           TextButton(
                             child: Text(
                               'Pieces for Brave',
                               style: ParticleFont.micro(
                                 context,
                                 customization: TextStyle(
-                                  color: Colors.black,
+                                  color: Colors.grey,
                                   fontSize: 10,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -466,8 +507,11 @@ class Plugins extends StatelessWidget {
                               }
                             },
                           ),
-                          Icon(Icons.language),
-                        ],
+                          SizedBox(
+                            height: 24,
+                            width: 24,
+                            child: Image.asset('brave.jpg'),
+                          ),     ],
                       ),
                     ],
                   ),
@@ -476,7 +520,7 @@ class Plugins extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 10.0, top: 15),
+            padding: const EdgeInsets.only(left: 20.0, top: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -486,51 +530,22 @@ class Plugins extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      TextButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                            Colors.black54,
-                          ),
-                        ),
-                        child: Text(
-                          'Pieces.app',
-                          style: ParticleFont.micro(
-                            context,
-                            customization: TextStyle(
-                              color: Colors.white,
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),
-                        onPressed: () async {
-                          String linkUrl = 'https://code.pieces.app/install';
-
-                          linkUrl = linkUrl; //Twitter's URL
-                          if (await canLaunch(linkUrl)) {
-                            await launch(
-                              linkUrl,
-                            );
-                          } else {
-                            throw 'Could not launch $linkUrl';
-                          }
-                        },
-                      ),
                     ],
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0, top: 5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                            Colors.black54,
-                          ),
+                  child: TextButton(
+
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          height: 30,
+                          width: 30,
+                          child: Image.asset('pfd.png'),
                         ),
-                        child: Text(
-                          'LinkedIn',
+                        Text(
+                          '',
                           style: ParticleFont.micro(
                             context,
                             customization: TextStyle(
@@ -539,35 +554,37 @@ class Plugins extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onPressed: () async {
-                          String linkUrl = 'https://www.linkedin.com/company/getpieces/mycompany/';
+                      ],
+                    ),
+                    onPressed: () async {
+                      String linkUrl = 'https://code.pieces.app/install';
 
-                          linkUrl = linkUrl; //Twitter's URL
-                          if (await canLaunch(linkUrl)) {
-                            await launch(
-                              linkUrl,
-                            );
-                          } else {
-                            throw 'Could not launch $linkUrl';
-                          }
-                        },
-                      ),
-                    ],
+                      linkUrl = linkUrl; //Twitter's URL
+                      if (await canLaunch(linkUrl)) {
+                        await launch(
+                          linkUrl,
+                        );
+                      } else {
+                        throw 'Could not launch $linkUrl';
+                      }
+                    },
                   ),
                 ),
+                /// linkedin
+
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0, top: 5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                            Colors.black54,
-                          ),
+                  child: TextButton(
+
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          height: 24,
+                          width: 24,
+                          child: Image.asset('linkedin.png'),
                         ),
-                        child: Text(
-                          'Twitter',
+                        Text(
+                          '',
                           style: ParticleFont.micro(
                             context,
                             customization: TextStyle(
@@ -576,35 +593,37 @@ class Plugins extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onPressed: () async {
-                          String linkUrl = 'https://twitter.com/getpieces';
+                      ],
+                    ),
+                    onPressed: () async {
+                      String linkUrl = 'https://www.linkedin.com/company/getpieces/mycompany/';
 
-                          linkUrl = linkUrl; //Twitter's URL
-                          if (await canLaunch(linkUrl)) {
-                            await launch(
-                              linkUrl,
-                            );
-                          } else {
-                            throw 'Could not launch $linkUrl';
-                          }
-                        },
-                      ),
-                    ],
+                      linkUrl = linkUrl; //Twitter's URL
+                      if (await canLaunch(linkUrl)) {
+                        await launch(
+                          linkUrl,
+                        );
+                      } else {
+                        throw 'Could not launch $linkUrl';
+                      }
+                    },
                   ),
                 ),
+
+                /// twitter
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0, top: 5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                            Colors.black54,
-                          ),
+                  child: TextButton(
+
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          height: 24,
+                          width: 24,
+                          child: Image.asset('twitter.png'),
                         ),
-                        child: Text(
-                          'Facebook',
+                        Text(
+                          '',
                           style: ParticleFont.micro(
                             context,
                             customization: TextStyle(
@@ -613,23 +632,140 @@ class Plugins extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onPressed: () async {
-                          String linkUrl =
-                              'https://www.facebook.com/518508470288885/posts/559057106234021';
+                      ],
+                    ),
+                    onPressed: () async {
+                      String linkUrl = 'https://twitter.com/getpieces';
 
-                          linkUrl = linkUrl; //Twitter's URL
-                          if (await canLaunch(linkUrl)) {
-                            await launch(
-                              linkUrl,
-                            );
-                          } else {
-                            throw 'Could not launch $linkUrl';
-                          }
-                        },
-                      ),
-                    ],
+                      linkUrl = linkUrl; //Twitter's URL
+                      if (await canLaunch(linkUrl)) {
+                        await launch(
+                          linkUrl,
+                        );
+                      } else {
+                        throw 'Could not launch $linkUrl';
+                      }
+                    },
                   ),
                 ),
+
+                /// facebook
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, top: 5),
+                  child: TextButton(
+
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          height: 24,
+                          width: 24,
+                          child: Image.asset('facebook.png'),
+                        ),
+                        Text(
+                          '',
+                          style: ParticleFont.micro(
+                            context,
+                            customization: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    onPressed: () async {
+                      String linkUrl = 'https://www.facebook.com/524508470288885/posts/559057106234021';
+
+                      linkUrl = linkUrl; //Twitter's URL
+                      if (await canLaunch(linkUrl)) {
+                        await launch(
+                          linkUrl,
+                        );
+                      } else {
+                        throw 'Could not launch $linkUrl';
+                      }
+                    },
+                  ),
+                ),
+
+                /// pfdgpt
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, top: 5),
+                  child: TextButton(
+
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          height: 25,
+                          width: 25,
+                          child: Image.asset('github.png'),
+                        ),
+                        Text(
+                          '',
+                          style: ParticleFont.micro(
+                            context,
+                            customization: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    onPressed: () async {
+                      String linkUrl = '';
+
+                      linkUrl = linkUrl; //Twitter's URL
+                      if (await canLaunch(linkUrl)) {
+                        await launch(
+                          linkUrl,
+                        );
+                      } else {
+                        throw 'Could not launch $linkUrl';
+                      }
+                    },
+                  ),
+                ),
+
+                /// github
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, top: 5),
+                  child: TextButton(
+
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          height: 25,
+                          width: 25,
+                          child: Image.asset('black_GPT.png'),
+                        ),
+                        Text(
+                          '',
+                          style: ParticleFont.micro(
+                            context,
+                            customization: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    onPressed: () async {
+                      String linkUrl = '';
+
+                      linkUrl = linkUrl; //Twitter's URL
+                      if (await canLaunch(linkUrl)) {
+                        await launch(
+                          linkUrl,
+                        );
+                      } else {
+                        throw 'Could not launch $linkUrl';
+                      }
+                    },
+                  ),
+                ),
+
               ],
             ),
           ),
@@ -991,7 +1127,7 @@ class Plugins extends StatelessWidget {
           //   ],
           // ),
 
-          // https://www.facebook.com/518508470288885/posts/559057106234021
+          // https://www.facebook.com/524508470288885/posts/559057106234021
         ],
       ),
     );
